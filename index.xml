@@ -6,7 +6,29 @@
         <description>Recent content on My New Hugo Site</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 08 Aug 2024 00:38:54 +0800</lastBuildDate><atom:link href="https://jiebaoccc.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 08 Aug 2024 14:07:39 +0800</lastBuildDate><atom:link href="https://jiebaoccc.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>更新指令</title>
+        <link>https://jiebaoccc.github.io/post/%E6%9B%B4%E6%96%B0%E6%8C%87%E4%BB%A4/</link>
+        <pubDate>Thu, 08 Aug 2024 14:07:39 +0800</pubDate>
+        
+        <guid>https://jiebaoccc.github.io/post/%E6%9B%B4%E6%96%B0%E6%8C%87%E4%BB%A4/</guid>
+        <description>&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;myblog目录&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;hugo server -t hugo-theme-stack-master &amp;ndash;buildDrafts&lt;/p&gt;
+&lt;p&gt;本地启动博客，可直接更改博客&lt;/p&gt;
+&lt;p&gt;hugo &amp;ndash;theme=hugo-theme-stack-master &amp;ndash;baseURL=&amp;ldquo;&lt;a class=&#34;link&#34; href=&#34;https://jiebaoccc.github.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://jiebaoccc.github.io&lt;/a&gt;&amp;rdquo; &amp;ndash;buildDrafts&lt;/p&gt;
+&lt;p&gt;更新public&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;进入public目录&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;git add *&lt;/p&gt;
+&lt;p&gt;git commit -m “my first hugo”&lt;/p&gt;
+&lt;p&gt;git push -u origin master&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>C&#43;&#43;笔记</title>
         <link>https://jiebaoccc.github.io/post/c&#43;&#43;/</link>
         <pubDate>Thu, 08 Aug 2024 00:38:54 +0800</pubDate>
