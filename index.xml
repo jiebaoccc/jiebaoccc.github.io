@@ -15,17 +15,18 @@
         <description>&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;myblog目录&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;hugo server -t hugo-theme-stack-master &amp;ndash;buildDrafts&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;hugo new post/更新指令.md&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;创建新文本&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;hugo server -t hugo-theme-stack-master --buildDrafts&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;本地启动博客，可直接更改博客&lt;/p&gt;
-&lt;p&gt;hugo &amp;ndash;theme=hugo-theme-stack-master &amp;ndash;baseURL=&amp;ldquo;&lt;a class=&#34;link&#34; href=&#34;https://jiebaoccc.github.io&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://jiebaoccc.github.io&lt;/a&gt;&amp;rdquo; &amp;ndash;buildDrafts&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;hugo --theme=hugo-theme-stack-master --baseURL=&amp;quot;https://jiebaoccc.github.io&amp;quot; --buildDrafts&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;更新public&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;进入public目录&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;git add *&lt;/p&gt;
-&lt;p&gt;git commit -m “my first hugo”&lt;/p&gt;
-&lt;p&gt;git push -u origin master&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git add *&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git commit -m “my first hugo”&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git push -u origin master&lt;/code&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
