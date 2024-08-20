@@ -153,7 +153,7 @@
 
 
                 <time class="article-time--reading">
-                    27 minute read
+                    28 minute read
                 </time>
             </div>
         
@@ -3682,6 +3682,8 @@
 </span></span><span style="display:flex;"><span>[[<span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#ae81ff">55</span>], [<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#ae81ff">33</span>], [<span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#ae81ff">11</span>]]
 </span></span></code></pre></div></li>
 </ul>
+<h1 id="插入自动导包快捷键">插入：自动导包快捷键
+</h1><p>alt + 回车</p>
 <h1 id="九面向对象">九、面向对象
 </h1><h2 id="1-类">1. 类
 </h2><ul>
@@ -4165,7 +4167,186 @@
 </ul>
 <h2 id="7-类型注解">7. 类型注解
 </h2><h3 id="1变量的类型注解">1）变量的类型注解
-</h3>
+</h3><ul>
+<li>
+<p><strong>格式：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>变量:类型
+</span></span></code></pre></div></li>
+<li>
+<p><strong>基础数据类型注解</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>var_1: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>var_2: float <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.1415926</span>
+</span></span><span style="display:flex;"><span>var_3: bool <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>var_4: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jojo&#34;</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>类对象类型注解</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>stu: Student <span style="color:#f92672">=</span> Student()
+</span></span></code></pre></div></li>
+<li>
+<p><strong>基础容器类型注解</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>my_list: list <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>my_tuple: tuple <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>my_set: set <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>}
+</span></span><span style="display:flex;"><span>my_dict: dict <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;jojo&#34;</span>: <span style="color:#ae81ff">666</span>}
+</span></span><span style="display:flex;"><span>my_str: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jojo&#34;</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>容器类型详细注解</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>my_list: list[int] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>my_tuple: tuple[str, int, bool] <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#34;jojo&#34;</span>, <span style="color:#ae81ff">666</span>, <span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>my_set: set[int] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>}
+</span></span><span style="display:flex;"><span>my_dict: dict[str, int] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;jojo&#34;</span>: <span style="color:#ae81ff">666</span>}
+</span></span></code></pre></div><p><strong>注意：</strong></p>
+<ul>
+<li><strong>元组类型设置类型详细注解时，需要将每一个元素都标记出来</strong></li>
+<li><strong>字典类型设置类型详细注解时，需要两个类型，一个是key，一个是value</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>除了使用上述的方法进行注解外，还可以在注释中进行类型注解</strong></p>
+<ul>
+<li>
+<p><strong>格式2：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>type: 类型
+</span></span></code></pre></div></li>
+<li>
+<p><strong>在注释中进行类型注解</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>var_1 <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">10</span>)  <span style="color:#75715e"># type: int</span>
+</span></span><span style="display:flex;"><span>var_2 <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(<span style="color:#e6db74">&#39;{&#34;name&#34;: 6}&#39;</span>)  <span style="color:#75715e"># type: dict[str, int]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">func</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>var_3 <span style="color:#f92672">=</span> func()  <span style="color:#75715e"># type: int</span>
+</span></span></code></pre></div></li>
+</ul>
+<p><strong>一般在无法直接看出变量类型时，才会添加变量的类型注解</strong></p>
+<h3 id="2函数方法的类型注解">2）函数（方法）的类型注解
+</h3><h4 id="-形参注解">① 形参注解
+</h4><ul>
+<li>
+<p><strong>格式：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">函数方法名</span>(形参名<span style="color:#960050;background-color:#1e0010">：</span>类型<span style="color:#960050;background-color:#1e0010">，</span>形参名<span style="color:#960050;background-color:#1e0010">：</span>类型<span style="color:#960050;background-color:#1e0010">，……</span>)<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>示例：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add</span>(x: int, y: int):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> y
+</span></span></code></pre></div><p>![屏幕截图 2024-08-20 192652](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-20 192652.png)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">func</span>(data: list):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="-返回值注解">② 返回值注解
+</h4><ul>
+<li>
+<p><strong>格式：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">函数方法名</span>(形参名<span style="color:#960050;background-color:#1e0010">：</span>类型<span style="color:#960050;background-color:#1e0010">，</span>形参名<span style="color:#960050;background-color:#1e0010">：</span>类型<span style="color:#960050;background-color:#1e0010">，……</span>)<span style="color:#f92672">-&gt;</span> 返回值类型:
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>示例：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">func</span>(data: list) <span style="color:#f92672">-&gt;</span> list:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> data
+</span></span></code></pre></div><p>![屏幕截图 2024-08-20 193033](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-20 193033.png)</p>
+</li>
+</ul>
+<h3 id="3-union-类型">3) Union 类型
+</h3><ul>
+<li>
+<p><strong>格式：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Union[类型<span style="color:#960050;background-color:#1e0010">，……，</span>类型]
+</span></span></code></pre></div></li>
+<li>
+<p><strong>示例：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Union
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>my_list: list[Union[str, int]] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#34;jojo&#34;</span>, <span style="color:#e6db74">&#34;jane&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>my_dict: dict[str, Union[str, int]] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;jojo&#34;</span>, <span style="color:#e6db74">&#34;age&#34;</span>: <span style="color:#ae81ff">32</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">func</span>(data: Union[int, str]) <span style="color:#f92672">-&gt;</span> Union[int, str]:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>func()
+</span></span></code></pre></div><p>![屏幕截图 2024-08-20 193603](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-20 193603.png)</p>
+</li>
+</ul>
+<p><strong>注解只是建议性，不是必需性</strong></p>
+<h2 id="8-多态">8. 多态
+</h2><ul>
+<li>
+<p>多态常作用在继承关系上，比如</p>
+<ul>
+<li>函数（方法）形参声明接受父类对象，实际传入父类的子类对象</li>
+</ul>
+</li>
+<li>
+<p><strong>示例：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Animal</span>:	<span style="color:#75715e"># 抽象类 设置空函数 也可以称之为接口</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">speak</span>(self):	<span style="color:#75715e"># 抽象方法</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Dog</span>(Animal):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">speak</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;wang&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span>(Animal):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">speak</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;miao&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_noise</span>(animal: Animal):
+</span></span><span style="display:flex;"><span>    animal<span style="color:#f92672">.</span>speak()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dog <span style="color:#f92672">=</span> Dog()
+</span></span><span style="display:flex;"><span>cat <span style="color:#f92672">=</span> Cat()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>make_noise(dog)
+</span></span><span style="display:flex;"><span>make_noise(cat)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 输出结果</span>
+</span></span><span style="display:flex;"><span>wang
+</span></span><span style="display:flex;"><span>miao
+</span></span></code></pre></div></li>
+</ul>
+<h1 id="十sql">十、SQL
+</h1><h2 id="1-操作">1. 操作
+</h2><ul>
+<li>
+<p><strong>在命令提示符内使用MySQL</strong></p>
+<ul>
+<li>
+<p><strong>mysql -uroot -p</strong></p>
+<p>输入密码即可进入MySQL命令行环境</p>
+</li>
+<li>
+<p><strong>show databases</strong></p>
+<p>查看有哪些数据库</p>
+</li>
+<li>
+<p><strong>use 数据库名</strong></p>
+<p>使用某个数据库</p>
+</li>
+<li>
+<p><strong>show tables</strong></p>
+<p>查看数据库内有哪些表</p>
+</li>
+<li>
+<p><strong>exit</strong></p>
+<p>退出MySQL的命令行环境</p>
+</li>
+</ul>
+</li>
+</ul>
+
 </section>
 
 
