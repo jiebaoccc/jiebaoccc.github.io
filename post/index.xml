@@ -12993,7 +12993,7 @@ M             1000
         <guid>https://jiebaoccc.github.io/post/python%E7%AC%94%E8%AE%B0/</guid>
         <description>&lt;h1 id=&#34;一基础概念&#34;&gt;一、基础概念
 &lt;/h1&gt;&lt;h2 id=&#34;1字面量&#34;&gt;1.字面量
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/p1.jpg&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p1.jpg&#34;
 	
 	
 	
@@ -13077,7 +13077,14 @@ M             1000
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;常见转换语句&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;![屏幕截图 2024-07-21 154816](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-07-21 154816.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;返回值为转换后的数据&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -13136,7 +13143,16 @@ M             1000
 &lt;/h2&gt;&lt;h3 id=&#34;算术运算符&#34;&gt;&lt;strong&gt;算术运算符&lt;/strong&gt;
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;![屏幕截图 2024-07-21 163723](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-07-21 163723.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p3&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;使用示例：&lt;/strong&gt;&lt;/p&gt;
@@ -13159,19 +13175,31 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;赋值运算符&#34;&gt;赋值运算符
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p4.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 赋值运算符&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;num &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;复合赋值运算符&#34;&gt;复合赋值运算符
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;![屏幕截图 2024-07-21 164322](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-07-21 164322.png)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# 赋值运算符&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  num &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;复合赋值运算符&#34;&gt;复合赋值运算符
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;![屏幕截图 2024-07-21 164420](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-07-21 164420.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p5.png&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;# 复合赋值运算符&lt;/span&gt;
@@ -13269,7 +13297,16 @@ M             1000
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;占位符&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;![屏幕截图 2024-07-21 171212](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-07-21 171212.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p6.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p6.png&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;name &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;jojo&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;set_up_year &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2006&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;stock_price &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;19.99&lt;/span&gt;
@@ -13305,7 +13342,7 @@ M             1000
 &lt;h3 id=&#34;6对表达式进行格式化&#34;&gt;6）对表达式进行格式化
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;**表达式：**一条具有明确执行结果的代码语句，如1+1,5*2有具体结果，就是表达式&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;表达式：&lt;/strong&gt; 一条具有明确执行结果的代码语句，如1+1,5*2有具体结果，就是表达式&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;在无需使用变量进行数据存储时，可以直接格式化表达式，简化代码&lt;/strong&gt;&lt;/p&gt;
@@ -13321,7 +13358,7 @@ M             1000
 &lt;h2 id=&#34;9input函数&#34;&gt;9.input函数
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;**功能：**从键盘获取数据&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt; 从键盘获取数据&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;示例：&lt;/strong&gt;&lt;/p&gt;
@@ -13379,7 +13416,16 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;比较运算符&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;![屏幕截图 2024-07-25 101227](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-07-25 101227.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p7.png&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;2if语句的基本格式&#34;&gt;2.if语句的基本格式
@@ -13475,7 +13521,16 @@ M             1000
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;示例：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;![屏幕截图 2024-07-25 103136](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-07-25 103136.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p8.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p8.png&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;注生成随机数字&#34;&gt;注：生成随机数字
@@ -15090,7 +15145,16 @@ M             1000
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;示例：记录学生各科的考试信息&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;![屏幕截图 2024-08-06 171554](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-06 171554.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p9.png&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;stu_score &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;jojo&amp;#34;&lt;/span&gt;: {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;语文&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;77&lt;/span&gt;,
@@ -15283,7 +15347,16 @@ M             1000
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;有如下员工信息，对所有级别为1级的员工级别上升1级，薪水增加1000&lt;/p&gt;
-&lt;p&gt;![屏幕截图 2024-08-06 194020](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-06 194020.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p10.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p10.png&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;代码：&lt;/strong&gt;&lt;/p&gt;
@@ -15340,7 +15413,26 @@ M             1000
 &lt;p&gt;&lt;strong&gt;元组、字符串不支持修改&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;![屏幕截图 2024-08-06 194641](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-06 194641.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p11.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;屏幕截图 2024-08-06 194641&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p11.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p11&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;各类数据容器的特点，以及应用场景：&lt;/strong&gt;&lt;/p&gt;
@@ -16223,8 +16315,30 @@ M             1000
 &lt;p&gt;&lt;strong&gt;主要功能：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;JSON 就是一种在各个编程语言中流通的数据格式，负责不同编程语言中的数据传输和交互&lt;/p&gt;
 &lt;p&gt;为了让不同的语言都能够相互通用的互相传递数据，JSON 就是一种非常良好的中转数据格式&lt;/p&gt;
-&lt;p&gt;![屏幕截图 2024-08-11 224027](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-11 224027.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p12.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p12&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p12.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p12.png&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;f&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;JSON格式：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# json格式一&lt;/span&gt;
@@ -16266,7 +16380,24 @@ M             1000
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;输入&lt;code&gt;pip install pyecharts &lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;![屏幕截图 2024-08-12 222621](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-12 222621.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p13.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p13.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p13.png&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;下载完成&lt;/p&gt;
@@ -16338,7 +16469,26 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 生成图表&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;line&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;render()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;![屏幕截图 2024-08-12 231646](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-12 231646.png)&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p14.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p14&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p14.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p14&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -16368,7 +16518,26 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;map&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;地图&amp;#34;&lt;/span&gt;, data, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;china&amp;#34;&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;map&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;render()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;![屏幕截图 2024-08-12 234919](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-12 234919.png)&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p15.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p15&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p15.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p15&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;全局选项设置&lt;/strong&gt;&lt;/p&gt;
@@ -16410,7 +16579,26 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 生成地图&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;map&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;render()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;![屏幕截图 2024-08-12 235841](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-12 235841.png)&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p16.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p16&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p16.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p16&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;3-动态柱状图&#34;&gt;3. 动态柱状图
@@ -16435,7 +16623,26 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 生成地图&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bar&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;render()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;![](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-13 154252.png)&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p17.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p17&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p17.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p17&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;2-时间线柱状图&#34;&gt;2) 时间线柱状图
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -16493,7 +16700,26 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 生成柱状图&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;timeline&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;render(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;时间线柱状图时间线.html&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;![屏幕截图 2024-08-13 155814](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-13 155814.png)&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p18.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p18&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p18.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p18&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;3动态柱状图绘制&#34;&gt;3）动态柱状图绘制
@@ -17069,9 +17295,28 @@ M             1000
 &lt;p&gt;&lt;strong&gt;示例：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(x: int, y: int):
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; y
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;![屏幕截图 2024-08-20 192652](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-20 192652.png)&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p19.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p19&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p19.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p19&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;func&lt;/span&gt;(data: list):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;pass&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;pass&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;-返回值注解&#34;&gt;② 返回值注解
@@ -17085,7 +17330,26 @@ M             1000
 &lt;p&gt;&lt;strong&gt;示例：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;func&lt;/span&gt;(data: list) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; list:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; data
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;![屏幕截图 2024-08-20 193033](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-20 193033.png)&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p20.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p20&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p20.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p20&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;3-union-类型&#34;&gt;3) Union 类型
@@ -17106,7 +17370,26 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;pass&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;func()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;![屏幕截图 2024-08-20 193603](C:/Users/carp/OneDrive/桌面/Python/屏幕截图 2024-08-20 193603.png)&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p21.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p21&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p21.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Python_p21&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;注解只是建议性，不是必需性&lt;/strong&gt;&lt;/p&gt;
