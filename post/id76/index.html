@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 \u200b\t给定2支股票的开盘价和收盘价的N天历史数据， \u200b\t要求按开盘和收盘，分别计算每支股票的每个日期对应的M天移动平均价格。 \u200b\t假定两个股票数据如下： \u200b\t日期 开盘/收盘 第1支股票价格S1 第2支股票价格S2 \u200b\t2004/7/29 close 6 4 \u200b\t2004/7/25 close 2 6 \u200b\t2004/7/26 open 8 12 \u200b\t2004/7/30 open 2 4 \u200b\t2004/7/27 close 8 10 \u200b\t2004/7/28 open 4 2 \u200b\t按M=2天（日期不用连续）计算移动平均价格，按先开盘，后收盘价，输出如下：（若某日期之前，没有M-1条的记录（日期不用连续），则不用输出） \u200b\t2004/7/28 open 6 7 \u200b\t2004/7/30 open 3 3 \u200b\t2004/7/27 close 5 8 \u200b\t2004/7/29 close 7 7 \u200b\t其中, 2004/7/28日的S1的值为(8+4)/2 = 6， 即将2004/7/28和（最近1条记录2004/7/26，最近2条记录，最近M-1条记录）的价格，求和并计算平均。">
+<title>【id:76】D. 计算2支股票的M天运动平均价格</title>
+
+<link rel='canonical' href='http://localhost:1313/post/id76/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id:76】D. 计算2支股票的M天运动平均价格">
+<meta property='og:description' content="题目描述 \u200b\t给定2支股票的开盘价和收盘价的N天历史数据， \u200b\t要求按开盘和收盘，分别计算每支股票的每个日期对应的M天移动平均价格。 \u200b\t假定两个股票数据如下： \u200b\t日期 开盘/收盘 第1支股票价格S1 第2支股票价格S2 \u200b\t2004/7/29 close 6 4 \u200b\t2004/7/25 close 2 6 \u200b\t2004/7/26 open 8 12 \u200b\t2004/7/30 open 2 4 \u200b\t2004/7/27 close 8 10 \u200b\t2004/7/28 open 4 2 \u200b\t按M=2天（日期不用连续）计算移动平均价格，按先开盘，后收盘价，输出如下：（若某日期之前，没有M-1条的记录（日期不用连续），则不用输出） \u200b\t2004/7/28 open 6 7 \u200b\t2004/7/30 open 3 3 \u200b\t2004/7/27 close 5 8 \u200b\t2004/7/29 close 7 7 \u200b\t其中, 2004/7/28日的S1的值为(8+4)/2 = 6， 即将2004/7/28和（最近1条记录2004/7/26，最近2条记录，最近M-1条记录）的价格，求和并计算平均。">
+<meta property='og:url' content='http://localhost:1313/post/id76/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-12T22:53:48&#43;08:00'/><meta property='article:modified_time' content='2024-09-12T22:53:48&#43;08:00'/>
+<meta name="twitter:title" content="【id:76】D. 计算2支股票的M天运动平均价格">
+<meta name="twitter:description" content="题目描述 \u200b\t给定2支股票的开盘价和收盘价的N天历史数据， \u200b\t要求按开盘和收盘，分别计算每支股票的每个日期对应的M天移动平均价格。 \u200b\t假定两个股票数据如下： \u200b\t日期 开盘/收盘 第1支股票价格S1 第2支股票价格S2 \u200b\t2004/7/29 close 6 4 \u200b\t2004/7/25 close 2 6 \u200b\t2004/7/26 open 8 12 \u200b\t2004/7/30 open 2 4 \u200b\t2004/7/27 close 8 10 \u200b\t2004/7/28 open 4 2 \u200b\t按M=2天（日期不用连续）计算移动平均价格，按先开盘，后收盘价，输出如下：（若某日期之前，没有M-1条的记录（日期不用连续），则不用输出） \u200b\t2004/7/28 open 6 7 \u200b\t2004/7/30 open 3 3 \u200b\t2004/7/27 close 5 8 \u200b\t2004/7/29 close 7 7 \u200b\t其中, 2004/7/28日的S1的值为(8+4)/2 = 6， 即将2004/7/28和（最近1条记录2004/7/26，最近2条记录，最近M-1条记录）的价格，求和并计算平均。">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/id76/">【id:76】D. 计算2支股票的M天运动平均价格</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 12, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><strong>题目描述</strong></p>
+<p>​	给定2支股票的开盘价和收盘价的N天历史数据，</p>
+<p>​	要求按开盘和收盘，分别计算每支股票的每个日期对应的M天移动平均价格。</p>
+<p>​	假定两个股票数据如下：</p>
+<p>​	日期       开盘/收盘    第1支股票价格S1    第2支股票价格S2</p>
+<p>​	2004/7/29 close 6 4</p>
+<p>​	2004/7/25 close 2 6</p>
+<p>​	2004/7/26 open 8 12</p>
+<p>​	2004/7/30 open 2 4</p>
+<p>​	2004/7/27 close 8 10</p>
+<p>​	2004/7/28 open 4 2</p>
+<p>​	按M=2天（日期不用连续）计算移动平均价格，按先开盘，后收盘价，输出如下：（若某日期之前，没有M-1条的记录（日期不用连续），则不用输出）</p>
+<p>​	2004/7/28 open 6 7</p>
+<p>​	2004/7/30 open 3 3</p>
+<p>​	2004/7/27 close 5 8</p>
+<p>​	2004/7/29 close 7 7</p>
+<p>​	其中, 2004/7/28日的S1的值为(8+4)/2 = 6， 即将2004/7/28和（最近1条记录2004/7/26，最近2条记录，最近M-1条记录）的价格，求和并计算平均。</p>
+<p><strong>输入</strong></p>
+<p>​	第1行：N天记录  M天平均</p>
+<p>​	第2行到N+1行：N天2支股票的开盘与收盘价格（注意日期是无序的）</p>
+<p>​	6  2</p>
+<p>​	2004/7/29 close 6 4</p>
+<p>​	2004/7/25 close 2 6</p>
+<p>​	2004/7/26 open 8 12</p>
+<p>​	2004/7/30 open 2 4</p>
+<p>​	2004/7/27 close 8 10</p>
+<p>​	2004/7/28 open 4 2</p>
+<p><strong>输出</strong></p>
+<p>​	每个日期的最近M条记录（包括该日期的价格在内）的平均价格（若某日期之前没有M-1条的记录（日期不用连续），则不用输出）</p>
+<p>​	2004/7/28 open 6 7</p>
+<p>​	2004/7/30 open 3 3</p>
+<p>​	2004/7/27 close 5 8</p>
+<p>​	2004/7/29 close 7 7</p>
+<p><strong>IO模式</strong></p>
+<p>​	本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。</p>
+<p><strong>输入样例1：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2004</span><span style="color:#f92672">/</span><span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">29</span>  	close      <span style="color:#ae81ff">6</span>	 <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2004</span><span style="color:#f92672">/</span><span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">25</span>  	close      <span style="color:#ae81ff">2</span>      <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2004</span><span style="color:#f92672">/</span><span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">26</span>  	open      <span style="color:#ae81ff">8</span>      <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2004</span><span style="color:#f92672">/</span><span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">30</span>  	open      <span style="color:#ae81ff">2</span>      <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2004</span><span style="color:#f92672">/</span><span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">27</span>  	close      <span style="color:#ae81ff">8</span>      <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2004</span><span style="color:#f92672">/</span><span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">28</span>  	open      <span style="color:#ae81ff">4</span>       <span style="color:#ae81ff">2</span>
+</span></span></code></pre></div><p><strong>输出样例1:</strong></p>
+<pre tabindex="0"><code>2004/7/28 open 6 7
+2004/7/30 open 3 3
+2004/7/27 close 5 8
+2004/7/29 close 7 7
+</code></pre><p><strong>代码：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;iostream&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;vector&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Date</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> year;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> month;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> day;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Date() {}
+</span></span><span style="display:flex;"><span>	Date(<span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">int</span> m, <span style="color:#66d9ef">int</span> d) <span style="color:#f92672">:</span>year(y), month(m), day(d) {}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Print</span>()
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		cout <span style="color:#f92672">&lt;&lt;</span> year <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">&lt;&lt;</span> month <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;/&#34;</span> <span style="color:#f92672">&lt;&lt;</span> day <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Stock</span> <span style="color:#f92672">:</span><span style="color:#66d9ef">public</span> Date
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Date date;
+</span></span><span style="display:flex;"><span>	string state;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> s1, s2;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Stock() {}
+</span></span><span style="display:flex;"><span>	Stock(<span style="color:#66d9ef">int</span> y, <span style="color:#66d9ef">int</span> m, <span style="color:#66d9ef">int</span> d, string s, <span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) <span style="color:#f92672">:</span>date(y, m, d), state(s), s1(a), s2(b) {}
+</span></span><span style="display:flex;"><span>	Stock(Date d, string s, <span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b) <span style="color:#f92672">:</span>date(d), state(s), s1(a), s2(b) {}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Print</span>()
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		date.Print();
+</span></span><span style="display:flex;"><span>		cout <span style="color:#f92672">&lt;&lt;</span> state <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> s1 <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> s2 <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">&lt;</span>(Stock<span style="color:#f92672">&amp;</span> p, Stock<span style="color:#f92672">&amp;</span> q);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">&lt;</span>(Stock<span style="color:#f92672">&amp;</span> p, Stock<span style="color:#f92672">&amp;</span> q)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m1[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">28</span>,<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">31</span> };
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m2[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">29</span>,<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">31</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">31</span> };
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> num1 <span style="color:#f92672">=</span> p.date.year <span style="color:#f92672">*</span> <span style="color:#ae81ff">365</span> <span style="color:#f92672">+</span> p.date.year <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (p.date.year <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> p.date.month <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			num1 <span style="color:#f92672">+=</span> m1[i];
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> p.date.month <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			num1 <span style="color:#f92672">+=</span> m2[i];
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	num1 <span style="color:#f92672">+=</span> p.date.day;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> num2 <span style="color:#f92672">=</span> q.date.year <span style="color:#f92672">*</span> <span style="color:#ae81ff">365</span> <span style="color:#f92672">+</span> q.date.year <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (q.date.year <span style="color:#f92672">%</span> <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> q.date.month <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			num2 <span style="color:#f92672">+=</span> m1[i];
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> p.date.month <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			num2 <span style="color:#f92672">+=</span> m2[i];
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	num2 <span style="color:#f92672">+=</span> q.date.day;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (num1 <span style="color:#f92672">&lt;</span> num2)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>Stock<span style="color:#f92672">&gt;</span> sto;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> n, m;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> n <span style="color:#f92672">&gt;&gt;</span> m;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (n<span style="color:#f92672">--</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> year, month, day;
+</span></span><span style="display:flex;"><span>		string state;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> s1, s2;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> year;
+</span></span><span style="display:flex;"><span>		cin.ignore(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> month;
+</span></span><span style="display:flex;"><span>		cin.ignore(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> day;
+</span></span><span style="display:flex;"><span>		cin.ignore(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> state;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> s1;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> s2;
+</span></span><span style="display:flex;"><span>		Stock temp(year, month, day, state, s1, s2);
+</span></span><span style="display:flex;"><span>		sto.push_back(temp);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> sto.size(); i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> tag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> sto.size() <span style="color:#f92672">-</span> i; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (sto[j] <span style="color:#f92672">&lt;</span> sto[j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				Stock temp;
+</span></span><span style="display:flex;"><span>				temp <span style="color:#f92672">=</span> sto[j];
+</span></span><span style="display:flex;"><span>				sto[j] <span style="color:#f92672">=</span> sto[j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>				sto[j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> temp;
+</span></span><span style="display:flex;"><span>				tag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>tag)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>Stock<span style="color:#f92672">&gt;</span> sto1;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> sto.size()<span style="color:#f92672">-</span> m; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">--</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> num1 <span style="color:#f92672">=</span> sto[i].s1, num2 <span style="color:#f92672">=</span> sto[i].s2, tag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (sto[i].state <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;open&#34;</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> ,k<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; k<span style="color:#f92672">&lt;</span>m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> i<span style="color:#f92672">+</span>j<span style="color:#f92672">&lt;</span>sto.size()  ; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (sto[i <span style="color:#f92672">+</span> j].state <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;open&#34;</span> )
+</span></span><span style="display:flex;"><span>				{
+</span></span><span style="display:flex;"><span>					num1 <span style="color:#f92672">+=</span> sto[i <span style="color:#f92672">+</span> j].s1;
+</span></span><span style="display:flex;"><span>					num2 <span style="color:#f92672">+=</span> sto[i <span style="color:#f92672">+</span> j].s2;
+</span></span><span style="display:flex;"><span>					tag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>					k<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (tag)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				Stock temp(sto[i].date, sto[i].state, num1 <span style="color:#f92672">/</span> m, num2 <span style="color:#f92672">/</span> m);
+</span></span><span style="display:flex;"><span>				sto1.push_back(temp);
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> sto.size() <span style="color:#f92672">-</span> m; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">--</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> num1 <span style="color:#f92672">=</span> sto[i].s1, num2 <span style="color:#f92672">=</span> sto[i].s2, tag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (sto[i].state <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;close&#34;</span> )
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;</span> m <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> i <span style="color:#f92672">+</span> j <span style="color:#f92672">&lt;</span> sto.size(); j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (sto[i <span style="color:#f92672">+</span> j].state <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;close&#34;</span> )
+</span></span><span style="display:flex;"><span>				{
+</span></span><span style="display:flex;"><span>					num1 <span style="color:#f92672">+=</span> sto[i <span style="color:#f92672">+</span> j].s1;
+</span></span><span style="display:flex;"><span>					num2 <span style="color:#f92672">+=</span> sto[i <span style="color:#f92672">+</span> j].s2;
+</span></span><span style="display:flex;"><span>					tag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>					k<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (tag)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				Stock temp(sto[i].date, sto[i].state, num1 <span style="color:#f92672">/</span> m, num2 <span style="color:#f92672">/</span> m);
+</span></span><span style="display:flex;"><span>				sto1.push_back(temp);
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> sto1.size(); i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		sto1[i].Print();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

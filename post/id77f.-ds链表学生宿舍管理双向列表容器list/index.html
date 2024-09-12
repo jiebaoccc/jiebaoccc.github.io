@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 \u200b\t假设某校有20间宿舍，宿舍编号101，102，&hellip;,120。每间只住一名学生。初始部分宿舍已用。用两个链表（已用宿舍链表和可用宿舍链表）维护宿舍的管理，实现宿舍分配、宿舍交回。 \u200b\t约定已用宿舍链表按宿舍号升序链接。初始可用宿舍链表也按宿舍号升序链接。 \u200b\t宿舍分配从可用宿舍链表中摘取第一间宿舍分配给学生。学生交回的宿舍挂在可用宿舍链表最后。 \u200b\t备注：使用list容器或静态链表。不用考虑宿舍分配和交回不成功的情况。 输入 \u200b\t初始宿舍状态，第一行输入n，表示已用宿舍n间 \u200b\t后跟n行数据，每行格式为：学生姓名 宿舍号 \u200b\t操作次数m，后跟m行操作，操作格式如下： \u200b\tassign 学生 //为学生分配宿舍，从可用宿舍链表头摘取一间宿舍， \u200b\t//按宿舍号升序挂在已用宿舍链表中。 \u200b\treturn 宿舍号 //学生退宿舍，删除已用宿舍链表中对应结点， \u200b\t//挂在可用宿舍链表尾部。 \u200b\tdisplay_free //输出可用宿舍链表信息。 \u200b\tdisplay_used //输出已用宿舍链表信息。 输出 \u200b\tdisplay_free依次输出当前可用宿舍链表中的宿舍号，具体格式见样例。 \u200b\tdisplay_used依次输出当前已用宿舍链表中的宿舍号，具体格式见样例。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 提示 \u200b\tlist是一种序列式容器, list实际上就构成了一个双向循环链, \u200b\tList类使用的参考代码 \u200b\t\uf06e包含头文件 ： #include \u200b\t\uf06eList定义和初始化： \u200b\tlistlst1; //创建空list \u200b\tlist lst2(5); //创建含有5个元素的list \u200b\tlistlst3(3,2); //创建含有3个元素的list \u200b\tlistlst4(lst2); //使用lst2初始化lst4 \u200b\tlistlst5(lst2.begin(),lst2.end()); //同lst4">
+<title>【id77】F. DS链表—学生宿舍管理（双向列表容器List）</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/id77f.-ds%E9%93%BE%E8%A1%A8%E5%AD%A6%E7%94%9F%E5%AE%BF%E8%88%8D%E7%AE%A1%E7%90%86%E5%8F%8C%E5%90%91%E5%88%97%E8%A1%A8%E5%AE%B9%E5%99%A8list/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id77】F. DS链表—学生宿舍管理（双向列表容器List）">
+<meta property='og:description' content="题目描述 \u200b\t假设某校有20间宿舍，宿舍编号101，102，&hellip;,120。每间只住一名学生。初始部分宿舍已用。用两个链表（已用宿舍链表和可用宿舍链表）维护宿舍的管理，实现宿舍分配、宿舍交回。 \u200b\t约定已用宿舍链表按宿舍号升序链接。初始可用宿舍链表也按宿舍号升序链接。 \u200b\t宿舍分配从可用宿舍链表中摘取第一间宿舍分配给学生。学生交回的宿舍挂在可用宿舍链表最后。 \u200b\t备注：使用list容器或静态链表。不用考虑宿舍分配和交回不成功的情况。 输入 \u200b\t初始宿舍状态，第一行输入n，表示已用宿舍n间 \u200b\t后跟n行数据，每行格式为：学生姓名 宿舍号 \u200b\t操作次数m，后跟m行操作，操作格式如下： \u200b\tassign 学生 //为学生分配宿舍，从可用宿舍链表头摘取一间宿舍， \u200b\t//按宿舍号升序挂在已用宿舍链表中。 \u200b\treturn 宿舍号 //学生退宿舍，删除已用宿舍链表中对应结点， \u200b\t//挂在可用宿舍链表尾部。 \u200b\tdisplay_free //输出可用宿舍链表信息。 \u200b\tdisplay_used //输出已用宿舍链表信息。 输出 \u200b\tdisplay_free依次输出当前可用宿舍链表中的宿舍号，具体格式见样例。 \u200b\tdisplay_used依次输出当前已用宿舍链表中的宿舍号，具体格式见样例。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 提示 \u200b\tlist是一种序列式容器, list实际上就构成了一个双向循环链, \u200b\tList类使用的参考代码 \u200b\t\uf06e包含头文件 ： #include \u200b\t\uf06eList定义和初始化： \u200b\tlistlst1; //创建空list \u200b\tlist lst2(5); //创建含有5个元素的list \u200b\tlistlst3(3,2); //创建含有3个元素的list \u200b\tlistlst4(lst2); //使用lst2初始化lst4 \u200b\tlistlst5(lst2.begin(),lst2.end()); //同lst4">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/id77f.-ds%E9%93%BE%E8%A1%A8%E5%AD%A6%E7%94%9F%E5%AE%BF%E8%88%8D%E7%AE%A1%E7%90%86%E5%8F%8C%E5%90%91%E5%88%97%E8%A1%A8%E5%AE%B9%E5%99%A8list/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-12T23:10:57&#43;08:00'/><meta property='article:modified_time' content='2024-09-12T23:10:57&#43;08:00'/>
+<meta name="twitter:title" content="【id77】F. DS链表—学生宿舍管理（双向列表容器List）">
+<meta name="twitter:description" content="题目描述 \u200b\t假设某校有20间宿舍，宿舍编号101，102，&hellip;,120。每间只住一名学生。初始部分宿舍已用。用两个链表（已用宿舍链表和可用宿舍链表）维护宿舍的管理，实现宿舍分配、宿舍交回。 \u200b\t约定已用宿舍链表按宿舍号升序链接。初始可用宿舍链表也按宿舍号升序链接。 \u200b\t宿舍分配从可用宿舍链表中摘取第一间宿舍分配给学生。学生交回的宿舍挂在可用宿舍链表最后。 \u200b\t备注：使用list容器或静态链表。不用考虑宿舍分配和交回不成功的情况。 输入 \u200b\t初始宿舍状态，第一行输入n，表示已用宿舍n间 \u200b\t后跟n行数据，每行格式为：学生姓名 宿舍号 \u200b\t操作次数m，后跟m行操作，操作格式如下： \u200b\tassign 学生 //为学生分配宿舍，从可用宿舍链表头摘取一间宿舍， \u200b\t//按宿舍号升序挂在已用宿舍链表中。 \u200b\treturn 宿舍号 //学生退宿舍，删除已用宿舍链表中对应结点， \u200b\t//挂在可用宿舍链表尾部。 \u200b\tdisplay_free //输出可用宿舍链表信息。 \u200b\tdisplay_used //输出已用宿舍链表信息。 输出 \u200b\tdisplay_free依次输出当前可用宿舍链表中的宿舍号，具体格式见样例。 \u200b\tdisplay_used依次输出当前已用宿舍链表中的宿舍号，具体格式见样例。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 提示 \u200b\tlist是一种序列式容器, list实际上就构成了一个双向循环链, \u200b\tList类使用的参考代码 \u200b\t\uf06e包含头文件 ： #include \u200b\t\uf06eList定义和初始化： \u200b\tlistlst1; //创建空list \u200b\tlist lst2(5); //创建含有5个元素的list \u200b\tlistlst3(3,2); //创建含有3个元素的list \u200b\tlistlst4(lst2); //使用lst2初始化lst4 \u200b\tlistlst5(lst2.begin(),lst2.end()); //同lst4">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/id77f.-ds%E9%93%BE%E8%A1%A8%E5%AD%A6%E7%94%9F%E5%AE%BF%E8%88%8D%E7%AE%A1%E7%90%86%E5%8F%8C%E5%90%91%E5%88%97%E8%A1%A8%E5%AE%B9%E5%99%A8list/">【id77】F. DS链表—学生宿舍管理（双向列表容器List）</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 12, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><strong>题目描述</strong></p>
+<p>​	假设某校有20间宿舍，宿舍编号101，102，&hellip;,120。每间只住一名学生。初始部分宿舍已用。用两个链表（已用宿舍链表和可用宿舍链表）维护宿舍的管理，实现宿舍分配、宿舍交回。</p>
+<p>​	约定已用宿舍链表按宿舍号升序链接。初始可用宿舍链表也按宿舍号升序链接。</p>
+<p>​	宿舍分配从可用宿舍链表中摘取第一间宿舍分配给学生。学生交回的宿舍挂在可用宿舍链表最后。</p>
+<p>​	备注：使用list容器或静态链表。不用考虑宿舍分配和交回不成功的情况。</p>
+<p><strong>输入</strong></p>
+<p>​	初始宿舍状态，第一行输入n，表示已用宿舍n间</p>
+<p>​	后跟n行数据，每行格式为：学生姓名 宿舍号</p>
+<p>​	操作次数m，后跟m行操作，操作格式如下：</p>
+<p>​	assign 学生 //为学生分配宿舍，从可用宿舍链表头摘取一间宿舍，</p>
+<p>​	//按宿舍号升序挂在已用宿舍链表中。</p>
+<p>​	return 宿舍号  //学生退宿舍，删除已用宿舍链表中对应结点，</p>
+<p>​	//挂在可用宿舍链表尾部。</p>
+<p>​	display_free  //输出可用宿舍链表信息。</p>
+<p>​	display_used  //输出已用宿舍链表信息。</p>
+<p><strong>输出</strong></p>
+<p>​	display_free依次输出当前可用宿舍链表中的宿舍号，具体格式见样例。</p>
+<p>​	display_used依次输出当前已用宿舍链表中的宿舍号，具体格式见样例。</p>
+<p><strong>IO模式</strong></p>
+<p>本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。</p>
+<p><strong>提示</strong></p>
+<p>​	list是一种序列式容器, list实际上就构成了一个双向循环链,</p>
+<p>​	List类使用的参考代码</p>
+<p>​	包含头文件<!-- raw HTML omitted --> ： #include <!-- raw HTML omitted --></p>
+<p>​	List定义和初始化：</p>
+<p>​	list<!-- raw HTML omitted -->lst1;     //创建空list</p>
+<p>​	list<!-- raw HTML omitted --> lst2(5);    //创建含有5个元素的list</p>
+<p>​	list<!-- raw HTML omitted -->lst3(3,2); //创建含有3个元素的list</p>
+<p>​	list<!-- raw HTML omitted -->lst4(lst2);  //使用lst2初始化lst4</p>
+<p>​	list<!-- raw HTML omitted -->lst5(lst2.begin(),lst2.end()); //同lst4</p>
+<p>​	创建一个list对象l（注意list是模板类）：list<!-- raw HTML omitted --> l; //堆栈的数据类型是字符型</p>
+<p>​	把一个字符ct添加到链表末尾： s.push_back(ct);</p>
+<p>​	把一个字符ct插入到链表头部： s.push_front(ct);</p>
+<p>​	获取链表第一个元素和最后一个元素：front()和back()，获取链表第一个元素，放入变量c2： c2 = s.front();</p>
+<p>​	删除链表第一个元素和最后一个元素pop_front()和pop_back();</p>
+<p>​	判断 判断list是否为空:empty()： l.empty()，如果为空则函数返回true，如果不空则返回false</p>
+<p>​	begin() 返回指向第一个元素的迭代器</p>
+<p>​	end() 返回末尾的迭代器</p>
+<p>​	rbegin() 返回指向第一个元素的逆向迭代器</p>
+<p>​	rend() 指向list末尾的逆向迭代器</p>
+<p>​	程序示列：</p>
+<p>​	#include <!-- raw HTML omitted --></p>
+<p>​	using namespace std;</p>
+<p>​	typedef list<!-- raw HTML omitted --> LISTINT;</p>
+<p>​	void main()</p>
+<p>​	{</p>
+<p>​	//用LISTINT创建一个list对象</p>
+<p>​	LISTINT listOne;</p>
+<p>​	//声明i为迭代器</p>
+<p>​	LISTINT::iterator i;</p>
+<p>​	listOne.push_front(3);</p>
+<p>​	listOne.push_front(2);</p>
+<p>​	listOne.push_front(1);</p>
+<p>​	listOne.push_back(4);</p>
+<p>​	listOne.push_back(5);</p>
+<p>​	listOne.push_back(6);</p>
+<p>​	cout &laquo; &ldquo;listOne.begin()&mdash; listOne.end():&rdquo; &laquo; endl;</p>
+<p>​	for (i = listOne.begin(); i != listOne.end(); ++i)</p>
+<p>​	cout &laquo; *i &laquo; &quot; &ldquo;;</p>
+<p>​	cout &laquo; endl;  //正向输出</p>
+<p>​	LISTINT::reverse_iterator ir;</p>
+<p>​	cout &laquo; &ldquo;listOne.rbegin()&mdash;listOne.rend():&rdquo; &laquo; endl;</p>
+<p>​	for (ir = listOne.rbegin(); ir != listOne.rend(); ir++) {</p>
+<p>​	cout &laquo; *ir &laquo; &quot; &ldquo;;</p>
+<p>​	}</p>
+<p>​	cout &laquo; endl;  //反向输出</p>
+<p>​	}</p>
+<p><strong>输入样例1：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">李明</span>  <span style="color:#ae81ff">103</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">张三</span>  <span style="color:#ae81ff">106</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">王五</span>  <span style="color:#ae81ff">107</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">钱伟</span>  <span style="color:#ae81ff">112</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">章立</span>  <span style="color:#ae81ff">118</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>assign <span style="color:#960050;background-color:#1e0010">李四</span>
+</span></span><span style="display:flex;"><span>assign <span style="color:#960050;background-color:#1e0010">赵六</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#ae81ff">118</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#ae81ff">101</span>
+</span></span><span style="display:flex;"><span>assign <span style="color:#960050;background-color:#1e0010">马山</span>
+</span></span><span style="display:flex;"><span>display_used
+</span></span><span style="display:flex;"><span>assign <span style="color:#960050;background-color:#1e0010">林立</span>
+</span></span><span style="display:flex;"><span>display_free
+</span></span></code></pre></div><p><strong>输出样例1:</strong></p>
+<pre tabindex="0"><code>赵六(102)-李明(103)-马山(104)-张三(106)-王五(107)-钱伟(112)
+108-109-110-111-113-114-115-116-117-119-120-118-101
+</code></pre><p><strong>代码：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;iostream&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;list&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;vector&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DouNode</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	string name;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> no;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	DouNode(string na,<span style="color:#66d9ef">int</span> n)<span style="color:#f92672">:</span>name(na),no(n) {}
+</span></span><span style="display:flex;"><span>	DouNode(<span style="color:#66d9ef">int</span> n) <span style="color:#f92672">:</span>no(n) {}
+</span></span><span style="display:flex;"><span>	DouNode() {}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">friend</span> <span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">&lt;</span> (DouNode<span style="color:#f92672">&amp;</span> n1, DouNode<span style="color:#f92672">&amp;</span> n2);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">&lt;</span> (DouNode<span style="color:#f92672">&amp;</span> n1, DouNode<span style="color:#f92672">&amp;</span> n2)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (n1.no <span style="color:#f92672">&lt;</span> n2.no)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	list<span style="color:#f92672">&lt;</span>DouNode<span style="color:#f92672">&gt;</span> used_room;
+</span></span><span style="display:flex;"><span>	list<span style="color:#f92672">&lt;</span>DouNode<span style="color:#f92672">&gt;</span> free_room;
+</span></span><span style="display:flex;"><span>	list<span style="color:#f92672">&lt;</span>DouNode<span style="color:#f92672">&gt;::</span>iterator it;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> n;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> n;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	string name;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> no;
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> room;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> name <span style="color:#f92672">&gt;&gt;</span> no;
+</span></span><span style="display:flex;"><span>		room.push_back(no);
+</span></span><span style="display:flex;"><span>		DouNode p(name,no);
+</span></span><span style="display:flex;"><span>		used_room.push_back(p);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> i, j;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (i <span style="color:#f92672">=</span> <span style="color:#ae81ff">101</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">121</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> room.size(); j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (room[j] <span style="color:#f92672">==</span> i)
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (j <span style="color:#f92672">==</span> room.size())
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			DouNode p(name, i);
+</span></span><span style="display:flex;"><span>			free_room.push_back(p);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> n;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (n<span style="color:#f92672">--</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		string op;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> op;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (op <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;assign&#34;</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			string name;
+</span></span><span style="display:flex;"><span>			cin <span style="color:#f92672">&gt;&gt;</span> name;
+</span></span><span style="display:flex;"><span>			DouNode t  <span style="color:#f92672">=</span> free_room.front();
+</span></span><span style="display:flex;"><span>			free_room.pop_front();
+</span></span><span style="display:flex;"><span>			DouNode p(name,t.no);
+</span></span><span style="display:flex;"><span>			used_room.push_back(p);
+</span></span><span style="display:flex;"><span>			used_room.sort();
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (op <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;return&#34;</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			cin <span style="color:#f92672">&gt;&gt;</span> no;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> it <span style="color:#f92672">=</span> used_room.begin(); it <span style="color:#f92672">!=</span> used_room.end(); it<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (it<span style="color:#f92672">-&gt;</span>no <span style="color:#f92672">==</span> no)
+</span></span><span style="display:flex;"><span>				{
+</span></span><span style="display:flex;"><span>					used_room.erase(it);
+</span></span><span style="display:flex;"><span>					DouNode p(no);
+</span></span><span style="display:flex;"><span>					free_room.push_back(p);
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (op <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;display_used&#34;</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> it <span style="color:#f92672">=</span> used_room.begin(); it <span style="color:#f92672">!=</span> used_room.end(); it<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (it <span style="color:#f92672">!=</span> used_room.begin())
+</span></span><span style="display:flex;"><span>					cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;-&#34;</span>;
+</span></span><span style="display:flex;"><span>				cout <span style="color:#f92672">&lt;&lt;</span> it<span style="color:#f92672">-&gt;</span>name <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;(&#34;</span> <span style="color:#f92672">&lt;&lt;</span> it<span style="color:#f92672">-&gt;</span>no <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;)&#34;</span>;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			cout <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (op <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;display_free&#34;</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> it <span style="color:#f92672">=</span> free_room.begin(); it <span style="color:#f92672">!=</span> free_room.end(); it<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (it <span style="color:#f92672">!=</span> free_room.begin())
+</span></span><span style="display:flex;"><span>					cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;-&#34;</span>;
+</span></span><span style="display:flex;"><span>				cout <span style="color:#f92672">&lt;&lt;</span> it<span style="color:#f92672">-&gt;</span>no;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			cout <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
