@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="神经网络 机器学习流程 数据获取 特征工程 建立模型 评估与应用 特征工程的作用 数据特征决定了模型上限 预处理和特征提取是最核心的 算法与参数选择决定了如何逼近这个上限 机器学习常规套路 收集数据并给定标签 训练一个分类器 测试、评估 K近邻算法 计算一直类别数据集中的点与当前点的距离 按照距离依次排序 选取与当前点距离最小的K个点 确定前K个点所在类别的出现概率 返回前K个点出现频率最高的类别作为当前点预测分类 得分函数——线性函数 损失函数 示例： =max(0,5.1-3.2+1)+max(0,-1.7-3.2+1) =max(0,2,9)+max(0,-3.9) =2.9+0 =2.9 =max(0,1.3-4.9+1)+max(0,2.0-4.9+1) =max(0,-2.6)+max(0,-1.9) =0+0 =0 为了区分数据损失值相同的不同模型，需要引入正则化惩罚项 得到公式：损失函数 = 数据损失 + 正则化惩罚项 Softmax分类器 得到一个得分值，将其转换成一个概率值可以更好的进行判断 可通过此函数： 方法二 其中S为 正向传播 反向传播 链式法则： 梯度是一步一步传的，逐层计算 加法门单元：均等分配 MAX门单元：给最大的 乘法门单元：类似于互换 整体架构 层次架构：分成输入层、隐藏层、输出层 神经元：有多个神经元 全连接：每层神经元都与下一层的每一个神经元链接 非线性：每一层的链接需要逐层进行，不能调换顺序 神经元个数对结果的影响 神经元个数越多，结果过拟合化更强 正则化与激活函数 增加一个神经元，相当于增加一组数据 激活函数 常用激活函数：Sigmoid、Relu、Tanh等 激活函数对比：当数值较大或较小时，使用Sigmoid函数容易出现梯度消失 神经网络过拟合解决方法 数据预处理：不同的与处理结果会使模型的效果发生很大的差异 参数初始化：通常采用随机策略来进行参数初始化 W = 0.01*np.random.randn(D,H) DROP-OUT 在每一次训练中，对每一层都随机选择一部分神经元，可以使训练结构更简单 卷积神经网络 用途 检测任务 分类与检索 超分辨率重构 医学任务 无人驾驶 卷积网络与传统网络的区别 卷积网络是三维，h * w * c">
+<title>深度学习</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="深度学习">
+<meta property='og:description' content="神经网络 机器学习流程 数据获取 特征工程 建立模型 评估与应用 特征工程的作用 数据特征决定了模型上限 预处理和特征提取是最核心的 算法与参数选择决定了如何逼近这个上限 机器学习常规套路 收集数据并给定标签 训练一个分类器 测试、评估 K近邻算法 计算一直类别数据集中的点与当前点的距离 按照距离依次排序 选取与当前点距离最小的K个点 确定前K个点所在类别的出现概率 返回前K个点出现频率最高的类别作为当前点预测分类 得分函数——线性函数 损失函数 示例： =max(0,5.1-3.2+1)+max(0,-1.7-3.2+1) =max(0,2,9)+max(0,-3.9) =2.9+0 =2.9 =max(0,1.3-4.9+1)+max(0,2.0-4.9+1) =max(0,-2.6)+max(0,-1.9) =0+0 =0 为了区分数据损失值相同的不同模型，需要引入正则化惩罚项 得到公式：损失函数 = 数据损失 + 正则化惩罚项 Softmax分类器 得到一个得分值，将其转换成一个概率值可以更好的进行判断 可通过此函数： 方法二 其中S为 正向传播 反向传播 链式法则： 梯度是一步一步传的，逐层计算 加法门单元：均等分配 MAX门单元：给最大的 乘法门单元：类似于互换 整体架构 层次架构：分成输入层、隐藏层、输出层 神经元：有多个神经元 全连接：每层神经元都与下一层的每一个神经元链接 非线性：每一层的链接需要逐层进行，不能调换顺序 神经元个数对结果的影响 神经元个数越多，结果过拟合化更强 正则化与激活函数 增加一个神经元，相当于增加一组数据 激活函数 常用激活函数：Sigmoid、Relu、Tanh等 激活函数对比：当数值较大或较小时，使用Sigmoid函数容易出现梯度消失 神经网络过拟合解决方法 数据预处理：不同的与处理结果会使模型的效果发生很大的差异 参数初始化：通常采用随机策略来进行参数初始化 W = 0.01*np.random.randn(D,H) DROP-OUT 在每一次训练中，对每一层都随机选择一部分神经元，可以使训练结构更简单 卷积神经网络 用途 检测任务 分类与检索 超分辨率重构 医学任务 无人驾驶 卷积网络与传统网络的区别 卷积网络是三维，h * w * c">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-17T23:58:54&#43;08:00'/><meta property='article:modified_time' content='2024-09-17T23:58:54&#43;08:00'/>
+<meta name="twitter:title" content="深度学习">
+<meta name="twitter:description" content="神经网络 机器学习流程 数据获取 特征工程 建立模型 评估与应用 特征工程的作用 数据特征决定了模型上限 预处理和特征提取是最核心的 算法与参数选择决定了如何逼近这个上限 机器学习常规套路 收集数据并给定标签 训练一个分类器 测试、评估 K近邻算法 计算一直类别数据集中的点与当前点的距离 按照距离依次排序 选取与当前点距离最小的K个点 确定前K个点所在类别的出现概率 返回前K个点出现频率最高的类别作为当前点预测分类 得分函数——线性函数 损失函数 示例： =max(0,5.1-3.2+1)+max(0,-1.7-3.2+1) =max(0,2,9)+max(0,-3.9) =2.9+0 =2.9 =max(0,1.3-4.9+1)+max(0,2.0-4.9+1) =max(0,-2.6)+max(0,-1.9) =0+0 =0 为了区分数据损失值相同的不同模型，需要引入正则化惩罚项 得到公式：损失函数 = 数据损失 + 正则化惩罚项 Softmax分类器 得到一个得分值，将其转换成一个概率值可以更好的进行判断 可通过此函数： 方法二 其中S为 正向传播 反向传播 链式法则： 梯度是一步一步传的，逐层计算 加法门单元：均等分配 MAX门单元：给最大的 乘法门单元：类似于互换 整体架构 层次架构：分成输入层、隐藏层、输出层 神经元：有多个神经元 全连接：每层神经元都与下一层的每一个神经元链接 非线性：每一层的链接需要逐层进行，不能调换顺序 神经元个数对结果的影响 神经元个数越多，结果过拟合化更强 正则化与激活函数 增加一个神经元，相当于增加一组数据 激活函数 常用激活函数：Sigmoid、Relu、Tanh等 激活函数对比：当数值较大或较小时，使用Sigmoid函数容易出现梯度消失 神经网络过拟合解决方法 数据预处理：不同的与处理结果会使模型的效果发生很大的差异 参数初始化：通常采用随机策略来进行参数初始化 W = 0.01*np.random.randn(D,H) DROP-OUT 在每一次训练中，对每一层都随机选择一部分神经元，可以使训练结构更简单 卷积神经网络 用途 检测任务 分类与检索 超分辨率重构 医学任务 无人驾驶 卷积网络与传统网络的区别 卷积网络是三维，h * w * c">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 17, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="神经网络">神经网络
+</h1><h2 id="机器学习流程"><strong>机器学习流程</strong>
+</h2><ul>
+<li>数据获取</li>
+<li>特征工程</li>
+<li>建立模型</li>
+<li>评估与应用</li>
+</ul>
+<h2 id="特征工程的作用"><strong>特征工程的作用</strong>
+</h2><ul>
+<li>数据特征决定了模型上限</li>
+<li>预处理和特征提取是最核心的</li>
+<li>算法与参数选择决定了如何逼近这个上限</li>
+</ul>
+<h2 id="机器学习常规套路"><strong>机器学习常规套路</strong>
+</h2><ul>
+<li>收集数据并给定标签</li>
+<li>训练一个分类器</li>
+<li>测试、评估</li>
+</ul>
+<h2 id="k近邻算法">K近邻算法
+</h2><ul>
+<li>计算一直类别数据集中的点与当前点的距离</li>
+<li>按照距离依次排序</li>
+<li>选取与当前点距离最小的K个点</li>
+<li>确定前K个点所在类别的出现概率</li>
+<li>返回前K个点出现频率最高的类别作为当前点预测分类</li>
+</ul>
+<p><img src="/img/Deep_learn_1.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="得分函数线性函数"><strong>得分函数——线性函数</strong>
+</h2><p><img src="/img/Deep_learn_4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_4"
+	
+	
+></p>
+<p><img src="/img/Deep_learn_2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_2"
+	
+	
+></p>
+<p><img src="/img/Deep_learn_3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_3"
+	
+	
+></p>
+<h2 id="损失函数"><strong>损失函数</strong>
+</h2><p><img src="/img/Deep_learn_5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_5"
+	
+	
+></p>
+<p>示例：</p>
+<p><img src="/img/Deep_learn_7.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_7"
+	
+	
+></p>
+<pre tabindex="0"><code>=max(0,5.1-3.2+1)+max(0,-1.7-3.2+1)
+=max(0,2,9)+max(0,-3.9)
+=2.9+0
+=2.9
+
+=max(0,1.3-4.9+1)+max(0,2.0-4.9+1)
+=max(0,-2.6)+max(0,-1.9)
+=0+0
+=0
+</code></pre><p>为了区分数据损失值相同的不同模型，需要引入正则化惩罚项</p>
+<p>得到公式：<strong>损失函数 = 数据损失 + 正则化惩罚项</strong></p>
+<p><img src="/img/Deep_learn_8.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_8"
+	
+	
+></p>
+<h2 id="softmax分类器"><strong>Softmax分类器</strong>
+</h2><p>得到一个得分值，将其转换成一个概率值可以更好的进行判断</p>
+<p>可通过此函数：</p>
+<p><img src="/img/Deep_learn_9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_9"
+	
+	
+></p>
+<p><img src="/img/Deep_learn_10.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_10"
+	
+	
+></p>
+<p>方法二</p>
+<p><img src="/img/Deep_learn_11.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_11"
+	
+	
+></p>
+<p>其中S为</p>
+<p><img src="/img/Deep_learn_12.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_12"
+	
+	
+></p>
+<p><img src="/img/Deep_learn_13.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_13"
+	
+	
+></p>
+<p><img src="/img/Deep_learn_14.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_14"
+	
+	
+></p>
+<h2 id="正向传播"><strong>正向传播</strong>
+</h2><p><img src="/img/Deep_learn_15.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_15"
+	
+	
+></p>
+<h2 id="反向传播"><strong>反向传播</strong>
+</h2><ul>
+<li>
+<p>链式法则： 梯度是一步一步传的，逐层计算</p>
+</li>
+<li>
+<p>加法门单元：均等分配</p>
+<p>MAX门单元：给最大的</p>
+<p>乘法门单元：类似于互换</p>
+</li>
+</ul>
+<h2 id="整体架构"><strong>整体架构</strong>
+</h2><p><img src="/img/Deep_learn_16.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_16"
+	
+	
+></p>
+<ul>
+<li>层次架构：分成输入层、隐藏层、输出层</li>
+<li>神经元：有多个神经元</li>
+<li>全连接：每层神经元都与下一层的每一个神经元链接</li>
+<li>非线性：每一层的链接需要逐层进行，不能调换顺序</li>
+</ul>
+<p><img src="/img/Deep_learn_17.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_17"
+	
+	
+></p>
+<h2 id="神经元个数对结果的影响"><strong>神经元个数对结果的影响</strong>
+</h2><p>神经元个数越多，结果过拟合化更强</p>
+<h2 id="正则化与激活函数"><strong>正则化与激活函数</strong>
+</h2><p>增加一个神经元，相当于增加一组数据</p>
+<p><img src="/img/Deep_learn_18.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_18"
+	
+	
+></p>
+<p><img src="/img/Deep_learn_19.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_19"
+	
+	
+></p>
+<h2 id="激活函数"><strong>激活函数</strong>
+</h2><p>常用激活函数：Sigmoid、Relu、Tanh等</p>
+<p>激活函数对比：当数值较大或较小时，使用Sigmoid函数容易出现梯度消失</p>
+<p><img src="/img/Deep_learn_20.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_20"
+	
+	
+></p>
+<h2 id="神经网络过拟合解决方法"><strong>神经网络过拟合解决方法</strong>
+</h2><ul>
+<li>
+<p>数据预处理：不同的与处理结果会使模型的效果发生很大的差异</p>
+<p><img src="/img/Deep_learn_21.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_21"
+	
+	
+></p>
+</li>
+<li>
+<p>参数初始化：通常采用随机策略来进行参数初始化</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>W <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(D,H)
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="drop-out"><strong>DROP-OUT</strong>
+</h2><p>在每一次训练中，对每一层都随机选择一部分神经元，可以使训练结构更简单</p>
+<p><img src="/img/Deep_learn_22.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_22"
+	
+	
+></p>
+<h1 id="卷积神经网络">卷积神经网络
+</h1><h2 id="用途"><strong>用途</strong>
+</h2><ul>
+<li>检测任务</li>
+<li>分类与检索</li>
+<li>超分辨率重构</li>
+<li>医学任务</li>
+<li>无人驾驶</li>
+</ul>
+<h2 id="卷积网络与传统网络的区别"><strong>卷积网络与传统网络的区别</strong>
+</h2><p>卷积网络是三维，h * w * c</p>
+<p><img src="/img/Deep_learn_23.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_23"
+	
+	
+></p>
+<h2 id="整体架构-1"><strong>整体架构</strong>
+</h2><ul>
+<li>输入层</li>
+<li>卷积层</li>
+<li>池化层</li>
+<li>全连接层</li>
+</ul>
+<h2 id="卷积层"><strong>卷积层</strong>
+</h2><p>选择一个计算方式，计算每一部分的特征值，形成新的矩阵，将5×5×3转换成3×3×3</p>
+<p><img src="/img/Deep_learn_24.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_24"
+	
+	
+></p>
+<p>图像颜色通道，分成R、G、B三个通道，所以卷积层的功能就是把三个通道的卷积结果结合</p>
+<p><img src="/img/Deep_learn_26.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_26"
+	
+	
+></p>
+<p>output层是Volume与W0的内积再加上偏置项b，例如：</p>
+<p>第一层：0×1+0×1+0×1+0×(-1)+1×-1+1×0+0×(-1)+1×1+1×0=0</p>
+<p>第二层：0×(-1)+0×(-1)+0×1+0×(-1)+0×1+1×0+0×(-1)+2×1+2×0=2</p>
+<p>第三层：0×1+0×0+0×(-1)+0×0+2×0+2×0+0×1+0×(-1)+0×(-1)=0</p>
+<p>output层：0+2+0+1=3</p>
+<p><img src="/img/Deep_learn_25.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_25"
+	
+	
+></p>
+<p>同一个卷积层，每一个Filter卷积核的规格要一样</p>
+<p>回过头再看第一幅图，其中蓝色矩阵每一格右下角的数字就是 W0 ，这图只展示了一个颜色通道，所以还需要两组这样的矩阵计算才能得到最终的特征图feature map</p>
+<p><img src="/img/Deep_learn_24.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_24"
+	
+	
+></p>
+<p>可以通过多个filter得出多个特征图</p>
+<p><img src="/img/Deep_learn_27.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Deep_learn_27"
+	
+	
+></p>
+<h2 id="卷积层涉及的参数"><strong>卷积层涉及的参数：</strong>
+</h2><ul>
+<li>滑动窗口步长</li>
+<li>卷积核尺寸</li>
+<li>边缘填充</li>
+<li>卷积核个数</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -6,7 +6,404 @@
         <description>Recent content in Posts on Carp&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 12 Sep 2024 23:10:57 +0800</lastBuildDate><atom:link href="https://jiebaoccc.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 17 Sep 2024 23:58:54 +0800</lastBuildDate><atom:link href="https://jiebaoccc.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>深度学习</title>
+        <link>https://jiebaoccc.github.io/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+        <pubDate>Tue, 17 Sep 2024 23:58:54 +0800</pubDate>
+        
+        <guid>https://jiebaoccc.github.io/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+        <description>&lt;h1 id=&#34;神经网络&#34;&gt;神经网络
+&lt;/h1&gt;&lt;h2 id=&#34;机器学习流程&#34;&gt;&lt;strong&gt;机器学习流程&lt;/strong&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;数据获取&lt;/li&gt;
+&lt;li&gt;特征工程&lt;/li&gt;
+&lt;li&gt;建立模型&lt;/li&gt;
+&lt;li&gt;评估与应用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;特征工程的作用&#34;&gt;&lt;strong&gt;特征工程的作用&lt;/strong&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;数据特征决定了模型上限&lt;/li&gt;
+&lt;li&gt;预处理和特征提取是最核心的&lt;/li&gt;
+&lt;li&gt;算法与参数选择决定了如何逼近这个上限&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;机器学习常规套路&#34;&gt;&lt;strong&gt;机器学习常规套路&lt;/strong&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;收集数据并给定标签&lt;/li&gt;
+&lt;li&gt;训练一个分类器&lt;/li&gt;
+&lt;li&gt;测试、评估&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;k近邻算法&#34;&gt;K近邻算法
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;计算一直类别数据集中的点与当前点的距离&lt;/li&gt;
+&lt;li&gt;按照距离依次排序&lt;/li&gt;
+&lt;li&gt;选取与当前点距离最小的K个点&lt;/li&gt;
+&lt;li&gt;确定前K个点所在类别的出现概率&lt;/li&gt;
+&lt;li&gt;返回前K个点出现频率最高的类别作为当前点预测分类&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;得分函数线性函数&#34;&gt;&lt;strong&gt;得分函数——线性函数&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_4.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_4&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_2&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_3&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;损失函数&#34;&gt;&lt;strong&gt;损失函数&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_5.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_5&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_7.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_7&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;=max(0,5.1-3.2+1)+max(0,-1.7-3.2+1)
+=max(0,2,9)+max(0,-3.9)
+=2.9+0
+=2.9
+
+=max(0,1.3-4.9+1)+max(0,2.0-4.9+1)
+=max(0,-2.6)+max(0,-1.9)
+=0+0
+=0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为了区分数据损失值相同的不同模型，需要引入正则化惩罚项&lt;/p&gt;
+&lt;p&gt;得到公式：&lt;strong&gt;损失函数 = 数据损失 + 正则化惩罚项&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_8.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_8&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;softmax分类器&#34;&gt;&lt;strong&gt;Softmax分类器&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;得到一个得分值，将其转换成一个概率值可以更好的进行判断&lt;/p&gt;
+&lt;p&gt;可通过此函数：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_9&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_10.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_10&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;方法二&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_11.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_11&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中S为&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_12.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_12&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_13.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_13&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_14.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_14&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;正向传播&#34;&gt;&lt;strong&gt;正向传播&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_15.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_15&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;反向传播&#34;&gt;&lt;strong&gt;反向传播&lt;/strong&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;链式法则： 梯度是一步一步传的，逐层计算&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;加法门单元：均等分配&lt;/p&gt;
+&lt;p&gt;MAX门单元：给最大的&lt;/p&gt;
+&lt;p&gt;乘法门单元：类似于互换&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;整体架构&#34;&gt;&lt;strong&gt;整体架构&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_16.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_16&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;层次架构：分成输入层、隐藏层、输出层&lt;/li&gt;
+&lt;li&gt;神经元：有多个神经元&lt;/li&gt;
+&lt;li&gt;全连接：每层神经元都与下一层的每一个神经元链接&lt;/li&gt;
+&lt;li&gt;非线性：每一层的链接需要逐层进行，不能调换顺序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_17.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_17&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;神经元个数对结果的影响&#34;&gt;&lt;strong&gt;神经元个数对结果的影响&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;神经元个数越多，结果过拟合化更强&lt;/p&gt;
+&lt;h2 id=&#34;正则化与激活函数&#34;&gt;&lt;strong&gt;正则化与激活函数&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;增加一个神经元，相当于增加一组数据&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_18.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_18&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_19.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_19&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;激活函数&#34;&gt;&lt;strong&gt;激活函数&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;常用激活函数：Sigmoid、Relu、Tanh等&lt;/p&gt;
+&lt;p&gt;激活函数对比：当数值较大或较小时，使用Sigmoid函数容易出现梯度消失&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_20.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_20&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;神经网络过拟合解决方法&#34;&gt;&lt;strong&gt;神经网络过拟合解决方法&lt;/strong&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;数据预处理：不同的与处理结果会使模型的效果发生很大的差异&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_21.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_21&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;参数初始化：通常采用随机策略来进行参数初始化&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;W &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.01&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;random&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;randn(D,H)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;drop-out&#34;&gt;&lt;strong&gt;DROP-OUT&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;在每一次训练中，对每一层都随机选择一部分神经元，可以使训练结构更简单&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_22.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_22&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;卷积神经网络&#34;&gt;卷积神经网络
+&lt;/h1&gt;&lt;h2 id=&#34;用途&#34;&gt;&lt;strong&gt;用途&lt;/strong&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;检测任务&lt;/li&gt;
+&lt;li&gt;分类与检索&lt;/li&gt;
+&lt;li&gt;超分辨率重构&lt;/li&gt;
+&lt;li&gt;医学任务&lt;/li&gt;
+&lt;li&gt;无人驾驶&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;卷积网络与传统网络的区别&#34;&gt;&lt;strong&gt;卷积网络与传统网络的区别&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;卷积网络是三维，h * w * c&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_23.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_23&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;整体架构-1&#34;&gt;&lt;strong&gt;整体架构&lt;/strong&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;输入层&lt;/li&gt;
+&lt;li&gt;卷积层&lt;/li&gt;
+&lt;li&gt;池化层&lt;/li&gt;
+&lt;li&gt;全连接层&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;卷积层&#34;&gt;&lt;strong&gt;卷积层&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;选择一个计算方式，计算每一部分的特征值，形成新的矩阵，将5×5×3转换成3×3×3&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_24.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_24&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;图像颜色通道，分成R、G、B三个通道，所以卷积层的功能就是把三个通道的卷积结果结合&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_26.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_26&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;output层是Volume与W0的内积再加上偏置项b，例如：&lt;/p&gt;
+&lt;p&gt;第一层：0×1+0×1+0×1+0×(-1)+1×-1+1×0+0×(-1)+1×1+1×0=0&lt;/p&gt;
+&lt;p&gt;第二层：0×(-1)+0×(-1)+0×1+0×(-1)+0×1+1×0+0×(-1)+2×1+2×0=2&lt;/p&gt;
+&lt;p&gt;第三层：0×1+0×0+0×(-1)+0×0+2×0+2×0+0×1+0×(-1)+0×(-1)=0&lt;/p&gt;
+&lt;p&gt;output层：0+2+0+1=3&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_25.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_25&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;同一个卷积层，每一个Filter卷积核的规格要一样&lt;/p&gt;
+&lt;p&gt;回过头再看第一幅图，其中蓝色矩阵每一格右下角的数字就是 W0 ，这图只展示了一个颜色通道，所以还需要两组这样的矩阵计算才能得到最终的特征图feature map&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_24.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_24&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以通过多个filter得出多个特征图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_27.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_27&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;卷积层涉及的参数&#34;&gt;&lt;strong&gt;卷积层涉及的参数：&lt;/strong&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;滑动窗口步长&lt;/li&gt;
+&lt;li&gt;卷积核尺寸&lt;/li&gt;
+&lt;li&gt;边缘填充&lt;/li&gt;
+&lt;li&gt;卷积核个数&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>【id77】F. DS链表—学生宿舍管理（双向列表容器List）</title>
         <link>https://jiebaoccc.github.io/post/id77f.-ds%E9%93%BE%E8%A1%A8%E5%AD%A6%E7%94%9F%E5%AE%BF%E8%88%8D%E7%AE%A1%E7%90%86%E5%8F%8C%E5%90%91%E5%88%97%E8%A1%A8%E5%AE%B9%E5%99%A8list/</link>
         <pubDate>Thu, 12 Sep 2024 23:10:57 +0800</pubDate>
