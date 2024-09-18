@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.open(img_item_path) # 读取img_item_path文件，存储在img中 label = self.">
+<title>Pytorch</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/pytorch/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Pytorch">
+<meta property='og:description' content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.open(img_item_path) # 读取img_item_path文件，存储在img中 label = self.">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/pytorch/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-18T16:49:17&#43;08:00'/><meta property='article:modified_time' content='2024-09-18T16:49:17&#43;08:00'/>
+<meta name="twitter:title" content="Pytorch">
+<meta name="twitter:description" content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.open(img_item_path) # 读取img_item_path文件，存储在img中 label = self.">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/pytorch/">Pytorch</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 18, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="1dir">1、dir()
+</h1><p>输出类中的各种函数</p>
+<h1 id="2help">2、help（）
+</h1><p>输出该函数的功能</p>
+<h1 id="3初始数据的获取">3、初始数据的获取
+</h1><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># read_data.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> Dataset
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> Image
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os  <span style="color:#75715e"># 系统操作</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyData</span>(Dataset):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, root_dir, label_dir):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>root_dir <span style="color:#f92672">=</span> root_dir  <span style="color:#75715e"># 根地址</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>label_dir <span style="color:#f92672">=</span> label_dir  <span style="color:#75715e"># 标签地址</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(self<span style="color:#f92672">.</span>root_dir, self<span style="color:#f92672">.</span>label_dir)  <span style="color:#75715e"># 将两个路径进行拼接</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>img_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>listdir(self<span style="color:#f92672">.</span>path)  <span style="color:#75715e"># 将地址下的所有文件名形成一个列表，并返回</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __getitem__(self, idx):
+</span></span><span style="display:flex;"><span>        img_name <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>img_path[idx]  <span style="color:#75715e"># 表示取集合中的指定文件名</span>
+</span></span><span style="display:flex;"><span>        img_item_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(self<span style="color:#f92672">.</span>root_dir, self<span style="color:#f92672">.</span>label_dir, img_name)  <span style="color:#75715e"># 将根目录、标签地址与文件名结合，从而获得文件的相对路径</span>
+</span></span><span style="display:flex;"><span>        img <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(img_item_path)  <span style="color:#75715e"># 读取img_item_path文件，存储在img中</span>
+</span></span><span style="display:flex;"><span>        label <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>label_dir
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> img, label
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __len__(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> len(self<span style="color:#f92672">.</span>img_path)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>root_dir <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dataset/train&#34;</span>
+</span></span><span style="display:flex;"><span>ants_label_dir <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ants_image&#34;</span>
+</span></span><span style="display:flex;"><span>bees_label_dir <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bees_image&#34;</span>
+</span></span><span style="display:flex;"><span>ants_dataset <span style="color:#f92672">=</span> MyData(root_dir, ants_label_dir)	<span style="color:#75715e"># 获取蚂蚁数据集</span>
+</span></span><span style="display:flex;"><span>bees_dataset <span style="color:#f92672">=</span> MyData(root_dir, bees_label_dir) <span style="color:#75715e"># 获取密封数据集</span>
+</span></span><span style="display:flex;"><span>img,label<span style="color:#f92672">=</span>ants_dataset<span style="color:#f92672">.</span>__getitem__(<span style="color:#ae81ff">0</span>)	<span style="color:#75715e"># 获取蚂蚁数据集中的第一个文件</span>
+</span></span><span style="display:flex;"><span>img<span style="color:#f92672">.</span>show() <span style="color:#75715e"># 展示图片</span>
+</span></span><span style="display:flex;"><span>print(label) <span style="color:#75715e"># 输出图片标签</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>train_dataset <span style="color:#f92672">=</span> ants_dataset <span style="color:#f92672">+</span> bees_dataset	<span style="color:#75715e"># 将蚂蚁数据集和蜜蜂数据集合并</span>
+</span></span></code></pre></div><h1 id="4tensorboard-的使用">4、Tensorboard 的使用
+</h1><h2 id="41-具体代码示例">4.1 具体代码示例
+</h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> Image
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;logs&#34;</span>)	<span style="color:#75715e"># 向 “logs” 写入一个文件，这个文件可以被TensorBoard解析</span>
+</span></span><span style="display:flex;"><span>image_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dataset/train/bees_image/16838648_415acd9e3f.jpg&#34;</span>
+</span></span><span style="display:flex;"><span>img_PIL <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(image_path)	<span style="color:#75715e"># 将图片文件存入img_PIL</span>
+</span></span><span style="display:flex;"><span>img_array <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(img_PIL)	<span style="color:#75715e"># 将img_PIL存入img_array中</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>add_image(<span style="color:#e6db74">&#34;train&#34;</span>,img_array,<span style="color:#ae81ff">1</span>,dataformats<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;HWC&#39;</span>) <span style="color:#75715e"># 添加一个图像到summary</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># &#34;train&#34;表示文件名，img_array表示图片文件，1表示第几步</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># y = x</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100</span>):
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;y=2x&#34;</span>,<span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>i,i) <span style="color:#75715e"># 添加一个标量到summary</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><h2 id="42-打开tensorboard的端口"><strong>4.2 打开TensorBoard的端口</strong>
+</h2><p>在terminal中输入</p>
+<p><code>tensorboard --logdir-logs --port-6007</code></p>
+<h2 id="43-summarywriter的使用">4.3 SummaryWriter的使用
+</h2><ul>
+<li>
+<p><strong>介绍</strong></p>
+<p>向 “log_dir” 写入一个文件，这个文件可以被TensorBoard解析</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SummaryWriter</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;Writes entries directly to event files in the log_dir to be consumed by TensorBoard.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    The `SummaryWriter` class provides a high-level API to create an event file
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    in a given directory and add summaries and events to it. The class updates the
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    file contents asynchronously. This allows a training program to call methods
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    to add data to the file directly from the training loop, without slowing down
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    training.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(
+</span></span><span style="display:flex;"><span>        self,
+</span></span><span style="display:flex;"><span>        log_dir<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>        comment<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>        purge_step<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>        max_queue<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>        flush_secs<span style="color:#f92672">=</span><span style="color:#ae81ff">120</span>,
+</span></span><span style="display:flex;"><span>        filename_suffix<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    ):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Create a `SummaryWriter` that will write out events and summaries to the event file.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Args:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            log_dir (str): Save directory location. Default is
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              runs/**CURRENT_DATETIME_HOSTNAME**, which changes after each run.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              Use hierarchical folder structure to compare
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              between runs easily. e.g. pass in &#39;runs/exp1&#39;, &#39;runs/exp2&#39;, etc.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              for each new experiment to compare across them.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            comment (str): Comment log_dir suffix appended to the default
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              ``log_dir``. If ``log_dir`` is assigned, this argument has no effect.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            purge_step (int):
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              When logging crashes at step :math:`T+X` and restarts at step :math:`T`,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              any events whose global_step larger or equal to :math:`T` will be
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              purged and hidden from TensorBoard.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              Note that crashed and resumed experiments should have the same ``log_dir``.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            max_queue (int): Size of the queue for pending events and
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              summaries before one of the &#39;add&#39; calls forces a flush to disk.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              Default is ten items.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            flush_secs (int): How often, in seconds, to flush the
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              pending events and summaries to disk. Default is every two minutes.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            filename_suffix (str): Suffix added to all event filenames in
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              the log_dir directory. More details on filename construction in
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              tensorboard.summary.writer.event_file_writer.EventFileWriter.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Examples::
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            from torch.utils.tensorboard import SummaryWriter
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            # create a summary writer with automatically generated folder name.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            writer = SummaryWriter()
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            # folder location: runs/May04_22-14-54_s-MacBook-Pro.local/
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            # create a summary writer using the specified folder name.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            writer = SummaryWriter(&#34;my_experiment&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            # folder location: my_experiment
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            # create a summary writer with comment appended.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            writer = SummaryWriter(comment=&#34;LR_0.1_BATCH_16&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            # folder location: runs/May04_22-14-54_s-MacBook-Pro.localLR_0.1_BATCH_16/
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>具体代码示例</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"></code></pre></div></li>
+</ul>
+<h2 id="44-writer-的函数">4.4 writer 的函数
+</h2><h3 id="add_scalar">add_scalar
+</h3><ul>
+<li>
+<p>添加一个标量到summary</p>
+</li>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_scalar</span>(
+</span></span><span style="display:flex;"><span>          self,
+</span></span><span style="display:flex;"><span>          tag,
+</span></span><span style="display:flex;"><span>          scalar_value,	<span style="color:#75715e"># 为y轴</span>
+</span></span><span style="display:flex;"><span>          global_step<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>,	<span style="color:#75715e"># 为x轴</span>
+</span></span><span style="display:flex;"><span>          walltime<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>,
+</span></span><span style="display:flex;"><span>          new_style<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>          double_precision<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>      ):
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;&#34;&#34;Add scalar data to summary.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Args:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              tag (str): Data identifier
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              scalar_value (float or string/blobname): Value to save
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              global_step (int): Global step value to record
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              walltime (float): Optional override default walltime (time.time())
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                with seconds after epoch of event
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              new_style (boolean): Whether to use new style (tensor field) or old
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                style (simple_value field). New style could lead to faster data loading.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Examples::
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              from torch.utils.tensorboard import SummaryWriter
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              writer = SummaryWriter()
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              x = range(100)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              for i in x:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                  writer.add_scalar(&#39;y=2x&#39;, i * 2, i)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">              writer.close()
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          Expected result:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          .. image:: _static/img/tensorboard/add_scalar.png
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">             :scale: 50 %
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          &#34;&#34;&#34;</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="add_image">add_image()
+</h3><ul>
+<li>添加一个图像到summary中</li>
+</ul>
+<h1 id="5transforms的使用">5、Transforms的使用
+</h1><h2 id="具体代码示例">具体代码示例：
+</h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torchvision <span style="color:#f92672">import</span> transforms
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> Image
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 通过 transforms.ToTensor 去解决两个问题</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1、transforms该如何使用</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2、为什么需要Tensor数据类型</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>img_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dataset/train/ants_image/0013035.jpg&#34;</span>
+</span></span><span style="display:flex;"><span>img <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(img_path)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;logs&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tensor_trans <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>ToTensor() <span style="color:#75715e"># 建立一个类</span>
+</span></span><span style="display:flex;"><span>tensor_img <span style="color:#f92672">=</span> tensor_trans(img)  <span style="color:#75715e"># 将PIL转换为tensor</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>add_image(<span style="color:#e6db74">&#34;Tensor_img&#34;</span>,tensor_img)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> Image
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torchvision <span style="color:#f92672">import</span> transforms
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;logs&#34;</span>)
+</span></span><span style="display:flex;"><span>img <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(<span style="color:#e6db74">&#34;dataset/train/ants_image/0013035.jpg&#34;</span>)
+</span></span><span style="display:flex;"><span>print(img)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ToTensor的使用</span>
+</span></span><span style="display:flex;"><span>trans_totensor <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>ToTensor()
+</span></span><span style="display:flex;"><span>img_tensor <span style="color:#f92672">=</span> trans_totensor(img)
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>add_image(<span style="color:#e6db74">&#34;ToTensor&#34;</span>,img_tensor)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Normalize</span>
+</span></span><span style="display:flex;"><span>print(img_tensor[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>trans_norm <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>Normalize([<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>],[<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>]) <span style="color:#75715e"># 对数据进行标准化</span>
+</span></span><span style="display:flex;"><span>img_norm <span style="color:#f92672">=</span> trans_norm(img_tensor)
+</span></span><span style="display:flex;"><span>print(img_norm[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>add_image(<span style="color:#e6db74">&#34;Normalize&#34;</span>,img_norm,<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Resize    重新设置图片的大小</span>
+</span></span><span style="display:flex;"><span>print(img<span style="color:#f92672">.</span>size)
+</span></span><span style="display:flex;"><span>trans_resize <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>Resize((<span style="color:#ae81ff">512</span>,<span style="color:#ae81ff">512</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># img PIL -&gt; resize -&gt; img_resize PIL</span>
+</span></span><span style="display:flex;"><span>img_resize <span style="color:#f92672">=</span> trans_resize(img)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># img_resize PIL -&gt; resize -&gt; img_resize tensor</span>
+</span></span><span style="display:flex;"><span>img_resize <span style="color:#f92672">=</span> trans_totensor(img_resize)
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>add_image(<span style="color:#e6db74">&#34;Resize&#34;</span>,img_resize)
+</span></span><span style="display:flex;"><span>print(img_resize)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compose - resize - 2   将resize和totensor结合成一步</span>
+</span></span><span style="display:flex;"><span>trans_resize_2 <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>Resize(<span style="color:#ae81ff">512</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># PIL -&gt; PIL -&gt; tensor</span>
+</span></span><span style="display:flex;"><span>trans_compose <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>Compose([trans_resize_2,trans_totensor])
+</span></span><span style="display:flex;"><span>img_resize_2 <span style="color:#f92672">=</span> trans_compose(img)
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>add_image(<span style="color:#e6db74">&#34;Resize&#34;</span>,img_resize_2,<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># RandomCrop    随机裁剪</span>
+</span></span><span style="display:flex;"><span>trans_random <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>RandomCrop(<span style="color:#ae81ff">200</span>,<span style="color:#ae81ff">400</span>)   <span style="color:#75715e"># 定义裁剪大小</span>
+</span></span><span style="display:flex;"><span>trans_compose_2 <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>Compose([trans_random,trans_totensor]) <span style="color:#75715e"># 将随机裁剪与totensor结合成一步</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>    img_crop <span style="color:#f92672">=</span> trans_compose_2(img)
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_image(<span style="color:#e6db74">&#34;RandomCropHW&#34;</span>,img_crop,i)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><h1 id="6torchvision中的数据集使用">6、torchvision中的数据集使用
+</h1><p>点击“Pytorch Domains”</p>
+<p><img src="/static/Pytorch_img/1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1"
+	
+	
+></p>
+<p>选择“torchvision”</p>
+<p><img src="/static/Pytorch_img/2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2"
+	
+	
+></p>
+<p>进入“Datasets”</p>
+<p><img src="/static/Pytorch_img/3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="3"
+	
+	
+></p>
+<p>有许多官方数据集可供下载</p>
+<p><img src="/static/Pytorch_img/4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="4"
+	
+	
+></p>
+<p>代码示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dataset_transform <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>Compose([
+</span></span><span style="display:flex;"><span>    torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor()
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建一个训练集</span>
+</span></span><span style="display:flex;"><span>train_set <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(root<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./dataset&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,transform<span style="color:#f92672">=</span>dataset_transform,download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建一个测试集</span>
+</span></span><span style="display:flex;"><span>test_set <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(root<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./dataset&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,transform<span style="color:#f92672">=</span>dataset_transform,download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(test_set[0])</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(test_set.classes)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># img,target = test_set[0]</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(img)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(target)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(test_set.classes[target])</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># img.show()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(test_set[0])</span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;p10&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>    img , target <span style="color:#f92672">=</span> test_set[i]
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_image(<span style="color:#e6db74">&#34;test_set&#34;</span>,img ,i)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><h1 id="7dataloader的使用">7、DataLoader的使用
+</h1><p>同样进入“Pytorch Domains”-&gt;“torchvision”</p>
+<p>直接搜索“DataLoader”</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
