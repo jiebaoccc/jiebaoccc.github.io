@@ -111,7 +111,7 @@
 =0+0
 =0
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为了区分数据损失值相同的不同模型，需要引入正则化惩罚项&lt;/p&gt;
-&lt;p&gt;得到公式：&lt;strong&gt;损失函数 = 数据损失 + 正则化惩罚项&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;得到公式： &lt;strong&gt;损失函数 = 数据损失 + 正则化惩罚项&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_8.png&#34;
 	
 	
@@ -394,13 +394,174 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;卷积层涉及的参数&#34;&gt;&lt;strong&gt;卷积层涉及的参数：&lt;/strong&gt;
+&lt;h2 id=&#34;卷积层涉及的参数&#34;&gt;&lt;strong&gt;卷积层涉及的参数&lt;/strong&gt;
 &lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;滑动窗口步长&lt;/li&gt;
-&lt;li&gt;卷积核尺寸&lt;/li&gt;
-&lt;li&gt;边缘填充&lt;/li&gt;
-&lt;li&gt;卷积核个数&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;滑动窗口步长：&lt;/strong&gt; 移动的格数，补偿设置跟实际需求有关&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_28.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_28&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;卷积核尺寸：&lt;/strong&gt; 选择区域的大小，常见的为3*3&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;边缘填充：&lt;/strong&gt; 矩阵中越靠近中间，计算的次数越多，所以通过在矩阵外层增加1圈或两圈0，以提高数据的准确率；文本识别也存在边缘填充，如在句子结尾增加多个0&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deap_learn_29.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deap_learn_29&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;卷积核个数：&lt;/strong&gt; 卷积核的个数一般有多个，以得到多种不同的特征图，每个卷积核的数据都是不同的&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;卷积结果计算公式&#34;&gt;卷积结果计算公式
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;长度：&lt;/strong&gt; &lt;img src=&#34;https://jiebaoccc.github.io/img/Deap_learn_30.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deap_learn_30&#34;
+	
+	
+&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;宽度：&lt;/strong&gt; &lt;img src=&#34;https://jiebaoccc.github.io/img/Deap_learn_31.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deap_learn_31&#34;
+	
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中&lt;strong&gt;W1&lt;/strong&gt;、&lt;strong&gt;H1&lt;/strong&gt;表示输入的宽度、长度；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;W2&lt;/strong&gt;、&lt;strong&gt;H2&lt;/strong&gt;表示输出特征图的宽度、长度；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;F&lt;/strong&gt;表示卷积核长和宽的大小；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;S&lt;/strong&gt;表示滑动窗口的步长；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;P&lt;/strong&gt;表示边界填充（即加了几圈0）；&lt;/p&gt;
+&lt;p&gt;如果输入数据是32 * 32 * 3的图像，用10个5 * 5 * 3的filter来进行卷积操作，制订步长为1，边界填充为2，最终输入的规模为&lt;/p&gt;
+&lt;p&gt;（32-5+2*2）/1+1=32，所以输出规模为32 * 32 * 10&lt;/p&gt;
+&lt;p&gt;即经过卷积操作后也可以保持特征图长度、宽度不变&lt;/p&gt;
+&lt;h2 id=&#34;卷积参数共享&#34;&gt;卷积参数共享
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deap_learn_32.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deap_learn_32&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;一个图像中的每一个区域都要进行卷积，用同样的卷积核对每一个区域进行提取&lt;/p&gt;
+&lt;p&gt;例如，数据依旧是32 * 32 * 3的图像，继续用10个5 * 5 * 3的filter来进行卷积操作，所需的权重参数有多少个&lt;/p&gt;
+&lt;p&gt;5 * 5 * 3 * 10=750个，因为每一个filter有偏置量b=1，所以还要加上10，所以最终需要750+10=760个权重参数&lt;/p&gt;
+&lt;h2 id=&#34;池化层&#34;&gt;池化层
+&lt;/h2&gt;&lt;p&gt;池化层就是通过某种方式对数据进行压缩&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deap_learn_33.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deap_learn_33&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;最大池化&#34;&gt;最大池化
+&lt;/h2&gt;&lt;p&gt;选择区域内的最大值为压缩矩阵的值&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_34.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_34&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;层数&#34;&gt;层数
+&lt;/h2&gt;&lt;p&gt;只有有参数计算的才算一层&lt;/p&gt;
+&lt;p&gt;图中，RELU层、池化层都不带参数计算，所以此过程只有7层&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_35.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_35&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中FC为全连接层，在进入全连接层时，需要对数据进行拉伸，使其从三维变成二维&lt;/p&gt;
+&lt;h2 id=&#34;特征图变化&#34;&gt;特征图变化
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_36.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_36&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;经典网络resnet&#34;&gt;经典网络——Resnet
+&lt;/h2&gt;&lt;p&gt;解决训练次数达到一定次数时，次数越多，效果越差的问题&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_37.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_37&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;感受野&#34;&gt;感受野
+&lt;/h2&gt;&lt;p&gt;表示某一个点由多少输入数据得到的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_38.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_38&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;假设输入大小都是h * w * c，并且都是用c个卷积核（得到c个特征图），可以来计算其各自所需参数：&lt;/p&gt;
+&lt;p&gt;一个7*7卷积核所需参数= c * (7 * 7 * c) = 49c^2^&lt;/p&gt;
+&lt;p&gt;3个3*3卷积核所需参数=3 * c * (3 * 3 * c) = 27c^2^&lt;/p&gt;
+&lt;p&gt;很明显，堆叠小的卷积核所需的参数更少一些，并且卷积过程越多，特征提取也会越细致，加入的非线性变换也随着增多，还不会增大权重参数个数，这就是VGG网络的基本出发点，用小的卷积核来完成体特征提取操作&lt;/p&gt;
+&lt;h1 id=&#34;rnn-递归神经网络&#34;&gt;RNN 递归神经网络
+&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_39.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Deep_learn_39&#34;
+	
+	
+&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -2094,9 +2255,12 @@ error
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;进入public目录&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;cd public/&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;git add *&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;git commit -m “my first hugo”&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;git push -u origin master&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;若出错&lt;/p&gt;
+&lt;p&gt;git config &amp;ndash;global http.sslVerify false&lt;/p&gt;
 </description>
         </item>
         <item>
