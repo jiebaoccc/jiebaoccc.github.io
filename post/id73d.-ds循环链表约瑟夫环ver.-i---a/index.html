@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 \u200b\tN个人坐成一个圆环（编号为1 - N），从第S个人开始报数，数到K的人出列，后面的人重新从1开始报数。问最后剩下的人的编号。 \u200b\t例如：N = 3，K = 2，S = 1。2号先出列，然后是1号，最后剩下的是3号。 \u200b\t要求使用循环链表实现。 \u200b\t题目要求：必须使用指针表示next域，没有表示出链表结点结构的扣一半分！！ 输入 \u200b\t测试数据有多组，第一行输入t表示有t组 \u200b\t接着输入t行，表示t组参数 \u200b\t每组包括3个数N、K、S，表示有N个人，从第S个人开始，数到K出列。(2 &lt;= N &lt;= 10^6，1 &lt;= K &lt;= 10, 1 &lt;= S &lt;= N) 输出 \u200b\t出列的人的编号 IO模式 \u200b\t本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例1： 2 13 3 1 3 2 1 输出样例1: 3 6 9 12 2 7 11 4 10 5 1 8 13 2 1 3 代码：">
 <title>【id73】D. DS循环链表—约瑟夫环(Ver. I - A)</title>
 
-<link rel='canonical' href='https://jiebaoccc.github.io/post/id73d.-ds%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AFver.-i---a/'>
+<link rel='canonical' href='http://localhost:1313/post/id73d.-ds%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AFver.-i---a/'>
 
 <link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id73】D. DS循环链表—约瑟夫环(Ver. I - A)">
 <meta property='og:description' content="题目描述 \u200b\tN个人坐成一个圆环（编号为1 - N），从第S个人开始报数，数到K的人出列，后面的人重新从1开始报数。问最后剩下的人的编号。 \u200b\t例如：N = 3，K = 2，S = 1。2号先出列，然后是1号，最后剩下的是3号。 \u200b\t要求使用循环链表实现。 \u200b\t题目要求：必须使用指针表示next域，没有表示出链表结点结构的扣一半分！！ 输入 \u200b\t测试数据有多组，第一行输入t表示有t组 \u200b\t接着输入t行，表示t组参数 \u200b\t每组包括3个数N、K、S，表示有N个人，从第S个人开始，数到K出列。(2 &lt;= N &lt;= 10^6，1 &lt;= K &lt;= 10, 1 &lt;= S &lt;= N) 输出 \u200b\t出列的人的编号 IO模式 \u200b\t本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例1： 2 13 3 1 3 2 1 输出样例1: 3 6 9 12 2 7 11 4 10 5 1 8 13 2 1 3 代码：">
-<meta property='og:url' content='https://jiebaoccc.github.io/post/id73d.-ds%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AFver.-i---a/'>
+<meta property='og:url' content='http://localhost:1313/post/id73d.-ds%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AFver.-i---a/'>
 <meta property='og:site_name' content='Carp&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-12T23:10:45&#43;08:00'/><meta property='article:modified_time' content='2024-09-12T23:10:45&#43;08:00'/>
 <meta name="twitter:title" content="【id73】D. DS循环链表—约瑟夫环(Ver. I - A)">

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 \u200b\t假定两个单链表是递增有序，定义并实现以下函数，完成两个单链表的合并，继续保持递增有序 \u200b\tint LL_merge(ListNode *La, ListNode *Lb) \u200b\t题目要求：必须使用指针表示next域，没有表示出链表结点结构的扣一半分！！ 输入 \u200b\t第1行先输入n表示有n个数据，接着输入n个数据 \u200b\t第2行先输入m表示有M个数据，接着输入m个数据 输出 \u200b\t输出合并后的单链表数据，数据之间用空格隔开 IO模式 \u200b\t本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例1： 3 11 33 55 4 22 44 66 88 输出样例1: 11 22 33 44 55 66 88 代码： #include&lt;iostream&gt; using namespace std; class ListNode { public: int val; ListNode* next=nullptr; }; void display(ListNode* t) { ListNode* p = t-&gt;next; while (p != nullptr) { cout &lt;&lt; p-&gt;val &lt;&lt; &#34; &#34;; p = p-&gt;next; } cout &lt;&lt; endl; } ListNode* LL_merge(ListNode* La, ListNode* Lb) { ListNode* p = La; ListNode* m = La-&gt;next; ListNode* n = Lb-&gt;next; while (m &amp;&amp; n) { if (m-&gt;val &lt; n-&gt;val) { p-&gt;next = m; m = m-&gt;next; p = p-&gt;next; } else { p-&gt;next = n; n = n-&gt;next; p = p-&gt;next; } } p-&gt;next = !">
 <title>【id79】C. DS单链表--合并</title>
 
-<link rel='canonical' href='https://jiebaoccc.github.io/post/id79c.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E5%90%88%E5%B9%B6/'>
+<link rel='canonical' href='http://localhost:1313/post/id79c.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E5%90%88%E5%B9%B6/'>
 
 <link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id79】C. DS单链表--合并">
 <meta property='og:description' content="题目描述 \u200b\t假定两个单链表是递增有序，定义并实现以下函数，完成两个单链表的合并，继续保持递增有序 \u200b\tint LL_merge(ListNode *La, ListNode *Lb) \u200b\t题目要求：必须使用指针表示next域，没有表示出链表结点结构的扣一半分！！ 输入 \u200b\t第1行先输入n表示有n个数据，接着输入n个数据 \u200b\t第2行先输入m表示有M个数据，接着输入m个数据 输出 \u200b\t输出合并后的单链表数据，数据之间用空格隔开 IO模式 \u200b\t本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例1： 3 11 33 55 4 22 44 66 88 输出样例1: 11 22 33 44 55 66 88 代码： #include&lt;iostream&gt; using namespace std; class ListNode { public: int val; ListNode* next=nullptr; }; void display(ListNode* t) { ListNode* p = t-&gt;next; while (p != nullptr) { cout &lt;&lt; p-&gt;val &lt;&lt; &#34; &#34;; p = p-&gt;next; } cout &lt;&lt; endl; } ListNode* LL_merge(ListNode* La, ListNode* Lb) { ListNode* p = La; ListNode* m = La-&gt;next; ListNode* n = Lb-&gt;next; while (m &amp;&amp; n) { if (m-&gt;val &lt; n-&gt;val) { p-&gt;next = m; m = m-&gt;next; p = p-&gt;next; } else { p-&gt;next = n; n = n-&gt;next; p = p-&gt;next; } } p-&gt;next = !">
-<meta property='og:url' content='https://jiebaoccc.github.io/post/id79c.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E5%90%88%E5%B9%B6/'>
+<meta property='og:url' content='http://localhost:1313/post/id79c.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E5%90%88%E5%B9%B6/'>
 <meta property='og:site_name' content='Carp&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-12T23:10:38&#43;08:00'/><meta property='article:modified_time' content='2024-09-12T23:10:38&#43;08:00'/>
 <meta name="twitter:title" content="【id79】C. DS单链表--合并">

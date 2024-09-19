@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.open(img_item_path) # 读取img_item_path文件，存储在img中 label = self.">
 <title>Pytorch</title>
 
-<link rel='canonical' href='https://jiebaoccc.github.io/post/pytorch/'>
+<link rel='canonical' href='http://localhost:1313/post/pytorch/'>
 
 <link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Pytorch">
 <meta property='og:description' content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.open(img_item_path) # 读取img_item_path文件，存储在img中 label = self.">
-<meta property='og:url' content='https://jiebaoccc.github.io/post/pytorch/'>
+<meta property='og:url' content='http://localhost:1313/post/pytorch/'>
 <meta property='og:site_name' content='Carp&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-18T16:49:17&#43;08:00'/><meta property='article:modified_time' content='2024-09-18T16:49:17&#43;08:00'/>
 <meta name="twitter:title" content="Pytorch">
@@ -153,7 +153,7 @@
 
 
                 <time class="article-time--reading">
-                    4 minute read
+                    5 minute read
                 </time>
             </div>
         
@@ -489,8 +489,200 @@
 </span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
 </span></span></code></pre></div><h1 id="7dataloader的使用">7、DataLoader的使用
 </h1><p>同样进入“Pytorch Domains”-&gt;“torchvision”</p>
+<p><img src="/Pytorch_img/1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1"
+	
+	
+></p>
 <p>直接搜索“DataLoader”</p>
-
+<p><img src="/Pytorch_img/5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="5"
+	
+	
+></p>
+<p><strong>具体代码实现</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test_data <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;./dataset&#34;</span>, train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>, transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># train为真时，该数据数据为训练集，反之为测试集</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># transform为数据转换方式</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># download 为是否开放下载</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test_loader <span style="color:#f92672">=</span> DataLoader(dataset<span style="color:#f92672">=</span>test_data, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>, shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>, num_workers<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, drop_last<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># shuffle表示是否将数据集进行打乱 </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># drop_last表示剩余部分是否保留</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># batch_size 为每一次测试的大小</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 测试数据集中第一张图片及target</span>
+</span></span><span style="display:flex;"><span>img, target <span style="color:#f92672">=</span> test_data[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>print(test_data<span style="color:#f92672">.</span>classes)  <span style="color:#75715e"># 输出数据中的分类</span>
+</span></span><span style="display:flex;"><span>print(img<span style="color:#f92672">.</span>shape)  <span style="color:#75715e"># 输出图片的数据 torch.Size([3, 32, 32])</span>
+</span></span><span style="display:flex;"><span>print(target)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;dataloader&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>):
+</span></span><span style="display:flex;"><span>    step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> test_loader:
+</span></span><span style="display:flex;"><span>        imgs, targets <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># print(imgs.shape)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># print(target)</span>
+</span></span><span style="display:flex;"><span>        writer<span style="color:#f92672">.</span>add_images(<span style="color:#e6db74">&#34;Epoch:</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(epoch), imgs, step)
+</span></span><span style="display:flex;"><span>        step <span style="color:#f92672">=</span> step <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><h1 id="8神经网络的基本骨架nnmoudle的使用">8、神经网络的基本骨架——nn.Moudle的使用
+</h1><p>首先进入Pytorch官网</p>
+<p><img src="/Pytorch_img/6.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="6"
+	
+	
+></p>
+<p>其中有很多个模块</p>
+<p><img src="/Pytorch_img/7.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="7"
+	
+	
+></p>
+<p>首先从Containers，容器，也是骨架讲起</p>
+<p><img src="/Pytorch_img/8.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="8"
+	
+	
+></p>
+<p>其中Module就是为所有神经网络提供一个模板，**<code>__init__</code>**函数需要自己定义</p>
+<p><img src="/Pytorch_img/9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="9"
+	
+	
+></p>
+<p>conv1表示卷积操作，relu表示非线性处理</p>
+<p><strong>具体代码示例</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,input):
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">=</span> input <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> output
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor(<span style="color:#ae81ff">1.0</span>)
+</span></span><span style="display:flex;"><span>output <span style="color:#f92672">=</span> tudui(x)
+</span></span><span style="display:flex;"><span>print(output)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 输出结果</span>
+</span></span><span style="display:flex;"><span>tensor(<span style="color:#ae81ff">2.</span>)
+</span></span></code></pre></div><h1 id="9卷积操作">9、卷积操作
+</h1><p><img src="/Pytorch_img/10.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="10"
+	
+	
+></p>
+<p>其中nn.Conv1d表示一维，nn.Conv2d表示二维，nn.Conv3d表示三维</p>
+<p>主要讲解nn.Conv2d</p>
+<p><img src="/Pytorch_img/11.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="11"
+	
+	
+></p>
+<p>其中</p>
+<ul>
+<li>input为输入</li>
+<li>weight为卷积核</li>
+<li>bias为偏置</li>
+<li>stride为步长，默认情况下为1</li>
+<li>padding表示填充，默认情况下不进行填充</li>
+</ul>
+<p><strong>具体代码示例</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.nn.functional <span style="color:#66d9ef">as</span> F
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>input <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>],
+</span></span><span style="display:flex;"><span>                      [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>],
+</span></span><span style="display:flex;"><span>                      [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>],
+</span></span><span style="display:flex;"><span>                      [<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>],
+</span></span><span style="display:flex;"><span>                      [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>kernel <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>],
+</span></span><span style="display:flex;"><span>                       [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>],
+</span></span><span style="display:flex;"><span>                       [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>input <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(input,(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>)) <span style="color:#75715e"># batch_size为1 , 1通道, 5*5的矩阵</span>
+</span></span><span style="display:flex;"><span>kernel <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(kernel,(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(input<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>print(kernel<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 步长为1</span>
+</span></span><span style="display:flex;"><span>output <span style="color:#f92672">=</span> F<span style="color:#f92672">.</span>conv2d(input,kernel,stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>print(output)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 步长为2</span>
+</span></span><span style="display:flex;"><span>output2 <span style="color:#f92672">=</span> F<span style="color:#f92672">.</span>conv2d(input,kernel,stride<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>print(output2)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 填充为1</span>
+</span></span><span style="display:flex;"><span>output3 <span style="color:#f92672">=</span> F<span style="color:#f92672">.</span>conv2d(input,kernel,stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,padding<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>print(output3)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 输出结果</span>
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>Size([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>])
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>Size([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>])
+</span></span><span style="display:flex;"><span>tensor([[[[<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>],
+</span></span><span style="display:flex;"><span>          [<span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">16</span>],
+</span></span><span style="display:flex;"><span>          [<span style="color:#ae81ff">13</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">3</span>]]]])
+</span></span><span style="display:flex;"><span>tensor([[[[<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">12</span>],
+</span></span><span style="display:flex;"><span>          [<span style="color:#ae81ff">13</span>,  <span style="color:#ae81ff">3</span>]]]])
+</span></span><span style="display:flex;"><span>tensor([[[[ <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">10</span>,  <span style="color:#ae81ff">8</span>],
+</span></span><span style="display:flex;"><span>          [ <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">12</span>,  <span style="color:#ae81ff">6</span>],
+</span></span><span style="display:flex;"><span>          [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">16</span>,  <span style="color:#ae81ff">8</span>],
+</span></span><span style="display:flex;"><span>          [<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">13</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">4</span>],
+</span></span><span style="display:flex;"><span>          [<span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">13</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">4</span>]]]])
+</span></span></code></pre></div>
 </section>
 
 

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 \u200b\t对于一元多项式p(x)=p0+p1x+p2x^2+…+pnx^n，每个项都有系数和指数两部分，例如p2x2的系数为p2,指数为2。 \u200b\t编程实现两个多项式的相加。 \u200b\t例如5+x+2x2+3x3，-5-x+6x2+4x4，两者相加结果：8x2+3x3+4x4 \u200b\t其中系数5和-5都是x的0次方的系数，相加后为0，所以不显示。x的1次方同理不显示。 \u200b\t要求用单链表实现。 输入 \u200b\t第1行：输入t表示有t组测试数据 \u200b\t第2行：输入n表示有第1组的第1个多项式包含n个项 \u200b\t第3行：输入第一项的系数和指数，以此类推输入n行 \u200b\t接着输入m表示第1组的第2个多项式包含m项 \u200b\t同理输入第2个多项式的m个项的系数和指数 \u200b\t参考上面输入第2组数据，以此类推输入t组 \u200b\t假设所有数据都是整数 输出 \u200b\t对于每1组数据，先用两行输出两个原来的多项式，再用一行输出运算结果，不必考虑结果全为0的情况 \u200b\t输出格式参考样本数据，格式要求包括： \u200b\t1.如果指数或系数是负数，用小括号括起来。 \u200b\t2.如果系数为0，则该项不用输出。 \u200b\t3.如果指数不为0，则用符号^表示，例如x的3次方，表示为x^3。 \u200b\t4.多项式的每个项之间用符号+连接，每个+两边加1个空格隔开。 IO模式 \u200b\t本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例1： 2 4 5 0 1 1 2 2 3 3 4 -5 0 -1 1 6 2 4 4 3 -3 0 -5 1 2 2 4 9 -1 2 0 3 1 -2 2 输出样例1:">
 <title>【id78】E. DS线性表—多项式相加</title>
 
-<link rel='canonical' href='https://jiebaoccc.github.io/post/id78e.-ds%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9B%B8%E5%8A%A0/'>
+<link rel='canonical' href='http://localhost:1313/post/id78e.-ds%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9B%B8%E5%8A%A0/'>
 
 <link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id78】E. DS线性表—多项式相加">
 <meta property='og:description' content="题目描述 \u200b\t对于一元多项式p(x)=p0+p1x+p2x^2+…+pnx^n，每个项都有系数和指数两部分，例如p2x2的系数为p2,指数为2。 \u200b\t编程实现两个多项式的相加。 \u200b\t例如5+x+2x2+3x3，-5-x+6x2+4x4，两者相加结果：8x2+3x3+4x4 \u200b\t其中系数5和-5都是x的0次方的系数，相加后为0，所以不显示。x的1次方同理不显示。 \u200b\t要求用单链表实现。 输入 \u200b\t第1行：输入t表示有t组测试数据 \u200b\t第2行：输入n表示有第1组的第1个多项式包含n个项 \u200b\t第3行：输入第一项的系数和指数，以此类推输入n行 \u200b\t接着输入m表示第1组的第2个多项式包含m项 \u200b\t同理输入第2个多项式的m个项的系数和指数 \u200b\t参考上面输入第2组数据，以此类推输入t组 \u200b\t假设所有数据都是整数 输出 \u200b\t对于每1组数据，先用两行输出两个原来的多项式，再用一行输出运算结果，不必考虑结果全为0的情况 \u200b\t输出格式参考样本数据，格式要求包括： \u200b\t1.如果指数或系数是负数，用小括号括起来。 \u200b\t2.如果系数为0，则该项不用输出。 \u200b\t3.如果指数不为0，则用符号^表示，例如x的3次方，表示为x^3。 \u200b\t4.多项式的每个项之间用符号+连接，每个+两边加1个空格隔开。 IO模式 \u200b\t本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例1： 2 4 5 0 1 1 2 2 3 3 4 -5 0 -1 1 6 2 4 4 3 -3 0 -5 1 2 2 4 9 -1 2 0 3 1 -2 2 输出样例1:">
-<meta property='og:url' content='https://jiebaoccc.github.io/post/id78e.-ds%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9B%B8%E5%8A%A0/'>
+<meta property='og:url' content='http://localhost:1313/post/id78e.-ds%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9B%B8%E5%8A%A0/'>
 <meta property='og:site_name' content='Carp&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-12T23:10:51&#43;08:00'/><meta property='article:modified_time' content='2024-09-12T23:10:51&#43;08:00'/>
 <meta name="twitter:title" content="【id78】E. DS线性表—多项式相加">
