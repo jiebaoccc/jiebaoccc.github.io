@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+    <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="神经网络 机器学习流程 数据获取 特征工程 建立模型 评估与应用 特征工程的作用 数据特征决定了模型上限 预处理和特征提取是最核心的 算法与参数选择决定了如何逼近这个上限 机器学习常规套路 收集数据并给定标签 训练一个分类器 测试、评估 K近邻算法 计算一直类别数据集中的点与当前点的距离 按照距离依次排序 选取与当前点距离最小的K个点 确定前K个点所在类别的出现概率 返回前K个点出现频率最高的类别作为当前点预测分类 得分函数——线性函数 损失函数 示例： =max(0,5.1-3.2+1)+max(0,-1.7-3.2+1) =max(0,2,9)+max(0,-3.9) =2.9+0 =2.9 =max(0,1.3-4.9+1)+max(0,2.0-4.9+1) =max(0,-2.6)+max(0,-1.9) =0+0 =0 为了区分数据损失值相同的不同模型，需要引入正则化惩罚项 得到公式： 损失函数 = 数据损失 + 正则化惩罚项 Softmax分类器 得到一个得分值，将其转换成一个概率值可以更好的进行判断 可通过此函数： 方法二 其中S为 正向传播 反向传播 链式法则： 梯度是一步一步传的，逐层计算 加法门单元：均等分配 MAX门单元：给最大的 乘法门单元：类似于互换 整体架构 层次架构：分成输入层、隐藏层、输出层 神经元：有多个神经元 全连接：每层神经元都与下一层的每一个神经元链接 非线性：每一层的链接需要逐层进行，不能调换顺序 神经元个数对结果的影响 神经元个数越多，结果过拟合化更强 正则化与激活函数 增加一个神经元，相当于增加一组数据 激活函数 常用激活函数：Sigmoid、Relu、Tanh等 激活函数对比：当数值较大或较小时，使用Sigmoid函数容易出现梯度消失 神经网络过拟合解决方法 数据预处理：不同的与处理结果会使模型的效果发生很大的差异 参数初始化：通常采用随机策略来进行参数初始化 W = 0.01*np.random.randn(D,H) DROP-OUT 在每一次训练中，对每一层都随机选择一部分神经元，可以使训练结构更简单">
 <title>深度学习</title>
 
-<link rel='canonical' href='http://localhost:1313/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/'>
+<link rel='canonical' href='https://jiebaoccc.github.io/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/'>
 
 <link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="深度学习">
 <meta property='og:description' content="神经网络 机器学习流程 数据获取 特征工程 建立模型 评估与应用 特征工程的作用 数据特征决定了模型上限 预处理和特征提取是最核心的 算法与参数选择决定了如何逼近这个上限 机器学习常规套路 收集数据并给定标签 训练一个分类器 测试、评估 K近邻算法 计算一直类别数据集中的点与当前点的距离 按照距离依次排序 选取与当前点距离最小的K个点 确定前K个点所在类别的出现概率 返回前K个点出现频率最高的类别作为当前点预测分类 得分函数——线性函数 损失函数 示例： =max(0,5.1-3.2+1)+max(0,-1.7-3.2+1) =max(0,2,9)+max(0,-3.9) =2.9+0 =2.9 =max(0,1.3-4.9+1)+max(0,2.0-4.9+1) =max(0,-2.6)+max(0,-1.9) =0+0 =0 为了区分数据损失值相同的不同模型，需要引入正则化惩罚项 得到公式： 损失函数 = 数据损失 + 正则化惩罚项 Softmax分类器 得到一个得分值，将其转换成一个概率值可以更好的进行判断 可通过此函数： 方法二 其中S为 正向传播 反向传播 链式法则： 梯度是一步一步传的，逐层计算 加法门单元：均等分配 MAX门单元：给最大的 乘法门单元：类似于互换 整体架构 层次架构：分成输入层、隐藏层、输出层 神经元：有多个神经元 全连接：每层神经元都与下一层的每一个神经元链接 非线性：每一层的链接需要逐层进行，不能调换顺序 神经元个数对结果的影响 神经元个数越多，结果过拟合化更强 正则化与激活函数 增加一个神经元，相当于增加一组数据 激活函数 常用激活函数：Sigmoid、Relu、Tanh等 激活函数对比：当数值较大或较小时，使用Sigmoid函数容易出现梯度消失 神经网络过拟合解决方法 数据预处理：不同的与处理结果会使模型的效果发生很大的差异 参数初始化：通常采用随机策略来进行参数初始化 W = 0.01*np.random.randn(D,H) DROP-OUT 在每一次训练中，对每一层都随机选择一部分神经元，可以使训练结构更简单">
-<meta property='og:url' content='http://localhost:1313/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/'>
+<meta property='og:url' content='https://jiebaoccc.github.io/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/'>
 <meta property='og:site_name' content='Carp&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-17T23:58:54&#43;08:00'/><meta property='article:modified_time' content='2024-09-17T23:58:54&#43;08:00'/>
 <meta name="twitter:title" content="深度学习">

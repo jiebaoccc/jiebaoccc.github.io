@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.open(img_item_path) # 读取img_item_path文件，存储在img中 label = self.">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 补充： 进入Pytorch conda activate pytorch 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.">
 <title>Pytorch</title>
 
-<link rel='canonical' href='http://localhost:1313/post/pytorch/'>
+<link rel='canonical' href='https://jiebaoccc.github.io/post/pytorch/'>
 
 <link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Pytorch">
-<meta property='og:description' content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.open(img_item_path) # 读取img_item_path文件，存储在img中 label = self.">
-<meta property='og:url' content='http://localhost:1313/post/pytorch/'>
+<meta property='og:description' content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 补充： 进入Pytorch conda activate pytorch 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/pytorch/'>
 <meta property='og:site_name' content='Carp&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-18T16:49:17&#43;08:00'/><meta property='article:modified_time' content='2024-09-18T16:49:17&#43;08:00'/>
 <meta name="twitter:title" content="Pytorch">
-<meta name="twitter:description" content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.open(img_item_path) # 读取img_item_path文件，存储在img中 label = self.">
+<meta name="twitter:description" content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 补充： 进入Pytorch conda activate pytorch 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.">
   
 
 
@@ -153,7 +153,7 @@
 
 
                 <time class="article-time--reading">
-                    5 minute read
+                    8 minute read
                 </time>
             </div>
         
@@ -172,6 +172,8 @@
 </h1><p>输出类中的各种函数</p>
 <h1 id="2help">2、help（）
 </h1><p>输出该函数的功能</p>
+<h1 id="补充-进入pytorch">补充： 进入Pytorch
+</h1><p>conda activate pytorch</p>
 <h1 id="3初始数据的获取">3、初始数据的获取
 </h1><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># read_data.py</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集</span>
@@ -544,7 +546,9 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
 </span></span></code></pre></div><h1 id="8神经网络的基本骨架nnmoudle的使用">8、神经网络的基本骨架——nn.Moudle的使用
-</h1><p>首先进入Pytorch官网</p>
+</h1><ul>
+<li>
+<p>首先进入Pytorch官网</p>
 <p><img src="/Pytorch_img/6.png"
 	
 	
@@ -555,6 +559,8 @@
 	
 	
 ></p>
+</li>
+<li>
 <p>其中有很多个模块</p>
 <p><img src="/Pytorch_img/7.png"
 	
@@ -566,6 +572,8 @@
 	
 	
 ></p>
+</li>
+<li>
 <p>首先从Containers，容器，也是骨架讲起</p>
 <p><img src="/Pytorch_img/8.png"
 	
@@ -577,7 +585,9 @@
 	
 	
 ></p>
-<p>其中Module就是为所有神经网络提供一个模板，**<code>__init__</code>**函数需要自己定义</p>
+</li>
+<li>
+<p>其中Module就是为所有神经网络提供一个模板，<strong><code>__init__</code></strong> 函数需要自己定义</p>
 <p><img src="/Pytorch_img/9.png"
 	
 	
@@ -589,6 +599,8 @@
 	
 ></p>
 <p>conv1表示卷积操作，relu表示非线性处理</p>
+</li>
+</ul>
 <p><strong>具体代码示例</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
@@ -632,11 +644,24 @@
 ></p>
 <p>其中</p>
 <ul>
-<li>input为输入</li>
-<li>weight为卷积核</li>
-<li>bias为偏置</li>
-<li>stride为步长，默认情况下为1</li>
-<li>padding表示填充，默认情况下不进行填充</li>
+<li>
+<p>input为输入</p>
+</li>
+<li>
+<p>weight为卷积核</p>
+</li>
+<li>
+<p>bias为偏置</p>
+</li>
+<li>
+<p>stride为步长，默认情况下为1</p>
+</li>
+<li>
+<p>padding表示填充，默认情况下不进行填充</p>
+</li>
+<li>
+<p>batch_size表示单次传递给程序用以训练的参数个数或数据样本个数</p>
+</li>
 </ul>
 <p><strong>具体代码示例</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
@@ -648,9 +673,11 @@
 </span></span><span style="display:flex;"><span>                      [<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>],
 </span></span><span style="display:flex;"><span>                      [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>]])
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 卷积核</span>
 </span></span><span style="display:flex;"><span>kernel <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>],
 </span></span><span style="display:flex;"><span>                       [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>],
 </span></span><span style="display:flex;"><span>                       [<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>]])
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>input <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(input,(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">5</span>)) <span style="color:#75715e"># batch_size为1 , 1通道, 5*5的矩阵</span>
 </span></span><span style="display:flex;"><span>kernel <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(kernel,(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>))
@@ -682,7 +709,459 @@
 </span></span><span style="display:flex;"><span>          [ <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">16</span>,  <span style="color:#ae81ff">8</span>],
 </span></span><span style="display:flex;"><span>          [<span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">13</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">3</span>,  <span style="color:#ae81ff">4</span>],
 </span></span><span style="display:flex;"><span>          [<span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">13</span>,  <span style="color:#ae81ff">9</span>,  <span style="color:#ae81ff">7</span>,  <span style="color:#ae81ff">4</span>]]]])
-</span></span></code></pre></div>
+</span></span></code></pre></div><h1 id="10卷积层">10、卷积层
+</h1><ul>
+<li>
+<p>打开“Convolution Layers”</p>
+<p><img src="/Pytorch_img/12.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="12"
+	
+	
+></p>
+</li>
+<li>
+<p>主要讲解“nn.Conv2d”的使用</p>
+<p><img src="/Pytorch_img/32.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="32"
+	
+	
+></p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>Conv2d(in_channels, out_channels, kernel_size, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>                padding<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, dilation<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, groups<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>                padding_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;zeros&#39;</span>, device<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>, dtype<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>)
+</span></span></code></pre></div><p>其中，</p>
+<ul>
+<li><strong>in_channels</strong> ：(int) 输入通道数，彩色一般为3个通道数</li>
+<li><strong>out_channels</strong> ：(int) 输出通道数</li>
+<li><strong>kernel_size</strong> ：(int or tuple) 卷积核大小，若只填3，则表示3*3的大小，若是不规则大小，则输入一个元组(3 * 4)</li>
+<li><strong>stride</strong> ：(int or tuple) 步长,表示横向和纵向的大小</li>
+<li><strong>padding</strong> ：（int or tuple）填充数</li>
+<li><strong>bias</strong> ：表示偏置，结果是否加上偏置</li>
+<li><strong>padding_mode</strong> ：（string）表示用什么样的形式进行填充</li>
+</ul>
+<p><strong>具体代码示例：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> Conv2d
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Dataloader <span style="color:#f92672">import</span> writer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dataset <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;../data&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dataloader <span style="color:#f92672">=</span> DataLoader(dataset,batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>conv1 <span style="color:#f92672">=</span> Conv2d(in_channels<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,out_channels<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>,kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,stride<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,padding<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv1(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;logs&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>step<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> dataloader:
+</span></span><span style="display:flex;"><span>    imgs, targets <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> tudui(imgs)
+</span></span><span style="display:flex;"><span>    print(imgs<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>    print(output<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_images(<span style="color:#e6db74">&#34;input&#34;</span>,imgs,step)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(output,(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">30</span>))
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_images(<span style="color:#e6db74">&#34;output&#34;</span>,output,step)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    step <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><p><strong>实现效果</strong></p>
+<p><img src="/Pytorch_img/13.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="13"
+	
+	
+></p>
+<h1 id="11最大池化的使用">11、最大池化的使用
+</h1><p><img src="/Pytorch_img/14.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="14"
+	
+	
+></p>
+<p>其中：</p>
+<ul>
+<li>
+<p><strong>kernel_size</strong> ：池化核的大小</p>
+</li>
+<li>
+<p><strong>stride</strong> ：步长，默认值为池化核的大小</p>
+</li>
+<li>
+<p><strong>dilation</strong> ：空洞卷积</p>
+<p><img src="/Pytorch_img/15.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="15"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>ceiling_mode</strong> ：当为True时会使用ceil模式去计算输出形状，反之则为floor</p>
+<p>floor为向下取整，ceil为向上取整</p>
+<p><img src="/Pytorch_img/16.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="16"
+	
+	
+></p>
+<p>示例：</p>
+<p><img src="/Pytorch_img/20.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="20"
+	
+	
+></p>
+<p><img src="/Pytorch_img/18.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="18"
+	
+	
+></p>
+<p><img src="/Pytorch_img/19.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="19"
+	
+	
+></p>
+<p>即当ceil_mode为False时，当所含数据的大小小于卷积核大小时，直接跳过</p>
+</li>
+</ul>
+<p><strong>具体代码示例</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> MaxPool2d
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dataset <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;dataset&#34;</span>,transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,download <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dataloader <span style="color:#f92672">=</span> DataLoader(dataset,batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>maxpool1 <span style="color:#f92672">=</span> MaxPool2d(kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,ceil_mode<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,input):
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>maxpool1(input)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> output
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;logs_maxpool&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>step <span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> dataloader:
+</span></span><span style="display:flex;"><span>    imgs,target <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_images(<span style="color:#e6db74">&#34;input&#34;</span>,imgs,step)
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> tudui(imgs)
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_images(<span style="color:#e6db74">&#34;output&#34;</span>,output,step)
+</span></span><span style="display:flex;"><span>    step<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><p><strong>实现效果</strong></p>
+<p><img src="/Pytorch_img/22.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="22"
+	
+	
+></p>
+<h1 id="12非线性激活">12、非线性激活
+</h1><p><strong>Relu</strong></p>
+<p><img src="/Pytorch_img/23.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="23"
+	
+	
+></p>
+<p>其中：</p>
+<ul>
+<li>inplace：表示是否将原数据进行替换</li>
+</ul>
+<p><strong>代码实现</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Relu函数</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> ReLU
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>input <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([[<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>],
+</span></span><span style="display:flex;"><span>                      [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>]])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>input <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(input,(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>print(input<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>relu1 <span style="color:#f92672">=</span> ReLU()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,input):
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>relu1(input)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> output
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>output <span style="color:#f92672">=</span> tudui(input)
+</span></span><span style="display:flex;"><span>print(output)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Sigmoid函数</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision.datasets
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> ReLU, Sigmoid
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>input <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([[<span style="color:#ae81ff">1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>],
+</span></span><span style="display:flex;"><span>                      [<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>]])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>input <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(input,(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>print(input<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dataset <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;dataset&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,download<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>                                       transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dataloader <span style="color:#f92672">=</span> DataLoader(dataset,batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>relu1 <span style="color:#f92672">=</span> ReLU()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>sigmoid1 <span style="color:#f92672">=</span> Sigmoid()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,input):
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sigmoid1(input)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> output
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;logs_relu&#34;</span>)
+</span></span><span style="display:flex;"><span>step<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> dataloader:
+</span></span><span style="display:flex;"><span>    imgs,target <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_images(<span style="color:#e6db74">&#34;input&#34;</span>,imgs,step)
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> tudui(imgs)
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_images(<span style="color:#e6db74">&#34;output&#34;</span>,output,step)
+</span></span><span style="display:flex;"><span>    step<span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><p><strong>实现效果</strong></p>
+<p><img src="/Pytorch_img/24.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="24"
+	
+	
+></p>
+<h1 id="13线性层">13、线性层
+</h1><p>将二维或多维矩阵转化为一维</p>
+<p><img src="/Pytorch_img/28.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="28"
+	
+	
+></p>
+<p>其中：</p>
+<ul>
+<li><strong>g1 =  k1*x1+b1</strong></li>
+<li><strong>gL = kL*xL+bL</strong></li>
+</ul>
+<p><img src="/Pytorch_img/26.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="26"
+	
+	
+></p>
+<p><img src="/Pytorch_img/29.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="29"
+	
+	
+></p>
+<p>其中：</p>
+<ul>
+<li>in_feature：为每个输入数据的大小</li>
+<li>out_feature：为每个输出数据的大小</li>
+<li>bias：为是否设置偏置</li>
+<li>weight：为上述式子中的k</li>
+</ul>
+<h1 id="14神经网络其它层的介绍">14、神经网络——其它层的介绍
+</h1><h2 id="1正则化层">1.正则化层
+</h2><p>加快训练速度</p>
+<p><img src="/Pytorch_img/25.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="25"
+	
+	
+></p>
+<h2 id="3-drop_out层">3. Drop_out层
+</h2><p>防止过拟合</p>
+<p><img src="/Pytorch_img/27.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="27"
+	
+	
+></p>
+<h1 id="15神经网络cifar10搭建实战和sequential的使用">15、神经网络——CIFAR10搭建实战和Sequential的使用
+</h1><p><img src="/Pytorch_img/30.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="30"
+	
+	
+></p>
+<p>Sequential，即将所有操作进行集合</p>
+<p><strong>具体代码</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision.datasets
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> Conv2d, MaxPool2d, Flatten, Linear, Sequential
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model1 <span style="color:#f92672">=</span> Sequential(
+</span></span><span style="display:flex;"><span>            Conv2d(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">5</span>,padding<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span>, kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">64</span>, kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            Flatten(),
+</span></span><span style="display:flex;"><span>            Linear(<span style="color:#ae81ff">1024</span>, <span style="color:#ae81ff">64</span>),
+</span></span><span style="display:flex;"><span>            Linear(<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model1(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>print(tudui)
+</span></span><span style="display:flex;"><span>input  <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>ones((<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span>))
+</span></span><span style="display:flex;"><span>output <span style="color:#f92672">=</span> tudui(input)
+</span></span><span style="display:flex;"><span>print(output<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;logs_seq&#34;</span>)
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>add_graph(tudui,input)
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># dataset = torchvision.datasets.CIFAR10(&#34;dataset&#34;,train=False,download=False,transform=torchvision.transforms.ToTensor())</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># dataloader = DataLoader(dataset,batch_size=64)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># step = 0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># for data in dataloader:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     imgs, target = data;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     writer.add_images(&#34;input&#34;,imgs,step)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     output = tudui(input)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     writer.add_images(&#34;output&#34;,input,step)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     step+=1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># writer.close()</span>
+</span></span></code></pre></div><p><strong>实现效果</strong></p>
+<p><img src="/Pytorch_img/31.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="31"
+	
+	
+></p>
+
 </section>
 
 

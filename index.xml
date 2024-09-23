@@ -2,16 +2,56 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Carp&#39;s blog</title>
-        <link>http://localhost:1313/</link>
+        <link>https://jiebaoccc.github.io/</link>
         <description>Recent content on Carp&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 19 Sep 2024 21:03:49 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 21 Sep 2024 19:21:51 +0800</lastBuildDate><atom:link href="https://jiebaoccc.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Alexnet</title>
+        <link>https://jiebaoccc.github.io/post/alexnet/</link>
+        <pubDate>Sat, 21 Sep 2024 19:21:51 +0800</pubDate>
+        
+        <guid>https://jiebaoccc.github.io/post/alexnet/</guid>
+        <description>&lt;h1 id=&#34;alexnet架构&#34;&gt;AlexNet架构
+&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Alexnet_img/3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;3&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Alexnet_img/2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Alexnet_img/1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;代码实现&#34;&gt;代码实现
+&lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>【id:128】D. DS堆栈--迷宫求解</title>
-        <link>http://localhost:1313/post/id128d.-ds%E5%A0%86%E6%A0%88--%E8%BF%B7%E5%AE%AB%E6%B1%82%E8%A7%A3/</link>
+        <link>https://jiebaoccc.github.io/post/id128d.-ds%E5%A0%86%E6%A0%88--%E8%BF%B7%E5%AE%AB%E6%B1%82%E8%A7%A3/</link>
         <pubDate>Thu, 19 Sep 2024 21:03:49 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id128d.-ds%E5%A0%86%E6%A0%88--%E8%BF%B7%E5%AE%AB%E6%B1%82%E8%A7%A3/</guid>
+        <guid>https://jiebaoccc.github.io/post/id128d.-ds%E5%A0%86%E6%A0%88--%E8%BF%B7%E5%AE%AB%E6%B1%82%E8%A7%A3/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;给出一个N*N的迷宫矩阵示意图，从起点[0,0]出发，寻找路径到达终点[N-1, N-1]&lt;/p&gt;
 &lt;p&gt;要求使用堆栈对象来实现&lt;/p&gt;
@@ -235,10 +275,10 @@ no path
         </item>
         <item>
         <title>【id:125】E. DS堆栈--表达式计算</title>
-        <link>http://localhost:1313/post/id125e.-ds%E5%A0%86%E6%A0%88--%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97/</link>
+        <link>https://jiebaoccc.github.io/post/id125e.-ds%E5%A0%86%E6%A0%88--%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97/</link>
         <pubDate>Thu, 19 Sep 2024 20:33:33 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id125e.-ds%E5%A0%86%E6%A0%88--%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97/</guid>
+        <guid>https://jiebaoccc.github.io/post/id125e.-ds%E5%A0%86%E6%A0%88--%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AE%A1%E7%AE%97/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;计算一个表达式的运算结果&lt;/p&gt;
 &lt;p&gt;使用C++自带stack堆栈对象来实现&lt;/p&gt;
@@ -675,14 +715,16 @@ using namespace std;&lt;/p&gt;
         </item>
         <item>
         <title>Pytorch</title>
-        <link>http://localhost:1313/post/pytorch/</link>
+        <link>https://jiebaoccc.github.io/post/pytorch/</link>
         <pubDate>Wed, 18 Sep 2024 16:49:17 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/pytorch/</guid>
+        <guid>https://jiebaoccc.github.io/post/pytorch/</guid>
         <description>&lt;h1 id=&#34;1dir&#34;&gt;1、dir()
 &lt;/h1&gt;&lt;p&gt;输出类中的各种函数&lt;/p&gt;
 &lt;h1 id=&#34;2help&#34;&gt;2、help（）
 &lt;/h1&gt;&lt;p&gt;输出该函数的功能&lt;/p&gt;
+&lt;h1 id=&#34;补充-进入pytorch&#34;&gt;补充： 进入Pytorch
+&lt;/h1&gt;&lt;p&gt;conda activate pytorch&lt;/p&gt;
 &lt;h1 id=&#34;3初始数据的获取&#34;&gt;3、初始数据的获取
 &lt;/h1&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# read_data.py&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集&lt;/span&gt;
@@ -926,7 +968,7 @@ using namespace std;&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;close()
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;6torchvision中的数据集使用&#34;&gt;6、torchvision中的数据集使用
 &lt;/h1&gt;&lt;p&gt;点击“Pytorch Domains”&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Pytorch_img/1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/1.png&#34;
 	
 	
 	
@@ -937,7 +979,7 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;选择“torchvision”&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Pytorch_img/2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/2.png&#34;
 	
 	
 	
@@ -948,7 +990,7 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;进入“Datasets”&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Pytorch_img/3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/3.png&#34;
 	
 	
 	
@@ -959,7 +1001,7 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;有许多官方数据集可供下载&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Pytorch_img/4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/4.png&#34;
 	
 	
 	
@@ -1000,7 +1042,7 @@ using namespace std;&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;close()
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;7dataloader的使用&#34;&gt;7、DataLoader的使用
 &lt;/h1&gt;&lt;p&gt;同样进入“Pytorch Domains”-&amp;gt;“torchvision”&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Pytorch_img/1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/1.png&#34;
 	
 	
 	
@@ -1011,7 +1053,7 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;直接搜索“DataLoader”&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Pytorch_img/5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/5.png&#34;
 	
 	
 	
@@ -1055,8 +1097,10 @@ using namespace std;&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;close()
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;8神经网络的基本骨架nnmoudle的使用&#34;&gt;8、神经网络的基本骨架——nn.Moudle的使用
-&lt;/h1&gt;&lt;p&gt;首先进入Pytorch官网&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Pytorch_img/6.png&#34;
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;首先进入Pytorch官网&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/6.png&#34;
 	
 	
 	
@@ -1066,8 +1110,10 @@ using namespace std;&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;其中有很多个模块&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Pytorch_img/7.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/7.png&#34;
 	
 	
 	
@@ -1077,8 +1123,10 @@ using namespace std;&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;首先从Containers，容器，也是骨架讲起&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Pytorch_img/8.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/8.png&#34;
 	
 	
 	
@@ -1088,8 +1136,10 @@ using namespace std;&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;其中Module就是为所有神经网络提供一个模板，**&lt;code&gt;__init__&lt;/code&gt;**函数需要自己定义&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Pytorch_img/9.png&#34;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;其中Module就是为所有神经网络提供一个模板，&lt;strong&gt;&lt;code&gt;__init__&lt;/code&gt;&lt;/strong&gt; 函数需要自己定义&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/9.png&#34;
 	
 	
 	
@@ -1100,6 +1150,8 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;conv1表示卷积操作，relu表示非线性处理&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;具体代码示例&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; torch
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; nn
@@ -1119,7 +1171,7 @@ using namespace std;&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 输出结果&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tensor(&lt;span style=&#34;color:#ae81ff&#34;&gt;2.&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;9卷积操作&#34;&gt;9、卷积操作
-&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Pytorch_img/10.png&#34;
+&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/10.png&#34;
 	
 	
 	
@@ -1131,7 +1183,7 @@ using namespace std;&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;其中nn.Conv1d表示一维，nn.Conv2d表示二维，nn.Conv3d表示三维&lt;/p&gt;
 &lt;p&gt;主要讲解nn.Conv2d&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/Pytorch_img/11.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/11.png&#34;
 	
 	
 	
@@ -1143,11 +1195,24 @@ using namespace std;&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;其中&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;input为输入&lt;/li&gt;
-&lt;li&gt;weight为卷积核&lt;/li&gt;
-&lt;li&gt;bias为偏置&lt;/li&gt;
-&lt;li&gt;stride为步长，默认情况下为1&lt;/li&gt;
-&lt;li&gt;padding表示填充，默认情况下不进行填充&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;input为输入&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;weight为卷积核&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;bias为偏置&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;stride为步长，默认情况下为1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;padding表示填充，默认情况下不进行填充&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;batch_size表示单次传递给程序用以训练的参数个数或数据样本个数&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;具体代码示例&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; torch
@@ -1159,9 +1224,11 @@ using namespace std;&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                      [&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;],
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                      [&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]])
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 卷积核&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kernel &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; torch&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;tensor([[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;],
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                       [&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;],
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                       [&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;input &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; torch&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;reshape(input,(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;)) &lt;span style=&#34;color:#75715e&#34;&gt;# batch_size为1 , 1通道, 5*5的矩阵&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;kernel &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; torch&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;reshape(kernel,(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;))
@@ -1193,14 +1260,466 @@ using namespace std;&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          [ &lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;18&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;],
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          [&lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;13&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;],
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          [&lt;span style=&#34;color:#ae81ff&#34;&gt;14&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;13&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;,  &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;]]]])
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;10卷积层&#34;&gt;10、卷积层
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;打开“Convolution Layers”&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/12.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;12&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;主要讲解“nn.Conv2d”的使用&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/32.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;32&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;torch&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Conv2d(in_channels, out_channels, kernel_size, stride&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                padding&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, dilation&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, groups&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, bias&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                padding_mode&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;zeros&amp;#39;&lt;/span&gt;, device&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;None&lt;/span&gt;, dtype&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;None&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其中，&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;in_channels&lt;/strong&gt; ：(int) 输入通道数，彩色一般为3个通道数&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;out_channels&lt;/strong&gt; ：(int) 输出通道数&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;kernel_size&lt;/strong&gt; ：(int or tuple) 卷积核大小，若只填3，则表示3*3的大小，若是不规则大小，则输入一个元组(3 * 4)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;stride&lt;/strong&gt; ：(int or tuple) 步长,表示横向和纵向的大小&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;padding&lt;/strong&gt; ：（int or tuple）填充数&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;bias&lt;/strong&gt; ：表示偏置，结果是否加上偏置&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;padding_mode&lt;/strong&gt; ：（string）表示用什么样的形式进行填充&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;具体代码示例：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; torch
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; torchvision
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; nn
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.nn &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Conv2d
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.utils.data &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; DataLoader
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.utils.tensorboard &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; SummaryWriter
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; Dataloader &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; writer
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;dataset &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; torchvision&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;datasets&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;CIFAR10(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;../data&amp;#34;&lt;/span&gt;,train&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;False&lt;/span&gt;,transform&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;torchvision&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;transforms&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ToTensor(),download&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;dataloader &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; DataLoader(dataset,batch_size&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;64&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Tudui&lt;/span&gt;(nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Module):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __init__(self):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        super(Tudui,self)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;__init__()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;conv1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Conv2d(in_channels&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;,out_channels&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;,kernel_size&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;,stride&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,padding&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;forward&lt;/span&gt;(self,x):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;conv1(x)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; x
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tudui &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Tudui()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;writer &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; SummaryWriter(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;logs&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;step&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; data &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; dataloader:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    imgs, targets &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; data
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    output &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tudui(imgs)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(imgs&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;shape)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(output&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;shape)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add_images(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;input&amp;#34;&lt;/span&gt;,imgs,step)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    output &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; torch&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;reshape(output,(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;30&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add_images(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;output&amp;#34;&lt;/span&gt;,output,step)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    step &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;close()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;实现效果&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/13.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;13&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;11最大池化的使用&#34;&gt;11、最大池化的使用
+&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/14.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;14&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;kernel_size&lt;/strong&gt; ：池化核的大小&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;stride&lt;/strong&gt; ：步长，默认值为池化核的大小&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;dilation&lt;/strong&gt; ：空洞卷积&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/15.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;15&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ceiling_mode&lt;/strong&gt; ：当为True时会使用ceil模式去计算输出形状，反之则为floor&lt;/p&gt;
+&lt;p&gt;floor为向下取整，ceil为向上取整&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/16.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;16&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/20.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;20&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/18.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;18&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/19.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;19&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;即当ceil_mode为False时，当所含数据的大小小于卷积核大小时，直接跳过&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;具体代码示例&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; torch
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; torchvision
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; nn
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.nn &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; MaxPool2d
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.utils.data &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; DataLoader
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.utils.tensorboard &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; SummaryWriter
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;dataset &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; torchvision&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;datasets&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;CIFAR10(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dataset&amp;#34;&lt;/span&gt;,transform&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;torchvision&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;transforms&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ToTensor(),train&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;False&lt;/span&gt;,download &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;False&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;dataloader &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; DataLoader(dataset,batch_size&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;64&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Tudui&lt;/span&gt;(nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Module):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __init__(self):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        super(Tudui,self)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;__init__()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;maxpool1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; MaxPool2d(kernel_size&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;,ceil_mode&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;False&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;forward&lt;/span&gt;(self,input):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        output &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;maxpool1(input)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; output
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tudui &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Tudui()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;writer &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; SummaryWriter(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;logs_maxpool&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;step &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; data &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; dataloader:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    imgs,target &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; data
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add_images(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;input&amp;#34;&lt;/span&gt;,imgs,step)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    output &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tudui(imgs)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add_images(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;output&amp;#34;&lt;/span&gt;,output,step)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    step&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;close()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;实现效果&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/22.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;22&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;12非线性激活&#34;&gt;12、非线性激活
+&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Relu&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/23.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;23&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;inplace：表示是否将原数据进行替换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;代码实现&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Relu函数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; torch
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; nn
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.nn &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; ReLU
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;input &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; torch&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;tensor([[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;],
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                      [&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;]])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;input &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; torch&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;reshape(input,(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(input&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;shape)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Tudui&lt;/span&gt;(nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Module):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __init__(self):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        super(Tudui,self)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;__init__()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;relu1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ReLU()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;forward&lt;/span&gt;(self,input):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        output &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;relu1(input)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; output
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tudui &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Tudui()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;output &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tudui(input)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(output)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Sigmoid函数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; torch
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; torchvision.datasets
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; nn
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.nn &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; ReLU, Sigmoid
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.utils.data &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; DataLoader
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.utils.tensorboard &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; SummaryWriter
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;input &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; torch&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;tensor([[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;],
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                      [&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;]])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;input &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; torch&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;reshape(input,(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(input&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;shape)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;dataset &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; torchvision&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;datasets&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;CIFAR10(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dataset&amp;#34;&lt;/span&gt;,train&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;False&lt;/span&gt;,download&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;False&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                       transform&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;torchvision&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;transforms&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ToTensor())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;dataloader &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; DataLoader(dataset,batch_size&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;64&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Tudui&lt;/span&gt;(nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Module):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __init__(self):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        super(Tudui,self)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;__init__()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;relu1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ReLU()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sigmoid1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Sigmoid()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;forward&lt;/span&gt;(self,input):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        output &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;sigmoid1(input)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; output
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tudui &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Tudui()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;writer &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; SummaryWriter(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;logs_relu&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;step&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; data &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; dataloader:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    imgs,target &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; data
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add_images(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;input&amp;#34;&lt;/span&gt;,imgs,step)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    output &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tudui(imgs)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add_images(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;output&amp;#34;&lt;/span&gt;,output,step)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    step&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;close()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;实现效果&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/24.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;24&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;13线性层&#34;&gt;13、线性层
+&lt;/h1&gt;&lt;p&gt;将二维或多维矩阵转化为一维&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/28.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;28&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;g1 =  k1*x1+b1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;gL = kL*xL+bL&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/26.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;26&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/29.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;29&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;in_feature：为每个输入数据的大小&lt;/li&gt;
+&lt;li&gt;out_feature：为每个输出数据的大小&lt;/li&gt;
+&lt;li&gt;bias：为是否设置偏置&lt;/li&gt;
+&lt;li&gt;weight：为上述式子中的k&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;14神经网络其它层的介绍&#34;&gt;14、神经网络——其它层的介绍
+&lt;/h1&gt;&lt;h2 id=&#34;1正则化层&#34;&gt;1.正则化层
+&lt;/h2&gt;&lt;p&gt;加快训练速度&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/25.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;25&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-drop_out层&#34;&gt;3. Drop_out层
+&lt;/h2&gt;&lt;p&gt;防止过拟合&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/27.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;27&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;15神经网络cifar10搭建实战和sequential的使用&#34;&gt;15、神经网络——CIFAR10搭建实战和Sequential的使用
+&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/30.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;30&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Sequential，即将所有操作进行集合&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;具体代码&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; torch
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; torchvision.datasets
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; nn
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.nn &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Conv2d, MaxPool2d, Flatten, Linear, Sequential
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.utils.data &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; DataLoader
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; torch.utils.tensorboard &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; SummaryWriter
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Tudui&lt;/span&gt;(nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Module):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; __init__(self):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        super(Tudui,self)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;__init__()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;model1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Sequential(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Conv2d(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;,padding&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            MaxPool2d(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Conv2d(&lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;, kernel_size&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;, padding&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            MaxPool2d(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Conv2d(&lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;64&lt;/span&gt;, kernel_size&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;, padding&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            MaxPool2d(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Flatten(),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Linear(&lt;span style=&#34;color:#ae81ff&#34;&gt;1024&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;64&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            Linear(&lt;span style=&#34;color:#ae81ff&#34;&gt;64&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;forward&lt;/span&gt;(self,x):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;model1(x)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; x
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tudui &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Tudui()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(tudui)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;input  &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; torch&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ones((&lt;span style=&#34;color:#ae81ff&#34;&gt;64&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;output &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tudui(input)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(output&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;shape)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;writer &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; SummaryWriter(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;logs_seq&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add_graph(tudui,input)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;writer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;close()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# dataset = torchvision.datasets.CIFAR10(&amp;#34;dataset&amp;#34;,train=False,download=False,transform=torchvision.transforms.ToTensor())&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# dataloader = DataLoader(dataset,batch_size=64)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# step = 0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# for data in dataloader:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#     imgs, target = data;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#     writer.add_images(&amp;#34;input&amp;#34;,imgs,step)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#     output = tudui(input)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#     writer.add_images(&amp;#34;output&amp;#34;,input,step)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#     step+=1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# writer.close()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;实现效果&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Pytorch_img/31.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;31&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>深度学习</title>
-        <link>http://localhost:1313/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+        <link>https://jiebaoccc.github.io/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
         <pubDate>Tue, 17 Sep 2024 23:58:54 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+        <guid>https://jiebaoccc.github.io/post/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
         <description>&lt;h1 id=&#34;神经网络&#34;&gt;神经网络
 &lt;/h1&gt;&lt;h2 id=&#34;机器学习流程&#34;&gt;&lt;strong&gt;机器学习流程&lt;/strong&gt;
 &lt;/h2&gt;&lt;ul&gt;
@@ -1229,7 +1748,7 @@ using namespace std;&lt;/p&gt;
 &lt;li&gt;确定前K个点所在类别的出现概率&lt;/li&gt;
 &lt;li&gt;返回前K个点出现频率最高的类别作为当前点预测分类&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_1.png&#34;
 	
 	
 	
@@ -1238,7 +1757,7 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;得分函数线性函数&#34;&gt;&lt;strong&gt;得分函数——线性函数&lt;/strong&gt;
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_4.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_4.png&#34;
 	
 	
 	
@@ -1248,7 +1767,7 @@ using namespace std;&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_2.png&#34;
 	
 	
 	
@@ -1258,7 +1777,7 @@ using namespace std;&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_3.png&#34;
 	
 	
 	
@@ -1269,7 +1788,7 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;损失函数&#34;&gt;&lt;strong&gt;损失函数&lt;/strong&gt;
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_5.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_5.png&#34;
 	
 	
 	
@@ -1280,7 +1799,7 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;示例：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_7.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_7.png&#34;
 	
 	
 	
@@ -1301,7 +1820,7 @@ using namespace std;&lt;/p&gt;
 =0
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为了区分数据损失值相同的不同模型，需要引入正则化惩罚项&lt;/p&gt;
 &lt;p&gt;得到公式： &lt;strong&gt;损失函数 = 数据损失 + 正则化惩罚项&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_8.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_8.png&#34;
 	
 	
 	
@@ -1314,7 +1833,7 @@ using namespace std;&lt;/p&gt;
 &lt;h2 id=&#34;softmax分类器&#34;&gt;&lt;strong&gt;Softmax分类器&lt;/strong&gt;
 &lt;/h2&gt;&lt;p&gt;得到一个得分值，将其转换成一个概率值可以更好的进行判断&lt;/p&gt;
 &lt;p&gt;可通过此函数：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_9.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_9.png&#34;
 	
 	
 	
@@ -1324,7 +1843,7 @@ using namespace std;&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_10.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_10.png&#34;
 	
 	
 	
@@ -1335,7 +1854,7 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;方法二&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_11.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_11.png&#34;
 	
 	
 	
@@ -1346,7 +1865,7 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;其中S为&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_12.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_12.png&#34;
 	
 	
 	
@@ -1356,7 +1875,7 @@ using namespace std;&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_13.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_13.png&#34;
 	
 	
 	
@@ -1366,7 +1885,7 @@ using namespace std;&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_14.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_14.png&#34;
 	
 	
 	
@@ -1377,7 +1896,7 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;正向传播&#34;&gt;&lt;strong&gt;正向传播&lt;/strong&gt;
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_15.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_15.png&#34;
 	
 	
 	
@@ -1399,7 +1918,7 @@ using namespace std;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;整体架构&#34;&gt;&lt;strong&gt;整体架构&lt;/strong&gt;
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_16.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_16.png&#34;
 	
 	
 	
@@ -1415,7 +1934,7 @@ using namespace std;&lt;/p&gt;
 &lt;li&gt;全连接：每层神经元都与下一层的每一个神经元链接&lt;/li&gt;
 &lt;li&gt;非线性：每一层的链接需要逐层进行，不能调换顺序&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_17.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_17.png&#34;
 	
 	
 	
@@ -1429,7 +1948,7 @@ using namespace std;&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;神经元个数越多，结果过拟合化更强&lt;/p&gt;
 &lt;h2 id=&#34;正则化与激活函数&#34;&gt;&lt;strong&gt;正则化与激活函数&lt;/strong&gt;
 &lt;/h2&gt;&lt;p&gt;增加一个神经元，相当于增加一组数据&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_18.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_18.png&#34;
 	
 	
 	
@@ -1439,7 +1958,7 @@ using namespace std;&lt;/p&gt;
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_19.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_19.png&#34;
 	
 	
 	
@@ -1452,7 +1971,7 @@ using namespace std;&lt;/p&gt;
 &lt;h2 id=&#34;激活函数&#34;&gt;&lt;strong&gt;激活函数&lt;/strong&gt;
 &lt;/h2&gt;&lt;p&gt;常用激活函数：Sigmoid、Relu、Tanh等&lt;/p&gt;
 &lt;p&gt;激活函数对比：当数值较大或较小时，使用Sigmoid函数容易出现梯度消失&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_20.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_20.png&#34;
 	
 	
 	
@@ -1466,7 +1985,7 @@ using namespace std;&lt;/p&gt;
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;数据预处理：不同的与处理结果会使模型的效果发生很大的差异&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_21.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_21.png&#34;
 	
 	
 	
@@ -1484,7 +2003,7 @@ using namespace std;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;drop-out&#34;&gt;&lt;strong&gt;DROP-OUT&lt;/strong&gt;
 &lt;/h2&gt;&lt;p&gt;在每一次训练中，对每一层都随机选择一部分神经元，可以使训练结构更简单&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_22.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_22.png&#34;
 	
 	
 	
@@ -1505,7 +2024,7 @@ using namespace std;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;卷积网络与传统网络的区别&#34;&gt;&lt;strong&gt;卷积网络与传统网络的区别&lt;/strong&gt;
 &lt;/h2&gt;&lt;p&gt;卷积网络是三维，h * w * c&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_23.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_23.png&#34;
 	
 	
 	
@@ -1524,7 +2043,7 @@ using namespace std;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;卷积层&#34;&gt;&lt;strong&gt;卷积层&lt;/strong&gt;
 &lt;/h2&gt;&lt;p&gt;选择一个计算方式，计算每一部分的特征值，形成新的矩阵，将5×5×3转换成3×3×3&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_24.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_24.png&#34;
 	
 	
 	
@@ -1535,7 +2054,7 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;图像颜色通道，分成R、G、B三个通道，所以卷积层的功能就是把三个通道的卷积结果结合&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_26.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_26.png&#34;
 	
 	
 	
@@ -1550,7 +2069,7 @@ using namespace std;&lt;/p&gt;
 &lt;p&gt;第二层：0×(-1)+0×(-1)+0×1+0×(-1)+0×1+1×0+0×(-1)+2×1+2×0=2&lt;/p&gt;
 &lt;p&gt;第三层：0×1+0×0+0×(-1)+0×0+2×0+2×0+0×1+0×(-1)+0×(-1)=0&lt;/p&gt;
 &lt;p&gt;output层：0+2+0+1=3&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_25.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_25.png&#34;
 	
 	
 	
@@ -1562,7 +2081,7 @@ using namespace std;&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;同一个卷积层，每一个Filter卷积核的规格要一样&lt;/p&gt;
 &lt;p&gt;回过头再看第一幅图，其中蓝色矩阵每一格右下角的数字就是 W0 ，这图只展示了一个颜色通道，所以还需要两组这样的矩阵计算才能得到最终的特征图feature map&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_24.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_24.png&#34;
 	
 	
 	
@@ -1573,7 +2092,7 @@ using namespace std;&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;可以通过多个filter得出多个特征图&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_27.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_27.png&#34;
 	
 	
 	
@@ -1587,7 +2106,7 @@ using namespace std;&lt;/p&gt;
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;滑动窗口步长：&lt;/strong&gt; 移动的格数，补偿设置跟实际需求有关&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_28.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_28.png&#34;
 	
 	
 	
@@ -1603,7 +2122,7 @@ using namespace std;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;边缘填充：&lt;/strong&gt; 矩阵中越靠近中间，计算的次数越多，所以通过在矩阵外层增加1圈或两圈0，以提高数据的准确率；文本识别也存在边缘填充，如在句子结尾增加多个0&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deap_learn_29.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deap_learn_29.png&#34;
 	
 	
 	
@@ -1620,7 +2139,7 @@ using namespace std;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;卷积结果计算公式&#34;&gt;卷积结果计算公式
 &lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;长度：&lt;/strong&gt; &lt;img src=&#34;http://localhost:1313/img/Deap_learn_30.png&#34;
+&lt;li&gt;&lt;strong&gt;长度：&lt;/strong&gt; &lt;img src=&#34;https://jiebaoccc.github.io/img/Deap_learn_30.png&#34;
 	
 	
 	
@@ -1630,7 +2149,7 @@ using namespace std;&lt;/p&gt;
 	
 	
 &gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;宽度：&lt;/strong&gt; &lt;img src=&#34;http://localhost:1313/img/Deap_learn_31.png&#34;
+&lt;li&gt;&lt;strong&gt;宽度：&lt;/strong&gt; &lt;img src=&#34;https://jiebaoccc.github.io/img/Deap_learn_31.png&#34;
 	
 	
 	
@@ -1650,7 +2169,7 @@ using namespace std;&lt;/p&gt;
 &lt;p&gt;（32-5+2*2）/1+1=32，所以输出规模为32 * 32 * 10&lt;/p&gt;
 &lt;p&gt;即经过卷积操作后也可以保持特征图长度、宽度不变&lt;/p&gt;
 &lt;h2 id=&#34;卷积参数共享&#34;&gt;卷积参数共享
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deap_learn_32.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deap_learn_32.png&#34;
 	
 	
 	
@@ -1665,7 +2184,7 @@ using namespace std;&lt;/p&gt;
 &lt;p&gt;5 * 5 * 3 * 10=750个，因为每一个filter有偏置量b=1，所以还要加上10，所以最终需要750+10=760个权重参数&lt;/p&gt;
 &lt;h2 id=&#34;池化层&#34;&gt;池化层
 &lt;/h2&gt;&lt;p&gt;池化层就是通过某种方式对数据进行压缩&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deap_learn_33.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deap_learn_33.png&#34;
 	
 	
 	
@@ -1677,7 +2196,7 @@ using namespace std;&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;最大池化&#34;&gt;最大池化
 &lt;/h2&gt;&lt;p&gt;选择区域内的最大值为压缩矩阵的值&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_34.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_34.png&#34;
 	
 	
 	
@@ -1690,7 +2209,7 @@ using namespace std;&lt;/p&gt;
 &lt;h2 id=&#34;层数&#34;&gt;层数
 &lt;/h2&gt;&lt;p&gt;只有有参数计算的才算一层&lt;/p&gt;
 &lt;p&gt;图中，RELU层、池化层都不带参数计算，所以此过程只有7层&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_35.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_35.png&#34;
 	
 	
 	
@@ -1702,7 +2221,7 @@ using namespace std;&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;其中FC为全连接层，在进入全连接层时，需要对数据进行拉伸，使其从三维变成二维&lt;/p&gt;
 &lt;h2 id=&#34;特征图变化&#34;&gt;特征图变化
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_36.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_36.png&#34;
 	
 	
 	
@@ -1714,7 +2233,7 @@ using namespace std;&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;经典网络resnet&#34;&gt;经典网络——Resnet
 &lt;/h2&gt;&lt;p&gt;解决训练次数达到一定次数时，次数越多，效果越差的问题&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_37.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_37.png&#34;
 	
 	
 	
@@ -1726,7 +2245,7 @@ using namespace std;&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;感受野&#34;&gt;感受野
 &lt;/h2&gt;&lt;p&gt;表示某一个点由多少输入数据得到的&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_38.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_38.png&#34;
 	
 	
 	
@@ -1741,7 +2260,7 @@ using namespace std;&lt;/p&gt;
 &lt;p&gt;3个3*3卷积核所需参数=3 * c * (3 * 3 * c) = 27c^2^&lt;/p&gt;
 &lt;p&gt;很明显，堆叠小的卷积核所需的参数更少一些，并且卷积过程越多，特征提取也会越细致，加入的非线性变换也随着增多，还不会增大权重参数个数，这就是VGG网络的基本出发点，用小的卷积核来完成体特征提取操作&lt;/p&gt;
 &lt;h1 id=&#34;rnn-递归神经网络&#34;&gt;RNN 递归神经网络
-&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Deep_learn_39.png&#34;
+&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Deep_learn_39.png&#34;
 	
 	
 	
@@ -1755,10 +2274,10 @@ using namespace std;&lt;/p&gt;
         </item>
         <item>
         <title>【id77】F. DS链表—学生宿舍管理（双向列表容器List）</title>
-        <link>http://localhost:1313/post/id77f.-ds%E9%93%BE%E8%A1%A8%E5%AD%A6%E7%94%9F%E5%AE%BF%E8%88%8D%E7%AE%A1%E7%90%86%E5%8F%8C%E5%90%91%E5%88%97%E8%A1%A8%E5%AE%B9%E5%99%A8list/</link>
+        <link>https://jiebaoccc.github.io/post/id77f.-ds%E9%93%BE%E8%A1%A8%E5%AD%A6%E7%94%9F%E5%AE%BF%E8%88%8D%E7%AE%A1%E7%90%86%E5%8F%8C%E5%90%91%E5%88%97%E8%A1%A8%E5%AE%B9%E5%99%A8list/</link>
         <pubDate>Thu, 12 Sep 2024 23:10:57 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id77f.-ds%E9%93%BE%E8%A1%A8%E5%AD%A6%E7%94%9F%E5%AE%BF%E8%88%8D%E7%AE%A1%E7%90%86%E5%8F%8C%E5%90%91%E5%88%97%E8%A1%A8%E5%AE%B9%E5%99%A8list/</guid>
+        <guid>https://jiebaoccc.github.io/post/id77f.-ds%E9%93%BE%E8%A1%A8%E5%AD%A6%E7%94%9F%E5%AE%BF%E8%88%8D%E7%AE%A1%E7%90%86%E5%8F%8C%E5%90%91%E5%88%97%E8%A1%A8%E5%AE%B9%E5%99%A8list/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;​	假设某校有20间宿舍，宿舍编号101，102，&amp;hellip;,120。每间只住一名学生。初始部分宿舍已用。用两个链表（已用宿舍链表和可用宿舍链表）维护宿舍的管理，实现宿舍分配、宿舍交回。&lt;/p&gt;
 &lt;p&gt;​	约定已用宿舍链表按宿舍号升序链接。初始可用宿舍链表也按宿舍号升序链接。&lt;/p&gt;
@@ -1962,10 +2481,10 @@ using namespace std;&lt;/p&gt;
         </item>
         <item>
         <title>【id78】E. DS线性表—多项式相加</title>
-        <link>http://localhost:1313/post/id78e.-ds%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9B%B8%E5%8A%A0/</link>
+        <link>https://jiebaoccc.github.io/post/id78e.-ds%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9B%B8%E5%8A%A0/</link>
         <pubDate>Thu, 12 Sep 2024 23:10:51 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id78e.-ds%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9B%B8%E5%8A%A0/</guid>
+        <guid>https://jiebaoccc.github.io/post/id78e.-ds%E7%BA%BF%E6%80%A7%E8%A1%A8%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9B%B8%E5%8A%A0/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;​	&lt;strong&gt;对于一元多项式&lt;code&gt;p(x)=p0+p1x+p2x^2+…+pnx^n&lt;/code&gt;，每个项都有系数和指数两部分，例如&lt;code&gt;p2x2&lt;/code&gt;的系数为p2,指数为2。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;​	&lt;strong&gt;编程实现两个多项式的相加。&lt;/strong&gt;&lt;/p&gt;
@@ -2144,10 +2663,10 @@ using namespace std;&lt;/p&gt;
         </item>
         <item>
         <title>【id73】D. DS循环链表—约瑟夫环(Ver. I - A)</title>
-        <link>http://localhost:1313/post/id73d.-ds%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AFver.-i---a/</link>
+        <link>https://jiebaoccc.github.io/post/id73d.-ds%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AFver.-i---a/</link>
         <pubDate>Thu, 12 Sep 2024 23:10:45 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id73d.-ds%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AFver.-i---a/</guid>
+        <guid>https://jiebaoccc.github.io/post/id73d.-ds%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AFver.-i---a/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;​	N个人坐成一个圆环（编号为1 - N），从第S个人开始报数，数到K的人出列，后面的人重新从1开始报数。问最后剩下的人的编号。&lt;/p&gt;
 &lt;p&gt;​	例如：N = 3，K = 2，S = 1。2号先出列，然后是1号，最后剩下的是3号。&lt;/p&gt;
@@ -2231,10 +2750,10 @@ using namespace std;&lt;/p&gt;
         </item>
         <item>
         <title>【id79】C. DS单链表--合并</title>
-        <link>http://localhost:1313/post/id79c.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E5%90%88%E5%B9%B6/</link>
+        <link>https://jiebaoccc.github.io/post/id79c.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E5%90%88%E5%B9%B6/</link>
         <pubDate>Thu, 12 Sep 2024 23:10:38 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id79c.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E5%90%88%E5%B9%B6/</guid>
+        <guid>https://jiebaoccc.github.io/post/id79c.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E5%90%88%E5%B9%B6/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;​	假定两个单链表是递增有序，定义并实现以下函数，完成两个单链表的合并，继续保持递增有序&lt;/p&gt;
 &lt;p&gt;​	int LL_merge(ListNode *La, ListNode *Lb)&lt;/p&gt;
@@ -2335,10 +2854,10 @@ using namespace std;&lt;/p&gt;
         </item>
         <item>
         <title>【id80】B. DS单链表--结点交换</title>
-        <link>http://localhost:1313/post/id80b.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E7%BB%93%E7%82%B9%E4%BA%A4%E6%8D%A2/</link>
+        <link>https://jiebaoccc.github.io/post/id80b.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E7%BB%93%E7%82%B9%E4%BA%A4%E6%8D%A2/</link>
         <pubDate>Thu, 12 Sep 2024 23:10:33 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id80b.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E7%BB%93%E7%82%B9%E4%BA%A4%E6%8D%A2/</guid>
+        <guid>https://jiebaoccc.github.io/post/id80b.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E7%BB%93%E7%82%B9%E4%BA%A4%E6%8D%A2/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;​	用C++实现含头结点的单链表，然后实现单链表的两个结点交换位置。&lt;/p&gt;
 &lt;p&gt;​	注意不能简单交换两个结点包含数据，必须通过修改指针来实现两个结点的位置交换&lt;/p&gt;
@@ -2456,10 +2975,10 @@ error
         </item>
         <item>
         <title>【id81】A. DS单链表--存储结构与操作</title>
-        <link>http://localhost:1313/post/id81a.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C/</link>
+        <link>https://jiebaoccc.github.io/post/id81a.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C/</link>
         <pubDate>Thu, 12 Sep 2024 23:10:25 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id81a.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C/</guid>
+        <guid>https://jiebaoccc.github.io/post/id81a.-ds%E5%8D%95%E9%93%BE%E8%A1%A8--%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;​	实现含头结点的单链表&lt;/p&gt;
 &lt;p&gt;​	属性包括：data数据域、next指针域&lt;/p&gt;
@@ -2620,10 +3139,10 @@ error
         </item>
         <item>
         <title>【id82】E. DS顺序表之循环移位</title>
-        <link>http://localhost:1313/post/id82e.-ds%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%A7%BB%E4%BD%8D/</link>
+        <link>https://jiebaoccc.github.io/post/id82e.-ds%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%A7%BB%E4%BD%8D/</link>
         <pubDate>Thu, 12 Sep 2024 22:53:56 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id82e.-ds%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%A7%BB%E4%BD%8D/</guid>
+        <guid>https://jiebaoccc.github.io/post/id82e.-ds%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%B9%8B%E5%BE%AA%E7%8E%AF%E7%A7%BB%E4%BD%8D/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;​	顺序表的移位是循环移位，例如顺序表：1，2，3，4，5，6。如果左移1位，即原来的头元素移动到末尾，其它元素向左移1位，变成2，3，4，5，6，1。同理，如果右移1位，即原来的尾元素移动到头，其它元素向右移1位，变成6，1，2，3，4，5。以下是移位的多个例子：&lt;/p&gt;
 &lt;p&gt;​	原数据：1，2，3，4，5，6&lt;/p&gt;
@@ -2708,10 +3227,10 @@ error
         </item>
         <item>
         <title>【id:76】D. 计算2支股票的M天运动平均价格</title>
-        <link>http://localhost:1313/post/id76d.-%E8%AE%A1%E7%AE%972%E6%94%AF%E8%82%A1%E7%A5%A8%E7%9A%84m%E5%A4%A9%E8%BF%90%E5%8A%A8%E5%B9%B3%E5%9D%87%E4%BB%B7%E6%A0%BC/</link>
+        <link>https://jiebaoccc.github.io/post/id76d.-%E8%AE%A1%E7%AE%972%E6%94%AF%E8%82%A1%E7%A5%A8%E7%9A%84m%E5%A4%A9%E8%BF%90%E5%8A%A8%E5%B9%B3%E5%9D%87%E4%BB%B7%E6%A0%BC/</link>
         <pubDate>Thu, 12 Sep 2024 22:53:48 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id76d.-%E8%AE%A1%E7%AE%972%E6%94%AF%E8%82%A1%E7%A5%A8%E7%9A%84m%E5%A4%A9%E8%BF%90%E5%8A%A8%E5%B9%B3%E5%9D%87%E4%BB%B7%E6%A0%BC/</guid>
+        <guid>https://jiebaoccc.github.io/post/id76d.-%E8%AE%A1%E7%AE%972%E6%94%AF%E8%82%A1%E7%A5%A8%E7%9A%84m%E5%A4%A9%E8%BF%90%E5%8A%A8%E5%B9%B3%E5%9D%87%E4%BB%B7%E6%A0%BC/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;​	给定2支股票的开盘价和收盘价的N天历史数据，&lt;/p&gt;
 &lt;p&gt;​	要求按开盘和收盘，分别计算每支股票的每个日期对应的M天移动平均价格。&lt;/p&gt;
@@ -2933,10 +3452,10 @@ error
         </item>
         <item>
         <title>【id115】C. DS顺序表--合并操作</title>
-        <link>http://localhost:1313/post/id115c.-ds%E9%A1%BA%E5%BA%8F%E8%A1%A8--%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C/</link>
+        <link>https://jiebaoccc.github.io/post/id115c.-ds%E9%A1%BA%E5%BA%8F%E8%A1%A8--%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C/</link>
         <pubDate>Thu, 12 Sep 2024 22:53:40 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id115c.-ds%E9%A1%BA%E5%BA%8F%E8%A1%A8--%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C/</guid>
+        <guid>https://jiebaoccc.github.io/post/id115c.-ds%E9%A1%BA%E5%BA%8F%E8%A1%A8--%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;​	建立顺序表数据类型，属性包括：数组、实际长度、最大长度（设定为1000）&lt;/p&gt;
 &lt;p&gt;​	已知两个递增序列，把两个序列的数据合并到顺序表中，并使得顺序表的数据递增有序&lt;/p&gt;
@@ -3008,10 +3527,10 @@ error
         </item>
         <item>
         <title>【id84】B. DS顺序表--连续操作</title>
-        <link>http://localhost:1313/post/id84b.-ds%E9%A1%BA%E5%BA%8F%E8%A1%A8--%E8%BF%9E%E7%BB%AD%E6%93%8D%E4%BD%9C/</link>
+        <link>https://jiebaoccc.github.io/post/id84b.-ds%E9%A1%BA%E5%BA%8F%E8%A1%A8--%E8%BF%9E%E7%BB%AD%E6%93%8D%E4%BD%9C/</link>
         <pubDate>Thu, 12 Sep 2024 22:53:24 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id84b.-ds%E9%A1%BA%E5%BA%8F%E8%A1%A8--%E8%BF%9E%E7%BB%AD%E6%93%8D%E4%BD%9C/</guid>
+        <guid>https://jiebaoccc.github.io/post/id84b.-ds%E9%A1%BA%E5%BA%8F%E8%A1%A8--%E8%BF%9E%E7%BB%AD%E6%93%8D%E4%BD%9C/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;​	建立顺序表的存储结构，属性包括：数组、实际长度、最大长度（设定为1000）&lt;/p&gt;
 &lt;p&gt;​	编写如下函数&lt;/p&gt;
@@ -3094,10 +3613,10 @@ error
         </item>
         <item>
         <title>【id:85】A. DS顺序表--存储结构与操作</title>
-        <link>http://localhost:1313/post/id85ds%E9%A1%BA%E5%BA%8F%E8%A1%A8--%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C/</link>
+        <link>https://jiebaoccc.github.io/post/id85ds%E9%A1%BA%E5%BA%8F%E8%A1%A8--%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C/</link>
         <pubDate>Thu, 12 Sep 2024 22:43:27 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/id85ds%E9%A1%BA%E5%BA%8F%E8%A1%A8--%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C/</guid>
+        <guid>https://jiebaoccc.github.io/post/id85ds%E9%A1%BA%E5%BA%8F%E8%A1%A8--%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%E4%B8%8E%E6%93%8D%E4%BD%9C/</guid>
         <description>&lt;p&gt;&lt;strong&gt;题目描述&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;​	实现顺序表的存储结构和操作&lt;/p&gt;
 &lt;p&gt;​	属性包括：数组、实际长度、最大长度（设定为1000）&lt;/p&gt;
@@ -3202,10 +3721,10 @@ error
         </item>
         <item>
         <title>Java</title>
-        <link>http://localhost:1313/post/java/</link>
+        <link>https://jiebaoccc.github.io/post/java/</link>
         <pubDate>Wed, 04 Sep 2024 20:25:32 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/java/</guid>
+        <guid>https://jiebaoccc.github.io/post/java/</guid>
         <description>&lt;h1 id=&#34;一数据类型运算符表达式和语句&#34;&gt;一、数据类型、运算符、表达式和语句
 &lt;/h1&gt;&lt;ol&gt;
 &lt;li&gt;
@@ -3426,10 +3945,10 @@ error
         </item>
         <item>
         <title>更新指令</title>
-        <link>http://localhost:1313/post/%E6%9B%B4%E6%96%B0%E6%8C%87%E4%BB%A4/</link>
+        <link>https://jiebaoccc.github.io/post/%E6%9B%B4%E6%96%B0%E6%8C%87%E4%BB%A4/</link>
         <pubDate>Thu, 08 Aug 2024 14:07:39 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/%E6%9B%B4%E6%96%B0%E6%8C%87%E4%BB%A4/</guid>
+        <guid>https://jiebaoccc.github.io/post/%E6%9B%B4%E6%96%B0%E6%8C%87%E4%BB%A4/</guid>
         <description>&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;myblog目录&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -3454,10 +3973,10 @@ error
         </item>
         <item>
         <title>C</title>
-        <link>http://localhost:1313/post/c/</link>
+        <link>https://jiebaoccc.github.io/post/c/</link>
         <pubDate>Thu, 08 Aug 2024 00:38:54 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/c/</guid>
+        <guid>https://jiebaoccc.github.io/post/c/</guid>
         <description>&lt;h1 id=&#34;1c语言概述&#34;&gt;1.C语言概述
 &lt;/h1&gt;&lt;h3 id=&#34;11第一个c语言项目&#34;&gt;1.1第一个C语言项目
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//标准的主函数写法
@@ -11012,10 +11531,10 @@ p+i = p+sizeof(int)*i;
         </item>
         <item>
         <title>C&#43;&#43;</title>
-        <link>http://localhost:1313/post/c&#43;&#43;/</link>
+        <link>https://jiebaoccc.github.io/post/c&#43;&#43;/</link>
         <pubDate>Thu, 08 Aug 2024 00:38:54 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/c&#43;&#43;/</guid>
+        <guid>https://jiebaoccc.github.io/post/c&#43;&#43;/</guid>
         <description>&lt;h1 id=&#34;1-c-基础概念&#34;&gt;1. C++ 基础概念
 &lt;/h1&gt;&lt;h2 id=&#34;11-输入输出&#34;&gt;1.1 输入输出
 &lt;/h2&gt;&lt;h3 id=&#34;11-输出语句&#34;&gt;&lt;strong&gt;1.1 输出语句：&lt;/strong&gt;
@@ -16410,13 +16929,13 @@ M             1000
         </item>
         <item>
         <title>Python</title>
-        <link>http://localhost:1313/post/python/</link>
+        <link>https://jiebaoccc.github.io/post/python/</link>
         <pubDate>Thu, 08 Aug 2024 00:38:54 +0800</pubDate>
         
-        <guid>http://localhost:1313/post/python/</guid>
+        <guid>https://jiebaoccc.github.io/post/python/</guid>
         <description>&lt;h1 id=&#34;一基础概念&#34;&gt;一、基础概念
 &lt;/h1&gt;&lt;h2 id=&#34;1字面量&#34;&gt;1.字面量
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p1.jpg&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p1.jpg&#34;
 	
 	
 	
@@ -16500,7 +17019,7 @@ M             1000
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;常见转换语句&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p2.png&#34;
 	
 	
 	
@@ -16566,7 +17085,7 @@ M             1000
 &lt;/h2&gt;&lt;h3 id=&#34;算术运算符&#34;&gt;&lt;strong&gt;算术运算符&lt;/strong&gt;
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p3.png&#34;
 	
 	
 	
@@ -16598,7 +17117,7 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;赋值运算符&#34;&gt;赋值运算符
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p4.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p4.png&#34;
 	
 	
 	
@@ -16613,7 +17132,7 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;复合赋值运算符&#34;&gt;复合赋值运算符
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p5.png&#34;
 	
 	
 	
@@ -16743,7 +17262,7 @@ M             1000
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;占位符&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p6.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p6.png&#34;
 	
 	
 	
@@ -16862,7 +17381,7 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;比较运算符&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p7.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p7.png&#34;
 	
 	
 	
@@ -16967,7 +17486,7 @@ M             1000
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;示例：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p8.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p8.png&#34;
 	
 	
 	
@@ -18596,7 +19115,7 @@ M             1000
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;示例：记录学生各科的考试信息&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p9.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p9.png&#34;
 	
 	
 	
@@ -18798,7 +19317,7 @@ M             1000
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;有如下员工信息，对所有级别为1级的员工级别上升1级，薪水增加1000&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p10.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p10.png&#34;
 	
 	
 	
@@ -18864,7 +19383,7 @@ M             1000
 &lt;p&gt;&lt;strong&gt;元组、字符串不支持修改&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p11.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p11.png&#34;
 	
 	
 	
@@ -18874,7 +19393,7 @@ M             1000
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/img/Python_p11.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p11.png&#34;
 	
 	
 	
@@ -19766,7 +20285,7 @@ M             1000
 &lt;p&gt;&lt;strong&gt;主要功能：&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;JSON 就是一种在各个编程语言中流通的数据格式，负责不同编程语言中的数据传输和交互&lt;/p&gt;
 &lt;p&gt;为了让不同的语言都能够相互通用的互相传递数据，JSON 就是一种非常良好的中转数据格式&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/img/Python_p12.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p12.png&#34;
 	
 	
 	
@@ -19776,7 +20295,7 @@ M             1000
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p12.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p12.png&#34;
 	
 	
 	
@@ -19831,7 +20350,7 @@ M             1000
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;输入&lt;code&gt;pip install pyecharts &lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/img/Python_p13.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p13.png&#34;
 	
 	
 	
@@ -19839,7 +20358,7 @@ M             1000
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p13.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p13.png&#34;
 	
 	
 	
@@ -19920,7 +20439,7 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 生成图表&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;line&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;render()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/img/Python_p14.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p14.png&#34;
 	
 	
 	
@@ -19930,7 +20449,7 @@ M             1000
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p14.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p14.png&#34;
 	
 	
 	
@@ -19969,7 +20488,7 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;map&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;地图&amp;#34;&lt;/span&gt;, data, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;china&amp;#34;&lt;/span&gt;)
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;map&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;render()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/img/Python_p15.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p15.png&#34;
 	
 	
 	
@@ -19979,7 +20498,7 @@ M             1000
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p15.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p15.png&#34;
 	
 	
 	
@@ -20030,7 +20549,7 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 生成地图&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;map&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;render()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/img/Python_p16.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p16.png&#34;
 	
 	
 	
@@ -20040,7 +20559,7 @@ M             1000
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p16.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p16.png&#34;
 	
 	
 	
@@ -20074,7 +20593,7 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 生成地图&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bar&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;render()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/img/Python_p17.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p17.png&#34;
 	
 	
 	
@@ -20084,7 +20603,7 @@ M             1000
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p17.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p17.png&#34;
 	
 	
 	
@@ -20151,7 +20670,7 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 生成柱状图&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;timeline&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;render(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;时间线柱状图时间线.html&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/img/Python_p18.jpg&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p18.jpg&#34;
 	
 	
 	
@@ -20161,7 +20680,7 @@ M             1000
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p18.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p18.jpg&#34;
 	
 	
 	
@@ -20746,7 +21265,7 @@ M             1000
 &lt;p&gt;&lt;strong&gt;示例：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(x: int, y: int):
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; x &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; y
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/img/Python_p19.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p19.png&#34;
 	
 	
 	
@@ -20756,7 +21275,7 @@ M             1000
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p19.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p19.png&#34;
 	
 	
 	
@@ -20781,7 +21300,7 @@ M             1000
 &lt;p&gt;&lt;strong&gt;示例：&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;func&lt;/span&gt;(data: list) &lt;span style=&#34;color:#f92672&#34;&gt;-&amp;gt;&lt;/span&gt; list:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; data
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/img/Python_p20.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p20.png&#34;
 	
 	
 	
@@ -20791,7 +21310,7 @@ M             1000
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p20.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p20.png&#34;
 	
 	
 	
@@ -20821,7 +21340,7 @@ M             1000
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;pass&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;func()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/img/Python_p21.png&#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/static/img/Python_p21.png&#34;
 	
 	
 	
@@ -20831,7 +21350,7 @@ M             1000
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/Python_p21.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/img/Python_p21.png&#34;
 	
 	
 	
