@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 假设银行有K个窗口提供服务，窗口前设一条黄线，所有顾客按到达时间在黄线后排成一条长龙。当有窗口空闲时，下一位顾客即去该窗口处理事务。当有多个窗口可选择时，假设顾客总是选择编号最小的窗口。 有些银行会给VIP客户以各种优惠服务，例如专门开辟VIP窗口。为了最大限度地利用资源，VIP窗口的服务机制定义为：当队列中没有VIP客户时，该窗口为普通顾客服务；当该窗口空闲并且队列中有VIP客户在等待时，排在最前面的VIP客户享受该窗口的服务。同时，当轮到某VIP客户出列时，若VIP窗口非空，该客户可以选择空闲的普通窗口；否则一定选择VIP窗口。 本题要求输出前来等待服务的N位顾客的平均等待时间、最长等待时间、最后完成时间，并且统计每个窗口服务了多少名顾客。 输入 输入第1行给出正整数N（≤1000），为顾客总人数；随后N行，每行给出一位顾客的到达时间T、事务处理时间P和是否VIP的标志（1是VIP，0则不是），并且假设输入数据已经按到达时间先后排好了顺序；最后一行给出正整数K（≤10）—— 为开设的营业窗口数，以及VIP窗口的编号（从0到K−1）。这里假设每位顾客事务被处理的最长时间为60分钟。 输出 在第一行中输出平均等待时间（输出到小数点后1位）、最长等待时间、最后完成时间，之间用1个空格分隔，行末不能有多余空格。 在第二行中按编号递增顺序输出每个窗口服务了多少名顾客，数字之间用1个空格分隔，行末不能有多余空格。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例1： 10 0 20 0 0 20 0 1 68 1 1 12 1 2 15 0 2 10 0 3 15 1 10 12 1 30 15 0 62 5 1 3 1 输出样例1： 15.1 35 67 4 5 1 解题思路： 首先定义一个类，类中定义三个变量，分别是到达时间、处理时间、是否为vip 主函数中，定义一个容器，用于存储每个顾客的信息，并依次将每个顾客存入容器中 定义两个数组，win_del_time[]用于存放每个窗口的剩余处理时间，win_per_num用于存放每个窗口的接待人数 定义一个变量now，用于存储当前时间 定义一个大循环，在循环开始时，判断VIP窗口是否为空，若为空，则判断队伍中是否有VIP，判断是否有VIP的依据为，到达时间是否在当前时间或之前，如果有VIP，则优先将其安排在VIP窗口，若无，则当成普通窗口，重新对窗口进行遍历，如果有空闲窗口则安排该顾客，反之则跳入下一次循环 在安排顾客时，需要计算其等待时间，即当前时间-到达时间，并与最长等待时间进行比较，选出最长等待时间 每一次循环的最后，now++，且每个窗口的剩余处理时间减1，当所有窗口处理时间为0，且存储顾客的容器为空时跳出循环 最后输出 具体代码： #include&lt;iostream&gt; #include&lt;queue&gt; #include&lt;stack&gt; #include&lt;iomanip&gt; using namespace std; class Customer { public: int arr_time, time, vip; Customer() { arr_time = time = vip = 0; } Customer(int a, int t, int v) :arr_time(a), time(t), vip(v) {} }; int main() { int N, sum_time = 0, max_time = 0, now = 0, last = 0; vector&lt;Customer&gt; cus; cin &gt;&gt; N; for (int i = 0; i &lt; N; i++) { int a, t, v; cin &gt;&gt; a &gt;&gt; t &gt;&gt; v; if (t &gt; 60)t = 60; cus.">
+<title>【id132】D. 银行排队问题之单队列多窗口加VIP服务</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/id132d.-%E9%93%B6%E8%A1%8C%E6%8E%92%E9%98%9F%E9%97%AE%E9%A2%98%E4%B9%8B%E5%8D%95%E9%98%9F%E5%88%97%E5%A4%9A%E7%AA%97%E5%8F%A3%E5%8A%A0vip%E6%9C%8D%E5%8A%A1/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id132】D. 银行排队问题之单队列多窗口加VIP服务">
+<meta property='og:description' content="题目描述 假设银行有K个窗口提供服务，窗口前设一条黄线，所有顾客按到达时间在黄线后排成一条长龙。当有窗口空闲时，下一位顾客即去该窗口处理事务。当有多个窗口可选择时，假设顾客总是选择编号最小的窗口。 有些银行会给VIP客户以各种优惠服务，例如专门开辟VIP窗口。为了最大限度地利用资源，VIP窗口的服务机制定义为：当队列中没有VIP客户时，该窗口为普通顾客服务；当该窗口空闲并且队列中有VIP客户在等待时，排在最前面的VIP客户享受该窗口的服务。同时，当轮到某VIP客户出列时，若VIP窗口非空，该客户可以选择空闲的普通窗口；否则一定选择VIP窗口。 本题要求输出前来等待服务的N位顾客的平均等待时间、最长等待时间、最后完成时间，并且统计每个窗口服务了多少名顾客。 输入 输入第1行给出正整数N（≤1000），为顾客总人数；随后N行，每行给出一位顾客的到达时间T、事务处理时间P和是否VIP的标志（1是VIP，0则不是），并且假设输入数据已经按到达时间先后排好了顺序；最后一行给出正整数K（≤10）—— 为开设的营业窗口数，以及VIP窗口的编号（从0到K−1）。这里假设每位顾客事务被处理的最长时间为60分钟。 输出 在第一行中输出平均等待时间（输出到小数点后1位）、最长等待时间、最后完成时间，之间用1个空格分隔，行末不能有多余空格。 在第二行中按编号递增顺序输出每个窗口服务了多少名顾客，数字之间用1个空格分隔，行末不能有多余空格。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例1： 10 0 20 0 0 20 0 1 68 1 1 12 1 2 15 0 2 10 0 3 15 1 10 12 1 30 15 0 62 5 1 3 1 输出样例1： 15.1 35 67 4 5 1 解题思路： 首先定义一个类，类中定义三个变量，分别是到达时间、处理时间、是否为vip 主函数中，定义一个容器，用于存储每个顾客的信息，并依次将每个顾客存入容器中 定义两个数组，win_del_time[]用于存放每个窗口的剩余处理时间，win_per_num用于存放每个窗口的接待人数 定义一个变量now，用于存储当前时间 定义一个大循环，在循环开始时，判断VIP窗口是否为空，若为空，则判断队伍中是否有VIP，判断是否有VIP的依据为，到达时间是否在当前时间或之前，如果有VIP，则优先将其安排在VIP窗口，若无，则当成普通窗口，重新对窗口进行遍历，如果有空闲窗口则安排该顾客，反之则跳入下一次循环 在安排顾客时，需要计算其等待时间，即当前时间-到达时间，并与最长等待时间进行比较，选出最长等待时间 每一次循环的最后，now++，且每个窗口的剩余处理时间减1，当所有窗口处理时间为0，且存储顾客的容器为空时跳出循环 最后输出 具体代码： #include&lt;iostream&gt; #include&lt;queue&gt; #include&lt;stack&gt; #include&lt;iomanip&gt; using namespace std; class Customer { public: int arr_time, time, vip; Customer() { arr_time = time = vip = 0; } Customer(int a, int t, int v) :arr_time(a), time(t), vip(v) {} }; int main() { int N, sum_time = 0, max_time = 0, now = 0, last = 0; vector&lt;Customer&gt; cus; cin &gt;&gt; N; for (int i = 0; i &lt; N; i++) { int a, t, v; cin &gt;&gt; a &gt;&gt; t &gt;&gt; v; if (t &gt; 60)t = 60; cus.">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/id132d.-%E9%93%B6%E8%A1%8C%E6%8E%92%E9%98%9F%E9%97%AE%E9%A2%98%E4%B9%8B%E5%8D%95%E9%98%9F%E5%88%97%E5%A4%9A%E7%AA%97%E5%8F%A3%E5%8A%A0vip%E6%9C%8D%E5%8A%A1/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-10-02T16:21:11&#43;08:00'/><meta property='article:modified_time' content='2024-10-02T16:21:11&#43;08:00'/>
+<meta name="twitter:title" content="【id132】D. 银行排队问题之单队列多窗口加VIP服务">
+<meta name="twitter:description" content="题目描述 假设银行有K个窗口提供服务，窗口前设一条黄线，所有顾客按到达时间在黄线后排成一条长龙。当有窗口空闲时，下一位顾客即去该窗口处理事务。当有多个窗口可选择时，假设顾客总是选择编号最小的窗口。 有些银行会给VIP客户以各种优惠服务，例如专门开辟VIP窗口。为了最大限度地利用资源，VIP窗口的服务机制定义为：当队列中没有VIP客户时，该窗口为普通顾客服务；当该窗口空闲并且队列中有VIP客户在等待时，排在最前面的VIP客户享受该窗口的服务。同时，当轮到某VIP客户出列时，若VIP窗口非空，该客户可以选择空闲的普通窗口；否则一定选择VIP窗口。 本题要求输出前来等待服务的N位顾客的平均等待时间、最长等待时间、最后完成时间，并且统计每个窗口服务了多少名顾客。 输入 输入第1行给出正整数N（≤1000），为顾客总人数；随后N行，每行给出一位顾客的到达时间T、事务处理时间P和是否VIP的标志（1是VIP，0则不是），并且假设输入数据已经按到达时间先后排好了顺序；最后一行给出正整数K（≤10）—— 为开设的营业窗口数，以及VIP窗口的编号（从0到K−1）。这里假设每位顾客事务被处理的最长时间为60分钟。 输出 在第一行中输出平均等待时间（输出到小数点后1位）、最长等待时间、最后完成时间，之间用1个空格分隔，行末不能有多余空格。 在第二行中按编号递增顺序输出每个窗口服务了多少名顾客，数字之间用1个空格分隔，行末不能有多余空格。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例1： 10 0 20 0 0 20 0 1 68 1 1 12 1 2 15 0 2 10 0 3 15 1 10 12 1 30 15 0 62 5 1 3 1 输出样例1： 15.1 35 67 4 5 1 解题思路： 首先定义一个类，类中定义三个变量，分别是到达时间、处理时间、是否为vip 主函数中，定义一个容器，用于存储每个顾客的信息，并依次将每个顾客存入容器中 定义两个数组，win_del_time[]用于存放每个窗口的剩余处理时间，win_per_num用于存放每个窗口的接待人数 定义一个变量now，用于存储当前时间 定义一个大循环，在循环开始时，判断VIP窗口是否为空，若为空，则判断队伍中是否有VIP，判断是否有VIP的依据为，到达时间是否在当前时间或之前，如果有VIP，则优先将其安排在VIP窗口，若无，则当成普通窗口，重新对窗口进行遍历，如果有空闲窗口则安排该顾客，反之则跳入下一次循环 在安排顾客时，需要计算其等待时间，即当前时间-到达时间，并与最长等待时间进行比较，选出最长等待时间 每一次循环的最后，now++，且每个窗口的剩余处理时间减1，当所有窗口处理时间为0，且存储顾客的容器为空时跳出循环 最后输出 具体代码： #include&lt;iostream&gt; #include&lt;queue&gt; #include&lt;stack&gt; #include&lt;iomanip&gt; using namespace std; class Customer { public: int arr_time, time, vip; Customer() { arr_time = time = vip = 0; } Customer(int a, int t, int v) :arr_time(a), time(t), vip(v) {} }; int main() { int N, sum_time = 0, max_time = 0, now = 0, last = 0; vector&lt;Customer&gt; cus; cin &gt;&gt; N; for (int i = 0; i &lt; N; i++) { int a, t, v; cin &gt;&gt; a &gt;&gt; t &gt;&gt; v; if (t &gt; 60)t = 60; cus.">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/id132d.-%E9%93%B6%E8%A1%8C%E6%8E%92%E9%98%9F%E9%97%AE%E9%A2%98%E4%B9%8B%E5%8D%95%E9%98%9F%E5%88%97%E5%A4%9A%E7%AA%97%E5%8F%A3%E5%8A%A0vip%E6%9C%8D%E5%8A%A1/">【id132】D. 银行排队问题之单队列多窗口加VIP服务</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 02, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><strong>题目描述</strong></p>
+<p>假设银行有<em>K</em>个窗口提供服务，窗口前设一条黄线，所有顾客按到达时间在黄线后排成一条长龙。当有窗口空闲时，下一位顾客即去该窗口处理事务。当有多个窗口可选择时，假设顾客总是选择编号最小的窗口。</p>
+<p>有些银行会给VIP客户以各种优惠服务，例如专门开辟VIP窗口。为了最大限度地利用资源，VIP窗口的服务机制定义为：当队列中没有VIP客户时，该窗口为普通顾客服务；当该窗口空闲并且队列中有VIP客户在等待时，排在最前面的VIP客户享受该窗口的服务。同时，当轮到某VIP客户出列时，若VIP窗口非空，该客户可以选择空闲的普通窗口；<strong>否则一定选择VIP窗口</strong>。</p>
+<p>本题要求输出前来等待服务的<em>N</em>位顾客的平均等待时间、最长等待时间、最后完成时间，并且统计每个窗口服务了多少名顾客。</p>
+<p><strong>输入</strong></p>
+<p>输入第1行给出正整数<em>N</em>（≤1000），为顾客总人数；随后<em>N</em>行，每行给出一位顾客的到达时间<code>T</code>、事务处理时间<code>P</code>和是否VIP的标志（1是VIP，0则不是），并且假设输入数据已经按到达时间先后排好了顺序；最后一行给出正整数<em>K</em>（≤10）—— 为开设的营业窗口数，以及VIP窗口的编号（从0到<em>K</em>−1）。这里假设每位顾客事务被处理的最长时间为60分钟。</p>
+<p><strong>输出</strong></p>
+<p>在第一行中输出平均等待时间（输出到小数点后1位）、最长等待时间、最后完成时间，之间用1个空格分隔，行末不能有多余空格。</p>
+<p>在第二行中按编号递增顺序输出每个窗口服务了多少名顾客，数字之间用1个空格分隔，行末不能有多余空格。</p>
+<p><strong>IO模式</strong></p>
+<p>本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。</p>
+<p><strong>输入样例1：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">68</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">30</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">62</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span> <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p><strong>输出样例1：</strong></p>
+<pre tabindex="0"><code>15.1 35 67
+4 5 1
+</code></pre><p><strong>解题思路：</strong></p>
+<p>首先定义一个类，类中定义三个变量，分别是到达时间、处理时间、是否为vip</p>
+<p>主函数中，定义一个容器，用于存储每个顾客的信息，并依次将每个顾客存入容器中</p>
+<p>定义两个数组，<code>win_del_time[]</code>用于存放每个窗口的剩余处理时间，<code>win_per_num</code>用于存放每个窗口的接待人数</p>
+<p>定义一个变量now，用于存储当前时间</p>
+<p>定义一个大循环，在循环开始时，判断VIP窗口是否为空，若为空，则判断队伍中是否有VIP，判断是否有VIP的依据为，到达时间是否在当前时间或之前，如果有VIP，则优先将其安排在VIP窗口，若无，则当成普通窗口，重新对窗口进行遍历，如果有空闲窗口则安排该顾客，反之则跳入下一次循环</p>
+<p>在安排顾客时，需要计算其等待时间，即当前时间-到达时间，并与最长等待时间进行比较，选出最长等待时间</p>
+<p>每一次循环的最后，now++，且每个窗口的剩余处理时间减1，当所有窗口处理时间为0，且存储顾客的容器为空时跳出循环</p>
+<p>最后输出</p>
+<p><strong>具体代码：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;iostream&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;queue&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;stack&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;iomanip&gt;</span>
+</span></span><span style="display:flex;"><span>using namespace std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Customer</span> {
+</span></span><span style="display:flex;"><span>public:
+</span></span><span style="display:flex;"><span>	int arr_time, time, vip;
+</span></span><span style="display:flex;"><span>	Customer() { arr_time <span style="color:#f92672">=</span> time <span style="color:#f92672">=</span> vip <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; }
+</span></span><span style="display:flex;"><span>	Customer(int a, int t, int v) :arr_time(a), time(t), vip(v) {}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>int main()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	int N, sum_time <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, max_time <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, now <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, last <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>Customer<span style="color:#f92672">&gt;</span> cus;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> N;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (int i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> N; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		int a, t, v;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> a <span style="color:#f92672">&gt;&gt;</span> t <span style="color:#f92672">&gt;&gt;</span> v;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (t <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">60</span>)t <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span>;
+</span></span><span style="display:flex;"><span>		cus<span style="color:#f92672">.</span>push_back(Customer(a, t, v));
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	int K, vip;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> K <span style="color:#f92672">&gt;&gt;</span> vip;
+</span></span><span style="display:flex;"><span>	int<span style="color:#f92672">*</span> win_del_time <span style="color:#f92672">=</span> new int[K] {<span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>	int<span style="color:#f92672">*</span> win_per_num <span style="color:#f92672">=</span> new int[K] {<span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (win_del_time[vip] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (int i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> cus<span style="color:#f92672">.</span>size() <span style="color:#f92672">&amp;&amp;</span> cus[i]<span style="color:#f92672">.</span>arr_time<span style="color:#f92672">&lt;=</span>now; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (cus[i]<span style="color:#f92672">.</span>vip)
+</span></span><span style="display:flex;"><span>				{
+</span></span><span style="display:flex;"><span>					win_del_time[vip] <span style="color:#f92672">=</span> cus[i]<span style="color:#f92672">.</span>time;
+</span></span><span style="display:flex;"><span>					win_per_num[vip]<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>					sum_time <span style="color:#f92672">+=</span> now <span style="color:#f92672">-</span> cus[i]<span style="color:#f92672">.</span>arr_time;
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> (max_time <span style="color:#f92672">&lt;</span> now <span style="color:#f92672">-</span> cus[i]<span style="color:#f92672">.</span>arr_time)max_time <span style="color:#f92672">=</span> now <span style="color:#f92672">-</span> cus[i]<span style="color:#f92672">.</span>arr_time;
+</span></span><span style="display:flex;"><span>					cus<span style="color:#f92672">.</span>erase(cus<span style="color:#f92672">.</span>begin() <span style="color:#f92672">+</span> i);
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">while</span> (<span style="color:#960050;background-color:#1e0010">!</span>cus<span style="color:#f92672">.</span>empty() <span style="color:#f92672">&amp;&amp;</span> cus<span style="color:#f92672">.</span>front()<span style="color:#f92672">.</span>arr_time <span style="color:#f92672">&lt;=</span> now)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			int tag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (int i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> K; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (win_del_time[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>				{
+</span></span><span style="display:flex;"><span>					win_del_time[i] <span style="color:#f92672">=</span> cus<span style="color:#f92672">.</span>front()<span style="color:#f92672">.</span>time;
+</span></span><span style="display:flex;"><span>					win_per_num[i]<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>					sum_time <span style="color:#f92672">+=</span> now <span style="color:#f92672">-</span> cus<span style="color:#f92672">.</span>front()<span style="color:#f92672">.</span>arr_time;
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> (max_time <span style="color:#f92672">&lt;</span> now <span style="color:#f92672">-</span> cus<span style="color:#f92672">.</span>front()<span style="color:#f92672">.</span>arr_time)max_time <span style="color:#f92672">=</span> now <span style="color:#f92672">-</span> cus<span style="color:#f92672">.</span>front()<span style="color:#f92672">.</span>arr_time;
+</span></span><span style="display:flex;"><span>					cus<span style="color:#f92672">.</span>erase(cus<span style="color:#f92672">.</span>begin());
+</span></span><span style="display:flex;"><span>					tag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">break</span>;	<span style="color:#75715e"># 重新对下一个顾客进行判断，判断其是否为在当前时间或之间进入银行</span>
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (<span style="color:#960050;background-color:#1e0010">!</span>tag)<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		now<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>		int tag<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (int i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> K; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (win_del_time[i])
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				win_del_time[i]<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (win_del_time[i])tag <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (tag <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> cus<span style="color:#f92672">.</span>empty())
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	float avg <span style="color:#f92672">=</span> sum_time <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.0</span> <span style="color:#f92672">/</span> N;
+</span></span><span style="display:flex;"><span>	cout <span style="color:#f92672">&lt;&lt;</span> fixed <span style="color:#f92672">&lt;&lt;</span> setprecision(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">&lt;&lt;</span> avg <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> max_time <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> now <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (int i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> K; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#960050;background-color:#1e0010">?</span> cout <span style="color:#f92672">&lt;&lt;</span> win_per_num[i] : cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> win_per_num[i];
+</span></span><span style="display:flex;"><span>	cout <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
