@@ -153,7 +153,7 @@
 
 
                 <time class="article-time--reading">
-                    8 minute read
+                    14 minute read
                 </time>
             </div>
         
@@ -1158,6 +1158,806 @@
 	loading="lazy"
 	
 		alt="31"
+	
+	
+></p>
+<h1 id="16损失函数和反向传播">16、损失函数和反向传播
+</h1><ul>
+<li>
+<p><strong>作用：</strong></p>
+<ul>
+<li>计算实际输出和目标之间的差距</li>
+<li>为更新输出提供一定的依据（反向传播）</li>
+</ul>
+</li>
+<li>
+<p><img src="/Pytorch_img/33.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="33"
+	
+	
+></p>
+<p><img src="/Pytorch_img/34.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="34"
+	
+	
+></p>
+<p><img src="/Pytorch_img/35.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="35"
+	
+	
+></p>
+<p><strong>代码示例：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> L1Loss
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>inputs <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>],dtype <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>float32)
+</span></span><span style="display:flex;"><span>targets <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>],dtype <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>float32)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>inputs <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(inputs,(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>targets <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(targets,(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>loss <span style="color:#f92672">=</span> L1Loss(reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>)<span style="color:#75715e"># 还可以“mean”，“sum”，mean表示输出平均值，sum表示输出和</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> loss(inputs,targets)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(result)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 输出结果 </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([[[[0., 0., 2.]]]])</span>
+</span></span></code></pre></div></li>
+<li>
+<p><img src="/Pytorch_img/36.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="36"
+	
+	
+></p>
+<p><img src="/Pytorch_img/37.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="37"
+	
+	
+></p>
+<p><strong>代码实现</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> L1Loss
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>inputs <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>],dtype <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>float32)
+</span></span><span style="display:flex;"><span>targets <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>],dtype <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>float32)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>inputs <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(inputs,(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>targets <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(targets,(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>loss_mse <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>MSELoss()
+</span></span><span style="display:flex;"><span>result_mse <span style="color:#f92672">=</span> loss_mse(inputs,targets)
+</span></span><span style="display:flex;"><span>print(result_mse)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 输出结果</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor(1.3333)</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>交叉商</strong></p>
+<p><img src="/Pytorch_img/38.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="38"
+	
+	
+></p>
+<p><img src="/Pytorch_img/39.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="39"
+	
+	
+></p>
+<p><strong>代码实现：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision.datasets
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> Conv2d, MaxPool2d, Flatten, Linear, Sequential
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dataset <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;dataset&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                       download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dataloader <span style="color:#f92672">=</span> DataLoader(dataset,batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model1 <span style="color:#f92672">=</span> Sequential(
+</span></span><span style="display:flex;"><span>            Conv2d(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">5</span>,padding<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span>, kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">64</span>, kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            Flatten(),
+</span></span><span style="display:flex;"><span>            Linear(<span style="color:#ae81ff">1024</span>, <span style="color:#ae81ff">64</span>),
+</span></span><span style="display:flex;"><span>            Linear(<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model1(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>loss <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>CrossEntropyLoss()
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> dataloader:
+</span></span><span style="display:flex;"><span>    imgs,target <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>    outputs <span style="color:#f92672">=</span> tudui(imgs)
+</span></span><span style="display:flex;"><span>    result_loss <span style="color:#f92672">=</span> loss(outputs,target)
+</span></span><span style="display:flex;"><span>    result_loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>    print(result_loss)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 输出结果</span>
+</span></span><span style="display:flex;"><span>tensor(<span style="color:#ae81ff">2.2930</span>, grad_fn<span style="color:#f92672">=&lt;</span>NllLossBackward0<span style="color:#f92672">&gt;</span>)
+</span></span><span style="display:flex;"><span>tensor(<span style="color:#ae81ff">2.3043</span>, grad_fn<span style="color:#f92672">=&lt;</span>NllLossBackward0<span style="color:#f92672">&gt;</span>)
+</span></span><span style="display:flex;"><span>tensor(<span style="color:#ae81ff">2.3150</span>, grad_fn<span style="color:#f92672">=&lt;</span>NllLossBackward0<span style="color:#f92672">&gt;</span>)
+</span></span><span style="display:flex;"><span>tensor(<span style="color:#ae81ff">2.3082</span>, grad_fn<span style="color:#f92672">=&lt;</span>NllLossBackward0<span style="color:#f92672">&gt;</span>)
+</span></span><span style="display:flex;"><span>tensor(<span style="color:#ae81ff">2.2988</span>, grad_fn<span style="color:#f92672">=&lt;</span>NllLossBackward0<span style="color:#f92672">&gt;</span>)
+</span></span><span style="display:flex;"><span>tensor(<span style="color:#ae81ff">2.3000</span>, grad_fn<span style="color:#f92672">=&lt;</span>NllLossBackward0<span style="color:#f92672">&gt;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">.</span>
+</span></span></code></pre></div></li>
+</ul>
+<h1 id="17优化器">17、优化器
+</h1><p><img src="/Pytorch_img/40.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="40"
+	
+	
+></p>
+<p><strong>代码示例</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision.datasets
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> Conv2d, MaxPool2d, Flatten, Linear, Sequential
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dataset <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;dataset&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                       download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dataloader <span style="color:#f92672">=</span> DataLoader(dataset,batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model1 <span style="color:#f92672">=</span> Sequential(
+</span></span><span style="display:flex;"><span>            Conv2d(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">5</span>,padding<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span>, kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">64</span>, kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            Flatten(),
+</span></span><span style="display:flex;"><span>            Linear(<span style="color:#ae81ff">1024</span>, <span style="color:#ae81ff">64</span>),
+</span></span><span style="display:flex;"><span>            Linear(<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model1(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>loss <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>CrossEntropyLoss()
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>optim <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>SGD(tudui<span style="color:#f92672">.</span>parameters(),lr<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">20</span>):
+</span></span><span style="display:flex;"><span>    running_los <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> dataloader:
+</span></span><span style="display:flex;"><span>        imgs, target <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>        outputs <span style="color:#f92672">=</span> tudui(imgs)
+</span></span><span style="display:flex;"><span>        result_loss <span style="color:#f92672">=</span> loss(outputs, target)
+</span></span><span style="display:flex;"><span>        optim<span style="color:#f92672">.</span>zero_grad()	<span style="color:#75715e"># 清空梯度</span>
+</span></span><span style="display:flex;"><span>        result_loss<span style="color:#f92672">.</span>backward()	<span style="color:#75715e"># 反向传播</span>
+</span></span><span style="display:flex;"><span>        optim<span style="color:#f92672">.</span>step()	<span style="color:#75715e"># 更新模型参数</span>
+</span></span><span style="display:flex;"><span>        running_los <span style="color:#f92672">+=</span> result_loss
+</span></span><span style="display:flex;"><span>    print(running_los)
+</span></span></code></pre></div><h1 id="18现有网络模型的使用及修改">18、现有网络模型的使用及修改
+</h1><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision.datasets
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># train_data = torchvision.datasets.ImageNet(&#34;data_image_net&#34;,split=&#34;train&#34;,download=True,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#                                            transform=torchvision.transforms.ToTensor())</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vgg16_false <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>vgg16(pretrained<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>vgg16_true <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>vgg16(pretrained<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(vgg16_true)
+</span></span><span style="display:flex;"><span>train_data <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;dataset&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                          download<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vgg16_true<span style="color:#f92672">.</span>classifier<span style="color:#f92672">.</span>add_module(<span style="color:#e6db74">&#39;add_linear&#39;</span>,nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">1000</span>,<span style="color:#ae81ff">10</span>))	<span style="color:#75715e"># 添加操作</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(vgg16_true)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vgg16_false<span style="color:#f92672">.</span>classifier[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">4096</span>,<span style="color:#ae81ff">10</span>)	<span style="color:#75715e"># 修改网络模型中的操作</span>
+</span></span><span style="display:flex;"><span>print(vgg16_false)
+</span></span></code></pre></div><h1 id="19网络模型的保存和读取">19、网络模型的保存和读取
+</h1><ul>
+<li>
+<p><strong>模型的保存</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> Conv2d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vgg16 <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>vgg16(pretrained<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保存方式1,模型结构+模型参数</span>
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>save(vgg16,<span style="color:#e6db74">&#34;vgg16_method1.pth&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保存方式2，模型参数（官方推荐）</span>
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>save(vgg16<span style="color:#f92672">.</span>state_dict(),<span style="color:#e6db74">&#34;vgg16_method2.pth&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 陷阱</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>conv1 <span style="color:#f92672">=</span> Conv2d(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">64</span>,kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv1(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>save(tudui,<span style="color:#e6db74">&#34;tuudi_method1.pth&#34;</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>模型的加载</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> Conv2d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保存方式1，加载模型</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;vgg16_method1.pth&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(model)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保存方式2，加载模型</span>
+</span></span><span style="display:flex;"><span>vgg16 <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>vgg16(pretrained<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>vgg16<span style="color:#f92672">.</span>load_state_dict(torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;vgg16_method2.pth&#34;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># model = torch.load(&#34;vgg16_method2.pth&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(vgg16)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 陷阱1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>conv1 <span style="color:#f92672">=</span> Conv2d(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">64</span>,kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv1(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#39;tuudi_method1.pth&#39;</span>)
+</span></span><span style="display:flex;"><span>print(model)
+</span></span></code></pre></div></li>
+</ul>
+<h1 id="20完整的模型训练套路cifar10">20、完整的模型训练套路（CIFAR10）
+</h1><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># train.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> model <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 准备数据集</span>
+</span></span><span style="display:flex;"><span>train_data <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;dataset&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                          download<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>test_data <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;dataset&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                          download<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># length长度</span>
+</span></span><span style="display:flex;"><span>train_data_size <span style="color:#f92672">=</span> len(train_data)
+</span></span><span style="display:flex;"><span>test_data_size <span style="color:#f92672">=</span> len(test_data)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;训练数据集的长度为：</span><span style="color:#e6db74">{</span>train_data_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;测试数据集的长度为：</span><span style="color:#e6db74">{</span>test_data_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 利用 DataLoader 来加载数据集</span>
+</span></span><span style="display:flex;"><span>train_dataloader <span style="color:#f92672">=</span> DataLoader(train_data,batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>test_dataloader <span style="color:#f92672">=</span> DataLoader(test_data,batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建网络模型</span>
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 损失函数</span>
+</span></span><span style="display:flex;"><span>loss_fn <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>CrossEntropyLoss()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 优化器</span>
+</span></span><span style="display:flex;"><span>learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-2</span>
+</span></span><span style="display:flex;"><span>optimizer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>SGD(tudui<span style="color:#f92672">.</span>parameters(),lr<span style="color:#f92672">=</span>learning_rate)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置训练网络的一些参数</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 记录训练的次数</span>
+</span></span><span style="display:flex;"><span>total_train_step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 记录测试的次数</span>
+</span></span><span style="display:flex;"><span>total_test_step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 训练的轮数</span>
+</span></span><span style="display:flex;"><span>epoch <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 添加 TensorBoard</span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;logs_train&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(epoch):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;--------第</span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">轮训练开始--------&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> train_dataloader:
+</span></span><span style="display:flex;"><span>        imgs , targets <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>        outputs <span style="color:#f92672">=</span> tudui(imgs)
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> loss_fn(outputs,targets)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 优化器优化模型</span>
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>zero_grad() <span style="color:#75715e"># 清空梯度</span>
+</span></span><span style="display:flex;"><span>        loss<span style="color:#f92672">.</span>backward() <span style="color:#75715e"># 反向传播</span>
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>step()    <span style="color:#75715e"># 更新模型参数</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        total_train_step <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> total_train_step <span style="color:#f92672">%</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;训练次数：</span><span style="color:#e6db74">{</span>total_train_step<span style="color:#e6db74">}</span><span style="color:#e6db74">，Loss：</span><span style="color:#e6db74">{</span>loss<span style="color:#f92672">.</span>item()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;train_loss&#34;</span>,loss<span style="color:#f92672">.</span>item(),total_train_step)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 测试步骤开始</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># with torch.no_grad()是一个上下文管理器，</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 通常用于那些不需要计算梯度的操作，例如在模型评估或推断时。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 在这种模式下，关闭自动求导功能可以提高代码执行效率，</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 因为不需要计算梯度的操作通常比需要计算梯度的操作更快。</span>
+</span></span><span style="display:flex;"><span>    total_test_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 整体测试的正确个数</span>
+</span></span><span style="display:flex;"><span>    total_accuracy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> test_dataloader:
+</span></span><span style="display:flex;"><span>            imgs, targets <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>            outputs <span style="color:#f92672">=</span> tudui(imgs)
+</span></span><span style="display:flex;"><span>            loss <span style="color:#f92672">=</span> loss_fn(outputs,targets)
+</span></span><span style="display:flex;"><span>            total_test_loss <span style="color:#f92672">+=</span> loss
+</span></span><span style="display:flex;"><span>            accuracy <span style="color:#f92672">=</span> (outputs<span style="color:#f92672">.</span>argmax(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> targets)<span style="color:#f92672">.</span>sum() <span style="color:#75715e"># 1表示横向对比，输入0表示纵向对比</span>
+</span></span><span style="display:flex;"><span>            total_accuracy <span style="color:#f92672">+=</span> accuracy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;整体测试集上的Loss：</span><span style="color:#e6db74">{</span>total_test_loss<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;整体测试集上的正确率：</span><span style="color:#e6db74">{</span>total_accuracy<span style="color:#f92672">/</span>test_data_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;test_loss&#34;</span>,total_test_loss,total_test_step)
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;test_accuracy&#34;</span>,total_accuracy<span style="color:#f92672">/</span>test_data_size,total_test_step)
+</span></span><span style="display:flex;"><span>    total_test_step <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    torch<span style="color:#f92672">.</span>save(tudui,<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;tudui_</span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">.path&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;模型已保存&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># model.py</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 搭建神经网络</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Flatten(),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">1024</span>,<span style="color:#ae81ff">64</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>    input <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>ones((<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">32</span>))
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> tudui(input)
+</span></span><span style="display:flex;"><span>    print(output<span style="color:#f92672">.</span>shape)
+</span></span></code></pre></div><h1 id="21使用gpu训练">21、使用GPU训练
+</h1><h2 id="第一种方式">第一种方式
+</h2><p>只有：</p>
+<ul>
+<li><strong>网络模型</strong></li>
+<li><strong>数据（输入、标注）</strong></li>
+<li><strong>损失函数</strong></li>
+</ul>
+<p>才有**.cuda()**</p>
+<p>使用GPU训练，即在上面提到的三个语句中引用 <strong>.cuda()</strong></p>
+<p><strong>具体代码：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 准备数据集</span>
+</span></span><span style="display:flex;"><span>train_data <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;dataset&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                          download<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>test_data <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;dataset&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                          download<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># length长度</span>
+</span></span><span style="display:flex;"><span>train_data_size <span style="color:#f92672">=</span> len(train_data)
+</span></span><span style="display:flex;"><span>test_data_size <span style="color:#f92672">=</span> len(test_data)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;训练数据集的长度为：</span><span style="color:#e6db74">{</span>train_data_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;测试数据集的长度为：</span><span style="color:#e6db74">{</span>test_data_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 利用 DataLoader 来加载数据集</span>
+</span></span><span style="display:flex;"><span>train_dataloader <span style="color:#f92672">=</span> DataLoader(train_data,batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>test_dataloader <span style="color:#f92672">=</span> DataLoader(test_data,batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建网络模型</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 搭建神经网络</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Flatten(),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">1024</span>,<span style="color:#ae81ff">64</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#########################################</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available():
+</span></span><span style="display:flex;"><span>    tudui <span style="color:#f92672">=</span> tudui<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##########################################</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 损失函数</span>
+</span></span><span style="display:flex;"><span>loss_fn <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>CrossEntropyLoss()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available():
+</span></span><span style="display:flex;"><span>    loss_fn <span style="color:#f92672">=</span> loss_fn<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 优化器</span>
+</span></span><span style="display:flex;"><span>learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-2</span>
+</span></span><span style="display:flex;"><span>optimizer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>SGD(tudui<span style="color:#f92672">.</span>parameters(),lr<span style="color:#f92672">=</span>learning_rate)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置训练网络的一些参数</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 记录训练的次数</span>
+</span></span><span style="display:flex;"><span>total_train_step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 记录测试的次数</span>
+</span></span><span style="display:flex;"><span>total_test_step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 训练的轮数</span>
+</span></span><span style="display:flex;"><span>epoch <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 添加 TensorBoard</span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;logs_train&#34;</span>)
+</span></span><span style="display:flex;"><span>start_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(epoch):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;--------第</span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">轮训练开始--------&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> train_dataloader:
+</span></span><span style="display:flex;"><span>        imgs , targets <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#######################################################</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available():
+</span></span><span style="display:flex;"><span>            imgs <span style="color:#f92672">=</span> imgs<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span>            targets <span style="color:#f92672">=</span> targets<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#######################################################</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        outputs <span style="color:#f92672">=</span> tudui(imgs)
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> loss_fn(outputs,targets)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 优化器优化模型</span>
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>zero_grad() <span style="color:#75715e"># 清空梯度</span>
+</span></span><span style="display:flex;"><span>        loss<span style="color:#f92672">.</span>backward() <span style="color:#75715e"># 反向传播</span>
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>step()    <span style="color:#75715e"># 更新模型参数</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        total_train_step <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> total_train_step <span style="color:#f92672">%</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            end_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>            print(end_time <span style="color:#f92672">-</span> start_time)
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;训练次数：</span><span style="color:#e6db74">{</span>total_train_step<span style="color:#e6db74">}</span><span style="color:#e6db74">，Loss：</span><span style="color:#e6db74">{</span>loss<span style="color:#f92672">.</span>item()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;train_loss&#34;</span>,loss<span style="color:#f92672">.</span>item(),total_train_step)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 测试步骤开始</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># with torch.no_grad()是一个上下文管理器，</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 通常用于那些不需要计算梯度的操作，例如在模型评估或推断时。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 在这种模式下，关闭自动求导功能可以提高代码执行效率，</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 因为不需要计算梯度的操作通常比需要计算梯度的操作更快。</span>
+</span></span><span style="display:flex;"><span>    total_test_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 整体测试的正确个数</span>
+</span></span><span style="display:flex;"><span>    total_accuracy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> test_dataloader:
+</span></span><span style="display:flex;"><span>            imgs, targets <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span><span style="color:#75715e">################################################</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available():
+</span></span><span style="display:flex;"><span>                imgs <span style="color:#f92672">=</span> imgs<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span>                targets <span style="color:#f92672">=</span> targets<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#################################################                </span>
+</span></span><span style="display:flex;"><span>               
+</span></span><span style="display:flex;"><span>            outputs <span style="color:#f92672">=</span> tudui(imgs)
+</span></span><span style="display:flex;"><span>            loss <span style="color:#f92672">=</span> loss_fn(outputs,targets)
+</span></span><span style="display:flex;"><span>            total_test_loss <span style="color:#f92672">+=</span> loss
+</span></span><span style="display:flex;"><span>            accuracy <span style="color:#f92672">=</span> (outputs<span style="color:#f92672">.</span>argmax(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> targets)<span style="color:#f92672">.</span>sum() <span style="color:#75715e"># 1表示横向对比，输入0表示纵向对比</span>
+</span></span><span style="display:flex;"><span>            total_accuracy <span style="color:#f92672">+=</span> accuracy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;整体测试集上的Loss：</span><span style="color:#e6db74">{</span>total_test_loss<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;整体测试集上的正确率：</span><span style="color:#e6db74">{</span>total_accuracy<span style="color:#f92672">/</span>test_data_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;test_loss&#34;</span>,total_test_loss,total_test_step)
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;test_accuracy&#34;</span>,total_accuracy<span style="color:#f92672">/</span>test_data_size,total_test_step)
+</span></span><span style="display:flex;"><span>    total_test_step <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    torch<span style="color:#f92672">.</span>save(tudui,<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;tudui_</span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">.path&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;模型已保存&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><h2 id="第二种方式">第二种方式
+</h2><p>只有：</p>
+<ul>
+<li><strong>网络模型</strong></li>
+<li><strong>数据（输入、标注）</strong></li>
+<li><strong>损失函数</strong></li>
+</ul>
+<p>才有**.cuda()**</p>
+<p>方式二为，首先定义<code>device = torch.device(&quot;cuda&quot;)</code></p>
+<p>然后在上述三个语句中引入 <code>.to(device)</code></p>
+<p><strong>具体代码示例：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定义训练的设备</span>
+</span></span><span style="display:flex;"><span>device <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>device(<span style="color:#e6db74">&#34;cuda&#34;</span> <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available() <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;cpu&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 准备数据集</span>
+</span></span><span style="display:flex;"><span>train_data <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;dataset&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                          download<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>test_data <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#34;dataset&#34;</span>,train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,transform<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>                                          download<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># length长度</span>
+</span></span><span style="display:flex;"><span>train_data_size <span style="color:#f92672">=</span> len(train_data)
+</span></span><span style="display:flex;"><span>test_data_size <span style="color:#f92672">=</span> len(test_data)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;训练数据集的长度为：</span><span style="color:#e6db74">{</span>train_data_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;测试数据集的长度为：</span><span style="color:#e6db74">{</span>test_data_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 利用 DataLoader 来加载数据集</span>
+</span></span><span style="display:flex;"><span>train_dataloader <span style="color:#f92672">=</span> DataLoader(train_data,batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>test_dataloader <span style="color:#f92672">=</span> DataLoader(test_data,batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建网络模型</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 搭建神经网络</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Flatten(),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">1024</span>,<span style="color:#ae81ff">64</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">############################</span>
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> tudui<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">############################</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 损失函数</span>
+</span></span><span style="display:flex;"><span>loss_fn <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>CrossEntropyLoss()
+</span></span><span style="display:flex;"><span>loss_fn <span style="color:#f92672">=</span> loss_fn<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 优化器</span>
+</span></span><span style="display:flex;"><span>learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-2</span>
+</span></span><span style="display:flex;"><span>optimizer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>SGD(tudui<span style="color:#f92672">.</span>parameters(),lr<span style="color:#f92672">=</span>learning_rate)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置训练网络的一些参数</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 记录训练的次数</span>
+</span></span><span style="display:flex;"><span>total_train_step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 记录测试的次数</span>
+</span></span><span style="display:flex;"><span>total_test_step <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 训练的轮数</span>
+</span></span><span style="display:flex;"><span>epoch <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 添加 TensorBoard</span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(<span style="color:#e6db74">&#34;logs_train&#34;</span>)
+</span></span><span style="display:flex;"><span>start_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(epoch):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;--------第</span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">轮训练开始--------&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> train_dataloader:
+</span></span><span style="display:flex;"><span>        imgs , targets <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span><span style="color:#75715e">########################################################</span>
+</span></span><span style="display:flex;"><span>        imgs <span style="color:#f92672">=</span> imgs<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>        targets <span style="color:#f92672">=</span> targets<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">########################################################</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        outputs <span style="color:#f92672">=</span> tudui(imgs)
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> loss_fn(outputs,targets)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 优化器优化模型</span>
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>zero_grad() <span style="color:#75715e"># 清空梯度</span>
+</span></span><span style="display:flex;"><span>        loss<span style="color:#f92672">.</span>backward() <span style="color:#75715e"># 反向传播</span>
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>step()    <span style="color:#75715e"># 更新模型参数</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        total_train_step <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> total_train_step <span style="color:#f92672">%</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            end_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>            print(end_time <span style="color:#f92672">-</span> start_time)
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;训练次数：</span><span style="color:#e6db74">{</span>total_train_step<span style="color:#e6db74">}</span><span style="color:#e6db74">，Loss：</span><span style="color:#e6db74">{</span>loss<span style="color:#f92672">.</span>item()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;train_loss&#34;</span>,loss<span style="color:#f92672">.</span>item(),total_train_step)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 测试步骤开始</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># with torch.no_grad()是一个上下文管理器，</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 通常用于那些不需要计算梯度的操作，例如在模型评估或推断时。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 在这种模式下，关闭自动求导功能可以提高代码执行效率，</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 因为不需要计算梯度的操作通常比需要计算梯度的操作更快。</span>
+</span></span><span style="display:flex;"><span>    total_test_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 整体测试的正确个数</span>
+</span></span><span style="display:flex;"><span>    total_accuracy <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> data <span style="color:#f92672">in</span> test_dataloader:
+</span></span><span style="display:flex;"><span>            imgs, targets <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span><span style="color:#75715e">########################################################            </span>
+</span></span><span style="display:flex;"><span>            imgs <span style="color:#f92672">=</span> imgs<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>            targets <span style="color:#f92672">=</span> targets<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">########################################################</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            outputs <span style="color:#f92672">=</span> tudui(imgs)
+</span></span><span style="display:flex;"><span>            loss <span style="color:#f92672">=</span> loss_fn(outputs,targets)
+</span></span><span style="display:flex;"><span>            total_test_loss <span style="color:#f92672">+=</span> loss
+</span></span><span style="display:flex;"><span>            accuracy <span style="color:#f92672">=</span> (outputs<span style="color:#f92672">.</span>argmax(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> targets)<span style="color:#f92672">.</span>sum() <span style="color:#75715e"># 1表示横向对比，输入0表示纵向对比</span>
+</span></span><span style="display:flex;"><span>            total_accuracy <span style="color:#f92672">+=</span> accuracy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;整体测试集上的Loss：</span><span style="color:#e6db74">{</span>total_test_loss<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;整体测试集上的正确率：</span><span style="color:#e6db74">{</span>total_accuracy<span style="color:#f92672">/</span>test_data_size<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;test_loss&#34;</span>,total_test_loss,total_test_step)
+</span></span><span style="display:flex;"><span>    writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;test_accuracy&#34;</span>,total_accuracy<span style="color:#f92672">/</span>test_data_size,total_test_step)
+</span></span><span style="display:flex;"><span>    total_test_step <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    torch<span style="color:#f92672">.</span>save(tudui,<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;tudui_</span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">.path&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;模型已保存&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><h1 id="22完整的模型验证套路">22、完整的模型验证套路
+</h1><p>利用已经训练好的模型，然后给它提供输入</p>
+<p>将想要识别的图片存入对应的路径</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> Image
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>image_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dataset/airplane.png&#34;</span>	<span style="color:#75715e"># 导入飞机的图片</span>
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(image_path)
+</span></span><span style="display:flex;"><span>print(image)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> image<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#39;RGB&#39;</span>)
+</span></span><span style="display:flex;"><span>transforms <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>Compose([torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>Resize((<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">32</span>)),
+</span></span><span style="display:flex;"><span>                                            torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>ToTensor()])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> transforms(image)
+</span></span><span style="display:flex;"><span>print(image<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Flatten(),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">1024</span>,<span style="color:#ae81ff">64</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;tudui_2.path&#34;</span>)
+</span></span><span style="display:flex;"><span>print(model)
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>reshape(image,(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">32</span>,<span style="color:#ae81ff">32</span>))
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> image<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>eval()    <span style="color:#75715e"># 将模型转换成测试类型</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():   <span style="color:#75715e"># 提高运行速率</span>
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> model(image)
+</span></span><span style="display:flex;"><span>print(output)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(output<span style="color:#f92672">.</span>argmax(<span style="color:#ae81ff">1</span>))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 输出结果</span>
+</span></span><span style="display:flex;"><span>Tudui(
+</span></span><span style="display:flex;"><span>  (model): Sequential(
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">0</span>): Conv2d(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">32</span>, kernel_size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>), stride<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), padding<span style="color:#f92672">=</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">1</span>): MaxPool2d(kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, dilation<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, ceil_mode<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">2</span>): Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span>, kernel_size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>), stride<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), padding<span style="color:#f92672">=</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">3</span>): MaxPool2d(kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, dilation<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, ceil_mode<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">4</span>): Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">64</span>, kernel_size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>), stride<span style="color:#f92672">=</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), padding<span style="color:#f92672">=</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">5</span>): MaxPool2d(kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, stride<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, dilation<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, ceil_mode<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">6</span>): Flatten(start_dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, end_dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">7</span>): Linear(in_features<span style="color:#f92672">=</span><span style="color:#ae81ff">1024</span>, out_features<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    (<span style="color:#ae81ff">8</span>): Linear(in_features<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>, out_features<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>tensor([[ <span style="color:#ae81ff">3.0440</span>,  <span style="color:#ae81ff">0.0818</span>,  <span style="color:#ae81ff">0.2724</span>,  <span style="color:#ae81ff">0.0269</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.8065</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.2401</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2.6754</span>,  <span style="color:#ae81ff">0.2166</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#ae81ff">1.6692</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.6316</span>]], device<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;cuda:0&#39;</span>)
+</span></span><span style="display:flex;"><span>tensor([<span style="color:#ae81ff">0</span>], device<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;cuda:0&#39;</span>)
+</span></span></code></pre></div><p>其中数据集中对应的类别的序号如下，所以序号0为飞机，识别正确</p>
+<p><img src="/Pytorch_img/41.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="41"
 	
 	
 ></p>
