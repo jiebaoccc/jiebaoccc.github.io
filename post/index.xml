@@ -6,7 +6,127 @@
         <description>Recent content in Posts on Carp&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 11 Oct 2024 10:22:22 +0800</lastBuildDate><atom:link href="https://jiebaoccc.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 19 Oct 2024 20:52:34 +0800</lastBuildDate><atom:link href="https://jiebaoccc.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>专英论文解释点</title>
+        <link>https://jiebaoccc.github.io/post/%E4%B8%93%E8%8B%B1%E8%AE%BA%E6%96%87%E8%A7%A3%E9%87%8A%E7%82%B9/</link>
+        <pubDate>Sat, 19 Oct 2024 20:52:34 +0800</pubDate>
+        
+        <guid>https://jiebaoccc.github.io/post/%E4%B8%93%E8%8B%B1%E8%AE%BA%E6%96%87%E8%A7%A3%E9%87%8A%E7%82%B9/</guid>
+        <description>&lt;h1 id=&#34;标题解释&#34;&gt;标题解释
+&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;arXiv:2403.16407v1 [cs.CV 25 Mar 2024&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这段文字是一个论文的 &lt;strong&gt;arXiv 标识符&lt;/strong&gt;，提供了该论文的唯一引用信息，具体解读如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;arXiv&lt;/strong&gt;: 这是一个开放的学术论文存档平台，主要用于存储计算机科学、物理、数学等学科的预印本论文。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2403.16407v1&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;2403&lt;/strong&gt;：代表论文上传到 arXiv 的日期，即2024年3月（前两位代表年份，后两位代表月份）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;16407&lt;/strong&gt;：这是该月在arXiv中提交的论文的编号，表示是3月的第16407篇提交的论文。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;v1&lt;/strong&gt;：指的是该论文的第1个版本，可能会有后续更新（v2, v3等）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;[cs.CV]&lt;/strong&gt;: 表示该论文属于 &lt;strong&gt;计算机科学 (cs)&lt;/strong&gt; 领域中的 &lt;strong&gt;计算机视觉 (CV, Computer Vision)&lt;/strong&gt; 子领域。arXiv 将论文分类到不同领域，帮助研究者找到相关的研究。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;25 Mar 2024&lt;/strong&gt;: 表示论文的提交时间是 &lt;strong&gt;2024年3月25日&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总结起来，这段文字指向的是一篇关于计算机视觉的论文，它于2024年3月25日上传到arXiv平台，并且这是论文的第一个版本 (v1)。&lt;/p&gt;
+&lt;h1 id=&#34;p2解释&#34;&gt;P2解释
+&lt;/h1&gt;&lt;p&gt;&lt;img src=&#34;https://jiebaoccc.github.io/Professional_English_img/1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这张图片展示了长视频生成技术的发展过程及其主要模型和生成范式，按时间轴从2013年到2024年进行展示。图片中分为几个主要部分：&lt;/p&gt;
+&lt;h3 id=&#34;1-generation-base-生成基础&#34;&gt;1. &lt;strong&gt;Generation Base (生成基础)&lt;/strong&gt;：
+&lt;/h3&gt;&lt;p&gt;这一部分涵盖了基础生成模型，按时间顺序列出了视频生成技术的主要模型演变。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Generation Models (生成模型)&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Spacial Auto-regressive (空间自回归模型)&lt;/strong&gt;：始于2013年，是早期视频生成的基础模型之一。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GAN (生成对抗网络)&lt;/strong&gt;：在2018年引入，推动了视频生成领域的发展。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mask Modeling (掩码建模)&lt;/strong&gt;：也是基础模型之一，虽然具体时间未列出，但在视频生成中的应用很重要。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Diffusion (扩散模型)&lt;/strong&gt;：2020年引入，扩散模型开始在生成任务中发挥重要作用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Input Process (输入过程)&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;包括 &lt;strong&gt;Vision (视觉)&lt;/strong&gt; 和 &lt;strong&gt;Language (语言)&lt;/strong&gt; 两个模块：
+&lt;ul&gt;
+&lt;li&gt;视觉模块有 FVD (2022)、MCVD (2022)、LGCVD (2023) 等模型。&lt;/li&gt;
+&lt;li&gt;语言模块包括 Videodirectorgpt (2023) 和 Vlogger (2024) 等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-generation-paradigms-生成范式&#34;&gt;2. &lt;strong&gt;Generation Paradigms (生成范式)&lt;/strong&gt;：
+&lt;/h3&gt;&lt;p&gt;这一部分展示了从2022年开始，基于基础模型的不同生成范式的演变，分为两个主要子范式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Divide And Conquer (分而治之范式)&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;包含多个模型，如 TATS (2022)、Cogvideo (2022)、NUWA-XL (2023) 等。这些模型的特点是通过将复杂问题分解成小任务来实现视频生成。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Temporal AutoRegressive (时间自回归范式)&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;包括如 StyleGan-V (2022)、Transframer (2022)、Pixeldance (2023) 等模型，这些模型通过时间序列的方式生成视频。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-model-legends-模型图例&#34;&gt;3. &lt;strong&gt;Model Legends (模型图例)&lt;/strong&gt;：
+&lt;/h3&gt;&lt;p&gt;左下角提供了图例说明不同类型模型的符号：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Spacial Auto-regressive (空间自回归模型)&lt;/strong&gt;：用橙色圆圈表示。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GAN (生成对抗网络)&lt;/strong&gt;：用蓝色三角形表示。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mask Modeling (掩码建模)&lt;/strong&gt;：用红色菱形表示。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Diffusion (扩散模型)&lt;/strong&gt;：用紫色方块表示。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LLM (大语言模型)&lt;/strong&gt;：用绿色星星表示。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;总结&#34;&gt;总结：
+&lt;/h3&gt;&lt;p&gt;这张图展示了长视频生成技术的演变历史，突出了不同类型模型（如自回归模型、GAN、扩散模型等）和生成范式（分而治之和时间自回归）在不同时间段的关键发展节点。&lt;/p&gt;
+&lt;h1 id=&#34;diffusion解释&#34;&gt;Diffusion解释
+&lt;/h1&gt;&lt;p&gt;为了帮助理解&lt;strong&gt;Diffusion模型&lt;/strong&gt;的工作原理，我们可以用一个简单的例子来说明它是如何运行的。假设我们把图像生成的过程比作一个“解谜游戏”，通过反向推理恢复原始图像。&lt;/p&gt;
+&lt;h3 id=&#34;1-噪声添加过程正向过程&#34;&gt;1. &lt;strong&gt;噪声添加过程（正向过程）&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;首先，假设你有一张非常清晰的图片，比如一张猫的照片。&lt;strong&gt;Diffusion模型&lt;/strong&gt;会在这个清晰的图像上一步步地添加噪声，直到最后变成完全随机的噪声图片。你可以把这个过程想象为，每一步都往图片上撒一点“雪花”一样的噪声，最后这张图片看起来就像一团雪花覆盖的白噪声。&lt;/p&gt;
+&lt;p&gt;举个例子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一步：在猫的图片上加一点点噪声，仍能看到猫的轮廓。&lt;/li&gt;
+&lt;li&gt;第二步：加更多噪声，猫的轮廓开始模糊。&lt;/li&gt;
+&lt;li&gt;第三步：继续加噪声，猫的形状几乎完全看不清。&lt;/li&gt;
+&lt;li&gt;最后一步：图片完全变成了看不出任何东西的随机噪声。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个过程称为&lt;strong&gt;正向扩散过程&lt;/strong&gt;（forward diffusion process）。&lt;/p&gt;
+&lt;h3 id=&#34;2-反向去噪过程生成过程&#34;&gt;2. &lt;strong&gt;反向去噪过程（生成过程）&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;在生成图像的时候，Diffusion模型的任务是&lt;strong&gt;逆向推理&lt;/strong&gt;，也就是从随机噪声开始，一步步去除噪声，最终恢复出一张高质量的图像。这个过程就像解谜一样，模型逐步从完全混乱的噪声中恢复出清晰的图像。&lt;/p&gt;
+&lt;p&gt;举个类似的例子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一轮：从一团完全随机的噪声开始，去除一点噪声，隐约开始看到一些模糊的形状。&lt;/li&gt;
+&lt;li&gt;第二轮：去除更多的噪声，形状变得更清晰，可能看出是一个猫的轮廓。&lt;/li&gt;
+&lt;li&gt;第三轮：再去除一些噪声，猫的细节开始出现，颜色和纹理也逐渐显现。&lt;/li&gt;
+&lt;li&gt;最终：噪声完全去除，得到一张清晰的猫的照片。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个过程叫做&lt;strong&gt;反向扩散过程&lt;/strong&gt;（reverse diffusion process），模型在每一步中都会根据现有的图像估计出如何去掉噪声。&lt;/p&gt;
+&lt;h3 id=&#34;3-训练过程&#34;&gt;3. &lt;strong&gt;训练过程&lt;/strong&gt;
+&lt;/h3&gt;&lt;p&gt;在训练过程中，Diffusion模型通过学习如何在每一步去除噪声，也就是学会从一个稍微有噪声的图像预测出原本更清晰的图像。经过很多次训练，它能够非常准确地逐步去噪，直到从噪声中恢复出完整的图片。&lt;/p&gt;
+&lt;h3 id=&#34;例子总结&#34;&gt;例子总结：
+&lt;/h3&gt;&lt;p&gt;可以把 Diffusion 模型想象成一个过程，首先把一张猫的照片一步步“弄乱”加噪声，然后模型学会了如何从完全噪声的图片一步步“解谜”，恢复出猫的照片。这种方式让模型擅长从复杂的噪声中生成高质量、逼真的图像。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>【id167】E. 可重叠子串 (Ver. I)</title>
         <link>https://jiebaoccc.github.io/post/id167e.-%E5%8F%AF%E9%87%8D%E5%8F%A0%E5%AD%90%E4%B8%B2-ver.-i/</link>
         <pubDate>Fri, 11 Oct 2024 10:22:22 +0800</pubDate>
