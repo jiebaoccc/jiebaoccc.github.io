@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 给定一棵二叉树的先序遍历序列和中序遍历序列，要求计算该二叉树的高度。 输入 输入首先给出正整数N（≤50），为树中结点总数。下面两行先后给出先序和中序遍历序列，均是长度为N的不包含重复英文字母（区别大小写）的字符串。 输出 输出为一个整数，即该二叉树的高度。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例： 9 ABDFGHIEC FDHGIBEAC 输出样例： 5 解题思路： 首先读取先序和中续遍历， 因为先序遍历中第一个数永远为根节点，而中序遍历的根节点的左边为左子树的遍历，右边有右子树的遍历 所以运用动态规划，最大深度为左子树的深度与右子树深度的最大值 而左子树的先序遍历字符串为原先序字符串删除0下标的字符，然后从下标0开始，到左子树节点数量,右子树同理，如此递归 同时初始化h=1，当后序遍历的字符串的size=0，则返回0 backorder_left.assign(backorder_data.begin(), backorder_data.begin() + index); backorder_right.assign(backorder_data.begin() + index + 1, backorder_data.end()); preorder_left.assign(preorder_data.begin(), preorder_data.end() - backorder_right.size()); preorder_right.assign(preorder_data.end() - backorder_right.size(), preorder_data.end()); 具体代码： #include&lt;bits/stdc++.h&gt; #include&lt;unordered_map&gt; using namespace std; unordered_map&lt;char, int&gt; has; int GetHeight(vector&lt;char&gt; preorder_data, vector&lt;char&gt; backorder_data) { if (backorder_data.size() == 0) return 0; for (int i = 0; i &lt; backorder_data.size(); i++) { has[backorder_data[i]] = i; } char data = preorder_data[0]; preorder_data.">
+<title>【id200】E. 先序&#43;中序还原二叉树</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/id200e.-%E5%85%88%E5%BA%8F&#43;%E4%B8%AD%E5%BA%8F%E8%BF%98%E5%8E%9F%E4%BA%8C%E5%8F%89%E6%A0%91/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id200】E. 先序+中序还原二叉树">
+<meta property='og:description' content="题目描述 给定一棵二叉树的先序遍历序列和中序遍历序列，要求计算该二叉树的高度。 输入 输入首先给出正整数N（≤50），为树中结点总数。下面两行先后给出先序和中序遍历序列，均是长度为N的不包含重复英文字母（区别大小写）的字符串。 输出 输出为一个整数，即该二叉树的高度。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例： 9 ABDFGHIEC FDHGIBEAC 输出样例： 5 解题思路： 首先读取先序和中续遍历， 因为先序遍历中第一个数永远为根节点，而中序遍历的根节点的左边为左子树的遍历，右边有右子树的遍历 所以运用动态规划，最大深度为左子树的深度与右子树深度的最大值 而左子树的先序遍历字符串为原先序字符串删除0下标的字符，然后从下标0开始，到左子树节点数量,右子树同理，如此递归 同时初始化h=1，当后序遍历的字符串的size=0，则返回0 backorder_left.assign(backorder_data.begin(), backorder_data.begin() + index); backorder_right.assign(backorder_data.begin() + index + 1, backorder_data.end()); preorder_left.assign(preorder_data.begin(), preorder_data.end() - backorder_right.size()); preorder_right.assign(preorder_data.end() - backorder_right.size(), preorder_data.end()); 具体代码： #include&lt;bits/stdc++.h&gt; #include&lt;unordered_map&gt; using namespace std; unordered_map&lt;char, int&gt; has; int GetHeight(vector&lt;char&gt; preorder_data, vector&lt;char&gt; backorder_data) { if (backorder_data.size() == 0) return 0; for (int i = 0; i &lt; backorder_data.size(); i++) { has[backorder_data[i]] = i; } char data = preorder_data[0]; preorder_data.">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/id200e.-%E5%85%88%E5%BA%8F&#43;%E4%B8%AD%E5%BA%8F%E8%BF%98%E5%8E%9F%E4%BA%8C%E5%8F%89%E6%A0%91/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-10-26T10:53:00&#43;08:00'/><meta property='article:modified_time' content='2024-10-26T10:53:00&#43;08:00'/>
+<meta name="twitter:title" content="【id200】E. 先序+中序还原二叉树">
+<meta name="twitter:description" content="题目描述 给定一棵二叉树的先序遍历序列和中序遍历序列，要求计算该二叉树的高度。 输入 输入首先给出正整数N（≤50），为树中结点总数。下面两行先后给出先序和中序遍历序列，均是长度为N的不包含重复英文字母（区别大小写）的字符串。 输出 输出为一个整数，即该二叉树的高度。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例： 9 ABDFGHIEC FDHGIBEAC 输出样例： 5 解题思路： 首先读取先序和中续遍历， 因为先序遍历中第一个数永远为根节点，而中序遍历的根节点的左边为左子树的遍历，右边有右子树的遍历 所以运用动态规划，最大深度为左子树的深度与右子树深度的最大值 而左子树的先序遍历字符串为原先序字符串删除0下标的字符，然后从下标0开始，到左子树节点数量,右子树同理，如此递归 同时初始化h=1，当后序遍历的字符串的size=0，则返回0 backorder_left.assign(backorder_data.begin(), backorder_data.begin() + index); backorder_right.assign(backorder_data.begin() + index + 1, backorder_data.end()); preorder_left.assign(preorder_data.begin(), preorder_data.end() - backorder_right.size()); preorder_right.assign(preorder_data.end() - backorder_right.size(), preorder_data.end()); 具体代码： #include&lt;bits/stdc++.h&gt; #include&lt;unordered_map&gt; using namespace std; unordered_map&lt;char, int&gt; has; int GetHeight(vector&lt;char&gt; preorder_data, vector&lt;char&gt; backorder_data) { if (backorder_data.size() == 0) return 0; for (int i = 0; i &lt; backorder_data.size(); i++) { has[backorder_data[i]] = i; } char data = preorder_data[0]; preorder_data.">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/id200e.-%E5%85%88%E5%BA%8F&#43;%E4%B8%AD%E5%BA%8F%E8%BF%98%E5%8E%9F%E4%BA%8C%E5%8F%89%E6%A0%91/">【id200】E. 先序&#43;中序还原二叉树</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 26, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><strong>题目描述</strong></p>
+<p>给定一棵二叉树的先序遍历序列和中序遍历序列，要求计算该二叉树的高度。</p>
+<p><strong>输入</strong></p>
+<p>输入首先给出正整数N（≤50），为树中结点总数。下面两行先后给出先序和中序遍历序列，均是长度为N的不包含重复英文字母（区别大小写）的字符串。</p>
+<p><strong>输出</strong></p>
+<p>输出为一个整数，即该二叉树的高度。</p>
+<p><strong>IO模式</strong></p>
+<p>本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。</p>
+<p><strong>输入样例：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>ABDFGHIEC
+</span></span><span style="display:flex;"><span>FDHGIBEAC
+</span></span></code></pre></div><p><strong>输出样例：</strong></p>
+<pre tabindex="0"><code>5
+</code></pre><p><strong>解题思路：</strong></p>
+<p>首先读取先序和中续遍历，</p>
+<p>因为先序遍历中第一个数永远为根节点，而中序遍历的根节点的左边为左子树的遍历，右边有右子树的遍历</p>
+<p>所以运用动态规划，最大深度为左子树的深度与右子树深度的最大值</p>
+<p>而左子树的先序遍历字符串为原先序字符串删除0下标的字符，然后从下标0开始，到左子树节点数量,右子树同理，如此递归</p>
+<p>同时初始化h=1，当后序遍历的字符串的size=0，则返回0</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>backorder_left.assign(backorder_data.begin(), backorder_data.begin() <span style="color:#f92672">+</span> index);
+</span></span><span style="display:flex;"><span>backorder_right.assign(backorder_data.begin() <span style="color:#f92672">+</span> index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, backorder_data.end());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>preorder_left.assign(preorder_data.begin(), preorder_data.end() <span style="color:#f92672">-</span> backorder_right.size());
+</span></span><span style="display:flex;"><span>preorder_right.assign(preorder_data.end() <span style="color:#f92672">-</span> backorder_right.size(), preorder_data.end());
+</span></span></code></pre></div><p><strong>具体代码：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;bits/stdc++.h&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;unordered_map&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>unordered_map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> has;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">GetHeight</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> preorder_data, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> backorder_data)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (backorder_data.size() <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> backorder_data.size(); i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		has[backorder_data[i]] <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> data <span style="color:#f92672">=</span> preorder_data[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>	preorder_data.erase(preorder_data.begin());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> h <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> has[data];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> preorder_left,backorder_left;
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> preorder_right, backorder_right;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	backorder_left.assign(backorder_data.begin(), backorder_data.begin() <span style="color:#f92672">+</span> index);
+</span></span><span style="display:flex;"><span>	backorder_right.assign(backorder_data.begin() <span style="color:#f92672">+</span> index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, backorder_data.end());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	preorder_left.assign(preorder_data.begin(), preorder_data.end() <span style="color:#f92672">-</span> backorder_right.size());
+</span></span><span style="display:flex;"><span>	preorder_right.assign(preorder_data.end() <span style="color:#f92672">-</span> backorder_right.size(), preorder_data.end());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> h1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, h2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	h1 <span style="color:#f92672">+=</span> GetHeight(preorder_left, backorder_left);
+</span></span><span style="display:flex;"><span>	h2 <span style="color:#f92672">+=</span> GetHeight(preorder_right, backorder_right);
+</span></span><span style="display:flex;"><span>	h <span style="color:#f92672">+=</span> max(h1,h2);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> h;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> n;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> n;
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> preorder_data;
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> backorder_data;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">char</span> ch;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> ch;
+</span></span><span style="display:flex;"><span>		preorder_data.push_back(ch);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">char</span> ch;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> ch;
+</span></span><span style="display:flex;"><span>		backorder_data.push_back(ch);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> h <span style="color:#f92672">=</span> GetHeight(preorder_data, backorder_data);
+</span></span><span style="display:flex;"><span>	cout <span style="color:#f92672">&lt;&lt;</span> h <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

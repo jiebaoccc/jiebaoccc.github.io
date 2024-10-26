@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 给出一棵树的双亲表示法结果，用一个二维数组表示，位置下标从0开始，如果双亲位置为-1则表示该结点为根结点 编写程序，输出该树的先根遍历结果。 输入 第一个输入t，表示有t棵树 接着每棵树输入3行： 第1行输入n，表示树有n个结点 第2行输入n个英文字母，表示每个树结点的数值 第3行输入n个整数，表示每个结点的双亲在数组的下标 以此类推输入下一棵树 输出 共输出t行，每行输出一棵树的先根遍历结果 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例： 2 7 A B C D E F G -1 0 0 0 1 1 3 10 A B C D R E F G H K 4 4 4 0 -1 0 2 6 6 6 输出样例： ABEFCDG RADEBCFGHK 解题思路： 首先通过pair将data与val进行配对，每个节点都与其双亲节点的下标进行配对；通过两次循环，首先输入pair的第一个参数，data，接着输入第二个参数双亲下标，然后进入先根输出函数 函数中，遍历整个point，如果找到一个pair的第二位数等于函数中的双亲类，再次递归进入函数，将双亲下标替换成当前下标 具体代码： #include&lt;bits/stdc++.h&gt; using namespace std; void preorder(pair&lt;char, int&gt;* point,int parent_index,int len) { for (int i = 0; i &lt; len; i++) { if (point[i].">
+<title>【id188】A. 树的先序遍历（双亲转先序）</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/id188a.-%E6%A0%91%E7%9A%84%E5%85%88%E5%BA%8F%E9%81%8D%E5%8E%86%E5%8F%8C%E4%BA%B2%E8%BD%AC%E5%85%88%E5%BA%8F/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id188】A. 树的先序遍历（双亲转先序）">
+<meta property='og:description' content="题目描述 给出一棵树的双亲表示法结果，用一个二维数组表示，位置下标从0开始，如果双亲位置为-1则表示该结点为根结点 编写程序，输出该树的先根遍历结果。 输入 第一个输入t，表示有t棵树 接着每棵树输入3行： 第1行输入n，表示树有n个结点 第2行输入n个英文字母，表示每个树结点的数值 第3行输入n个整数，表示每个结点的双亲在数组的下标 以此类推输入下一棵树 输出 共输出t行，每行输出一棵树的先根遍历结果 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例： 2 7 A B C D E F G -1 0 0 0 1 1 3 10 A B C D R E F G H K 4 4 4 0 -1 0 2 6 6 6 输出样例： ABEFCDG RADEBCFGHK 解题思路： 首先通过pair将data与val进行配对，每个节点都与其双亲节点的下标进行配对；通过两次循环，首先输入pair的第一个参数，data，接着输入第二个参数双亲下标，然后进入先根输出函数 函数中，遍历整个point，如果找到一个pair的第二位数等于函数中的双亲类，再次递归进入函数，将双亲下标替换成当前下标 具体代码： #include&lt;bits/stdc++.h&gt; using namespace std; void preorder(pair&lt;char, int&gt;* point,int parent_index,int len) { for (int i = 0; i &lt; len; i++) { if (point[i].">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/id188a.-%E6%A0%91%E7%9A%84%E5%85%88%E5%BA%8F%E9%81%8D%E5%8E%86%E5%8F%8C%E4%BA%B2%E8%BD%AC%E5%85%88%E5%BA%8F/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-10-26T10:52:21&#43;08:00'/><meta property='article:modified_time' content='2024-10-26T10:52:21&#43;08:00'/>
+<meta name="twitter:title" content="【id188】A. 树的先序遍历（双亲转先序）">
+<meta name="twitter:description" content="题目描述 给出一棵树的双亲表示法结果，用一个二维数组表示，位置下标从0开始，如果双亲位置为-1则表示该结点为根结点 编写程序，输出该树的先根遍历结果。 输入 第一个输入t，表示有t棵树 接着每棵树输入3行： 第1行输入n，表示树有n个结点 第2行输入n个英文字母，表示每个树结点的数值 第3行输入n个整数，表示每个结点的双亲在数组的下标 以此类推输入下一棵树 输出 共输出t行，每行输出一棵树的先根遍历结果 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例： 2 7 A B C D E F G -1 0 0 0 1 1 3 10 A B C D R E F G H K 4 4 4 0 -1 0 2 6 6 6 输出样例： ABEFCDG RADEBCFGHK 解题思路： 首先通过pair将data与val进行配对，每个节点都与其双亲节点的下标进行配对；通过两次循环，首先输入pair的第一个参数，data，接着输入第二个参数双亲下标，然后进入先根输出函数 函数中，遍历整个point，如果找到一个pair的第二位数等于函数中的双亲类，再次递归进入函数，将双亲下标替换成当前下标 具体代码： #include&lt;bits/stdc++.h&gt; using namespace std; void preorder(pair&lt;char, int&gt;* point,int parent_index,int len) { for (int i = 0; i &lt; len; i++) { if (point[i].">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/id188a.-%E6%A0%91%E7%9A%84%E5%85%88%E5%BA%8F%E9%81%8D%E5%8E%86%E5%8F%8C%E4%BA%B2%E8%BD%AC%E5%85%88%E5%BA%8F/">【id188】A. 树的先序遍历（双亲转先序）</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 26, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><strong>题目描述</strong></p>
+<p>给出一棵树的双亲表示法结果，用一个二维数组表示，位置下标从0开始，如果双亲位置为-1则表示该结点为根结点</p>
+<p>编写程序，输出该树的先根遍历结果。</p>
+<p><strong>输入</strong></p>
+<p>第一个输入t，表示有t棵树</p>
+<p>接着每棵树输入3行：</p>
+<p>第1行输入n，表示树有n个结点</p>
+<p>第2行输入n个英文字母，表示每个树结点的数值</p>
+<p>第3行输入n个整数，表示每个结点的双亲在数组的下标</p>
+<p>以此类推输入下一棵树</p>
+<p><strong>输出</strong></p>
+<p>共输出t行，每行输出一棵树的先根遍历结果</p>
+<p><strong>IO模式</strong></p>
+<p>本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。</p>
+<p><strong>输入样例：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>A B C D E F G
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>A B C D R E F G H K
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">6</span>
+</span></span></code></pre></div><p><strong>输出样例：</strong></p>
+<pre tabindex="0"><code>ABEFCDG
+RADEBCFGHK
+</code></pre><p><strong>解题思路：</strong></p>
+<p>首先通过pair将data与val进行配对，每个节点都与其双亲节点的下标进行配对；通过两次循环，首先输入pair的第一个参数，data，接着输入第二个参数双亲下标，然后进入先根输出函数</p>
+<p>函数中，遍历整个point，如果找到一个pair的第二位数等于函数中的双亲类，再次递归进入函数，将双亲下标替换成当前下标</p>
+<p><strong>具体代码：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;bits/stdc++.h&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">preorder</span>(pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;*</span> point,<span style="color:#66d9ef">int</span> parent_index,<span style="color:#66d9ef">int</span> len)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> len; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (point[i].second <span style="color:#f92672">==</span> parent_index)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			cout <span style="color:#f92672">&lt;&lt;</span> point[i].first;
+</span></span><span style="display:flex;"><span>			preorder(point, i, len);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> t;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> t;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (t<span style="color:#f92672">--</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> n;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> n;
+</span></span><span style="display:flex;"><span>		pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;*</span> point <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> pair<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span>,<span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> [n];
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			cin <span style="color:#f92672">&gt;&gt;</span> point[i].first;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			cin <span style="color:#f92672">&gt;&gt;</span> point[i].second;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		preorder(point,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,n);
+</span></span><span style="display:flex;"><span>		cout <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

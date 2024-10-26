@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 根据树的孩子链表表示法构建一棵树，并输出树的后根遍历 下标位置从0开始 输入 第一行输入两个参数，第一个参数n表示树有n个结点，第二个参数r表示根结点的数组下标 接着n行，每行先输入一个结点的数值（用单个字母表示），再输入结点的孩子的下标，最后以-1结尾 如果该结点没有孩子，则一行只输入结点的数值和-1 输出 只有一行输出，树的后根遍历结果 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例： 10 4 A 3 5 -1 B -1 C 6 -1 D -1 R 0 1 2 -1 E -1 F 7 8 9 -1 G -1 H -1 K -1 输出样例： DEABGHKFCR 解题思路： 首先定义容器用于存储每个节点的孩子节点 接着进入后根遍历函数 函数中，从根节点开始遍历，因为每个节点的孩子节点容器都是以-1结尾，所以只需要遍历到len-1即可 如果不为-1，则进入该节点的后根循环，如此递归 最后输出 具体代码： #include&lt;bits/stdc++.h&gt; using namespace std; void root_backorder(vector&lt;char&gt; data, vector&lt;vector&lt;int&gt;&gt; child,int root) { for (int i = 0; i &lt; child[root].">
+<title>【id187】B. 树的后根遍历（孩子链表法</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/id187b.-%E6%A0%91%E7%9A%84%E5%90%8E%E6%A0%B9%E9%81%8D%E5%8E%86%E5%AD%A9%E5%AD%90%E9%93%BE%E8%A1%A8%E6%B3%95/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id187】B. 树的后根遍历（孩子链表法">
+<meta property='og:description' content="题目描述 根据树的孩子链表表示法构建一棵树，并输出树的后根遍历 下标位置从0开始 输入 第一行输入两个参数，第一个参数n表示树有n个结点，第二个参数r表示根结点的数组下标 接着n行，每行先输入一个结点的数值（用单个字母表示），再输入结点的孩子的下标，最后以-1结尾 如果该结点没有孩子，则一行只输入结点的数值和-1 输出 只有一行输出，树的后根遍历结果 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例： 10 4 A 3 5 -1 B -1 C 6 -1 D -1 R 0 1 2 -1 E -1 F 7 8 9 -1 G -1 H -1 K -1 输出样例： DEABGHKFCR 解题思路： 首先定义容器用于存储每个节点的孩子节点 接着进入后根遍历函数 函数中，从根节点开始遍历，因为每个节点的孩子节点容器都是以-1结尾，所以只需要遍历到len-1即可 如果不为-1，则进入该节点的后根循环，如此递归 最后输出 具体代码： #include&lt;bits/stdc++.h&gt; using namespace std; void root_backorder(vector&lt;char&gt; data, vector&lt;vector&lt;int&gt;&gt; child,int root) { for (int i = 0; i &lt; child[root].">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/id187b.-%E6%A0%91%E7%9A%84%E5%90%8E%E6%A0%B9%E9%81%8D%E5%8E%86%E5%AD%A9%E5%AD%90%E9%93%BE%E8%A1%A8%E6%B3%95/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-10-26T10:52:32&#43;08:00'/><meta property='article:modified_time' content='2024-10-26T10:52:32&#43;08:00'/>
+<meta name="twitter:title" content="【id187】B. 树的后根遍历（孩子链表法">
+<meta name="twitter:description" content="题目描述 根据树的孩子链表表示法构建一棵树，并输出树的后根遍历 下标位置从0开始 输入 第一行输入两个参数，第一个参数n表示树有n个结点，第二个参数r表示根结点的数组下标 接着n行，每行先输入一个结点的数值（用单个字母表示），再输入结点的孩子的下标，最后以-1结尾 如果该结点没有孩子，则一行只输入结点的数值和-1 输出 只有一行输出，树的后根遍历结果 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例： 10 4 A 3 5 -1 B -1 C 6 -1 D -1 R 0 1 2 -1 E -1 F 7 8 9 -1 G -1 H -1 K -1 输出样例： DEABGHKFCR 解题思路： 首先定义容器用于存储每个节点的孩子节点 接着进入后根遍历函数 函数中，从根节点开始遍历，因为每个节点的孩子节点容器都是以-1结尾，所以只需要遍历到len-1即可 如果不为-1，则进入该节点的后根循环，如此递归 最后输出 具体代码： #include&lt;bits/stdc++.h&gt; using namespace std; void root_backorder(vector&lt;char&gt; data, vector&lt;vector&lt;int&gt;&gt; child,int root) { for (int i = 0; i &lt; child[root].">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/id187b.-%E6%A0%91%E7%9A%84%E5%90%8E%E6%A0%B9%E9%81%8D%E5%8E%86%E5%AD%A9%E5%AD%90%E9%93%BE%E8%A1%A8%E6%B3%95/">【id187】B. 树的后根遍历（孩子链表法</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 26, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><strong>题目描述</strong></p>
+<p>根据树的孩子链表表示法构建一棵树，并输出树的后根遍历</p>
+<p>下标位置从0开始</p>
+<p><strong>输入</strong></p>
+<p>第一行输入两个参数，第一个参数n表示树有n个结点，第二个参数r表示根结点的数组下标</p>
+<p>接着n行，每行先输入一个结点的数值（用单个字母表示），再输入结点的孩子的下标，最后以-1结尾</p>
+<p>如果该结点没有孩子，则一行只输入结点的数值和-1</p>
+<p><strong>输出</strong></p>
+<p>只有一行输出，树的后根遍历结果</p>
+<p><strong>IO模式</strong></p>
+<p>本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。</p>
+<p><strong>输入样例：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">10</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>A <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>B <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>C <span style="color:#ae81ff">6</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>D <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>R <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>E <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>F <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>G <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>H <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>K <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p><strong>输出样例：</strong></p>
+<pre tabindex="0"><code>DEABGHKFCR
+</code></pre><p><strong>解题思路：</strong></p>
+<p>首先定义容器用于存储每个节点的孩子节点</p>
+<p>接着进入后根遍历函数</p>
+<p>函数中，从根节点开始遍历，因为每个节点的孩子节点容器都是以-1结尾，所以只需要遍历到len-1即可</p>
+<p>如果不为-1，则进入该节点的后根循环，如此递归</p>
+<p>最后输出</p>
+<p><strong>具体代码：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;bits/stdc++.h&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">root_backorder</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> data, vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> child,<span style="color:#66d9ef">int</span> root)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> child[root].size()<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		root_backorder(data,child,child[root][i]);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	cout <span style="color:#f92672">&lt;&lt;</span> data[root];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> n,root;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> n<span style="color:#f92672">&gt;&gt;</span>root;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> child(n);
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> data;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">char</span> ch;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> ch;
+</span></span><span style="display:flex;"><span>		data.push_back(ch);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> num;
+</span></span><span style="display:flex;"><span>			cin <span style="color:#f92672">&gt;&gt;</span> num;
+</span></span><span style="display:flex;"><span>			child[i].push_back(num);
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (num <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	root_backorder(data,child,root);
+</span></span><span style="display:flex;"><span>	cout <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
