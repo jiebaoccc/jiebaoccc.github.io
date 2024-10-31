@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 给定n个权值，根据这些权值构造huffman树，并进行huffman编码 大家参考课本算法6.12为主，注意数组访问是从位置1开始 要求：赫夫曼的构建中，默认左孩子权值不大于右孩子权值 输入 第一行先输入n，表示有n个权值，即有n个叶子 第二行输入n个权值，权值全是小于1万的正整数 输出 逐行输出每个权值对应的编码，格式如下：权值-编码 即每行先输出1个权值，再输出一个短划线，再输出对应编码 接着下一行输出下一个权值和编码，以此类推 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例 5 15 4 4 3 2 输出样例 15-1 4-010 4-011 3-001 2-000 解题思路 如图，将每个节点的权重、双亲、左孩子、右孩子进行记录 首先将叶子节点存入，然后从n+1点开始遍历，遍历叶子节点中权重最小且双亲为0的节点，然后将其作为左右孩子（左孩子权重小于等于右孩子权重） 编码时，从第一个叶子节点开始遍历，访问其双亲节点，如果该叶子节点是双亲节点的左孩子，则编码中加上0，反之加上1，直到双亲为0的根节点，然后将编码翻转，依次遍历所有的叶子节点 具体代码 #include&lt;bits/stdc++.h&gt; using namespace std; class Node { public: int weight;\t//权重 int parent;\t//双亲的下标 int leftchild;\t//左孩子的下标 int rightchild;\t//右孩子的下标 Node() { weight = parent = leftchild = rightchild = 0; } }; class HuffmanTree { private: Node* h;\t//节点数组 vector&lt;string&gt; code; //存储每个叶子节点的编码 int len;\t//节点个数 int n;\t//叶子节点的数量 public: void Create_tree(int n, vector&lt;int&gt; w) { //对哈夫曼树的参数进行赋值 this-&gt;n = n; len = 2 * n - 1;\t//节点数量等于 2*叶子节点数-1 h = new Node[len+1];\t//因为数组从1开始访问 vector&lt;string&gt; code(n+1);\t//也是因为数组从1开始访问 this-&gt;code = code; for (int i = 1; i &lt;= n; i++) { h[i].">
+<title>【id176】A. DS二叉树--赫夫曼树的构建与编码</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/id176a.-ds%E4%BA%8C%E5%8F%89%E6%A0%91--%E8%B5%AB%E5%A4%AB%E6%9B%BC%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA%E4%B8%8E%E7%BC%96%E7%A0%81/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id176】A. DS二叉树--赫夫曼树的构建与编码">
+<meta property='og:description' content="题目描述 给定n个权值，根据这些权值构造huffman树，并进行huffman编码 大家参考课本算法6.12为主，注意数组访问是从位置1开始 要求：赫夫曼的构建中，默认左孩子权值不大于右孩子权值 输入 第一行先输入n，表示有n个权值，即有n个叶子 第二行输入n个权值，权值全是小于1万的正整数 输出 逐行输出每个权值对应的编码，格式如下：权值-编码 即每行先输出1个权值，再输出一个短划线，再输出对应编码 接着下一行输出下一个权值和编码，以此类推 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例 5 15 4 4 3 2 输出样例 15-1 4-010 4-011 3-001 2-000 解题思路 如图，将每个节点的权重、双亲、左孩子、右孩子进行记录 首先将叶子节点存入，然后从n+1点开始遍历，遍历叶子节点中权重最小且双亲为0的节点，然后将其作为左右孩子（左孩子权重小于等于右孩子权重） 编码时，从第一个叶子节点开始遍历，访问其双亲节点，如果该叶子节点是双亲节点的左孩子，则编码中加上0，反之加上1，直到双亲为0的根节点，然后将编码翻转，依次遍历所有的叶子节点 具体代码 #include&lt;bits/stdc++.h&gt; using namespace std; class Node { public: int weight;\t//权重 int parent;\t//双亲的下标 int leftchild;\t//左孩子的下标 int rightchild;\t//右孩子的下标 Node() { weight = parent = leftchild = rightchild = 0; } }; class HuffmanTree { private: Node* h;\t//节点数组 vector&lt;string&gt; code; //存储每个叶子节点的编码 int len;\t//节点个数 int n;\t//叶子节点的数量 public: void Create_tree(int n, vector&lt;int&gt; w) { //对哈夫曼树的参数进行赋值 this-&gt;n = n; len = 2 * n - 1;\t//节点数量等于 2*叶子节点数-1 h = new Node[len+1];\t//因为数组从1开始访问 vector&lt;string&gt; code(n+1);\t//也是因为数组从1开始访问 this-&gt;code = code; for (int i = 1; i &lt;= n; i++) { h[i].">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/id176a.-ds%E4%BA%8C%E5%8F%89%E6%A0%91--%E8%B5%AB%E5%A4%AB%E6%9B%BC%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA%E4%B8%8E%E7%BC%96%E7%A0%81/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-10-31T22:00:11&#43;08:00'/><meta property='article:modified_time' content='2024-10-31T22:00:11&#43;08:00'/>
+<meta name="twitter:title" content="【id176】A. DS二叉树--赫夫曼树的构建与编码">
+<meta name="twitter:description" content="题目描述 给定n个权值，根据这些权值构造huffman树，并进行huffman编码 大家参考课本算法6.12为主，注意数组访问是从位置1开始 要求：赫夫曼的构建中，默认左孩子权值不大于右孩子权值 输入 第一行先输入n，表示有n个权值，即有n个叶子 第二行输入n个权值，权值全是小于1万的正整数 输出 逐行输出每个权值对应的编码，格式如下：权值-编码 即每行先输出1个权值，再输出一个短划线，再输出对应编码 接着下一行输出下一个权值和编码，以此类推 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例 5 15 4 4 3 2 输出样例 15-1 4-010 4-011 3-001 2-000 解题思路 如图，将每个节点的权重、双亲、左孩子、右孩子进行记录 首先将叶子节点存入，然后从n+1点开始遍历，遍历叶子节点中权重最小且双亲为0的节点，然后将其作为左右孩子（左孩子权重小于等于右孩子权重） 编码时，从第一个叶子节点开始遍历，访问其双亲节点，如果该叶子节点是双亲节点的左孩子，则编码中加上0，反之加上1，直到双亲为0的根节点，然后将编码翻转，依次遍历所有的叶子节点 具体代码 #include&lt;bits/stdc++.h&gt; using namespace std; class Node { public: int weight;\t//权重 int parent;\t//双亲的下标 int leftchild;\t//左孩子的下标 int rightchild;\t//右孩子的下标 Node() { weight = parent = leftchild = rightchild = 0; } }; class HuffmanTree { private: Node* h;\t//节点数组 vector&lt;string&gt; code; //存储每个叶子节点的编码 int len;\t//节点个数 int n;\t//叶子节点的数量 public: void Create_tree(int n, vector&lt;int&gt; w) { //对哈夫曼树的参数进行赋值 this-&gt;n = n; len = 2 * n - 1;\t//节点数量等于 2*叶子节点数-1 h = new Node[len+1];\t//因为数组从1开始访问 vector&lt;string&gt; code(n+1);\t//也是因为数组从1开始访问 this-&gt;code = code; for (int i = 1; i &lt;= n; i++) { h[i].">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/id176a.-ds%E4%BA%8C%E5%8F%89%E6%A0%91--%E8%B5%AB%E5%A4%AB%E6%9B%BC%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA%E4%B8%8E%E7%BC%96%E7%A0%81/">【id176】A. DS二叉树--赫夫曼树的构建与编码</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 31, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><strong>题目描述</strong></p>
+<p>给定n个权值，根据这些权值构造huffman树，并进行huffman编码</p>
+<p>大家参考课本算法6.12为主，注意数组访问是从位置1开始</p>
+<p>要求：赫夫曼的构建中，默认左孩子权值不大于右孩子权值</p>
+<p><strong>输入</strong></p>
+<p>第一行先输入n，表示有n个权值，即有n个叶子</p>
+<p>第二行输入n个权值，权值全是小于1万的正整数</p>
+<p><strong>输出</strong></p>
+<p>逐行输出每个权值对应的编码，格式如下：权值-编码
+即每行先输出1个权值，再输出一个短划线，再输出对应编码</p>
+<p>接着下一行输出下一个权值和编码，以此类推</p>
+<p><strong>IO模式</strong></p>
+<p>本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。</p>
+<p><strong>输入样例</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">15</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2</span>
+</span></span></code></pre></div><p><strong>输出样例</strong></p>
+<pre tabindex="0"><code>15-1
+4-010
+4-011
+3-001
+2-000
+</code></pre><p><strong>解题思路</strong></p>
+<p>如图，将每个节点的权重、双亲、左孩子、右孩子进行记录</p>
+<p>首先将叶子节点存入，然后从n+1点开始遍历，遍历叶子节点中权重最小且双亲为0的节点，然后将其作为左右孩子（左孩子权重小于等于右孩子权重）</p>
+<p>编码时，从第一个叶子节点开始遍历，访问其双亲节点，如果该叶子节点是双亲节点的左孩子，则编码中加上0，反之加上1，直到双亲为0的根节点，然后将编码翻转，依次遍历所有的叶子节点</p>
+<p><img src="/oj_img/id176.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="id176"
+	
+	
+></p>
+<p><strong>具体代码</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;bits/stdc++.h&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Node</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> weight;	<span style="color:#75715e">//权重
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> parent;	<span style="color:#75715e">//双亲的下标
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> leftchild;	<span style="color:#75715e">//左孩子的下标
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> rightchild;	<span style="color:#75715e">//右孩子的下标
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	Node() {
+</span></span><span style="display:flex;"><span>		weight <span style="color:#f92672">=</span> parent <span style="color:#f92672">=</span> leftchild <span style="color:#f92672">=</span> rightchild <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HuffmanTree</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	Node<span style="color:#f92672">*</span> h;	<span style="color:#75715e">//节点数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> code; <span style="color:#75715e">//存储每个叶子节点的编码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> len;	<span style="color:#75715e">//节点个数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> n;	<span style="color:#75715e">//叶子节点的数量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> Create_tree(<span style="color:#66d9ef">int</span> n, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> w)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//对哈夫曼树的参数进行赋值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>n <span style="color:#f92672">=</span> n;
+</span></span><span style="display:flex;"><span>		len <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;	<span style="color:#75715e">//节点数量等于 2*叶子节点数-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		h <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Node[len<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];	<span style="color:#75715e">//因为数组从1开始访问
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> code(n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);	<span style="color:#75715e">//也是因为数组从1开始访问
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>code <span style="color:#f92672">=</span> code;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			h[i].weight <span style="color:#f92672">=</span> w[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];	<span style="color:#75715e">//赋值权重
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		}
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//生成哈夫曼树
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		create();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">create</span>()
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> len; i<span style="color:#f92672">++</span>)	<span style="color:#75715e">//对每个节点进行赋值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> n1, n2;
+</span></span><span style="display:flex;"><span>			FindMin(i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,n1,n2);	<span style="color:#75715e">//寻找最小的两个叶子节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			h[n1].parent <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>			h[n2].parent <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>			h[i].leftchild <span style="color:#f92672">=</span> n1;
+</span></span><span style="display:flex;"><span>			h[i].rightchild <span style="color:#f92672">=</span> n2;
+</span></span><span style="display:flex;"><span>			h[i].weight <span style="color:#f92672">=</span> h[n1].weight <span style="color:#f92672">+</span> h[n2].weight;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">FindMin</span>(<span style="color:#66d9ef">int</span> pos,<span style="color:#66d9ef">int</span><span style="color:#f92672">&amp;</span> n1, <span style="color:#66d9ef">int</span><span style="color:#f92672">&amp;</span> n2)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> min1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>, min2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> pos; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (min1 <span style="color:#f92672">&gt;</span> h[i].weight <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>h[i].parent)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				min2 <span style="color:#f92672">=</span> min1;
+</span></span><span style="display:flex;"><span>				min1 <span style="color:#f92672">=</span> h[i].weight;
+</span></span><span style="display:flex;"><span>				n2 <span style="color:#f92672">=</span> n1;
+</span></span><span style="display:flex;"><span>				n1 <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (min2 <span style="color:#f92672">&gt;</span> h[i].weight <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>h[i].parent)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				min2 <span style="color:#f92672">=</span> h[i].weight;
+</span></span><span style="display:flex;"><span>				n2 <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//编码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Code</span>()
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			string s;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">int</span> parent <span style="color:#f92672">=</span> h[index].parent;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (parent <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)	<span style="color:#75715e">//到达根节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (h[parent].leftchild <span style="color:#f92672">==</span> index)
+</span></span><span style="display:flex;"><span>				{
+</span></span><span style="display:flex;"><span>					s.push_back(<span style="color:#e6db74">&#39;0&#39;</span>);
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (h[parent].rightchild <span style="color:#f92672">==</span> index)
+</span></span><span style="display:flex;"><span>				{
+</span></span><span style="display:flex;"><span>					s.push_back(<span style="color:#e6db74">&#39;1&#39;</span>);
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>				index <span style="color:#f92672">=</span> parent;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			code[i] <span style="color:#f92672">=</span> s;
+</span></span><span style="display:flex;"><span>			reverse(code[i].begin(),code[i].end());
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display</span>()
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			cout <span style="color:#f92672">&lt;&lt;</span> h[i].weight <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;-&#34;</span>;
+</span></span><span style="display:flex;"><span>			cout <span style="color:#f92672">&lt;&lt;</span> code[i] <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> n;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> n;
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> weight(n);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> w : weight)
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> w;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	HuffmanTree t;
+</span></span><span style="display:flex;"><span>	t.Create_tree(n,weight);
+</span></span><span style="display:flex;"><span>	t.Code();
+</span></span><span style="display:flex;"><span>	t.display();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
