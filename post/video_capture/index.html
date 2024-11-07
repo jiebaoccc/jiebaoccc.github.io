@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="import cv2 import numpy as np import os #import matplotlib.pyplot as plt def seg_video(input_path): if &#39;_video.&#39; not in input_path: print(&#39;输入文件错误!&#39;) return False # 打开视频文件 video = cv2.VideoCapture(input_path) # 读取第一帧获取视频的宽度和高度 video_width = int(video.get(3)) # 编号3表示宽度 video_height = int(video.get(4)) # 编号4表示高度 FPS = video.get(cv2.CAP_PROP_FPS) ret, frame = video.read() # ret是bool型，表示是否读取到视频帧，如果未读取到返回false，反之返回true # frame表示每一帧的图像，是个三维矩阵 if not ret: print(&#34;无法读取视频帧&#34;) return False frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) # cv2.cvtColor 是 OpenCV 中的颜色空间转换函数，用于在不同颜色空间之间转换 # cv2.COLOR_BGR2GRAY 指定将图像从 BGR 颜色空间转换为灰度（GRAYSCALE）颜色空间 frame = frame[100:video_height, :] # 裁掉上方区域 # 截取图像像素行100到底部的图像，将第100行像素行上方的区域截掉，宽度保持不变 # 使用Sobel算子进行边缘检测 pframe = cv2.">
+<title>Video_capture</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/video_capture/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Video_capture">
+<meta property='og:description' content="import cv2 import numpy as np import os #import matplotlib.pyplot as plt def seg_video(input_path): if &#39;_video.&#39; not in input_path: print(&#39;输入文件错误!&#39;) return False # 打开视频文件 video = cv2.VideoCapture(input_path) # 读取第一帧获取视频的宽度和高度 video_width = int(video.get(3)) # 编号3表示宽度 video_height = int(video.get(4)) # 编号4表示高度 FPS = video.get(cv2.CAP_PROP_FPS) ret, frame = video.read() # ret是bool型，表示是否读取到视频帧，如果未读取到返回false，反之返回true # frame表示每一帧的图像，是个三维矩阵 if not ret: print(&#34;无法读取视频帧&#34;) return False frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) # cv2.cvtColor 是 OpenCV 中的颜色空间转换函数，用于在不同颜色空间之间转换 # cv2.COLOR_BGR2GRAY 指定将图像从 BGR 颜色空间转换为灰度（GRAYSCALE）颜色空间 frame = frame[100:video_height, :] # 裁掉上方区域 # 截取图像像素行100到底部的图像，将第100行像素行上方的区域截掉，宽度保持不变 # 使用Sobel算子进行边缘检测 pframe = cv2.">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/video_capture/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-11-06T20:57:52&#43;08:00'/><meta property='article:modified_time' content='2024-11-06T20:57:52&#43;08:00'/>
+<meta name="twitter:title" content="Video_capture">
+<meta name="twitter:description" content="import cv2 import numpy as np import os #import matplotlib.pyplot as plt def seg_video(input_path): if &#39;_video.&#39; not in input_path: print(&#39;输入文件错误!&#39;) return False # 打开视频文件 video = cv2.VideoCapture(input_path) # 读取第一帧获取视频的宽度和高度 video_width = int(video.get(3)) # 编号3表示宽度 video_height = int(video.get(4)) # 编号4表示高度 FPS = video.get(cv2.CAP_PROP_FPS) ret, frame = video.read() # ret是bool型，表示是否读取到视频帧，如果未读取到返回false，反之返回true # frame表示每一帧的图像，是个三维矩阵 if not ret: print(&#34;无法读取视频帧&#34;) return False frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) # cv2.cvtColor 是 OpenCV 中的颜色空间转换函数，用于在不同颜色空间之间转换 # cv2.COLOR_BGR2GRAY 指定将图像从 BGR 颜色空间转换为灰度（GRAYSCALE）颜色空间 frame = frame[100:video_height, :] # 裁掉上方区域 # 截取图像像素行100到底部的图像，将第100行像素行上方的区域截掉，宽度保持不变 # 使用Sobel算子进行边缘检测 pframe = cv2.">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/video_capture/">Video_capture</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 06, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> cv2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#import matplotlib.pyplot as plt</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">seg_video</span>(input_path):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;_video.&#39;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> input_path:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#39;输入文件错误!&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 打开视频文件</span>
+</span></span><span style="display:flex;"><span>    video <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>VideoCapture(input_path)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 读取第一帧获取视频的宽度和高度</span>
+</span></span><span style="display:flex;"><span>    video_width <span style="color:#f92672">=</span> int(video<span style="color:#f92672">.</span>get(<span style="color:#ae81ff">3</span>)) <span style="color:#75715e"># 编号3表示宽度</span>
+</span></span><span style="display:flex;"><span>    video_height <span style="color:#f92672">=</span> int(video<span style="color:#f92672">.</span>get(<span style="color:#ae81ff">4</span>)) <span style="color:#75715e"># 编号4表示高度</span>
+</span></span><span style="display:flex;"><span>    FPS <span style="color:#f92672">=</span> video<span style="color:#f92672">.</span>get(cv2<span style="color:#f92672">.</span>CAP_PROP_FPS)
+</span></span><span style="display:flex;"><span>    ret, frame <span style="color:#f92672">=</span> video<span style="color:#f92672">.</span>read()   <span style="color:#75715e"># ret是bool型，表示是否读取到视频帧，如果未读取到返回false，反之返回true</span>
+</span></span><span style="display:flex;"><span>                                <span style="color:#75715e"># frame表示每一帧的图像，是个三维矩阵</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> ret:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;无法读取视频帧&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>    
+</span></span><span style="display:flex;"><span>    frame <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(frame, cv2<span style="color:#f92672">.</span>COLOR_BGR2GRAY)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># cv2.cvtColor 是 OpenCV 中的颜色空间转换函数，用于在不同颜色空间之间转换</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># cv2.COLOR_BGR2GRAY 指定将图像从 BGR 颜色空间转换为灰度（GRAYSCALE）颜色空间</span>
+</span></span><span style="display:flex;"><span>    frame <span style="color:#f92672">=</span> frame[<span style="color:#ae81ff">100</span>:video_height, :]  <span style="color:#75715e"># 裁掉上方区域</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 截取图像像素行100到底部的图像，将第100行像素行上方的区域截掉，宽度保持不变</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 使用Sobel算子进行边缘检测</span>
+</span></span><span style="display:flex;"><span>    pframe <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>blur(frame, (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 对灰度图frame进行模糊处理</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># cv2.blur 函数应用均值滤波，将每个像素的值替换为其周围 3x3 区域内像素的平均值，从而平滑图像</span>
+</span></span><span style="display:flex;"><span>    sobelx <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>Sobel(pframe, cv2<span style="color:#f92672">.</span>CV_64F, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, ksize<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># sobelx 是一个 float64 类型的数组</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 作用：在水平方向上对模糊后的图像 pframe 进行边缘检测。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 解释：cv2.Sobel 函数计算图像的梯度，用于检测边缘。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 参数：</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># pframe 是模糊后的灰度图像。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># cv2.CV_64F 指定输出图像的数据类型为 64 位浮点数，以便保留负值。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 1, 0 表示仅计算水平方向的梯度（x 方向），而 y 方向的梯度设为 0。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ksize=3 指定 Sobel 算子的卷积核大小为 3。</span>
+</span></span><span style="display:flex;"><span>    sobelx[sobelx <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 作用：将 sobelx数组 中的负值设为 0。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 解释：水平方向上的 Sobel 边缘检测可能产生负梯度值，将这些负值置零，保留正值以突出边缘强度。</span>
+</span></span><span style="display:flex;"><span>    edges_horizontal <span style="color:#f92672">=</span> sobelx<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>uint8)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 作用：将 sobelx 中的数据从float64位转换为无符号 8 位整型。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 解释：将 64 位浮点类型转换为 8 位无符号整型，以便后续处理。这样转换会舍弃小数部分并限定范围为 [0, 255]，可以更好用于表示成灰度图</span>
+</span></span><span style="display:flex;"><span>    nums_list <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sum(edges_horizontal, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 作用：计算 edges_horizontal 每一列像素值的总和。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 解释：对 edges_horizontal 沿垂直方向求和，结果是一个一维数组 nums_list，</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 表示图像每一列的边缘强度总和。这在后续用于分析边缘变化，用于检测视频内容的水平分割。</span>
+</span></span><span style="display:flex;"><span>    nums_range <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>max(nums_list) <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>min(nums_list)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 计算 nums_list 的取值范围</span>
+</span></span><span style="display:flex;"><span>    nums_normalized <span style="color:#f92672">=</span> (nums_list <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>min(nums_list)) <span style="color:#f92672">/</span> nums_range
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 作用：将 nums_list 归一化到 [0, 1] 的范围。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 解释：使用公式 (nums_list - np.min(nums_list)) / nums_range 对数据进行归一化，</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 将最小值映射为 0，最大值映射为 1。这有助于后续的峰值检测，使算法不受原始值范围的影响。</span>
+</span></span><span style="display:flex;"><span>    peaks, _ <span style="color:#f92672">=</span> find_peaks(nums_normalized)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># peaks：是个数组，接受的是 nums_normalized 数组中的局部峰值，表示边缘强度的显著变化位置</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># _：接受的是 peaks 的索引值，即每个峰值在 nums_normalized 中的具体位置。</span>
+</span></span><span style="display:flex;"><span>    block_size <span style="color:#f92672">=</span> video_width <span style="color:#f92672">//</span> (len(peaks) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)  <span style="color:#75715e"># 子块大小</span>
+</span></span><span style="display:flex;"><span>    rows <span style="color:#f92672">=</span> video_height <span style="color:#f92672">//</span> block_size  <span style="color:#75715e"># 行数，表示可以分成多少行小块</span>
+</span></span><span style="display:flex;"><span>    columns <span style="color:#f92672">=</span> video_width <span style="color:#f92672">//</span> block_size  <span style="color:#75715e"># 列数，表示可以分成多少列小块</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;行数:</span><span style="color:#e6db74">{</span>rows<span style="color:#e6db74">}</span><span style="color:#e6db74">,列数:</span><span style="color:#e6db74">{</span>columns<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    filename <span style="color:#f92672">=</span> input_path<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">&#34;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#75715e"># 获得文件的名字</span>
+</span></span><span style="display:flex;"><span>    suffix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;JPG&#34;</span>
+</span></span><span style="display:flex;"><span>    filename <span style="color:#f92672">=</span> filename<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;.&#34;</span><span style="color:#f92672">+</span>suffix)[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    frame_list <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>        ret, frame <span style="color:#f92672">=</span> video<span style="color:#f92672">.</span>read()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> ret:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>        
+</span></span><span style="display:flex;"><span>        frame <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(frame, cv2<span style="color:#f92672">.</span>COLOR_BGR2GRAY)
+</span></span><span style="display:flex;"><span>        frame_list<span style="color:#f92672">.</span>append(frame)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 获取视频每一帧的图像</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    video<span style="color:#f92672">.</span>release() <span style="color:#75715e"># 关闭视频</span>
+</span></span><span style="display:flex;"><span>    data_all <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(rows<span style="color:#f92672">*</span>columns):   <span style="color:#75715e"># 对每一个子块进行遍历</span>
+</span></span><span style="display:flex;"><span>        data <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> (i <span style="color:#f92672">%</span> columns) <span style="color:#f92672">*</span> block_size  <span style="color:#75715e"># x表示水平位置</span>
+</span></span><span style="display:flex;"><span>        y <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">+</span> (i <span style="color:#f92672">//</span> columns) <span style="color:#f92672">*</span> block_size   <span style="color:#75715e"># y表示竖直位置</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 确定要切割的区域</span>
+</span></span><span style="display:flex;"><span>        start_x <span style="color:#f92672">=</span> min(max(x, <span style="color:#ae81ff">0</span>), video_width)
+</span></span><span style="display:flex;"><span>        start_y <span style="color:#f92672">=</span> min(max(y, <span style="color:#ae81ff">0</span>), video_height)
+</span></span><span style="display:flex;"><span>        end_x <span style="color:#f92672">=</span> min(start_x <span style="color:#f92672">+</span> block_size, video_width)
+</span></span><span style="display:flex;"><span>        end_y <span style="color:#f92672">=</span> min(start_y <span style="color:#f92672">+</span> block_size, video_height)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># print(f&#39;({start_x},{start_y})({end_x},{end_y})&#39;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;D&#39;</span> <span style="color:#f92672">in</span> filename:  <span style="color:#75715e"># date 普通格式</span>
+</span></span><span style="display:flex;"><span>            data<span style="color:#f92672">.</span>append(filename<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;D&#34;</span>)[<span style="color:#ae81ff">0</span>])  <span style="color:#75715e"># Name</span>
+</span></span><span style="display:flex;"><span>            data<span style="color:#f92672">.</span>append(filename<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;D&#34;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;_S&#34;</span>)[<span style="color:#ae81ff">0</span>])  <span style="color:#75715e"># Date</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;_S&#34;</span> <span style="color:#f92672">in</span> filename:
+</span></span><span style="display:flex;"><span>                data<span style="color:#f92672">.</span>append(filename<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;S&#34;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;_I&#34;</span>)[<span style="color:#ae81ff">0</span>])  <span style="color:#75715e"># S</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;_I&#34;</span> <span style="color:#f92672">in</span> filename:
+</span></span><span style="display:flex;"><span>                data<span style="color:#f92672">.</span>append(filename<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;I&#34;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;_P_wells&#34;</span>)[<span style="color:#ae81ff">0</span>])  <span style="color:#75715e"># I</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:  <span style="color:#75715e"># 只有名字</span>
+</span></span><span style="display:flex;"><span>            data<span style="color:#f92672">.</span>append(filename<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;_&#34;</span>)[<span style="color:#ae81ff">0</span>])  <span style="color:#75715e"># Name</span>
+</span></span><span style="display:flex;"><span>            data<span style="color:#f92672">.</span>append(<span style="color:#e6db74">&#34;-&#34;</span>)
+</span></span><span style="display:flex;"><span>            data<span style="color:#f92672">.</span>append(<span style="color:#e6db74">&#34;-&#34;</span>)
+</span></span><span style="display:flex;"><span>            data<span style="color:#f92672">.</span>append(<span style="color:#e6db74">&#34;-&#34;</span>)
+</span></span><span style="display:flex;"><span>        data<span style="color:#f92672">.</span>append(int(i)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)  <span style="color:#75715e"># P_well</span>
+</span></span><span style="display:flex;"><span>        data<span style="color:#f92672">.</span>append(<span style="color:#e6db74">&#34;待检测&#34;</span>)  <span style="color:#75715e"># PB2</span>
+</span></span><span style="display:flex;"><span>        tag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        save_path <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;E:\Embryo_project\img&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(save_path):
+</span></span><span style="display:flex;"><span>            os<span style="color:#f92672">.</span>makedirs(save_path)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 逐帧读取视频并写入输出视频</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> frame <span style="color:#f92672">in</span> frame_list:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 切割指定区域的视频帧</span>
+</span></span><span style="display:flex;"><span>            cropped_frame <span style="color:#f92672">=</span> frame[start_y:end_y, start_x:end_x]
+</span></span><span style="display:flex;"><span>            tag <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            save_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;E:\Embryo_project\img&#34;</span>, data[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;_P_&#39;</span> <span style="color:#f92672">+</span> str(i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;_frame_&#34;</span> <span style="color:#f92672">+</span> str(tag) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#f92672">+</span> suffix)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 如果切割后的帧大小不为 0，则将帧写入输出视频</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> cropped_frame<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> cropped_frame<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>: <span style="color:#75715e"># cropped_frame.shape[0] 表示高度（行数），</span>
+</span></span><span style="display:flex;"><span>                                                                            <span style="color:#75715e"># cropped_frame.shape[1] 表示宽度（列数）</span>
+</span></span><span style="display:flex;"><span>                cropped_frame <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(cropped_frame, cv2<span style="color:#f92672">.</span>COLOR_GRAY2BGR)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                cv2<span style="color:#f92672">.</span>imwrite(save_path,cropped_frame)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        data_all<span style="color:#f92672">.</span>append(data)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 释放资源</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> data_all
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">find_peaks</span>(vec):
+</span></span><span style="display:flex;"><span>    win_size <span style="color:#f92672">=</span> len(vec) <span style="color:#f92672">//</span> <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>    min_peaks_t <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>  <span style="color:#75715e"># 最小峰值阈值</span>
+</span></span><span style="display:flex;"><span>    local_maxima <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    index <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(win_size, len(vec)<span style="color:#f92672">-</span>win_size):  <span style="color:#75715e"># 不考虑边界</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> vec[i] <span style="color:#f92672">&gt;</span> min_peaks_t:
+</span></span><span style="display:flex;"><span>            win_nums <span style="color:#f92672">=</span> vec[i <span style="color:#f92672">-</span> win_size <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>:i <span style="color:#f92672">+</span> win_size <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>            flag <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>where(win_nums <span style="color:#f92672">&lt;=</span> vec[i], <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> np<span style="color:#f92672">.</span>sum(flag):
+</span></span><span style="display:flex;"><span>                local_maxima<span style="color:#f92672">.</span>append(vec[i])
+</span></span><span style="display:flex;"><span>                index<span style="color:#f92672">.</span>append(i)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> local_maxima, index
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>    video_path <span style="color:#f92672">=</span> input()
+</span></span><span style="display:flex;"><span>    data_all <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    data_all <span style="color:#f92672">=</span> seg_video(video_path)
+</span></span><span style="display:flex;"><span>    print(data_all)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    main()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># E:\Embryo_project\Embryo_video\caimengjieD2021.12.26_S01610_I4125_P_wells_1_2_3_4_5_6_7_8_9_10_11_12_13_14_15_16_video.avi</span>
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
