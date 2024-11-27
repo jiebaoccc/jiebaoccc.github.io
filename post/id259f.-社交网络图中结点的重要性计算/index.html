@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 在社交网络中，个人或单位（结点）之间通过某些关系（边）联系起来。他们受到这些关系的影响，这种影响可以理解为网络中相互连接的结点之间蔓延的一种相互作用，可以增强也可以减弱。而结点根据其所处的位置不同，其在网络中体现的重要性也不尽相同。 “紧密度中心性”是用来衡量一个结点到达其它结点的“快慢”的指标，即一个有较高中心性的结点比有较低中心性的结点能够更快地（平均意义下）到达网络中的其它结点，因而在该网络的传播过程中有更重要的价值。在有N个结点的网络中，结点v**i的“紧密度中心性”C**c(v**i)数学上定义为v**i到其余所有结点v**j (j\\=i) 的最短距离d(v**i,v**j)的平均值的倒数： 对于非连通图，所有结点的紧密度中心性都是0。 给定一个无权的无向图以及其中的一组结点，计算这组结点中每个结点的紧密度中心性。 输入 输入第一行给出两个正整数N和M，其中N（≤2004）是图中结点个数，顺便假设结点从1到N编号；M是边的条数。随后的M行中，每行给出一条边的信息，即该边连接的两个结点编号，中间用空格分隔。最后一行给出需要计算紧密度中心性的这组结点的个数K（≤100）以及K个结点编号，用空格分隔。 输出 按照Cc(i)=x.xx的格式输出K个给定结点的紧密度中心性，每个输出占一行，结果保留到小数点后2位。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中 输入样例1 9 14 1 2 1 3 1 4 2 3 3 4 4 5 4 6 5 6 5 7 5 8 6 7 6 8 7 8 7 9 3 3 4 9 输出样例1 Cc(3)=0.47 Cc(4)=0.62 Cc(9)=0.35 解题思路 从输入的结点开始遍历图，首先将图的结点存入第一层数组，然后遍历第一层数组，将其结点再存入第二层数组，如此遍历完整张图，便可以获得与不同节点的路程长度，然后最后求和，求出平均值 具体代码 #include&lt;bits/stdc++.h&gt; #include&lt;iomanip&gt; using namespace std; int main() { int N, M; cin &gt;&gt; N &gt;&gt; M; vector&lt;vector&lt;int&gt;&gt; point(N+1); vector&lt;vector&lt;int&gt;&gt; arr(N+1, vector&lt;int&gt;(N+1)); for (int i = 0; i &lt; M; i++) { int n1, n2; cin &gt;&gt; n1 &gt;&gt; n2; arr[n1][n2] = arr[n2][n1] = 1; } for (int i = 1; i &lt;= N; i++) { for (int j = 1; j &lt;= N; j++) { if (arr[i][j] == 1) point[i].">
+<title>【id259】F. 社交网络图中结点的“重要性”计算</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/id259f.-%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E5%9B%BE%E4%B8%AD%E7%BB%93%E7%82%B9%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7%E8%AE%A1%E7%AE%97/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id259】F. 社交网络图中结点的“重要性”计算">
+<meta property='og:description' content="题目描述 在社交网络中，个人或单位（结点）之间通过某些关系（边）联系起来。他们受到这些关系的影响，这种影响可以理解为网络中相互连接的结点之间蔓延的一种相互作用，可以增强也可以减弱。而结点根据其所处的位置不同，其在网络中体现的重要性也不尽相同。 “紧密度中心性”是用来衡量一个结点到达其它结点的“快慢”的指标，即一个有较高中心性的结点比有较低中心性的结点能够更快地（平均意义下）到达网络中的其它结点，因而在该网络的传播过程中有更重要的价值。在有N个结点的网络中，结点v**i的“紧密度中心性”C**c(v**i)数学上定义为v**i到其余所有结点v**j (j\\=i) 的最短距离d(v**i,v**j)的平均值的倒数： 对于非连通图，所有结点的紧密度中心性都是0。 给定一个无权的无向图以及其中的一组结点，计算这组结点中每个结点的紧密度中心性。 输入 输入第一行给出两个正整数N和M，其中N（≤2004）是图中结点个数，顺便假设结点从1到N编号；M是边的条数。随后的M行中，每行给出一条边的信息，即该边连接的两个结点编号，中间用空格分隔。最后一行给出需要计算紧密度中心性的这组结点的个数K（≤100）以及K个结点编号，用空格分隔。 输出 按照Cc(i)=x.xx的格式输出K个给定结点的紧密度中心性，每个输出占一行，结果保留到小数点后2位。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中 输入样例1 9 14 1 2 1 3 1 4 2 3 3 4 4 5 4 6 5 6 5 7 5 8 6 7 6 8 7 8 7 9 3 3 4 9 输出样例1 Cc(3)=0.47 Cc(4)=0.62 Cc(9)=0.35 解题思路 从输入的结点开始遍历图，首先将图的结点存入第一层数组，然后遍历第一层数组，将其结点再存入第二层数组，如此遍历完整张图，便可以获得与不同节点的路程长度，然后最后求和，求出平均值 具体代码 #include&lt;bits/stdc++.h&gt; #include&lt;iomanip&gt; using namespace std; int main() { int N, M; cin &gt;&gt; N &gt;&gt; M; vector&lt;vector&lt;int&gt;&gt; point(N+1); vector&lt;vector&lt;int&gt;&gt; arr(N+1, vector&lt;int&gt;(N+1)); for (int i = 0; i &lt; M; i++) { int n1, n2; cin &gt;&gt; n1 &gt;&gt; n2; arr[n1][n2] = arr[n2][n1] = 1; } for (int i = 1; i &lt;= N; i++) { for (int j = 1; j &lt;= N; j++) { if (arr[i][j] == 1) point[i].">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/id259f.-%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E5%9B%BE%E4%B8%AD%E7%BB%93%E7%82%B9%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7%E8%AE%A1%E7%AE%97/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-11-20T22:23:48&#43;08:00'/><meta property='article:modified_time' content='2024-11-20T22:23:48&#43;08:00'/>
+<meta name="twitter:title" content="【id259】F. 社交网络图中结点的“重要性”计算">
+<meta name="twitter:description" content="题目描述 在社交网络中，个人或单位（结点）之间通过某些关系（边）联系起来。他们受到这些关系的影响，这种影响可以理解为网络中相互连接的结点之间蔓延的一种相互作用，可以增强也可以减弱。而结点根据其所处的位置不同，其在网络中体现的重要性也不尽相同。 “紧密度中心性”是用来衡量一个结点到达其它结点的“快慢”的指标，即一个有较高中心性的结点比有较低中心性的结点能够更快地（平均意义下）到达网络中的其它结点，因而在该网络的传播过程中有更重要的价值。在有N个结点的网络中，结点v**i的“紧密度中心性”C**c(v**i)数学上定义为v**i到其余所有结点v**j (j\\=i) 的最短距离d(v**i,v**j)的平均值的倒数： 对于非连通图，所有结点的紧密度中心性都是0。 给定一个无权的无向图以及其中的一组结点，计算这组结点中每个结点的紧密度中心性。 输入 输入第一行给出两个正整数N和M，其中N（≤2004）是图中结点个数，顺便假设结点从1到N编号；M是边的条数。随后的M行中，每行给出一条边的信息，即该边连接的两个结点编号，中间用空格分隔。最后一行给出需要计算紧密度中心性的这组结点的个数K（≤100）以及K个结点编号，用空格分隔。 输出 按照Cc(i)=x.xx的格式输出K个给定结点的紧密度中心性，每个输出占一行，结果保留到小数点后2位。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中 输入样例1 9 14 1 2 1 3 1 4 2 3 3 4 4 5 4 6 5 6 5 7 5 8 6 7 6 8 7 8 7 9 3 3 4 9 输出样例1 Cc(3)=0.47 Cc(4)=0.62 Cc(9)=0.35 解题思路 从输入的结点开始遍历图，首先将图的结点存入第一层数组，然后遍历第一层数组，将其结点再存入第二层数组，如此遍历完整张图，便可以获得与不同节点的路程长度，然后最后求和，求出平均值 具体代码 #include&lt;bits/stdc++.h&gt; #include&lt;iomanip&gt; using namespace std; int main() { int N, M; cin &gt;&gt; N &gt;&gt; M; vector&lt;vector&lt;int&gt;&gt; point(N+1); vector&lt;vector&lt;int&gt;&gt; arr(N+1, vector&lt;int&gt;(N+1)); for (int i = 0; i &lt; M; i++) { int n1, n2; cin &gt;&gt; n1 &gt;&gt; n2; arr[n1][n2] = arr[n2][n1] = 1; } for (int i = 1; i &lt;= N; i++) { for (int j = 1; j &lt;= N; j++) { if (arr[i][j] == 1) point[i].">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/id259f.-%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E5%9B%BE%E4%B8%AD%E7%BB%93%E7%82%B9%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7%E8%AE%A1%E7%AE%97/">【id259】F. 社交网络图中结点的“重要性”计算</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 20, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><strong>题目描述</strong></p>
+<p>在社交网络中，个人或单位（结点）之间通过某些关系（边）联系起来。他们受到这些关系的影响，这种影响可以理解为网络中相互连接的结点之间蔓延的一种相互作用，可以增强也可以减弱。而结点根据其所处的位置不同，其在网络中体现的重要性也不尽相同。</p>
+<p>“紧密度中心性”是用来衡量一个结点到达其它结点的“快慢”的指标，即一个有较高中心性的结点比有较低中心性的结点能够更快地（平均意义下）到达网络中的其它结点，因而在该网络的传播过程中有更重要的价值。在有<em>N</em>个结点的网络中，结点<em>v**i</em>的“紧密度中心性”<em>C**c</em>(<em>v**i</em>)数学上定义为<em>v**i</em>到其余所有结点<em>v**j</em> (<em>j</em>\=<em>i</em>) 的最短距离<em>d</em>(<em>v**i</em>,<em>v**j</em>)的平均值的倒数：</p>
+<p>对于非连通图，所有结点的紧密度中心性都是0。</p>
+<p>给定一个无权的无向图以及其中的一组结点，计算这组结点中每个结点的紧密度中心性。</p>
+<p><strong>输入</strong></p>
+<p>输入第一行给出两个正整数<em>N</em>和<em>M</em>，其中<em>N</em>（≤2004）是图中结点个数，顺便假设结点从1到<em>N</em>编号；<em>M</em>是边的条数。随后的<em>M</em>行中，每行给出一条边的信息，即该边连接的两个结点编号，中间用空格分隔。最后一行给出需要计算紧密度中心性的这组结点的个数<em>K</em>（≤100）以及<em>K</em>个结点编号，用空格分隔。</p>
+<p><strong>输出</strong></p>
+<p>按照<code>Cc(i)=x.xx</code>的格式输出<em>K</em>个给定结点的紧密度中心性，每个输出占一行，结果保留到小数点后2位。</p>
+<p><strong>IO模式</strong></p>
+<p>本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中</p>
+<p><strong>输入样例1</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">9</span> <span style="color:#ae81ff">14</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span> <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span> <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span> <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span> <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">7</span> <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">9</span>
+</span></span></code></pre></div><p><strong>输出样例1</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>Cc(<span style="color:#ae81ff">3</span>)<span style="color:#f92672">=</span><span style="color:#ae81ff">0.47</span>
+</span></span><span style="display:flex;"><span>Cc(<span style="color:#ae81ff">4</span>)<span style="color:#f92672">=</span><span style="color:#ae81ff">0.62</span>
+</span></span><span style="display:flex;"><span>Cc(<span style="color:#ae81ff">9</span>)<span style="color:#f92672">=</span><span style="color:#ae81ff">0.35</span>
+</span></span></code></pre></div><p><strong>解题思路</strong></p>
+<p>从输入的结点开始遍历图，首先将图的结点存入第一层数组，然后遍历第一层数组，将其结点再存入第二层数组，如此遍历完整张图，便可以获得与不同节点的路程长度，然后最后求和，求出平均值</p>
+<p><strong>具体代码</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;bits/stdc++.h&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;iomanip&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> N, M;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> N <span style="color:#f92672">&gt;&gt;</span> M;
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> point(N<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> arr(N<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(N<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> M; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> n1, n2;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> n1 <span style="color:#f92672">&gt;&gt;</span> n2;
+</span></span><span style="display:flex;"><span>		arr[n1][n2] <span style="color:#f92672">=</span> arr[n2][n1] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> N; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> N; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (arr[i][j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>				point[i].push_back(j);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> K;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> K;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (K<span style="color:#f92672">--</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> n;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> n;
+</span></span><span style="display:flex;"><span>		vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> Bool(N<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,false);
+</span></span><span style="display:flex;"><span>		Bool[n] <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> val(N<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		val[<span style="color:#ae81ff">1</span>].assign(point[n].begin(),point[n].end());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> val[<span style="color:#ae81ff">1</span>].size(); i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			Bool[val[<span style="color:#ae81ff">1</span>][i]] <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> tag <span style="color:#f92672">=</span> point[n].size();
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">while</span> (tag <span style="color:#f92672">&lt;</span> N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> val[index].size(); i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> point[val[index][i]].size(); j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>				{
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> (Bool[point[val[index][i]][j]] <span style="color:#f92672">==</span> false)
+</span></span><span style="display:flex;"><span>					{
+</span></span><span style="display:flex;"><span>						val[index <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>].push_back(point[val[index][i]][j]);
+</span></span><span style="display:flex;"><span>						tag<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>						Bool[point[val[index][i]][j]] <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>					}
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			index<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">float</span> sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (val[i].size() <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>			sum <span style="color:#f92672">+=</span> i <span style="color:#f92672">*</span> val[i].size();
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		cout <span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;Cc(&#34;</span><span style="color:#f92672">&lt;&lt;</span>n<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;)=&#34;</span> <span style="color:#f92672">&lt;&lt;</span> fixed <span style="color:#f92672">&lt;&lt;</span> setprecision(<span style="color:#ae81ff">2</span>) <span style="color:#f92672">&lt;&lt;</span> (N <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.0</span> <span style="color:#f92672">/</span> sum <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

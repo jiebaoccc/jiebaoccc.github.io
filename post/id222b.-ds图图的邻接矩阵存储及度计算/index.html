@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 假设图用邻接矩阵存储。输入图的顶点信息和边信息，完成邻接矩阵的设置，并计算各顶点的入度、出度和度，并输出图中的孤立点（度为0的顶点） &ndash;程序要求&ndash; 若使用C++只能include一个头文件iostream；若使用C语言只能include一个头文件stdio 程序中若include多过一个头文件，不看代码，作0分处理 不允许使用第三方对象或函数实现本题的要求 输入 测试次数T，每组测试数据格式如下： 图类型 顶点数 （D—有向图，U—无向图） 顶点信息 边数 每行一条边（顶点1 顶点2）或弧（弧尾 弧头）信息 输出 每组试数据输出如下信息（具体输出格式见样例）： 图的邻接矩阵 按顶点信息输出各顶点的度（无向图）或各顶点的出度 入度 度（有向图）。孤立点的度信息不输出。 图的孤立点。若没有孤立点，不输出任何信息。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中 输入样例1 2 D 5 V1 V2 V3 V4 V5 7 V1 V2 V1 V4 V2 V3 V3 V1 V3 V5 V4 V3 V4 V5 U 5 A B C D E 5 A B A C B D D C A D 输出样例1 0 1 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 1 0 1 0 0 0 0 0 V1: 2 1 3 V2: 1 1 2 V3: 2 2 4 V4: 2 1 3 V5: 0 2 2 0 1 1 1 0 1 0 0 1 0 1 0 0 1 0 1 1 1 0 0 0 0 0 0 0 A: 3 B: 2 C: 2 D: 3 E 解题思路">
+<title>【id222】B. DS图—图的邻接矩阵存储及度计算</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/id222b.-ds%E5%9B%BE%E5%9B%BE%E7%9A%84%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E5%AD%98%E5%82%A8%E5%8F%8A%E5%BA%A6%E8%AE%A1%E7%AE%97/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id222】B. DS图—图的邻接矩阵存储及度计算">
+<meta property='og:description' content="题目描述 假设图用邻接矩阵存储。输入图的顶点信息和边信息，完成邻接矩阵的设置，并计算各顶点的入度、出度和度，并输出图中的孤立点（度为0的顶点） &ndash;程序要求&ndash; 若使用C++只能include一个头文件iostream；若使用C语言只能include一个头文件stdio 程序中若include多过一个头文件，不看代码，作0分处理 不允许使用第三方对象或函数实现本题的要求 输入 测试次数T，每组测试数据格式如下： 图类型 顶点数 （D—有向图，U—无向图） 顶点信息 边数 每行一条边（顶点1 顶点2）或弧（弧尾 弧头）信息 输出 每组试数据输出如下信息（具体输出格式见样例）： 图的邻接矩阵 按顶点信息输出各顶点的度（无向图）或各顶点的出度 入度 度（有向图）。孤立点的度信息不输出。 图的孤立点。若没有孤立点，不输出任何信息。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中 输入样例1 2 D 5 V1 V2 V3 V4 V5 7 V1 V2 V1 V4 V2 V3 V3 V1 V3 V5 V4 V3 V4 V5 U 5 A B C D E 5 A B A C B D D C A D 输出样例1 0 1 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 1 0 1 0 0 0 0 0 V1: 2 1 3 V2: 1 1 2 V3: 2 2 4 V4: 2 1 3 V5: 0 2 2 0 1 1 1 0 1 0 0 1 0 1 0 0 1 0 1 1 1 0 0 0 0 0 0 0 A: 3 B: 2 C: 2 D: 3 E 解题思路">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/id222b.-ds%E5%9B%BE%E5%9B%BE%E7%9A%84%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E5%AD%98%E5%82%A8%E5%8F%8A%E5%BA%A6%E8%AE%A1%E7%AE%97/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-11-20T22:23:24&#43;08:00'/><meta property='article:modified_time' content='2024-11-20T22:23:24&#43;08:00'/>
+<meta name="twitter:title" content="【id222】B. DS图—图的邻接矩阵存储及度计算">
+<meta name="twitter:description" content="题目描述 假设图用邻接矩阵存储。输入图的顶点信息和边信息，完成邻接矩阵的设置，并计算各顶点的入度、出度和度，并输出图中的孤立点（度为0的顶点） &ndash;程序要求&ndash; 若使用C++只能include一个头文件iostream；若使用C语言只能include一个头文件stdio 程序中若include多过一个头文件，不看代码，作0分处理 不允许使用第三方对象或函数实现本题的要求 输入 测试次数T，每组测试数据格式如下： 图类型 顶点数 （D—有向图，U—无向图） 顶点信息 边数 每行一条边（顶点1 顶点2）或弧（弧尾 弧头）信息 输出 每组试数据输出如下信息（具体输出格式见样例）： 图的邻接矩阵 按顶点信息输出各顶点的度（无向图）或各顶点的出度 入度 度（有向图）。孤立点的度信息不输出。 图的孤立点。若没有孤立点，不输出任何信息。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中 输入样例1 2 D 5 V1 V2 V3 V4 V5 7 V1 V2 V1 V4 V2 V3 V3 V1 V3 V5 V4 V3 V4 V5 U 5 A B C D E 5 A B A C B D D C A D 输出样例1 0 1 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 1 0 1 0 0 0 0 0 V1: 2 1 3 V2: 1 1 2 V3: 2 2 4 V4: 2 1 3 V5: 0 2 2 0 1 1 1 0 1 0 0 1 0 1 0 0 1 0 1 1 1 0 0 0 0 0 0 0 A: 3 B: 2 C: 2 D: 3 E 解题思路">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/id222b.-ds%E5%9B%BE%E5%9B%BE%E7%9A%84%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E5%AD%98%E5%82%A8%E5%8F%8A%E5%BA%A6%E8%AE%A1%E7%AE%97/">【id222】B. DS图—图的邻接矩阵存储及度计算</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 20, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>题目描述</p>
+<p>假设图用邻接矩阵存储。输入图的顶点信息和边信息，完成邻接矩阵的设置，并计算各顶点的入度、出度和度，并输出图中的孤立点（度为0的顶点）</p>
+<p><strong>&ndash;程序要求&ndash;</strong></p>
+<p><strong>若使用C++只能include一个头文件iostream；若使用C语言只能include一个头文件stdio</strong></p>
+<p><strong>程序中若include多过一个头文件，不看代码，作0分处理</strong></p>
+<p><strong>不允许使用第三方对象或函数实现本题的要求</strong></p>
+<p><strong>输入</strong></p>
+<p>测试次数T，每组测试数据格式如下：</p>
+<p>图类型 顶点数 （D—有向图，U—无向图）</p>
+<p>顶点信息</p>
+<p>边数</p>
+<p>每行一条边（顶点1 顶点2）或弧（弧尾 弧头）信息</p>
+<p><strong>输出</strong></p>
+<p>每组试数据输出如下信息（具体输出格式见样例）：</p>
+<p>图的邻接矩阵</p>
+<p>按顶点信息输出各顶点的度（无向图）或各顶点的出度 入度 度（有向图）。孤立点的度信息不输出。</p>
+<p>图的孤立点。若没有孤立点，不输出任何信息。</p>
+<p><strong>IO模式</strong></p>
+<p>本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中</p>
+<p><strong>输入样例1</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>D <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>V1 V2 V3 V4 V5
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>V1 V2
+</span></span><span style="display:flex;"><span>V1 V4
+</span></span><span style="display:flex;"><span>V2 V3
+</span></span><span style="display:flex;"><span>V3 V1
+</span></span><span style="display:flex;"><span>V3 V5
+</span></span><span style="display:flex;"><span>V4 V3
+</span></span><span style="display:flex;"><span>V4 V5
+</span></span><span style="display:flex;"><span>U <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>A B C D E
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>A B
+</span></span><span style="display:flex;"><span>A C
+</span></span><span style="display:flex;"><span>B D
+</span></span><span style="display:flex;"><span>D C
+</span></span><span style="display:flex;"><span>A D
+</span></span></code></pre></div><p><strong>输出样例1</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>V1: <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>V2: <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>V3: <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>V4: <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>V5: <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>A: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>B: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>C: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>D: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>E
+</span></span></code></pre></div><p><strong>解题思路</strong></p>
+<p>根据输入创建邻接矩阵，然后统计数量并输出</p>
+<p><strong>具体代码</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;iostream&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	string data;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> index;
+</span></span><span style="display:flex;"><span>	Point(string d, <span style="color:#66d9ef">int</span> i) <span style="color:#f92672">:</span>data(d), index(i) {}
+</span></span><span style="display:flex;"><span>	Point() {}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">GetIndex</span>(Point<span style="color:#f92672">*</span> point, string ch,<span style="color:#66d9ef">int</span> n)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (point[i].data <span style="color:#f92672">==</span> ch)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> i;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> t;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> t;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (t<span style="color:#f92672">--</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">char</span> type;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> n;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> type <span style="color:#f92672">&gt;&gt;</span> n;
+</span></span><span style="display:flex;"><span>		Point<span style="color:#f92672">*</span> point <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Point[n];
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			string ch;
+</span></span><span style="display:flex;"><span>			cin <span style="color:#f92672">&gt;&gt;</span> ch;
+</span></span><span style="display:flex;"><span>			point[i] <span style="color:#f92672">=</span> Point(ch, i);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span><span style="color:#f92672">**</span> arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> [n];
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			arr[i] <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[n] {<span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> k;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> k;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			string ch1,ch2;
+</span></span><span style="display:flex;"><span>			cin <span style="color:#f92672">&gt;&gt;</span>ch1<span style="color:#f92672">&gt;&gt;</span>ch2;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> n1 <span style="color:#f92672">=</span> GetIndex(point,ch1,n);
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> n2 <span style="color:#f92672">=</span> GetIndex(point,ch2,n);
+</span></span><span style="display:flex;"><span>			arr[n1][n2] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;U&#39;</span>)
+</span></span><span style="display:flex;"><span>				arr[n2][n1] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				cout <span style="color:#f92672">&lt;&lt;</span> arr[i][j];
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (j <span style="color:#f92672">&lt;</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>					cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">else</span> cout <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> input <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, output <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (arr[i][j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>				{
+</span></span><span style="display:flex;"><span>					output<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (arr[j][i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>					input<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			cout <span style="color:#f92672">&lt;&lt;</span> point[i].data;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (input <span style="color:#f92672">||</span> output)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;D&#39;</span>)
+</span></span><span style="display:flex;"><span>					cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> output <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> input <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> output <span style="color:#f92672">+</span> input;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>					cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> output;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			cout <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

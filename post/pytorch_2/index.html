@@ -1,0 +1,3220 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Pytorch操作 函数 功能 分布 范围 torch.rand() | 均匀分布的随机数 | ��匀分布 | [0,1) | torch.randn() | ��态分布（标准正态，均值0，方差1） | ��斯分布 | 任意实数 | torch.randint()* | 均匀分布的随机整数 | ��匀分布 | low,high) | 2. 预备知识 2.1数据操作 2.1.1 入门 导入包 import torch 张量 张量表示一个有数值组成的数组，这个数组可能有多个维度（轴），具有一个轴的张量叫做向量，两个轴的张量叫做矩阵，具有两个以上轴的张量没有特定的数学名称 可以使用arrange创建一个行向量x，张量中的每个量称为张量的元素, 他们被默认为整数，但可以创建为浮点数 （除非额外指定，否则新的张量将存储在内存中，并采用基于CPU的计算） x = torch.arrange(12) # tensor([0,1,2,3,4,5,6,7,8,9,10,11]) 形状 可以通过张量的shape属性来访问张量（沿每个周的长度）的形状 x.shape # torch.Size([12]) 大小 如果只想知道张量中元素的总量，即形状的所有元素乘积，可以通过numel检查 x.numel() # 12 改变形状 要想改变一个张量的形状而不改变元素数量和元素值，可以调用reshape函数 X = x.reshape(3,4) # tensor([[0,1,2,3], # [4,5,6,7], # [8,9,10,11]]) 我们可以不需要通过手动指定每个维度来改变形状。">
+<title>Pytorch_2</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/pytorch_2/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Pytorch_2">
+<meta property='og:description' content="Pytorch操作 函数 功能 分布 范围 torch.rand() | 均匀分布的随机数 | ��匀分布 | [0,1) | torch.randn() | ��态分布（标准正态，均值0，方差1） | ��斯分布 | 任意实数 | torch.randint()* | 均匀分布的随机整数 | ��匀分布 | low,high) | 2. 预备知识 2.1数据操作 2.1.1 入门 导入包 import torch 张量 张量表示一个有数值组成的数组，这个数组可能有多个维度（轴），具有一个轴的张量叫做向量，两个轴的张量叫做矩阵，具有两个以上轴的张量没有特定的数学名称 可以使用arrange创建一个行向量x，张量中的每个量称为张量的元素, 他们被默认为整数，但可以创建为浮点数 （除非额外指定，否则新的张量将存储在内存中，并采用基于CPU的计算） x = torch.arrange(12) # tensor([0,1,2,3,4,5,6,7,8,9,10,11]) 形状 可以通过张量的shape属性来访问张量（沿每个周的长度）的形状 x.shape # torch.Size([12]) 大小 如果只想知道张量中元素的总量，即形状的所有元素乘积，可以通过numel检查 x.numel() # 12 改变形状 要想改变一个张量的形状而不改变元素数量和元素值，可以调用reshape函数 X = x.reshape(3,4) # tensor([[0,1,2,3], # [4,5,6,7], # [8,9,10,11]]) 我们可以不需要通过手动指定每个维度来改变形状。">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/pytorch_2/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-11-27T13:34:07&#43;08:00'/><meta property='article:modified_time' content='2024-11-27T13:34:07&#43;08:00'/>
+<meta name="twitter:title" content="Pytorch_2">
+<meta name="twitter:description" content="Pytorch操作 函数 功能 分布 范围 torch.rand() | 均匀分布的随机数 | ��匀分布 | [0,1) | torch.randn() | ��态分布（标准正态，均值0，方差1） | ��斯分布 | 任意实数 | torch.randint()* | 均匀分布的随机整数 | ��匀分布 | low,high) | 2. 预备知识 2.1数据操作 2.1.1 入门 导入包 import torch 张量 张量表示一个有数值组成的数组，这个数组可能有多个维度（轴），具有一个轴的张量叫做向量，两个轴的张量叫做矩阵，具有两个以上轴的张量没有特定的数学名称 可以使用arrange创建一个行向量x，张量中的每个量称为张量的元素, 他们被默认为整数，但可以创建为浮点数 （除非额外指定，否则新的张量将存储在内存中，并采用基于CPU的计算） x = torch.arrange(12) # tensor([0,1,2,3,4,5,6,7,8,9,10,11]) 形状 可以通过张量的shape属性来访问张量（沿每个周的长度）的形状 x.shape # torch.Size([12]) 大小 如果只想知道张量中元素的总量，即形状的所有元素乘积，可以通过numel检查 x.numel() # 12 改变形状 要想改变一个张量的形状而不改变元素数量和元素值，可以调用reshape函数 X = x.reshape(3,4) # tensor([[0,1,2,3], # [4,5,6,7], # [8,9,10,11]]) 我们可以不需要通过手动指定每个维度来改变形状。">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/pytorch_2/">Pytorch_2</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 27, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    14 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <ol>
+<li><strong>Pytorch操作</strong></li>
+</ol>
+<ul>
+<li>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">分布</th>
+<th style="text-align:center">范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong><code>torch.rand()</code></strong>   |</td>
+<td style="text-align:center">均匀分布的随机数          |</td>
+<td style="text-align:center">��匀分布 |</td>
+<td style="text-align:center">[0,1)    |</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><code>torch.randn()</code></strong>  |</td>
+<td style="text-align:center">��态分布（标准正态，均值0，方差1） |</td>
+<td style="text-align:center">��斯分布 |</td>
+<td style="text-align:center">任意实数  |</td>
+</tr>
+<tr>
+<td style="text-align:center"><em><code>torch.randint()</code></em>* |</td>
+<td style="text-align:center">均匀分布的随机整数         |</td>
+<td style="text-align:center">��匀分布 |</td>
+<td style="text-align:center">low,high) |</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+<h1 id="2-预备知识">2. 预备知识
+</h1><h2 id="21数据操作">2.1数据操作
+</h2><h3 id="211-入门">2.1.1 入门
+</h3><ul>
+<li>
+<p><strong>导入包</strong></p>
+<p><strong><code>import torch</code></strong></p>
+</li>
+<li>
+<p><strong>张量</strong></p>
+<p><strong>张量表示一个有数值组成的数组</strong>，这个数组可能有多个维度（轴），具有一个轴的张量叫做向量，两个轴的张量叫做矩阵，具有两个以上轴的张量没有特定的数学名称</p>
+<p>可以使用arrange创建一个行向量x，张量中的每个量称为张量的<strong>元素</strong>, 他们被默认为整数，但可以创建为浮点数</p>
+<p>（除非额外指定，否则新的张量将存储在内存中，并采用基于CPU的计算）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>arrange(<span style="color:#ae81ff">12</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([0,1,2,3,4,5,6,7,8,9,10,11])</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>形状</strong></p>
+<p>可以通过张量的shape属性来访问张量（沿每个周的长度）的形状</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x<span style="color:#f92672">.</span>shape
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># torch.Size([12])</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>大小</strong></p>
+<p>如果只想知道张量中元素的总量，即形状的所有元素乘积，可以通过numel检查</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x<span style="color:#f92672">.</span>numel()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 12</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>改变形状</strong></p>
+<p>要想改变一个张量的形状而不改变元素数量和元素值，可以调用reshape函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>X <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>reshape(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([[0,1,2,3],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [4,5,6,7],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [8,9,10,11]])</span>
+</span></span></code></pre></div><p>我们可以不需要通过手动指定每个维度来改变形状。</p>
+<p>如果我们的目标形状是（高度，宽度），那么在知道宽度后，高度会被自动计算得出，不必我们做除法，可以通过-1来调用此自动计算，如将上述代码改成</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>X <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>reshape(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>X <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>reshape(<span style="color:#ae81ff">3</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>初始化矩阵</strong></p>
+<p>有时想使用全0、全1、其他常量或从特定分布中随机采样的数字来初始化矩阵，可以通过下面的代码实现</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>zeros((<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([[[0.,0.,0.,0.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [0.,0.,0.,0.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [0.,0.,0.,0.]],</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 		 [[0.,0.,0.,0.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [0.,0.,0.,0.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [0.,0.,0.,0.]]])</span>
+</span></span></code></pre></div><p>同样可以将其设置为全1</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>ones((<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([[[1.,1.,1.,1.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [1.,1.,1.,1.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [1.,1.,1.,1.]],</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 		 [[1.,1.,1.,1.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [1.,1.,1.,1.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [1.,1.,1.,1.]]])</span>
+</span></span></code></pre></div><p>有时想通过某个特定的概率分布中随机采样来得到张量中每个元素的值。例如，在构造数组来作为神经网络中的参数时，通常会随机初始化参数的值</p>
+<p>以下代码创建一个形状为（3,4）的张量，其中的每个元素都从均值0、标准差为1的标准高斯分布（正态分布）中随机采样</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
+</span></span></code></pre></div><p>同样，还可以确定每个元素的确定值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>toch<span style="color:#f92672">.</span>tensor([[<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>]])
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="221-运算符">2.2.1 运算符
+</h3><ul>
+<li>
+<p><strong>按元素计算</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([<span style="color:#ae81ff">1.0</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">8</span>])
+</span></span><span style="display:flex;"><span>y<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>tensor([<span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">2</span>])
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">+</span>y<span style="color:#960050;background-color:#1e0010">，</span>x<span style="color:#f92672">-</span>y<span style="color:#960050;background-color:#1e0010">，</span>x<span style="color:#f92672">*</span>y<span style="color:#960050;background-color:#1e0010">，</span>x <span style="color:#f92672">/</span>y<span style="color:#960050;background-color:#1e0010">，</span>x <span style="color:#f92672">**</span> y <span style="color:#75715e"># **运算符是求幕运算</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 输出结果</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#(tensor([ 3. , 4. ，6. ，10.]),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([-1. , 0. , 2. ，6.]),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([ 2. , 4. , 8. ， 16.]),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([0.5000，1.0000，2.0000，4.0000])，</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([1.，4.，16.，64.]))</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>exp(x)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([2.7183e+00,7.3891e+00,5.4598e+01，2.9810e+03])</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>多个张量连接(concatenate)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>X<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">12</span>,dtype<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>float32)<span style="color:#f92672">.</span>reshape((<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">.4</span>))
+</span></span><span style="display:flex;"><span>Y<span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([[<span style="color:#ae81ff">2.0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">3</span>],[<span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>],[<span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">1</span>]])
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>cat((X,Y),dim<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>), torch<span style="color:#f92672">.</span>cat((X,Y),dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#(tensor([[0. , 1. , 2. , 3.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#		 [4. , 5. , 6. , 7.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#		 [8. , 9. , 10. , 11.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#		 [2. , 1. , 4. , 3.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#		 [1. , 2. , 3. , 4.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#		 [4. , 3. , 2. , 1.]]),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([[0. , 1. , 2. , 3. , 2. , 1. , 4. , 3.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#		 [4. , 5. , 6. , 7. , 1. , 2. , 3. , 4.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#		 [8. , 9. , 10. , 11. , 4. , 3. , 2. , 1.]]))</span>
+</span></span></code></pre></div><p>第一个输出张量的轴0长度(6)是两个输入张量轴0长度的总和(3+3);</p>
+<p>第二个输出张量的轴1长度(8)是两个输入张量轴1长度的总和(4+4)</p>
+</li>
+<li>
+<p><strong>逻辑相等</strong></p>
+<p>有时，我们想通过逻辑运算符构建二元张量。以X == Y为例:对于每个位置，如果X和Y在该位置相等，则新张量中相应项的值为True，这意味着逻辑语句X == Y在该位置处为 True，否则为 False。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>X <span style="color:#f92672">==</span> Y
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#tensor([[False.True, False, True],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#		 [False, False, False, False],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#		 [False, False, False, False]])</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>求和</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>X<span style="color:#f92672">.</span>sum()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 输出结果</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor（66.）</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="213-广播机制">2.1.3 广播机制
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>arrange(<span style="color:#ae81ff">3</span>)<span style="color:#f92672">.</span>reshape((<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>arrange(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>reshape((<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># (tensor ([[0],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 			[1],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#			[2]])),</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#  tensor([[0,1]]))</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">+</span> b
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 矩阵a复制列，矩阵b复制行，然后元素相加    </span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#  tensor ([[0,1],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 			[1,2],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#			[2,3]])</span>
+</span></span></code></pre></div><h3 id="214-索引和切片">2.1.4 索引和切片
+</h3><p>和python数组一样，张量中的元素可以通过索引访问，第一个元素的索引为0，最后一个为-1，可以指定范围以包含第一个元素和最后一个之前的元素（左闭右开）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>X[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>],X[<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">3</span>]
+</span></span></code></pre></div><p>如果想为多个元素赋予相同的值，可以这样，如</p>
+<p>[0 : 2, : ] 表示访问第一行和第二行，其中“：”代表轴1列的所有元素</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>X[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>, : ] <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([[12.,12.，12.,12.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#		  [12.,12.，12.,12.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    	  [8., 9.，10.，11.]])</span>
+</span></span></code></pre></div><h3 id="215-节省内存">2.1.5 节省内存
+</h3><p>为了节省内存，更新数据时需要原地更新，可以使用切片表示法将操作的结果分配给先前分配的数组</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Z <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>zeros_like(Y)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;id(Z):&#39;</span>,id(Z))
+</span></span><span style="display:flex;"><span>Z[:] <span style="color:#f92672">=</span> X <span style="color:#f92672">+</span> Y
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;id(Z):&#39;</span>,id(Z))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 输出结果</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># id(Z):140470599776960</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># id(Z):140470599776960</span>
+</span></span></code></pre></div><p>如果后续计算中没有重复使用X，也可以使用X[:] = X + Y 或 X+=Y来减少操作的内存开销</p>
+<h3 id="216-转换为其他python对象">2.1.6 转换为其他Python对象
+</h3><p>可以将深度学习框架定义的张量（tensor）转换为NumPy张量，反之也可以</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>B <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor(A)
+</span></span><span style="display:flex;"><span>type(A),type(B)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># numpy.ndarry,torch.tensor</span>
+</span></span></code></pre></div><p>要将大小为1的张量转换为Python标量，可以调用item函数或Python的内置函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([<span style="color:#ae81ff">3.5</span>])
+</span></span><span style="display:flex;"><span>a , 	<span style="color:#75715e"># tensor([3.5000])</span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">.</span>item() ,	<span style="color:#75715e"># 3.5</span>
+</span></span><span style="display:flex;"><span>float(a) , <span style="color:#75715e"># 3.5</span>
+</span></span><span style="display:flex;"><span>int(a)	<span style="color:#75715e"># 3</span>
+</span></span></code></pre></div><h3 id="小结">小结
+</h3><p>深度学习存储和操作数据的主要接口是张量（n维数组）它提供了各种功能，包括基本数学运算、广播、索引、切片、内存节省和转换为其他 Pvthon 对象</p>
+<h2 id="22-pandas数据预处理">2.2 pandas数据预处理
+</h2><ul>
+<li>数据分析工具中通常使用pandas包，本节介绍pandas预处理原始数据，并将原始数据转换为张量格式的步骤</li>
+</ul>
+<h3 id="221-读取csv文件">2.21 读取CSV文件
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(data_file_path)
+</span></span><span style="display:flex;"><span>print(data)
+</span></span></code></pre></div><p><img src="/Pytorch_2_img/1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1"
+	
+	
+></p>
+<ul>
+<li>
+<p>通过位置索引**<code>iloc</code>**，可以将data分成inputs和outputs，其中前者为data的前两列，后者为data的最后一列，对于inputs的缺失值，用同一列的均值替换NaN项</p>
+<p>Python中的**<code>fillna</code>**函数用于填充数据中的缺失值。fillna函数可以在数据框或者序列中找到缺失值，并用指定的值或方法进行填充</p>
+<p>**<code>numpy.mean()</code>**函数用于计算给定数组的平均值。它可以接受多种参数形式，并返回计算得到的平均值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>inputs,outputs  <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>],data<span style="color:#f92672">.</span>iloc[:,<span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>inputs <span style="color:#f92672">=</span> inputs<span style="color:#f92672">.</span>fillna(intputs<span style="color:#f92672">.</span>mean())
+</span></span><span style="display:flex;"><span>print(intputs)
+</span></span></code></pre></div><p><img src="/Pytorch_2_img/2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2"
+	
+	
+></p>
+</li>
+<li>
+<p>对于inputs 中的类别值或离散值，我们将NaN 视为一个类别。由于Alley 列只接受两种类型的类别值 Pave 和 NaN，pandas 可以自动将此列转换为两列 Alley_Pave 和 Alleynan。<strong>Alley列为Pave 的行会将Alley_Pave 的值设置为1</strong>，<strong>Alley_nan 的值设置为 0</strong>，缺失 Alley 列的行会将 Alley_Pave和Alley_nan 分别设置为0和 1。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>inputs <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>get_dummies(inputs,dummy_na <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>print(inputs)
+</span></span></code></pre></div><p><img src="/Pytorch_2_img/3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="3"
+	
+	
+></p>
+</li>
+</ul>
+<h3 id="236-降维">2.3.6 降维
+</h3><ul>
+<li>
+<p>默认情况下，调用求和函数会沿所有的轴降低张量的维度，使它变为一个标量</p>
+<p>我们可以指定张量沿哪一个轴来通过求和降低维度</p>
+<p>以矩阵为例，可以调用函数时指定axis=0，来通过对所有列的元素求和来降维</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A_sum_axis0 <span style="color:#f92672">=</span> A<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>A_sum_axis0 , A_sum_axis0<span style="color:#f92672">.</span>shape
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ([[1, 2, 3, 4],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   [5, 6, 7, 8],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   [11, 22, 33, 44]])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 变成</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># [17 30 43 56]</span>
+</span></span></code></pre></div><p>可以axis=1将通过对所有行的元素求和来降维，此时输入轴1的维数在输出形状中消失</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A_sum_axis1 <span style="color:#f92672">=</span> A<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>A_sum_axis1 , A_sum_axis1<span style="color:#f92672">.</span>shape
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([6.,22.,38.,54.,70.]) , torch.Size([5])</span>
+</span></span></code></pre></div><p>沿着行和列对矩阵求和，等价于对矩阵的所有元素求和</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>]) <span style="color:#75715e"># 结果和A.sum()相同</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor(190.)</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>平均值</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A<span style="color:#f92672">.</span>mean(), A<span style="color:#f92672">.</span>sum()<span style="color:#f92672">/</span>A<span style="color:#f92672">.</span>numel()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor(9.5000) , tensor(9.5000)</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>同样，计算平均值的函数也可以沿指定轴降低张量的维度</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A<span style="color:#f92672">.</span>mean(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>),A<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)<span style="color:#f92672">/</span>A<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]
+</span></span></code></pre></div></li>
+<li>
+<p><strong>非降维求和</strong></p>
+<p>有时调用函数来计算总和或平均值时需要保持轴数不变</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sum_A <span style="color:#f92672">=</span> A<span style="color:#f92672">.</span>sum(axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,keepims <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>sum_A
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([[ 6.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [22.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [38.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [54.],</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         [70.]])</span>
+</span></span></code></pre></div><p>也可以通过广播将A除以sum_A</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>A <span style="color:#f92672">/</span> sum_A
+</span></span></code></pre></div><p><img src="/Pytorch_2_img/4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="4"
+	
+	
+></p>
+</li>
+</ul>
+<p>​</p>
+<pre><code>如果我们想沿某个轴计算A的元素的累积总和，如 axis=0(按行计算)，可以调用 **cumsum函数**。此函数不会沿任何轴降低输入张量的维度。
+
+```python
+A.cumsum(axis=0)
+```
+
+![5](Pytorch_2_img/5.png)
+</code></pre>
+<h3 id="237-点积">2.3.7 点积
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>ones(<span style="color:#ae81ff">4</span>,dtype <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>float32)
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">4</span>,dtype <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>float32)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>z <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>dot(x,y)
+</span></span><span style="display:flex;"><span>print(z)
+</span></span><span style="display:flex;"><span>print(torch<span style="color:#f92672">.</span>sum(x <span style="color:#f92672">*</span> y))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 输出结果</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor(6.)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor(6.)</span>
+</span></span></code></pre></div><h3 id="238-矩阵向量积">2.3.8 矩阵向量积
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>mv(A,x)
+</span></span></code></pre></div><h3 id="239-矩阵乘法">2.3.9 矩阵乘法
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>torch,matmul(A,B)
+</span></span></code></pre></div><h3 id="2310-范数">2.3.10 范数
+</h3><p>范数是向量空间或矩阵空间中元素大小的一种度量，满足非负性、齐次性和三角不等式等性质</p>
+<p>L2范数就是模</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>norm(u)
+</span></span></code></pre></div><h1 id="3-独热编码">3. 独热编码
+</h1><p><img src="/Pytorch_2_img/6.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="6"
+	
+	
+></p>
+<h1 id="4-激活函数">4. 激活函数
+</h1><h2 id="41-softmax">4.1 softmax
+</h2><ul>
+<li>**作用：**可以将未规范化的预测变换为非负数并且总和为1，同时让模型保持可导的性质</li>
+<li>**操作：**对每个为规范化的预测求幂，这样可以确保输出非负值，然后再让每个求幂后的结果除以结果的总和，这样可以确保最终输出的概率值总和为1</li>
+</ul>
+<p><img src="/Pytorch_2_img/7.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="7"
+	
+	
+></p>
+<ul>
+<li>
+<p><strong>图像：</strong></p>
+<p><img src="/Pytorch_2_img/54.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="54"
+	
+	
+></p>
+</li>
+</ul>
+<h2 id="42-sigmoid">4.2 Sigmoid
+</h2><ul>
+<li>
+<p><strong>定义：</strong></p>
+<p>是一种常用的激活函数，尤其在二分类任务或神经网络的隐藏层中常被使用。它的主要特点是将输入值（通常称为 logits）映射到 (0,1)的范围，常用来表示概率或归一化后的数值</p>
+</li>
+<li>
+<p><strong>表达式：</strong></p>
+<p><img src="/Pytorch_2_img/79.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="79"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>性质：</strong></p>
+<p><strong>输出范围</strong>：Sigmoid 的输出范围是 (0,1)，因此特别适合用于表示概率。</p>
+<p><strong>单调性</strong>：Sigmoid 是一个单调递增函数，输入越大，输出越接近 1；输入越小，输出越接近 0。</p>
+<p><strong>对称性</strong>：Sigmoid 函数关于 (0.5,0)中心点对称，输入 x=0时，输出为 0.5。</p>
+<p><strong>平滑性</strong>：Sigmoid 是平滑连续的函数，有利于梯度计算</p>
+</li>
+<li>
+<p><strong>图像</strong></p>
+<p><img src="/Pytorch_2_img/19.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="19"
+	
+	
+></p>
+<ul>
+<li>
+<p>随着输入 x增大，输出值逐渐趋近于 1</p>
+<p>随着输入 x 减小，输出值逐渐趋近于 0</p>
+</li>
+<li>
+<p><strong>中心对称</strong>：</p>
+<ul>
+<li>当 x=0时，输出值为 0.5</li>
+</ul>
+</li>
+<li>
+<p><strong>渐近性</strong>：</p>
+<ul>
+<li>当 x→+∞，σ(x)→1</li>
+<li>当 x→-∞，σ(x)→0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>梯度计算</strong></p>
+<p><img src="/Pytorch_2_img/20.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="20"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>用途</strong></p>
+<p><img src="/Pytorch_2_img/21.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="21"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>与其他激活函数的比较</strong></p>
+<p><img src="/Pytorch_2_img/22.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="22"
+	
+	
+></p>
+</li>
+</ul>
+<h2 id="43-relu">4.3 ReLU
+</h2><ul>
+<li>
+<p><strong>定义</strong></p>
+<p><strong>ReLU</strong>（Rectified Linear Unit，线性整流单元）是现代深度学习中最常用的激活函数之一。它因计算简单、效果优秀而被广泛应用于深层神经网络的隐藏层</p>
+</li>
+<li>
+<p><strong>函数表达式</strong></p>
+<p><img src="/Pytorch_2_img/23.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="23"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>图像</strong></p>
+<p>ReLU 的图像呈 <strong>折线形</strong>：</p>
+<ul>
+<li>当 x&gt;0 时，输出与输入相同，即线性区域。</li>
+<li>当 x≤0时，输出为 0，即非激活区域</li>
+</ul>
+<p><img src="/Pytorch_2_img/24.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="24"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>性质：</strong></p>
+<ol>
+<li>
+<p><strong>稀疏性</strong></p>
+<ul>
+<li>
+<p>当输入为负值时，输出为 0，相当于对该神经元的激活关闭</p>
+</li>
+<li>
+<p>这种特性会导致网络的稀疏激活，有助于提升计算效率和减少过拟合</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>非线性</strong>：</p>
+<ul>
+<li>ReLU 是非线性函数，这使其能够在网络中引入非线性关系，从而使深度网络能够学习复杂的函数映射</li>
+</ul>
+</li>
+<li>
+<p><strong>计算简单</strong>：</p>
+<ul>
+<li>ReLU 的计算非常简单，只需比较输入与 0 的大小，无需计算指数或分数，因此效率高</li>
+</ul>
+</li>
+<li>
+<p><strong>梯度性质</strong>：</p>
+<ul>
+<li>当 x&gt;0时，ReLU 的梯度为 1。</li>
+<li>当 x≤0时，ReLU 的梯度为 0（可能导致部分神经元的梯度永久为 0，称为“死亡 ReLU”问题）</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>缺点</strong></p>
+<p><strong>死亡 ReLU</strong>：</p>
+<ul>
+<li>当输入值恒为负时，该神经元的梯度为 0，从而可能在训练过程中完全失效。</li>
+<li>为了解决这个问题，提出了改进的 ReLU 变体（如 Leaky ReLU 和 Parametric ReLU）。</li>
+</ul>
+<p><strong>输出非对称</strong>：</p>
+<ul>
+<li>ReLU 的输出非对称，正数区域无界，而负数区域固定为 0</li>
+</ul>
+</li>
+<li>
+<p><strong>改进版本 Leaky ReLU 和 Parametric ReLU</strong></p>
+<ul>
+<li>
+<p><strong>Leaky ReLU</strong>：</p>
+<p><img src="/Pytorch_2_img/25.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="25"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>Parametric ReLU (PReLU)</strong>：</p>
+<p><img src="/Pytorch_2_img/26.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="26"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>Exponential Linear Unit (ELU)</strong>： 在 x≤0 时使用指数函数替代简单的 0，以增加非线性</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="44-tanh函数">4.4 tanh函数
+</h2><ul>
+<li>
+<p><strong>数学表达式</strong></p>
+<p><img src="/Pytorch_2_img/27.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="27"
+	
+	
+></p>
+<p>其中，e 是自然对数的底（约等于2.71828），而 x 是输入值</p>
+</li>
+<li>
+<p><strong>图像</strong></p>
+<p><img src="/Pytorch_2_img/28.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="28"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>性质</strong></p>
+<p><strong>输出范围</strong>：</p>
+<ul>
+<li>
+<p>tanh函数的输出值在 [−1,1] 之间，即无论输入值多大或多小，输出总是会被压缩到这个范围内。</p>
+</li>
+<li>
+<p>当 x 趋近于正无穷时，tanh(x) 会趋近于 1；</p>
+<p>当 x 趋近于负无穷时，tanh(x) 会趋近于 -1。</p>
+</li>
+</ul>
+<p><strong>平滑性</strong>：</p>
+<ul>
+<li>tanh函数是<strong>连续且可导</strong>的，这使得它适合用作激活函数。在神经网络训练时，<strong>梯度下降方法会使用它的导数进行更新</strong>。</li>
+</ul>
+<p><strong>非线性</strong>：</p>
+<ul>
+<li>tanh是一个<strong>非线性函数</strong>，这意味着它可以帮助神经网络学习非线性关系，而不仅仅是线性映射。这个特点使得神经网络能够学习和拟合更复杂的模式。</li>
+</ul>
+<p><strong>对称性</strong>：</p>
+<ul>
+<li>tanh函数是奇函数，即 tanh(−x)=−tanh(x)，它对原点对称。这一性质使得它在某些应用中比sigmoid函数更具优势，特别是在处理具有负值的输入时，因为它会避免像sigmoid那样对称性偏向正值</li>
+</ul>
+</li>
+<li>
+<p><strong>缺点</strong></p>
+<p><strong>梯度消失问题</strong>：虽然tanh比sigmoid的梯度更大，但在输入值较大或较小时，tanh的梯度会变得非常小（接近0）。这导致在深层网络中，梯度消失问题仍然存在，使得网络的学习效率降低。</p>
+<p><strong>非零中心</strong>：尽管tanh函数的输出范围是对称的（-1到1），但其中心是0，这意味着如果神经网络输入数据没有经过适当的归一化，可能会导致神经元的激活值集中在0附近，从而影响网络的训练效率</p>
+</li>
+<li>
+<p><strong>tanh的导数</strong></p>
+<p>tanh函数的导数（在神经网络中用于反向传播）是</p>
+<p><img src="/Pytorch_2_img/29.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="29"
+	
+	
+></p>
+<p>这个导数有一个重要的特点：它的值始终在[0,1] 之间。当输入的tanh值接近1或-1时，导数趋近于0，这会导致梯度消失问题，影响深度网络的训练</p>
+<p><img src="/Pytorch_2_img/30.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="30"
+	
+	
+></p>
+</li>
+</ul>
+<h2 id="45-激活函数在隐藏层中的作用">4.5 激活函数在隐藏层中的作用
+</h2><h3 id="1-引入非线性">1. <strong>引入非线性</strong>
+</h3><ul>
+<li><strong>激活函数</strong>的一个核心作用是引入<strong>非线性</strong>。如果没有激活函数，神经网络每一层的输出只是输入的线性组合（加权和加偏置），这样无论网络有多少层，它仍然等价于一个单层的线性模型。因此，网络无法学习复杂的、非线性的模式。</li>
+<li>激活函数的作用就是为每一层的输出引入非线性，使得网络能够学习更复杂的数据特征和模式。例如，图像中的边缘、形状、颜色等复杂的关系，都需要通过非线性的变换来捕捉。</li>
+</ul>
+<p><strong>举个例子：</strong></p>
+<ul>
+<li><img src="/Pytorch_2_img/35.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="35"
+	
+	
+></li>
+</ul>
+<h3 id="2-帮助网络学习复杂特征">2. <strong>帮助网络学习复杂特征</strong>
+</h3><ul>
+<li>激活函数使得每一层能够学习<strong>不同层次的特征表示</strong>，从低级特征（如图像的边缘、纹理等）到高级特征（如物体的形状、物体类别等）。非线性激活函数帮助模型在不同层次上构建更加复杂的特征表达。</li>
+<li>在图像分类任务中，隐藏层的激活函数帮助网络从原始像素值中逐步提取边缘、纹理、形状等特征，最终在输出层输出图像属于每个类别的概率。</li>
+</ul>
+<h3 id="3-控制输出范围">3. <strong>控制输出范围</strong>
+</h3><ul>
+<li>一些激活函数如 Sigmoid和 Tanh可以将输出值限制在一定范围内，这对某些任务来说是必要的。
+<ul>
+<li><strong>Sigmoid</strong> 将输出限制在 0 到 1 之间，常用于二分类问题的输出层（概率输出）。</li>
+<li><strong>Tanh</strong> 将输出限制在 -1 到 1 之间，能够在一定程度上进行标准化，且具有较强的对称性。</li>
+</ul>
+</li>
+<li>例如，在二分类任务中，Sigmoid 激活函数的输出可以被视为该输入属于正类的概率。</li>
+</ul>
+<h3 id="4-避免梯度爆炸梯度消失问题">4. <strong>避免梯度爆炸/梯度消失问题</strong>
+</h3><ul>
+<li>激活函数的选择还影响到训练过程中的<strong>梯度传递</strong>。某些激活函数（如 ReLU）有助于缓解梯度消失问题，而另一些激活函数（如 Sigmoid）在梯度传播时可能导致梯度消失。</li>
+<li><strong>ReLU（Rectified Linear Unit）</strong> 是一种常用的激活函数，具有良好的性能，因为它只对正值进行激活，对负值输出 0。这样，在正向传播时，ReLU 函数可以帮助保持梯度的大小，并且在反向传播中避免了梯度消失的问题。</li>
+</ul>
+<h3 id="5-加速学习过程">5. <strong>加速学习过程</strong>
+</h3><ul>
+<li>激活函数的非线性特性不仅让网络能够学习复杂的函数映射，还可以帮助神经网络更高效地进行训练。通过合适的激活函数，网络能够更快地收敛，达到优化目标（如最小化损失函数）的效果。</li>
+<li>比如，ReLU 激活函数通常在深度网络中训练时表现更好，它不仅能够减缓梯度消失的问题，还能够使得网络的训练速度较快。</li>
+</ul>
+<h2 id="46-激活函数在输出层的作用">4.6 激活函数在输出层的作用
+</h2><p><strong>Sigmoid</strong>：用于二分类任务，将输出转化为 [0, 1] 范围的概率值，表示属于正类的概率。</p>
+<p><strong>Softmax</strong>：用于多分类任务，将输出转化为概率分布，使得每个类别的概率值都在 [0, 1] 之间，且所有类别的概率和为 1。</p>
+<p><strong>无激活或线性激活</strong>：用于回归任务，让输出层生成一个连续的数值，不受范围限制。</p>
+<p><strong>Softmax（或变种）</strong>：在序列生成任务中，输出层的每个时间步通过 Softmax 转换为生成某个词汇的概率。</p>
+<h1 id="5-损失函数">5. 损失函数
+</h1><h2 id="51-对数似然">5.1 对数似然
+</h2><h3 id="1-似然函数">1. 似然函数
+</h3><p>**描述的是给定参数时，观测数据出现的可能性。**对于某些数据集 D={x1,x2,…,xn}D = {x_1, x_2, ……, x_n}和模型参数 θ，似然函数定义为：</p>
+<p><img src="/Pytorch_2_img/8.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="8"
+	
+	
+></p>
+<p>即，在假设模型参数为 θ\thetaθ 时，观测数据 DDD 的联合概率。</p>
+<h3 id="2-对数似然">2. 对数似然
+</h3><p><strong>对数似然是似然函数取对数后的形式</strong></p>
+<p><img src="/Pytorch_2_img/9.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="9"
+	
+	
+></p>
+<h3 id="3-为什么使用对数似然">3. 为什么使用对数似然
+</h3><ul>
+<li>
+<p><strong>简化计算</strong>：</p>
+<p><img src="/Pytorch_2_img/10.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="10"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>稳定性：</strong></p>
+<p>当数据量大时，似然函数的值可能非常小（接近零），容易导致数值下溢。对数变换后，可以避免这种问题</p>
+</li>
+<li>
+<p><strong>一致性</strong>：</p>
+<p>对数是单调递增函数，最大化对数似然和最大化原始似然是等价的</p>
+</li>
+</ul>
+<h2 id="52-均方误差">5.2 均方误差
+</h2><h3 id="1-定义">1. 定义
+</h3><p><img src="/Pytorch_2_img/16.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="16"
+	
+	
+></p>
+<h3 id="2-含义">2. 含义
+</h3><p><img src="/Pytorch_2_img/17.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="17"
+	
+	
+></p>
+<h3 id="3-缺点">3. 缺点
+</h3><p><strong>对异常值敏感</strong>：</p>
+<ul>
+<li>由于误差被平方，较大的误差会对总误差贡献更大，导致模型容易受到异常值（outliers）的影响。</li>
+</ul>
+<p><strong>不适合分类任务</strong>：</p>
+<ul>
+<li>均方误差用于连续值的回归问题，而非离散值的分类任务。</li>
+</ul>
+<h3 id="4-梯度计算">4. 梯度计算
+</h3><p><img src="/Pytorch_2_img/18.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="18"
+	
+	
+></p>
+<h3 id="5-用途">5. 用途
+</h3><p><strong>主要用于回归任务</strong></p>
+<h2 id="53-交叉熵损失函数">5.3 交叉熵损失函数
+</h2><h3 id="1-定义-1">1. <strong>定义</strong>
+</h3><p><img src="/Pytorch_2_img/11.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="11"
+	
+	
+></p>
+<p><img src="/Pytorch_2_img/12.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="12"
+	
+	
+></p>
+<h3 id="2将softmax函数代入交叉熵损失函数">2.将softmax函数代入交叉熵损失函数
+</h3><ul>
+<li>
+<hr>
+<p><img src="/Pytorch_2_img/13.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="13"
+	
+	
+></p>
+</li>
+</ul>
+<p><img src="/Pytorch_2_img/14.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="14"
+	
+	
+></p>
+<ul>
+<li>
+<p><strong>对其进行求导</strong></p>
+<p><img src="/Pytorch_2_img/15.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="15"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>具体示例1：</strong></p>
+<p><img src="/Pytorch_2_img/52.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="52"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>示例2：</strong></p>
+<p><img src="/Pytorch_2_img/53.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="53"
+	
+	
+></p>
+</li>
+</ul>
+<h3 id="3-用途">3. 用途
+</h3><p>适用于分类任务</p>
+<p>在<strong>二分类</strong>问题中，交叉熵损失使用 <strong>sigmoid</strong> 函数作为输出层，</p>
+<p>在<strong>多分类</strong>问题中，使用 <strong>softmax</strong> 函数作为输出层</p>
+<h1 id="6-拟合">6. 拟合
+</h1><ul>
+<li>
+<p><strong>定义</strong></p>
+<p><strong>拟合</strong>（Fitting）是机器学习和统计学中的一个重要概念，指的是建立一个模型，使其尽可能准确地表示数据中的关系</p>
+<p>拟合的目标是找到一个模型，它能尽量精确地捕捉到数据中的模式或规律。</p>
+</li>
+<li>
+<p><strong>拟合的两种常见类型：</strong></p>
+<ol>
+<li><strong>过拟合（Overfitting）</strong>：
+<ul>
+<li><strong>过拟合是指模型在训练数据上表现得非常好，但在新的、未见过的测试数据上表现较差</strong>。</li>
+<li>这通常发生在模型过于复杂，学习到了训练数据中的噪声或不规律性，而不是数据的真实模式。</li>
+<li><strong>过拟合的特征</strong>：模型对训练集的误差非常小，但对测试集的误差较大，说明模型过度依赖于训练数据中的细节</li>
+</ul>
+</li>
+<li><strong>欠拟合（Underfitting）</strong>：
+<ul>
+<li>欠拟合是指模型无法充分捕捉数据中的关系，<strong>通常发生在模型过于简单或数据不足的情况下</strong>，导致模型的表现不理想。</li>
+<li><strong>欠拟合的特征</strong>：<strong>模型在训练集和测试集上都表现较差</strong>，无法有效地从数据中学习到有用的信息</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>通过损失函数评价拟合效果</strong></p>
+</li>
+<li>
+<h3 id="拟合的关键点">拟合的关键点：
+</h3><ol>
+<li><strong>模型复杂度的选择</strong>：选择一个合适复杂度的模型非常重要。如果模型过于复杂（如太多的参数），可能会导致过拟合；如果模型过于简单，可能会导致欠拟合。</li>
+<li><strong>正则化</strong>：为了避免过拟合，常常使用正则化技术（如L1、L2正则化），通过惩罚模型的复杂度来减少过拟合的风险。</li>
+<li><strong>数据量</strong>：较大的数据集通常有助于更好地拟合数据，减少过拟合的机会。</li>
+<li><strong>训练与验证</strong>：通过将数据分为训练集和验证集，使用交叉验证等方法来确保模型的泛化能力，避免只在训练数据上获得较好的拟合效果</li>
+</ol>
+</li>
+</ul>
+<h2 id="62解决过拟合">6.2<strong>解决过拟合</strong>
+</h2><ul>
+<li>增加训练数据</li>
+</ul>
+<h2 id="63-解决欠拟合">6.3 解决欠拟合
+</h2><h4 id="1-增加模型复杂度">1. <strong>增加模型复杂度</strong>
+</h4><ul>
+<li><strong>使用更复杂的模型</strong>：如果当前模型过于简单，无法有效捕捉数据中的复杂关系，可以尝试使用更复杂的模型。例如，使用非线性模型（如决策树、随机森林、神经网络等）代替线性模型。</li>
+<li><strong>增加特征数量</strong>：有时欠拟合是由于模型输入的特征不足。通过增加更多的输入特征，尤其是一些具有实际意义的特征，模型可以学到更多的信息。</li>
+<li><strong>使用多层网络</strong>：对于神经网络，增加隐藏层的数量或每层的神经元数量，可以增加模型的表达能力，从而提高拟合效果。</li>
+</ul>
+<h4 id="2-增加训练时间或训练轮次">2. <strong>增加训练时间或训练轮次</strong>
+</h4><ul>
+<li><strong>更多的训练迭代</strong>：如果模型没有足够的时间进行学习，可以尝试增加训练轮次（epochs）或迭代次数。这样可以确保模型在训练数据上学习更多的模式。</li>
+<li><strong>调整学习率</strong>：使用较小的学习率，进行更细致的训练，可以帮助模型在更长时间内逐渐收敛，避免训练过早结束。</li>
+</ul>
+<h4 id="3-调整正则化参数">3. <strong>调整正则化参数</strong>
+</h4><ul>
+<li><strong>降低正则化强度</strong>：正则化（如L1、L2正则化）是防止过拟合的一种方法，但如果正则化强度过大，也可能导致欠拟合。尝试减小正则化参数，可以使模型更灵活，能够更好地拟合数据。</li>
+</ul>
+<h4 id="4-使用更多的训练数据">4. <strong>使用更多的训练数据</strong>
+</h4><ul>
+<li><strong>增加数据量</strong>：如果数据集过小，模型可能无法学到足够的特征和模式。通过增加训练数据，模型可以获得更多的信息，从而提高拟合效果。</li>
+<li><strong>数据增强</strong>：对于图像数据，可以使用数据增强技术，如旋转、裁剪、翻转等，增加样本的多样性，从而避免欠拟合。</li>
+</ul>
+<h4 id="5-改善特征工程">5. <strong>改善特征工程</strong>
+</h4><ul>
+<li><strong>特征转换</strong>：有时，欠拟合是因为特征没有被恰当转换或处理。可以尝试对特征进行转换（如对数变换、标准化或归一化等），或创建新的特征来提高模型的学习能力。</li>
+<li><strong>去除无关特征</strong>：去除一些不相关或冗余的特征，有助于减少模型的复杂性，使其能够聚焦于最重要的特征。</li>
+</ul>
+<h4 id="6-优化超参数">6. <strong>优化超参数</strong>
+</h4><ul>
+<li><strong>调整超参数</strong>：模型的超参数（如决策树的深度、神经网络的学习率等）对模型的拟合效果有很大影响。使用网格搜索（Grid Search）、随机搜索（Random Search）等方法来调整模型的超参数，找到最佳的配置。</li>
+</ul>
+<h4 id="7-选择合适的损失函数">7. <strong>选择合适的损失函数</strong>
+</h4><ul>
+<li><strong>更合适的损失函数</strong>：有时模型欠拟合的原因是损失函数选择不当。选择适合特定任务的损失函数，可以帮助模型更好地学习。</li>
+</ul>
+<h4 id="8-使用集成学习">8. <strong>使用集成学习</strong>
+</h4><ul>
+<li><strong>集成方法</strong>：通过使用集成方法（如随机森林、梯度提升树、XGBoost等），可以将多个模型的预测结果进行组合，通常能有效减少欠拟合。这些方法通过组合多个弱模型形成强模型，从而提高模型的预测性能</li>
+</ul>
+<h1 id="补-k折交叉验证">补： K折交叉验证
+</h1><p>当训练数据稀缺时，我们可能无法提供足够的数据来构成一个合适的验证集</p>
+<p>这个问题的一个通常结局方案是采用K折交叉验证</p>
+<p>首先，原始训练数据被分成K个不重叠的子集，然后执行K次模型训练和验证，每次在K-1个子集上进行训练，并在剩余的一个子集（在该轮中没有用于训练的子集）上进行验证；最后，通过对K次实验的结果取平均值来估计训练误差和验证误差</p>
+<h1 id="7-正则化">7. 正则化
+</h1><ul>
+<li>
+<p><strong>定义</strong></p>
+<p><strong>正则化</strong>（Regularization）是一种通过添加额外的约束或惩罚项来减少模型复杂度，从而避免过拟合的方法。正则化通过控制模型的自由度，使其不至于过度拟合训练数据中的噪声。常见的正则化技术有 <strong>L1 正则化</strong>、<strong>L2 正则化</strong> 和 <strong>弹性网正则化</strong> 等</p>
+</li>
+</ul>
+<h2 id="71-l1正则化">7.1 L1正则化
+</h2><ul>
+<li>
+<p><strong>定义</strong></p>
+<p>L1 正则化在损失函数中加入了所有参数的绝对值之和的惩罚项。其目标是使得某些权重变为零，从而达到特征选择的效果</p>
+</li>
+<li>
+<p><strong>L1 正则化的损失函数</strong>：</p>
+<p><img src="/Pytorch_2_img/31.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="31"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>效果</strong></p>
+<p>L1 正则化能够使得一些权重变为零，导致模型变得更加稀疏，减少不必要的特征，从而降低过拟合的风险</p>
+</li>
+</ul>
+<h2 id="72--l2-正则化">7.2  <strong>L2 正则化</strong>
+</h2><ul>
+<li>
+<p><strong>定义</strong>：L2 正则化在损失函数中加入了所有参数的平方和的惩罚项。它不会使得权重变为零，而是使得权重的值尽可能小，从而控制模型的复杂度。</p>
+</li>
+<li>
+<p><strong>L2 正则化的损失函数</strong>：</p>
+<p><img src="/Pytorch_2_img/32.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="32"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>效果</strong></p>
+<p>L2 正则化通过减小权重的大小，避免某些特征的权重过大，从而防止过拟合。相比L1，L2 正则化不会让权重完全变为零，而是更均匀地缩小所有参数。</p>
+</li>
+<li>
+<p><strong>应用</strong></p>
+<p>L2 正则化广泛用于大多数回归任务和神经网络训练中</p>
+</li>
+</ul>
+<h2 id="具体实现">具体实现
+</h2><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> d2l <span style="color:#f92672">import</span> torch <span style="color:#66d9ef">as</span> d2l
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train_concise</span>(wd):  <span style="color:#75715e"># wd代表权重衰减参数</span>
+</span></span><span style="display:flex;"><span>    n_train, n_test, num_inputs, batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">200</span>, <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># n_train 训练样本数量</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># n_test 测试样本数量</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># num_inputs 每个样本的输入特征数，输入特征（input features）的数量表示每个样本中有多少个不同的值或变量</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># batch_size 每批次的样本数量</span>
+</span></span><span style="display:flex;"><span>    true_w, true_b <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>ones((num_inputs, <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.01</span>, <span style="color:#ae81ff">0.05</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># true_w是一个形状为200*200的张量，其中的值都为1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># true_b 是常数偏置 线性模型中的偏置量</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    train_data <span style="color:#f92672">=</span> d2l<span style="color:#f92672">.</span>synthetic_data(true_w, true_b, n_train)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># d2l.synthetic_data 根据 true_w 和 true_b 生成线性模型数据，并加上一定噪声</span>
+</span></span><span style="display:flex;"><span>    train_iter <span style="color:#f92672">=</span> d2l<span style="color:#f92672">.</span>load_array(train_data, batch_size)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 使用 d2l.load_array 将训练数据加载为 PyTorch 的数据迭代器，用于分批次访问训练数据</span>
+</span></span><span style="display:flex;"><span>    test_data <span style="color:#f92672">=</span> d2l<span style="color:#f92672">.</span>synthetic_data(true_w, true_b, n_test)
+</span></span><span style="display:flex;"><span>    test_iter <span style="color:#f92672">=</span> d2l<span style="color:#f92672">.</span>load_array(test_data, batch_size, is_train<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(nn<span style="color:#f92672">.</span>Linear(num_inputs,<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> param <span style="color:#f92672">in</span> net<span style="color:#f92672">.</span>parameters():
+</span></span><span style="display:flex;"><span>        param<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>normal_()
+</span></span><span style="display:flex;"><span>    loss <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>MSELoss(reduction<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;none&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># reduction表示执行的操作，如果是mean表示计算所有样本损失的平均值</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 如果是sum表示计算所有样本的损失的总和</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 如果是none，则不对损失进行任何聚合，返回每个样本的损失值</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    num_epochs, lr <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">0.003</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 偏置参数没有衰减</span>
+</span></span><span style="display:flex;"><span>    trainer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>SGD([
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;params&#34;</span>:net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>weight , <span style="color:#e6db74">&#34;weight_decay&#34;</span>:wd},   <span style="color:#75715e"># params指定参数，weight_decay指定权重参数，对指定参数进行正则化</span>
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;params&#34;</span>:net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>bias}],lr<span style="color:#f92672">=</span>lr)  <span style="color:#75715e"># 第二组参数没有设置weight_decay，则不对偏置参数应用正则化</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># lr指的是学习率，这里会用到所有参数组</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    animator <span style="color:#f92672">=</span> d2l<span style="color:#f92672">.</span>Animator(xlabel <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;epochs&#39;</span> , ylabel<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;loss&#39;</span> , yscale<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;log&#39;</span>,
+</span></span><span style="display:flex;"><span>                            xlim<span style="color:#f92672">=</span>[<span style="color:#ae81ff">5</span>,num_epochs],legend<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;train&#39;</span>,<span style="color:#e6db74">&#39;test&#39;</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#  d2l.Animator：是 d2l 库中的一个类，专门用于动态绘图</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(num_epochs):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> X , y <span style="color:#f92672">in</span> train_iter:
+</span></span><span style="display:flex;"><span>            trainer<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>            l <span style="color:#f92672">=</span> loss(net(X),y)
+</span></span><span style="display:flex;"><span>            l<span style="color:#f92672">.</span>mean()<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>            trainer<span style="color:#f92672">.</span>step()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (epoch <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            animator<span style="color:#f92672">.</span>add(epoch <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>                         (d2l<span style="color:#f92672">.</span>evaluate_loss(net,train_iter,loss),
+</span></span><span style="display:flex;"><span>                          d2l<span style="color:#f92672">.</span>evaluate_loss(net,test_iter,loss)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;w的L2范数：&#39;</span>,net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>norm()<span style="color:#f92672">.</span>item())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    train_concise(<span style="color:#ae81ff">3</span>)
+</span></span></code></pre></div><h2 id="理解具体实现">理解具体实现
+</h2><h3 id="1-net0weight权重-的作用">1. <strong>net[0].weight（权重） 的作用</strong>
+</h3><p><code>net[0].weight</code> 代表的是神经网络模型中第一个层（通常是输入层与第一个隐藏层之间的层）的权重参数。</p>
+<p>在 PyTorch 中，<code>net</code> 是一个 <code>nn.Sequential</code> 模型，其中每个层都是按顺序添加的。</p>
+<p><code>net[0]</code> 指的是该模型中的第一个层，通常是一个 <code>nn.Linear</code> 层（全连接层）。</p>
+<p><code>net[0].weight</code> 表示的是该层的权重矩阵。</p>
+<ul>
+<li>
+<p><strong>权重的作用</strong></p>
+<p>在神经网络中，<strong>权重（Weight）</strong> 是模型的学习参数，决定了每个输入特征在输出中的影响程度。它们通过训练数据调整，使得神经网络能够从输入特征中学习到有效的模式。</p>
+<p><img src="/Pytorch_2_img/33.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="33"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>权重的形状</strong></p>
+<p>假设 <code>net[0]</code> 是一个线性层 <code>nn.Linear(num_inputs, 1)</code>，其中：</p>
+<ul>
+<li><code>num_inputs</code> 是输入特征的数量（即输入向量的维度）。</li>
+<li>输出是一个标量（因此输出的维度是 1）。</li>
+</ul>
+<p>那么，<code>net[0].weight</code> 的形状是 <code>(1, num_inputs)</code>，表示该层的权重矩阵有 1 行和 <code>num_inputs</code> 列。每一列对应一个输入特征的权重值。</p>
+<p>例如，如果 <code>num_inputs = 200</code>，那么 <code>net[0].weight</code> 将是一个形状为 <code>(1, 200)</code> 的矩阵。每一列是该输入特征对应的权重值。</p>
+</li>
+<li>
+<p><strong>权重的作用举例</strong></p>
+<p><img src="/Pytorch_2_img/34.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="34"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>权重的更新</strong></p>
+<p><strong>权重在训练过程中通过梯度下降（或其他优化方法）进行更新。</strong></p>
+<p>每次迭代时，通过计算损失函数对权重的梯度，更新权重的值，以使模型的预测越来越接近真实标签。</p>
+<p><strong>在代码中的具体作用</strong></p>
+<pre tabindex="0"><code>net[0].weight  # 获取第一个线性层的权重
+</code></pre><p>这里的 <code>net[0]</code> 是模型中的第一个层，通常是一个全连接层（<code>nn.Linear</code>）。</p>
+<p><code>weight</code> 属性获取这个层的权重矩阵。在 PyTorch 中，权重通常是可以直接访问和操作的，这使得我们可以进行初始化、查看和修改权重的操作。</p>
+<p>例如，以下代码段演示了如何通过 <code>net[0].weight</code> 初始化权重：</p>
+<pre tabindex="0"><code>for param in net.parameters():
+    param.data.normal_()  # 使用正态分布初始化所有参数（包括权重）
+</code></pre><p>这里的 <code>param.data.normal_()</code> 会将 <code>net[0].weight</code> 初始化为一个正态分布的随机值。</p>
+</li>
+</ul>
+<h3 id="2训练过程">2.训练过程
+</h3><ul>
+<li>
+<p><strong>l = loss(net(X),y) 算出损失值后</strong></p>
+<p><strong>通过l.mean().backward()计算每个参数的梯度，</strong></p>
+<p><strong>然后通过trainer.step()更新网络的参数</strong></p>
+</li>
+<li>
+<p><strong>计算损失值 <code>l = loss(net(X), y)</code></strong></p>
+<p>这一行代码计算的是网络输出 <code>net(X)</code> 和实际标签 <code>y</code> 之间的损失。损失函数（如均方误差 <code>MSELoss</code> 或交叉熵损失 <code>CrossEntropyLoss</code>）会根据网络的预测结果和真实标签计算一个标量值（即损失值）。如果损失函数的 <code>reduction='none'</code>，则它会返回每个样本的损失，通常在后续计算时会求平均或求和。</p>
+</li>
+<li>
+<p><strong>计算梯度 <code>l.mean().backward()</code></strong></p>
+<ul>
+<li>
+<p><strong><code>l.mean()</code></strong>：如果损失是一个张量（比如每个样本的损失），通过 <code>mean()</code> 操作，将其转化为一个标量损失值。这是因为我们希望反向传播的目标是一个标量损失值，而不是多个样本的损失值。</p>
+</li>
+<li>
+<p><strong><code>backward()</code></strong>：调用 <code>backward()</code> 方法后，PyTorch 会进行反向传播，计算每个模型参数（例如，权重和偏置）相对于损失值的梯度。这是通过链式法则实现的，PyTorch 会自动计算每个参数对损失的贡献，进而得出梯度。</p>
+<p>反向传播的过程可以看作是从输出层开始，根据<code>l = loss(net(X), y)</code>得出的损失值（过程中不会更新），逐层计算每个参数的梯度，并将这些梯度存储在每个参数的 <code>.grad</code> 属性中。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>更新参数</strong>：</p>
+<p>通过 <code>trainer.step()</code>（使用优化器）根据计算出的梯度来更新网络的参数（权重和偏置）。</p>
+<p><img src="/Pytorch_2_img/39.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="39"
+	
+	
+></p>
+<p>如卷积层，权重更新就是更新卷积核</p>
+</li>
+</ul>
+<h3 id="3-理解优化器">3. 理解优化器
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span> trainer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>SGD([
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;params&#34;</span>:net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>weight , <span style="color:#e6db74">&#34;weight_decay&#34;</span>:wd},   <span style="color:#75715e"># params指定参数，weight_decay指定权重参数，对指定参数进行正则化</span>
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;params&#34;</span>:net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>bias}],lr<span style="color:#f92672">=</span>lr)  <span style="color:#75715e"># 第二组参数没有设置weight_decay，则不对偏置参数应用正则化</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># lr指的是学习率，这里会用到所有参数组</span>
+</span></span></code></pre></div><p><code>net[0].weight</code> 有权重参数，在计算其损失值时会自动将正则化项（L2惩罚）添加到损失函数中，损失值中包含正则化项。然后，在反向传播时，计算的梯度会包括正则化项的影响，可以算出第一层网络各个参数的梯度，最后通过 <code>trainer.step()</code> 更新参数中的值。</p>
+<p>而 <code>net[0].bias</code> 没有权重参数，仅仅根据损失函数的梯度来更新，不会受到正则化项的影响。然后，同样根据损失值通过反向传播计算出第一层网络各个参数的梯度，最后通过 <code>trainer.step()</code> 更新参数中的值。</p>
+<h2 id="73-暂退法">7.3 暂退法
+</h2><ul>
+<li>
+<p><strong>定义</strong></p>
+<p><strong>暂退法</strong>（也称为 Dropout）是一种正则化技术，主要用于训练深度神经网络，以减少过拟合并提升模型的泛化能力。暂退法由 Hinton 等人在 2012 年提出，简单但非常有效。</p>
+</li>
+<li>
+<p><strong>核心思想</strong></p>
+<p>在每次训练迭代中，暂退法会随机 &ldquo;屏蔽&rdquo; 一部分神经元（置为 0），使得它们在该次迭代中不参与前向传播和后向传播。这种随机性使模型不会过于依赖某些特定神经元，从而迫使网络学习更加鲁棒的特征表示，即指模型在面对干扰（如噪声、缺失数据、输入分布变化）时，仍然能够保持良好性能的能力。</p>
+</li>
+<li>
+<p><strong>实现细节</strong></p>
+<ol>
+<li>
+<p><strong>训练阶段：</strong></p>
+<ul>
+<li>
+<p>对于每一层中的每个神经元，按概率 p随机决定是否暂时屏蔽。</p>
+</li>
+<li>
+<p>如果屏蔽了该神经元，则在当前迭代中它的输出被置为 0。</p>
+</li>
+<li>
+<p>未屏蔽的神经元的输出会被放大为 1/(1-p)倍，以保证整体的激活值的期望一致。</p>
+</li>
+<li>
+<p><img src="/Pytorch_2_img/41.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="41"
+	
+	
+></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>测试阶段</strong>：</p>
+<ul>
+<li>所有神经元都参与计算，但不再随机屏蔽。</li>
+<li>此时无需放大权重，因为训练阶段的缩放已经内嵌在权重中。</li>
+</ul>
+</li>
+<li>
+<p><strong>举例</strong></p>
+<p><img src="/Pytorch_2_img/40.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="40"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>优点</strong></p>
+<ul>
+<li>**减少过拟合：**通过随机屏蔽，避免模型过分依赖某些神经元。</li>
+<li>**提高泛化性能：**迫使模型学习更鲁棒的特征表示。</li>
+<li>**实现简单：**在现代深度学习框架（如 TensorFlow 和 PyTorch）中，Dropout 是一个单独的层。</li>
+</ul>
+</li>
+<li>
+<p><strong>局限性</strong></p>
+<ul>
+<li>在小型数据集上可能过于激进，导致欠拟合。</li>
+<li>不适合卷积层中较低维度的特征映射，因为特征空间较小，屏蔽太多会损失太多信息。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>代码示例</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> d2l <span style="color:#f92672">import</span> torch <span style="color:#66d9ef">as</span> d2l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dropout_layer</span>(X, dropout):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> dropout <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 当dropout为1时，所有元素都被丢弃</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> dropout <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> torch<span style="color:#f92672">.</span>zeros_like(X)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 当dropout为0时，所有元素都被保留</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> dropout <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> X
+</span></span><span style="display:flex;"><span>    mask <span style="color:#f92672">=</span> (torch<span style="color:#f92672">.</span>rand(X<span style="color:#f92672">.</span>shape) <span style="color:#f92672">&gt;</span> dropout)<span style="color:#f92672">.</span>float()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># mask为一个蒙版，每一个单位存储一个布尔值，即1或0，如果为1则表示是保留的神经元</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> mask <span style="color:#f92672">*</span> X <span style="color:#f92672">/</span> (<span style="color:#ae81ff">1.0</span><span style="color:#f92672">-</span>dropout)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    X <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">16</span>,dtype <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>float32)<span style="color:#f92672">.</span>reshape((<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">8</span>))
+</span></span><span style="display:flex;"><span>    print(X)
+</span></span><span style="display:flex;"><span>    print(dropout_layer(X,<span style="color:#ae81ff">0.</span>))
+</span></span><span style="display:flex;"><span>    print(dropout_layer(X,<span style="color:#ae81ff">0.5</span>))
+</span></span><span style="display:flex;"><span>    print(dropout_layer(X,<span style="color:#ae81ff">1.</span>))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 输出结果</span>
+</span></span><span style="display:flex;"><span>tensor([[ <span style="color:#ae81ff">0.</span>,  <span style="color:#ae81ff">1.</span>,  <span style="color:#ae81ff">2.</span>,  <span style="color:#ae81ff">3.</span>,  <span style="color:#ae81ff">4.</span>,  <span style="color:#ae81ff">5.</span>,  <span style="color:#ae81ff">6.</span>,  <span style="color:#ae81ff">7.</span>],
+</span></span><span style="display:flex;"><span>        [ <span style="color:#ae81ff">8.</span>,  <span style="color:#ae81ff">9.</span>, <span style="color:#ae81ff">10.</span>, <span style="color:#ae81ff">11.</span>, <span style="color:#ae81ff">12.</span>, <span style="color:#ae81ff">13.</span>, <span style="color:#ae81ff">14.</span>, <span style="color:#ae81ff">15.</span>]])
+</span></span><span style="display:flex;"><span>tensor([[ <span style="color:#ae81ff">0.</span>,  <span style="color:#ae81ff">1.</span>,  <span style="color:#ae81ff">2.</span>,  <span style="color:#ae81ff">3.</span>,  <span style="color:#ae81ff">4.</span>,  <span style="color:#ae81ff">5.</span>,  <span style="color:#ae81ff">6.</span>,  <span style="color:#ae81ff">7.</span>],
+</span></span><span style="display:flex;"><span>        [ <span style="color:#ae81ff">8.</span>,  <span style="color:#ae81ff">9.</span>, <span style="color:#ae81ff">10.</span>, <span style="color:#ae81ff">11.</span>, <span style="color:#ae81ff">12.</span>, <span style="color:#ae81ff">13.</span>, <span style="color:#ae81ff">14.</span>, <span style="color:#ae81ff">15.</span>]])
+</span></span><span style="display:flex;"><span>tensor([[ <span style="color:#ae81ff">0.</span>,  <span style="color:#ae81ff">0.</span>,  <span style="color:#ae81ff">0.</span>,  <span style="color:#ae81ff">6.</span>,  <span style="color:#ae81ff">8.</span>,  <span style="color:#ae81ff">0.</span>,  <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">14.</span>],
+</span></span><span style="display:flex;"><span>        [ <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">18.</span>, <span style="color:#ae81ff">20.</span>, <span style="color:#ae81ff">22.</span>,  <span style="color:#ae81ff">0.</span>,  <span style="color:#ae81ff">0.</span>,  <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">30.</span>]])
+</span></span><span style="display:flex;"><span>tensor([[<span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>],
+</span></span><span style="display:flex;"><span>        [<span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>]])
+</span></span></code></pre></div></li>
+<li>
+<p><strong>如果更改第一层和第二层的暂退概率，会出现什么问题</strong></p>
+<ol>
+<li><strong>第一层暂退概率的变化</strong>
+<ul>
+<li><strong>影响：</strong>
+<ul>
+<li><strong>第一层负责提取底层特征</strong>（例如边缘、纹理等基础信息）。</li>
+<li>如果 <strong>暂退概率增加</strong>（更多神经元被随机丢弃），可能导致特征提取不足，从而影响后续层的输入质量。</li>
+<li>如果 <strong>暂退概率减少</strong>，虽然底层特征更完整，但可能导致模型的正则化效果不足，从而增加过拟合的风险。</li>
+</ul>
+</li>
+<li><strong>关键：</strong> 在第一层，适度的暂退概率非常重要。过高会破坏基本特征提取，过低则可能让模型对训练数据过于依赖。</li>
+</ul>
+</li>
+<li><strong>第二层暂退概率的变化</strong>
+<ul>
+<li><strong>影响：</strong>
+<ul>
+<li><strong>第二层通常负责从底层特征中提取中间特征。</strong></li>
+<li>如果 <strong>暂退概率增加</strong>，中间特征的学习会变得不稳定，可能影响后续层对高层语义特征的理解。</li>
+<li>如果 <strong>暂退概率减少</strong>，正则化效果下降，但高层语义特征可能更加完整。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>如果交换这两个层会出现什么问题</strong></p>
+<p>如果交换第一层和第二层的位置，影响将更显著，因为神经网络的每一层设计通常是针对输入的特定特征结构优化的。</p>
+<ol>
+<li><strong>第一层和第二层的功能错位：</strong>
+<ul>
+<li>第一层通常设计为对输入数据进行较低级的特征提取，而第二层负责处理这些特征的组合和更复杂的模式。</li>
+<li>如果交换这两层，网络可能无法有效提取有用的低级特征，从而导致性能下降。</li>
+</ul>
+</li>
+<li><strong>暂退机制的影响：</strong>
+<ul>
+<li>假设第一层的暂退概率较高，交换后，高暂退率会直接作用于更复杂的中间特征，可能使模型难以学习稳定的模式。</li>
+<li>同样，低暂退率若作用于基础层，正则化不足可能导致过拟合。</li>
+</ul>
+</li>
+<li><strong>训练稳定性：</strong>
+<ul>
+<li>交换层次可能会引入梯度流的问题（例如梯度爆炸或消失），尤其是在没有对架构进行其他调整的情况下。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h1 id="8-正向传播反向传播">8. 正向传播、反向传播
+</h1><h2 id="81-正向传播">8.1 正向传播
+</h2><ul>
+<li>
+<p><strong>定义</strong></p>
+<p>指按顺序（从高输入层到输出层）计算和存储神经网络中每层的结果</p>
+<p><strong>正向传播的主要任务是根据输入数据和网络的参数（权重和偏置），计算并输出模型的预测值</strong>。这个过程为反向传播（Backpropagation）提供了必要的中间结果（如预测输出、损失等），并最终用于计算模型的损失，以便进行优化。</p>
+</li>
+<li>
+<p><strong>步骤</strong></p>
+<ol>
+<li>
+<p><strong>输入层到第一隐藏层</strong></p>
+<p>假设神经网络有多个输入特征（例如一个图像的像素值），这些输入特征将作为输入传递给网络。</p>
+<p>对于每一层，我们会执行以下操作：</p>
+<p><img src="/Pytorch_2_img/36.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="36"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>应用激活函数</strong></p>
+<p><img src="/Pytorch_2_img/37.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="37"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>传递到下一层</strong></p>
+<ul>
+<li>激活值 A 被传递到网络的下一层。每一层的输入是前一层的激活值。这个过程在每一层反复进行，直到最后一层。</li>
+</ul>
+</li>
+<li>
+<p><strong>最后一层（输出层）</strong></p>
+<p>对于输出层，通常会有特定的激活函数来转换模型的输出，以便与任务的要求相匹配。例如：</p>
+<ul>
+<li><strong>回归问题</strong>：输出层通常没有激活函数，直接输出一个连续值。</li>
+<li><strong>分类问题</strong>：如果是二分类问题，通常使用 Sigmoid 激活函数；如果是多分类问题，通常使用 Softmax 激活函数。</li>
+</ul>
+</li>
+<li>
+<p><strong>损失计算</strong></p>
+<p>在得到网络的输出后，下一步通常是计算模型的 <strong>损失函数</strong>，即计算网络预测值与实际标签之间的差距。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="82-反向传播">8.2 反向传播
+</h2><ul>
+<li>
+<p><strong>定义</strong></p>
+<p>反向传播的结果是 <strong>每个参数（权重和偏置）相对于损失函数的梯度</strong>，这些梯度指示了如何调整模型的参数，以便减少损失函数的值，从而使模型的预测更加准确。</p>
+</li>
+<li>
+<p><strong>过程</strong></p>
+<ol>
+<li>
+<p><strong>求出损失函数对每个参数的梯度</strong></p>
+<p>**反向传播通过链式法则计算出损失函数 L 相对于网络中每个参数（如权重 W 和偏置 b）的梯度。**这些梯度告诉我们如何调整每个参数，以减少损失函数的值。对于每一层的每一个参数，反向传播都会输出一个梯度。</p>
+<p><img src="/Pytorch_2_img/38.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="38"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>梯度传递过程</strong></p>
+<p>反向传播是通过 <strong>链式法则</strong> 将梯度从输出层逐层传递回输入层的过程。每一层的梯度都依赖于下一层的梯度，并且将梯度传递给上一层。最终，反向传播的结果是：</p>
+<ul>
+<li>每一层的 <strong>权重</strong> 和 <strong>偏置</strong> 的梯度。</li>
+<li>这些梯度是损失函数对于每个参数的偏导数，表示损失函数对这些参数的敏感程度。</li>
+</ul>
+</li>
+<li>
+<p><strong>梯度用于更新参数</strong></p>
+<p>**反向传播的主要目的是计算出梯度，并将这些梯度传递给优化器（如 SGD、Adam 等），以便更新网络中的参数。**优化器会使用这些梯度来调整权重和偏置，通常通过梯度下降法或其变体进行参数更新。更新规则如下：</p>
+<p><img src="/Pytorch_2_img/39.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="39"
+	
+	
+></p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>反向传播的具体结果：</strong></p>
+<ul>
+<li><strong>每一层的梯度</strong>：对于每一层，计算出损失函数相对于该层的输出（以及权重和偏置）的梯度。</li>
+<li><strong>梯度传递到上一层</strong>：每一层的梯度会被传递到前一层，以便更新前一层的参数。</li>
+<li><strong>梯度下降</strong>：优化器根据这些梯度来调整网络的参数，逐步减小损失函数，优化网络的性能。</li>
+</ul>
+</li>
+</ul>
+<h1 id="9-梯度消失和梯度爆炸">9. 梯度消失和梯度爆炸
+</h1><ul>
+<li>**梯度爆炸：**参数更新过大，破坏了模型的稳定收敛</li>
+<li>**梯度消失：**参数更新过小，在每次更新时几乎不会移动， 导致模型无法学习</li>
+</ul>
+<h2 id="91-梯度消失">9.1 梯度消失
+</h2><ul>
+<li>当sigmoid函数的输入很大或很小时，它的梯度会消失，所以更稳定的ReLU系列函数称为默认选择</li>
+</ul>
+<h1 id="10-深度学习计算">10. 深度学习计算
+</h1><h2 id="101-层和块">10.1 层和块
+</h2><h3 id="1011-自定义块">10.1.1 自定义块
+</h3><ul>
+<li>
+<p><strong>每个块必须提供的基本功能：</strong></p>
+<ol>
+<li>将输入数据作为其前向传播函数的参数</li>
+<li>通过前向传播函数来生成输出（注意：输出的形状可能与输入的形状不同）</li>
+<li>计算其输出关于输入的梯度，可通过其反向传播函数进行访问。通常这是自动完成的</li>
+<li>存储和访问前向传播计算所需的参数</li>
+<li>根据需要初始化模型参数</li>
+</ol>
+</li>
+<li>
+<p><strong>代码示例：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> d2l <span style="color:#f92672">import</span> torch <span style="color:#66d9ef">as</span> d2l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MLP</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init</span>(self):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>hidden <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">256</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>out <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">256</span>,<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,X):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>out(torch<span style="color:#f92672">.</span>relu(self<span style="color:#f92672">.</span>hidden(X)))
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="102-参数管理">10.2 参数管理
+</h2><ul>
+<li>
+<p><strong>参数管理包括：</strong></p>
+<ul>
+<li>访问参数，用于调试、诊断和可视化</li>
+<li>参数初始化</li>
+<li>在不同模型组件间共享参数</li>
+</ul>
+</li>
+<li>
+<p><strong>首先定义一个具有单隐藏层的多层感知机</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>), nn<span style="color:#f92672">.</span>ReLU(), nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>    X <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>rand(size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span>    print(net(X))
+</span></span></code></pre></div><pre tabindex="0"><code>输出结果
+tensor([[0.1610],
+        [0.1355]], grad_fn=&lt;AddmmBackward0&gt;)
+</code></pre></li>
+</ul>
+<h3 id="1021-参数访问">10.2.1 参数访问
+</h3><ul>
+<li>
+<p>当通过Sequential类定义模型时，<strong>可以通过索引访问模型的任意层</strong>。模型就像一个列表一样，每层的参数都在其属性中.</p>
+</li>
+<li>
+<p>可以调用下面的代码访问第二个全连接层的参数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(net[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>state_dict())
+</span></span></code></pre></div><pre tabindex="0"><code>输出结果
+
+OrderedDict([(&#39;weight&#39;, tensor([[ 0.2411, -0.1145, -0.0943,  0.0180,  0.1758, -0.1860,  0.1988, -0.1119]])), (&#39;bias&#39;, tensor([-0.0257]))])
+</code></pre></li>
+<li>
+<p>输出的结果包括两个参数，分别是<strong>权重</strong>和<strong>偏置</strong>，两者都存储为**<code>float32</code>**</p>
+<p>**注意：**参数名称唯一标识每个参数，即使在包含数百个层的网络中也是如此</p>
+</li>
+</ul>
+<h4 id="1-目标参数">1. 目标参数
+</h4><ul>
+<li>
+<p><strong>每个参数都表示为参数类的一个实例。要对参数执行任何操作，首先需要访问底层的参数值</strong></p>
+</li>
+<li>
+<p>下面代码从第二个全连接层（即第三个神经网络层）提取偏置，提取后返回的是一个参数类的实例，并进一步访问该参数的值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(type(net[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>bias))
+</span></span><span style="display:flex;"><span>print()
+</span></span><span style="display:flex;"><span>print(net[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>bias)
+</span></span><span style="display:flex;"><span>print()
+</span></span><span style="display:flex;"><span>print(net[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>bias<span style="color:#f92672">.</span>data)
+</span></span></code></pre></div><pre tabindex="0"><code>输出结果
+&lt;class &#39;torch.nn.parameter.Parameter&#39;&gt;
+
+Parameter containing:
+tensor([-0.2732], requires_grad=True)
+
+tensor([-0.2732])
+</code></pre></li>
+<li>
+<p>除了参数值，还可以访问每个参数的梯度</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>net[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>grad <span style="color:#f92672">==</span> <span style="color:#66d9ef">None</span>
+</span></span></code></pre></div><pre tabindex="0"><code>输出结果
+True
+</code></pre><p>由于还没有调用反向传播，所以此时参数的梯度处于初始状态</p>
+</li>
+</ul>
+<h4 id="2-一次性访问所有参数">2. 一次性访问所有参数
+</h4><ul>
+<li>
+<p><strong>可以通过递归整棵树来提取每个子块的参数</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#f92672">*</span>[(name,param<span style="color:#f92672">.</span>shape) <span style="color:#66d9ef">for</span> name,param <span style="color:#f92672">in</span> net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>named_parameters()])
+</span></span><span style="display:flex;"><span>print(<span style="color:#f92672">*</span>[(name,param<span style="color:#f92672">.</span>shape) <span style="color:#66d9ef">for</span> name,param <span style="color:#f92672">in</span> net<span style="color:#f92672">.</span>named_parameters()])
+</span></span></code></pre></div><pre tabindex="0"><code>输出结果
+(&#39;weight&#39;, torch.Size([8, 4])) (&#39;bias&#39;, torch.Size([8]))
+
+(&#39;0.weight&#39;, torch.Size([8, 4])) (&#39;0.bias&#39;, torch.Size([8])) (&#39;2.weight&#39;, torch.Size([1, 8])) (&#39;2.bias&#39;, torch.Size([1]))
+</code></pre><p>这提供了另一种访问网络参数的方式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>net<span style="color:#f92672">.</span>state_dict()[<span style="color:#e6db74">&#39;2.bias&#39;</span>]<span style="color:#f92672">.</span>data
+</span></span></code></pre></div><pre tabindex="0"><code>输出结果
+tensor([0.3106])
+</code></pre></li>
+</ul>
+<h4 id="3-从嵌套块收集参数">3. 从嵌套块收集参数
+</h4><ul>
+<li>
+<p>首先定义一个生成块的函数（可以称为“块工厂”），然后将这些块组合到更大的块中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">block1</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> nn<span style="color:#f92672">.</span>Sequential(nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>),nn<span style="color:#f92672">.</span>ReLU(),
+</span></span><span style="display:flex;"><span>                         nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">4</span>),nn<span style="color:#f92672">.</span>ReLU())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">block2</span>():
+</span></span><span style="display:flex;"><span>    net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">4</span>):
+</span></span><span style="display:flex;"><span>        net<span style="color:#f92672">.</span>add_module(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;block </span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,block1())
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> net
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    regnet <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(block2(),nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>    X <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>rand(size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span>    print(X)
+</span></span><span style="display:flex;"><span>    print()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    regnet(X)
+</span></span><span style="display:flex;"><span>    print(X)
+</span></span><span style="display:flex;"><span>    print()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(regnet)
+</span></span><span style="display:flex;"><span>    print()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print(regnet[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>bias<span style="color:#f92672">.</span>data)
+</span></span><span style="display:flex;"><span>    print()
+</span></span></code></pre></div><pre tabindex="0"><code>输出结果
+
+tensor([[0.8187, 0.3461, 0.0528, 0.4573],
+        [0.0850, 0.1563, 0.0665, 0.3679]])
+
+tensor([[0.8187, 0.3461, 0.0528, 0.4573],
+        [0.0850, 0.1563, 0.0665, 0.3679]])
+
+Sequential(
+  (0): Sequential(
+    (block 0): Sequential(
+      (0): Linear(in_features=4, out_features=8, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=8, out_features=4, bias=True)
+      (3): ReLU()
+    )
+    (block 1): Sequential(
+      (0): Linear(in_features=4, out_features=8, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=8, out_features=4, bias=True)
+      (3): ReLU()
+    )
+    (block 2): Sequential(
+      (0): Linear(in_features=4, out_features=8, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=8, out_features=4, bias=True)
+      (3): ReLU()
+    )
+    (block 3): Sequential(
+      (0): Linear(in_features=4, out_features=8, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=8, out_features=4, bias=True)
+      (3): ReLU()
+    )
+  )
+  (1): Linear(in_features=4, out_features=1, bias=True)
+)
+
+tensor([0.1447, 0.0183, 0.0301, 0.4194, 0.3864, 0.4481, 0.2235, 0.4298])
+</code></pre></li>
+</ul>
+<h3 id="1022-参数初始化">10.2.2 参数初始化
+</h3><ul>
+<li><strong>Pytorch会根据一个范围均匀地初始化权重和偏置矩阵，这个范围是根据输入维度和输出维度计算出的</strong>。Pytorch的 <strong><code>nn.init</code></strong> 模块提供了多种内置初始化方法</li>
+</ul>
+<h4 id="1-内置初始化">1. 内置初始化
+</h4><ul>
+<li>
+<p><strong>将所有权重参数初始化为标准差为0.01的高斯随机变量，且将偏置参数设置为0</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">init_normal</span>(m):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> type(m) <span style="color:#f92672">==</span> nn<span style="color:#f92672">.</span>Linear:
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>normal_(m<span style="color:#f92672">.</span>weight,mean<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,std<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>)
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>zeros_(m<span style="color:#f92672">.</span>bias)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>),nn<span style="color:#f92672">.</span>ReLU(),nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>net<span style="color:#f92672">.</span>apply(init_normal)
+</span></span><span style="display:flex;"><span>print(net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>],net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>bias<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>])
+</span></span></code></pre></div><pre tabindex="0"><code>输出结果
+
+tensor([ 0.0004, -0.0030, -0.0064, -0.0064]) tensor(0.)
+</code></pre></li>
+<li>
+<p><strong>将所有参数初始化为给定的常量，如初始化为1</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">init_constant</span>(m):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> type(m) <span style="color:#f92672">==</span> nn<span style="color:#f92672">.</span>Linear:
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>constant_(m<span style="color:#f92672">.</span>weight,<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>zeros_(m<span style="color:#f92672">.</span>bias)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>),nn<span style="color:#f92672">.</span>ReLU(),nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>net<span style="color:#f92672">.</span>apply(init_constant)
+</span></span><span style="display:flex;"><span>print(net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>],net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>bias<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>])
+</span></span></code></pre></div><pre tabindex="0"><code>输出结果
+
+tensor([1., 1., 1., 1.]) tensor(0.)
+</code></pre></li>
+<li>
+<p><strong>还可以对某些块应用不同的初始化方法，例如用Xavier初始化方法初始化第一个神经网络层，然后将第三个神经网络层初始化为常量值42</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">init_xavier</span>(m):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> type(m) <span style="color:#f92672">==</span> nn<span style="color:#f92672">.</span>Linear:
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>xavier_uniform_(m<span style="color:#f92672">.</span>weight)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">init_42</span>(m):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> type(m) <span style="color:#f92672">==</span> nn<span style="color:#f92672">.</span>Linear:
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>constant_(m<span style="color:#f92672">.</span>weight,<span style="color:#ae81ff">42</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>),nn<span style="color:#f92672">.</span>ReLU(),nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>apply(init_xavier)
+</span></span><span style="display:flex;"><span>net[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>apply(init_42)
+</span></span><span style="display:flex;"><span>print(net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>print(net[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data)
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="2-自定义初始化">2. 自定义初始化
+</h4><ul>
+<li>
+<p><strong>使用以下分布为任意权重参数w定义初始化方法</strong></p>
+<p><img src="/Pytorch_2_img/42.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="42"
+	
+	
+></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">my_init</span>(m):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> type(m) <span style="color:#f92672">==</span> nn<span style="color:#f92672">.</span>Linear:
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Init&#34;</span>,<span style="color:#f92672">*</span>[(name,param<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>                       <span style="color:#66d9ef">for</span> name , param <span style="color:#f92672">in</span> m<span style="color:#f92672">.</span>named_parameters()][<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>uniform_(m<span style="color:#f92672">.</span>weight,<span style="color:#f92672">-</span><span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">10</span>)   <span style="color:#75715e"># 将 m.weight 初始化为一个在区间 [-10, 10] 上均匀分布的随机值矩阵。</span>
+</span></span><span style="display:flex;"><span>        m<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data <span style="color:#f92672">*=</span> m<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>abs() <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>),nn<span style="color:#f92672">.</span>ReLU(),nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>net<span style="color:#f92672">.</span>apply(my_init)
+</span></span><span style="display:flex;"><span>print(net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>weight[:<span style="color:#ae81ff">2</span>])
+</span></span></code></pre></div><pre tabindex="0"><code>输出结果
+Init weight torch.Size([8, 4])
+Init weight torch.Size([1, 8])
+tensor([[-8.7044,  6.7127,  0.0000,  5.2934],
+        [ 5.2226, -5.8499,  0.0000, -7.6324]], grad_fn=&lt;SliceBackward0&gt;)
+</code></pre><p><strong>注意： 始终可以直接设置参数</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data[:] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>	<span style="color:#75715e"># 表示将第0行第0列的数设为42</span>
+</span></span><span style="display:flex;"><span>net[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>]
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="1023-参数绑定">10.2.3 参数绑定
+</h3><ul>
+<li>
+<p><strong>有时希望在多个层间共享参数，可以定义一个稠密层，然后使用这个稠密层的参数来设置另一个层的参数</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 我们现需要给共享层提供一个名称，以便可以引用它的参数</span>
+</span></span><span style="display:flex;"><span>shared <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span>net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">8</span>),nn<span style="color:#f92672">.</span>ReLU(),
+</span></span><span style="display:flex;"><span>                    shared,nn<span style="color:#f92672">.</span>ReLU(),
+</span></span><span style="display:flex;"><span>                    shared,nn<span style="color:#f92672">.</span>ReLU(),
+</span></span><span style="display:flex;"><span>                    nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>X <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>rand(size<span style="color:#f92672">=</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span>net(X)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 检查参数是否相同</span>
+</span></span><span style="display:flex;"><span>print(net[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> net[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>net[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 确保他们实际上是同一个对象，而不是只有相同的值</span>
+</span></span><span style="display:flex;"><span>print(net[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> net[<span style="color:#ae81ff">4</span>]<span style="color:#f92672">.</span>weight<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>])
+</span></span></code></pre></div><pre tabindex="0"><code>输出结果
+tensor([True, True, True, True, True, True, True, True])
+tensor([True, True, True, True, True, True, True, True])
+</code></pre><p>这个例子表明第三个和第五个神经网络层的参数是绑定的。它们不仅值相等，而且由相同的张量表示，因此如过改变其中一个参数，另一个参数也会改变</p>
+<p>当参数绑定时，反向传播期间第二个隐藏层和第三个隐藏层的梯度会加在一起</p>
+</li>
+</ul>
+<h2 id="105-读写文件">10.5 读写文件
+</h2><h3 id="1051-加载和保存张量">10.5.1 加载和保存张量
+</h3><ul>
+<li>
+<p><strong>保存张量</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> function <span style="color:#66d9ef">as</span> F
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>save(x,<span style="color:#e6db74">&#39;x-file&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>zeros(<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>save([x,y],<span style="color:#e6db74">&#39;x-files&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mydict <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;x&#39;</span>:x , <span style="color:#e6db74">&#39;y&#39;</span>:y}
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>save(mydict,<span style="color:#e6db74">&#39;mydict&#39;</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>加载张量</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x2 <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#39;x-file&#39;</span>)
+</span></span><span style="display:flex;"><span>x2,y2 <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#39;x-files&#39;</span>)
+</span></span><span style="display:flex;"><span>mydict2 <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#39;mydict&#39;</span>)
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="1052-网络模型的保存和读取">10.5.2 网络模型的保存和读取
+</h3><ul>
+<li>
+<p><strong>模型的保存</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> Conv2d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vgg16 <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>vgg16(pretrained<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保存方式1,模型结构+模型参数</span>
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>save(vgg16,<span style="color:#e6db74">&#34;vgg16_method1.pth&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保存方式2，模型参数（官方推荐）</span>
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>save(vgg16<span style="color:#f92672">.</span>state_dict(),<span style="color:#e6db74">&#34;vgg16_method2.pth&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 陷阱</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>conv1 <span style="color:#f92672">=</span> Conv2d(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">64</span>,kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv1(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tudui <span style="color:#f92672">=</span> Tudui()
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>save(tudui,<span style="color:#e6db74">&#34;tuudi_method1.pth&#34;</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>模型的加载</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> Conv2d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保存方式1，加载模型</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;vgg16_method1.pth&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(model)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保存方式2，加载模型</span>
+</span></span><span style="display:flex;"><span>vgg16 <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>vgg16(pretrained<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>vgg16<span style="color:#f92672">.</span>load_state_dict(torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;vgg16_method2.pth&#34;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># model = torch.load(&#34;vgg16_method2.pth&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(vgg16)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 陷阱1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tudui</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Tudui,self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>conv1 <span style="color:#f92672">=</span> Conv2d(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">64</span>,kernel_size<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self,x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv1(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#39;tuudi_method1.pth&#39;</span>)
+</span></span><span style="display:flex;"><span>print(model)
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="106-gpu">10.6 GPU
+</h2><h3 id="1061-查看显卡">10.6.1 查看显卡
+</h3><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>nvidia<span style="color:#f92672">-</span>smi
+</span></span></code></pre></div><h3 id="1062-计算设备">10.6.2 计算设备
+</h3><ul>
+<li>
+<p><strong>设置设备</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>device(<span style="color:#e6db74">&#39;cpu&#39;</span>) , torch<span style="color:#f92672">.</span>device(<span style="color:#e6db74">&#39;cuda&#39;</span>) , torch<span style="color:#f92672">.</span>devict(<span style="color:#e6db74">&#39;cuda:1&#39;</span>)
+</span></span></code></pre></div></li>
+<li>
+<p><strong>查看可用GPU数量</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>device_count()
+</span></span></code></pre></div></li>
+<li>
+<p><strong>可以定义两个方便函数，这两个函数允许在不存在所需所有GPU的情况下执行代码</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">try_gpu</span>(i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>device_count() <span style="color:#f92672">&gt;=</span> i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> torch<span style="color:#f92672">.</span>device(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;cuda:</span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> torch<span style="color:#f92672">.</span>device(<span style="color:#e6db74">&#39;cpu&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">try_all_gpus</span>():
+</span></span><span style="display:flex;"><span>    devices <span style="color:#f92672">=</span> [torch<span style="color:#f92672">.</span>device(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;cuda:</span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>) 
+</span></span><span style="display:flex;"><span>               <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>device_count())]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> devices <span style="color:#66d9ef">if</span> devices <span style="color:#66d9ef">else</span> [torch<span style="color:#f92672">.</span>device(<span style="color:#e6db74">&#39;cpu&#39;</span>)]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>try_gpu()
+</span></span><span style="display:flex;"><span>try_gpu(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>try_all_gpus()
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="1063-张量与gpu">10.6.3 张量与GPU
+</h3><ul>
+<li>
+<p><strong>默认情况下，张量是在CPU上创建的</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>])
+</span></span><span style="display:flex;"><span>print(x<span style="color:#f92672">.</span>device)
+</span></span></code></pre></div><pre tabindex="0"><code>输出结果
+cpu
+</code></pre><p><strong>注意： 无论何时，如果要对多个项进行操作，必须在同一个设备上，否则框架将不知道在哪里保存结果，甚至不知道在哪里执行计算</strong></p>
+</li>
+</ul>
+<h4 id="1-存储在gpu上">1. 存储在GPU上
+</h4><ul>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  X <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>ones(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,device<span style="color:#f92672">=</span>try_gpu())
+</span></span></code></pre></div></li>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  Y <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>ones(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,device<span style="color:#f92672">=</span>try_gpu(<span style="color:#ae81ff">1</span>))
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="2-复制">2. 复制
+</h4><ul>
+<li>
+<p><strong>如果要计算X+Y，那么需要决定在哪里执行这个操作，可以将X复制到第二个GPU并在那里执行操作</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Z <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>cuda(<span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><p><strong>不要简单地直接X+Y，因为他们不在同一设备上</strong></p>
+<p><strong>假设变量X已经位于第二个GPU上，他将返回X，而不会复制并分配新内存</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>X<span style="color:#f92672">.</span>cuda(i) <span style="color:#f92672">is</span> X
+</span></span></code></pre></div><pre tabindex="0"><code>True
+</code></pre></li>
+</ul>
+<h3 id="1064-神经网络与gpu">10.6.4 神经网络与GPU
+</h3><ul>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  net <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>  net <span style="color:#f92672">=</span> net<span style="color:#f92672">.</span>to(device<span style="color:#f92672">=</span>try_gpu())
+</span></span></code></pre></div></li>
+</ul>
+<h1 id="11-卷积神经网络">11. 卷积神经网络
+</h1><h2 id="111-从全连接层到卷积">11.1 从全连接层到卷积
+</h2><h3 id="1112-多层感知机的限制">11.1.2 多层感知机的限制
+</h3><ul>
+<li>
+<p><strong>多层感知机的输入是二维图像X，其隐藏表示H在数学上是一个矩阵，在代码中表示为二维张量</strong></p>
+</li>
+<li>
+<p><img src="/Pytorch_2_img/43.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="43"
+	
+	
+></p>
+</li>
+</ul>
+<h4 id="1-平移不变性">1. 平移不变性
+</h4><ul>
+<li>
+<p><strong>不管检测对象出现在图像中的哪个位置，神经网络的前面几层应该对相同的图像区域具有相似的反应</strong></p>
+</li>
+<li>
+<p><strong>所以进行卷积操作时，可以共享一个卷积核，不需要用不同的卷积核进行操作</strong></p>
+<p><strong>因此公式可以简化为</strong></p>
+<p><img src="/Pytorch_2_img/44.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="44"
+	
+	
+></p>
+<p>从而大幅度降低参数数量</p>
+</li>
+</ul>
+<h4 id="2-局部性">2. 局部性
+</h4><ul>
+<li>
+<p><strong>神经网络的前面几层应该只探索输入图像中的局部区域，而不过度在意图像中相隔较远区域的关系，因为图像中相隔较远区域的联系较弱，这就是局部性</strong></p>
+</li>
+<li>
+<p><strong>所以可以划定一定的范围，也就是规定卷积核的大小，从而进一步简化公式</strong></p>
+<p><img src="/Pytorch_2_img/45.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="45"
+	
+	
+></p>
+<p>公式中的<strong>V</strong>就称为 <strong>卷积核</strong> 或 <strong>滤波器</strong> 或者 简单称为该卷积层的<strong>权重</strong> ，通常该权重是<strong>可学习</strong>的参数</p>
+</li>
+</ul>
+<h4 id="3-通道">3. 通道
+</h4><ul>
+<li>
+<p><strong>彩色图像一般有3个通道，也就是3种原色（红色、绿色和蓝色），所以图像不是二维张量，而是一个由高度、宽度和颜色组成的三维张量</strong></p>
+<p><img src="/Pytorch_2_img/46.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="46"
+	
+	
+></p>
+</li>
+<li>
+<p><img src="/Pytorch_2_img/47.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="47"
+	
+	
+></p>
+</li>
+<li>
+<p><img src="/Pytorch_2_img/48.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="48"
+	
+	
+></p>
+</li>
+<li>
+<p><img src="/Pytorch_2_img/49.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="49"
+	
+	
+></p>
+</li>
+<li>
+<p><img src="/Pytorch_2_img/50.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="50"
+	
+	
+></p>
+</li>
+<li>
+<p><img src="/Pytorch_2_img/51.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="51"
+	
+	
+></p>
+</li>
+</ul>
+<h2 id="112-图像卷积">11.2 图像卷积
+</h2><h3 id="1123-图像中的边缘检测">11.2.3 图像中的边缘检测
+</h3><h1 id="12-优化算法">12. 优化算法
+</h1><ul>
+<li><strong>在优化中，损失函数通常被称为优化问题的目标函数。按照惯例，大多数优化算法关注的是最小化，如果需要最大会目标，那么有一个简单的解决方案：在目标函数前加负号</strong></li>
+</ul>
+<h2 id="121-优化和深度学习">12.1 优化和深度学习
+</h2><ul>
+<li>尽管优化提供了一种最大限度地减小深度学习损失的方法，但本质上，优化和深度学习的根本目标是不同的。<strong>前者</strong>主要关注的是<strong>最小化目标</strong>，<strong>后者</strong>则关注<strong>在给定有限数据量的情况下寻找合适的模型</strong></li>
+<li>由于<strong>优化算法的目标函数通常是基于训练数据集的损失函数，因此优化目标是减小训练误差</strong>。但是<strong>深度学习的目标是减小泛化误差</strong>。为了实现后者，<strong>除了使用优化算法来减小训练误差，我们还需要注意过拟合</strong></li>
+</ul>
+<h3 id="1211-优化目标">12.1.1 优化目标
+</h3><ul>
+<li>
+<p><strong>引入两个新概念</strong></p>
+<ul>
+<li>风险：所有数据的预期损失</li>
+<li>经验风险：训练数据集的平均损失</li>
+</ul>
+</li>
+<li>
+<p>**下面定义两个函数：风险函数 f 和经验风险函数 g **</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mpl_toolkits <span style="color:#f92672">import</span> mplot3d
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> d2l <span style="color:#f92672">import</span> torch <span style="color:#66d9ef">as</span> d2l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(x):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">*</span> torch<span style="color:#f92672">.</span>cos(np<span style="color:#f92672">.</span>pi <span style="color:#f92672">*</span> x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">g</span>(x):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> f(x) <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.2</span> <span style="color:#f92672">*</span> torch<span style="color:#f92672">.</span>cos(<span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi <span style="color:#f92672">*</span> x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">annotate</span>(text , xy , xytext):
+</span></span><span style="display:flex;"><span>    d2l<span style="color:#f92672">.</span>plt<span style="color:#f92672">.</span>gca()<span style="color:#f92672">.</span>annotate(text,xy<span style="color:#f92672">=</span>xy,xytext<span style="color:#f92672">=</span>xytext,
+</span></span><span style="display:flex;"><span>                           arrowprops<span style="color:#f92672">=</span>dict(arrowstyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;-&gt;&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>arange(<span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">1.5</span>,<span style="color:#ae81ff">0.01</span>)
+</span></span><span style="display:flex;"><span>d2l<span style="color:#f92672">.</span>set_figsize((<span style="color:#ae81ff">4.5</span>,<span style="color:#ae81ff">2.5</span>))
+</span></span><span style="display:flex;"><span>d2l<span style="color:#f92672">.</span>plot(x,[f(x),g(x)],<span style="color:#e6db74">&#39;x&#39;</span>,<span style="color:#e6db74">&#39;risk&#39;</span>)
+</span></span><span style="display:flex;"><span>annotate(<span style="color:#e6db74">&#39;min of</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">empirical risk&#39;</span>,(<span style="color:#ae81ff">1.0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1.2</span>),(<span style="color:#ae81ff">0.5</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1.1</span>))
+</span></span><span style="display:flex;"><span>annotate(<span style="color:#e6db74">&#39;min of risk&#39;</span>,(<span style="color:#ae81ff">1.1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1.05</span>),(<span style="color:#ae81ff">0.95</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>))
+</span></span><span style="display:flex;"><span>d2l<span style="color:#f92672">.</span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><p><img src="/Pytorch_2_img/55.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="55"
+	
+	
+></p>
+</li>
+</ul>
+<h3 id="1212-深度学习中的优化挑战">12.1.2 深度学习中的优化挑战
+</h3><ol>
+<li>
+<p><strong>局部最小值、全局最小值</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mpl_toolkits <span style="color:#f92672">import</span> mplot3d
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> d2l <span style="color:#f92672">import</span> torch <span style="color:#66d9ef">as</span> d2l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(x):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">*</span> torch<span style="color:#f92672">.</span>cos(np<span style="color:#f92672">.</span>pi <span style="color:#f92672">*</span> x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">g</span>(x):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> f(x) <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.2</span> <span style="color:#f92672">*</span> torch<span style="color:#f92672">.</span>cos(<span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi <span style="color:#f92672">*</span> x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">annotate</span>(text , xy , xytext):
+</span></span><span style="display:flex;"><span>    d2l<span style="color:#f92672">.</span>plt<span style="color:#f92672">.</span>gca()<span style="color:#f92672">.</span>annotate(text,xy<span style="color:#f92672">=</span>xy,xytext<span style="color:#f92672">=</span>xytext,
+</span></span><span style="display:flex;"><span>                           arrowprops<span style="color:#f92672">=</span>dict(arrowstyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;-&gt;&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>arange(<span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>,<span style="color:#ae81ff">2.0</span>,<span style="color:#ae81ff">0.01</span>)
+</span></span><span style="display:flex;"><span>d2l<span style="color:#f92672">.</span>plot(x,[f(x),],<span style="color:#e6db74">&#39;x&#39;</span>,<span style="color:#e6db74">&#39;f(x)&#39;</span>)
+</span></span><span style="display:flex;"><span>annotate(<span style="color:#e6db74">&#39;local minimum&#39;</span>,(<span style="color:#f92672">-</span><span style="color:#ae81ff">0.3</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">0.25</span>),(<span style="color:#f92672">-</span><span style="color:#ae81ff">0.77</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>))
+</span></span><span style="display:flex;"><span>annotate(<span style="color:#e6db74">&#39;global minimum&#39;</span>,(<span style="color:#ae81ff">1.1</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">0.95</span>),(<span style="color:#ae81ff">0.6</span>,<span style="color:#ae81ff">0.8</span>))
+</span></span><span style="display:flex;"><span>d2l<span style="color:#f92672">.</span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><p><img src="/Pytorch_2_img/56.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="56"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>鞍点</strong></p>
+<p><img src="/Pytorch_2_img/57.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="57"
+	
+	
+></p>
+<p><img src="/Pytorch_2_img/58.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="58"
+	
+	
+></p>
+</li>
+</ol>
+<p><strong>补：黑塞矩阵</strong></p>
+<ul>
+<li>
+<p><strong>定义：</strong></p>
+<p>黑塞矩阵（Hessian Matrix）是一个数学概念，在多变量微积分和优化理论中扮演重要角色。它是一个方阵，用来描述一个多元函数的二阶偏导数信息。黑塞矩阵提供了关于函数曲率的信息，因此在判断函数的极值点、凹凸性和优化问题中非常有用。</p>
+<p><img src="/Pytorch_2_img/59.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="59"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>用途：</strong></p>
+<ol>
+<li>判断函数凹凸性
+<ul>
+<li>如果H(f) 是正定的（所有特征值均为正），则 f 是严格凸函数（任意两点之间的连线总是位于图像的上方或与图像重合）</li>
+<li>如果H(f) 是负定的（所有特征值均为负），则 f 是严格凹函数（任意两点之间的连线总是位于图像的下方或与图像重合）</li>
+<li>如果H(f) 既有正特征值又有负特征值，则 f 在该点是鞍点</li>
+</ul>
+</li>
+<li>判断极值
+<ul>
+<li>正定黑塞矩阵表明临界点是局部极小值</li>
+<li>负定黑塞矩阵表明临界点是局部极大值</li>
+<li>不定黑塞矩阵表明临界点是一个鞍点</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ol start="3">
+<li>
+<p><strong>梯度消失</strong></p>
+<p>例如，假设想最小化函数f(x) = tanh(x)，恰好从x-4开始，f的梯度接近于0，因此优化将会停滞很长一段时间</p>
+<p><img src="/Pytorch_2_img/60.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="60"
+	
+	
+></p>
+</li>
+</ol>
+<h2 id="122-凸性">12.2 凸性
+</h2><ul>
+<li>
+<p>凸性在优化算法的设计中起到至关重要的作用，主要是由于在这种情况下对算法进行分析和测试比较容易。</p>
+<p>换言之，如果算法在凸性条件下的效果很差，通常我们很难再其他条件下得到比其更好地效果</p>
+</li>
+</ul>
+<h3 id="1221-定义">12.2.1 定义
+</h3><h4 id="1-凸集">1. 凸集
+</h4><ul>
+<li>
+<p><strong>凸集是凸性的基础，对于任何a,b∈X，如果连接a和b的线段也位于X中，则向量空间中的一个集合X是凸的</strong></p>
+<p><img src="/Pytorch_2_img/61.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="61"
+	
+	
+></p>
+</li>
+</ul>
+<h4 id="2-凸函数">2. 凸函数
+</h4><ul>
+<li>
+<p><strong>定义：</strong></p>
+<p><img src="/Pytorch_2_img/62.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="62"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>直观解释：</strong></p>
+<p>对于凸函数，任意两点之间的连线总是位于图像的上方或与图像重合，表现为“向上弯曲”。</p>
+</li>
+<li>
+<p><strong>图像：</strong></p>
+<p><img src="/Pytorch_2_img/63.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="63"
+	
+	
+></p>
+</li>
+</ul>
+<h4 id="3-詹森不等式">3. 詹森不等式
+</h4><ul>
+<li>
+<p><strong>定义：</strong></p>
+<p>它是凸性定义的一种推广</p>
+<p><img src="/Pytorch_2_img/64.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="64"
+	
+	
+></p>
+<p><img src="/Pytorch_2_img/65.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="65"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>詹森不等式的直观理解：</strong></p>
+<ul>
+<li>
+<p>**凸函数：**对于一个凸函数，图像总是向上弯曲。例如，抛物线 y x^2 就是一个凸函数。詹森不等式告诉我们，对于一个凸函数，函数值在期望点处总是小于或等于期望值在该点的函数值。这意味着函数值的期望不会小于期望的函数值。</p>
+<p>换句话说，<strong>将随机变量的期望带入函数会得到一个较小的结果</strong>，因为凸函数是&quot;向上弯曲&quot;的，函数值平均会比在期望点处的值大</p>
+</li>
+<li>
+<p><strong>凹函数</strong>：对于一个凹函数，图像总是向下弯曲，例如 y= -x^2 就是一个凹函数。对于凹函数，期望值的函数大于等于函数值的期望。</p>
+<p>这意味着，<strong>将随机变量的期望带入凹函数会得到一个较大的结果</strong>，因为凹函数是&quot;向下弯曲&quot;的，函数值的平均值会比在期望点处的值小</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="123-梯度下降">12.3 梯度下降
+</h2><ul>
+<li>
+<p><strong>实现梯度下降</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> d2l <span style="color:#f92672">import</span> torch <span style="color:#66d9ef">as</span> d2l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(x):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f_grad</span>(x):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gd</span>(eta,f_grad):
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> <span style="color:#ae81ff">10.0</span>
+</span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> [x]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">-=</span> eta <span style="color:#f92672">*</span> f_grad(x)	<span style="color:#75715e"># eta是学习率，控制每次梯度下降的步长</span>
+</span></span><span style="display:flex;"><span>        results<span style="color:#f92672">.</span>append(float(x))
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;epoch 10,x: </span><span style="color:#e6db74">{</span>x<span style="color:#e6db74">:</span><span style="color:#e6db74">f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> results
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> gd(<span style="color:#ae81ff">0.2</span>,f_grad)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_trace</span>(results,f):
+</span></span><span style="display:flex;"><span>    n <span style="color:#f92672">=</span> max(abs(min(results)),abs(max(results)))
+</span></span><span style="display:flex;"><span>    f_line <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>arange(<span style="color:#f92672">-</span>n,n,<span style="color:#ae81ff">0.01</span>)
+</span></span><span style="display:flex;"><span>    d2l<span style="color:#f92672">.</span>set_figsize()
+</span></span><span style="display:flex;"><span>    d2l<span style="color:#f92672">.</span>plot([f_line,results],[[f(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> f_line],
+</span></span><span style="display:flex;"><span>                [f(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> results]],<span style="color:#e6db74">&#39;x&#39;</span>,<span style="color:#e6db74">&#39;f(x)&#39;</span>,fmts<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;-&#39;</span>,<span style="color:#e6db74">&#39;-o&#39;</span>])
+</span></span><span style="display:flex;"><span>    d2l<span style="color:#f92672">.</span>plt<span style="color:#f92672">.</span>show()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>show_trace(results,f)
+</span></span></code></pre></div><p><img src="/Pytorch_2_img/66.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="66"
+	
+	
+></p>
+</li>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  d2l<span style="color:#f92672">.</span>plot([f_line, results],
+</span></span></code></pre></div><p><code>[f_line, results]</code> 是绘图的 <strong>x 轴数据</strong>：</p>
+<ul>
+<li><code>f_line</code>：这是第 1 组 x 数据，用于绘制目标函数 f(x) 的整体曲线。<code>f_line</code> 通常是一个连续的范围，例如均匀分布的点，用于精细绘制函数图像。</li>
+<li><code>results</code>：这是第 2 组 x 数据，表示梯度下降过程中产生的一系列点，通常是离散的。</li>
+</ul>
+<p>这里，<code>f_line</code> 和 <code>results</code> 是两个不同的 xxx 数据集，分别对应于两条不同的曲线。</p>
+</li>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  [[f(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> f_line], 
+</span></span><span style="display:flex;"><span>   [f(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> results]],
+</span></span></code></pre></div><p><code>[f(x) for x in f_line]</code>是绘图的 <strong>y 轴数据</strong>：</p>
+<ul>
+<li>通过列表推导式，逐个计算 <code>f_line</code> 中每个点 x 的函数值 f(x)。</li>
+<li>输出是一个列表，表示目标函数 f(x) 在 <code>f_line</code> 这些点上的值。</li>
+<li>这些值用于绘制第 1 条曲线（目标函数图像）。</li>
+</ul>
+<p><code>[f(x) for x in results]</code>：</p>
+<ul>
+<li>通过列表推导式，逐个计算 <code>results</code> 中每个点 x 的函数值 f(x)。</li>
+<li>输出是一个列表，表示梯度下降过程中各点 x 的函数值 f(x)。</li>
+<li>这些值用于绘制第 2 条曲线（梯度下降的轨迹）</li>
+</ul>
+</li>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;x&#39;</span>, <span style="color:#e6db74">&#39;f(x)&#39;</span>,
+</span></span></code></pre></div><p>这是 x 轴和 y 轴的标签</p>
+<ul>
+<li><code>'x'</code>：设置 x 轴的标签，表示自变量 xxx。</li>
+<li><code>'f(x)'</code>：设置 y 轴的标签，表示因变量 f(x)f(x)f(x)。</li>
+</ul>
+<p>这些标签会显示在图像的 x 轴和 y 轴上，方便理解图像内容。</p>
+</li>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  fmts<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;-&#39;</span>, <span style="color:#e6db74">&#39;-o&#39;</span>]
+</span></span></code></pre></div><p><code>fmts</code> 是绘图的 <strong>样式设置</strong>：</p>
+<ul>
+<li><code>'-'</code>：第 1 条曲线（对应 <code>f_line</code> 和其 f(x)f(x)f(x) 值）的样式是实线（没有标记）。</li>
+<li><code>'-o'</code>：第 2 条曲线（对应 <code>results</code> 和其 f(x)f(x)f(x) 值）的样式是实线，带有圆形标记，用于表示梯度下降过程中的每一个点。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1231-学习率">12.3.1 学习率
+</h3><ul>
+<li>
+<p><strong>作用：</strong></p>
+<p>学习率决定目标函数能否收敛到局部极小值，以及何时收敛到极小值。学习率 η 可由算法设计者设置</p>
+<p>如果学习率太小，将导致 x 的更新非常缓慢，需要更多的迭代</p>
+<p>如图，尽管经过了10个步骤，但是离最优解还是很远</p>
+<p><img src="/Pytorch_2_img/67.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="67"
+	
+	
+></p>
+<p>但是也不能太大，如果太大就会逐渐发散</p>
+<p><img src="/Pytorch_2_img/68.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="68"
+	
+	
+></p>
+</li>
+</ul>
+<h2 id="124-动量法">12.4 动量法
+</h2><ul>
+<li>
+<p><strong>定义：</strong></p>
+<p><strong>动量法</strong>是一种优化算法，通过引入“动量”的概念加速梯度下降，使模型训练更高效，特别是在损失函数具有高曲率、嘈杂梯度或小而一致的斜率的场景下</p>
+</li>
+<li>
+<p><strong>原理：</strong></p>
+<p><img src="/Pytorch_2_img/78.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="78"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>对比普通梯度下降</strong></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>特点</th>
+<th>普通梯度下降</th>
+<th>动量法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>更新方式</em>* |</td>
+<td>��依赖当前梯度     |</td>
+<td>��合当前梯度与历史更新方向 |</td>
+</tr>
+<tr>
+<td><em>收敛速度</em>* |</td>
+<td>��平缓方向收敛较慢 |</td>
+<td>��快，特别是在平缓区域     |</td>
+</tr>
+<tr>
+<td><em>稳定性</em>*   |</td>
+<td>��陡峭方向容易震荡 |</td>
+<td>��少震荡，更平滑           |</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+<h2 id="125-adagrad算法">12.5 AdaGrad算法
+</h2><ul>
+<li>
+<p><strong>定义：</strong></p>
+<p>AdaGrad（Adaptive Gradient Algorithm）是一种自适应学习率优化算法，它通过动态调整每个参数的学习率，适应不同特征的梯度变化。它特别适用于稀疏数据或具有不同梯度规模的场景，如自然语言处理或推荐系统等。</p>
+</li>
+<li>
+<p><strong>核心思想：</strong></p>
+<p><img src="/Pytorch_2_img/69.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="69"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>优点：</strong></p>
+<ol>
+<li>
+<p><strong>自适应性</strong>：</p>
+<p>AdaGrad可以<strong>自动调节每个参数的学习率</strong>。</p>
+<p>对<strong>变化剧烈的参数</strong>，它会<strong>降低</strong>学习率；</p>
+<p>对<strong>稀疏参数</strong>，它<strong>保留较大</strong>的学习率。</p>
+</li>
+<li>
+<p><strong>适合稀疏数据</strong>：</p>
+<p>别适合处理稀疏梯度问题，因为它会增加对稀疏特征的更新。</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>
+<p><strong>学习率逐渐减小</strong>：</p>
+<p>由于梯度平方累积的增长不可逆，导致学习率会逐渐趋近于零，可能在后期停止学习，尤其在深层神经网络中。</p>
+</li>
+<li>
+<p><strong>不能解决非凸优化问题</strong>：</p>
+<p>对于复杂的非凸函数，AdaGrad可能无法跳出局部极小值。</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>举例：</strong></p>
+<p><img src="/Pytorch_2_img/70.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="70"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>简洁实现：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>trainer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>Adagrad
+</span></span><span style="display:flex;"><span>d2l<span style="color:#f92672">.</span>train_concise_ch11(trainer,{<span style="color:#e6db74">&#39;lr&#39;</span>:<span style="color:#ae81ff">0.1</span>},data_iter)
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="126-rmsprrop算法">12.6 RMSPRrop算法
+</h2><ul>
+<li>
+<p><strong>定义：</strong></p>
+<p>RMSProp（Root Mean Square Propagation）是一种自适应学习率优化算法，它是<strong>为了解决AdaGrad算法的学习率持续衰减问题而提出的</strong>。与AdaGrad类似，RMSProp会调整每个参数的学习率，但它引入了<strong>指数加权平均</strong>的方法来平滑历史梯度平方的累积值，从而避免学习率过早变得过小。</p>
+</li>
+<li>
+<p><strong>核心思想：</strong></p>
+<p><img src="/Pytorch_2_img/71.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="71"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>优势：</strong></p>
+<ol>
+<li><strong>解决学习率逐渐减小的问题</strong>：
+<ul>
+<li>相比于AdaGrad，RMSProp不会简单累积所有历史梯度平方，而是通过指数加权平均对历史梯度进行平滑，使学习率保持适当的大小。</li>
+</ul>
+</li>
+<li><strong>适合深度学习任务</strong>：
+<ul>
+<li>在深度神经网络的训练中，RMSProp可以快速调整不同参数的学习率，提升收敛速度。</li>
+</ul>
+</li>
+<li><strong>适用于非凸优化问题</strong>：
+<ul>
+<li>RMSProp在处理复杂优化问题（如深层神经网络）时表现较好。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>举例说明：</strong></p>
+<p><img src="/Pytorch_2_img/72.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="72"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>RMSProp与AdaGrad的区别</strong></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>特点</th>
+<th>AdaGrad</th>
+<th>RMSProp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>梯度历史累积</em>* |</td>
+<td>��积所有梯度平方     |</td>
+<td>��用指数加权平均平滑历史梯度 |</td>
+</tr>
+<tr>
+<td><em>学习率趋势</em>*   |</td>
+<td>��续减小，可能趋于零 |</td>
+<td>��持稳定                     |</td>
+</tr>
+<tr>
+<td><em>适合场景</em>*     |</td>
+<td>��疏特征任务         |</td>
+<td>��度学习和非凸优化任务       |</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p><strong>简洁实现：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>trainer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>RMSprop
+</span></span><span style="display:flex;"><span>d2l<span style="color:#f92672">.</span>train_concise_ch11(trainer,{<span style="color:#e6db74">&#39;lr&#39;</span>:<span style="color:#ae81ff">0.01</span>,<span style="color:#e6db74">&#39;alpha&#39;</span>:<span style="color:#ae81ff">0.9</span>},data_iter)
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="127-adadelta算法">12.7 Adadelta算法
+</h2><ul>
+<li>
+<p><strong>定义：</strong></p>
+<p>Adadelta是一种自适应学习率优化算法，用于改进AdaGrad的不足，<strong>特别是解决其学习率在训练后期急剧下降的问题</strong>。Adadelta通过引入一个<strong>滑动窗口累计梯度</strong>的概念，避免了AdaGrad中使用全局累积平方梯度导致的学习率过小问题，并消除了对手动学习率的依赖</p>
+</li>
+<li>
+<p><strong>核心思想：</strong></p>
+<p><img src="/Pytorch_2_img/73.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="73"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>优势：</strong></p>
+<ol>
+<li><strong>动态学习率：</strong> Adadelta的更新量与梯度的比例动态调整，无需手动调节学习率。</li>
+<li><strong>适用于长时间训练：</strong> 避免了AdaGrad中因梯度平方累积导致的学习率快速下降问题，适合长时间训练。</li>
+<li><strong>无需显式学习率参数：</strong> 通过内部动态调整，避免了手动设置初始学习率的复杂性。</li>
+</ol>
+</li>
+<li>
+<p><strong>与AdaGrad和RMSProp的比较</strong></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>AdaGrad</th>
+<th>RMSProp</th>
+<th>Adadelta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>梯度历史处理方式</em>* |</td>
+<td>��积全部历史梯度平方 |</td>
+<td>��动平均     |</td>
+<td>��动平均                 |</td>
+</tr>
+<tr>
+<td><em>学习率调整</em>*       |</td>
+<td>��习率持续下降       |</td>
+<td>��态调整     |</td>
+<td>��态调整，无需显式学习率 |</td>
+</tr>
+<tr>
+<td><em>适合场景</em>*         |</td>
+<td>��疏特征任务         |</td>
+<td>��度学习任务 |</td>
+<td>��用优化问题             |</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+<h2 id="128-adam算法">12.8 Adam算法
+</h2><ul>
+<li>
+<p><strong>定义：</strong></p>
+<p>Adam（Adaptive Moment Estimation）是一种广泛使用的优化算法，结合了两种经典优化算法——<strong>动量法（Momentum）<strong>和</strong>RMSProp</strong>，用于加速和稳定深度学习模型的训练过程</p>
+</li>
+<li>
+<p><strong>算法原理：</strong></p>
+<ol>
+<li>
+<p><strong>计算梯度的动量</strong></p>
+<p><img src="/Pytorch_2_img/74.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="74"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>偏差修正</strong></p>
+<p><img src="/Pytorch_2_img/75.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="75"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>更新参数</strong></p>
+<p><img src="/Pytorch_2_img/76.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="76"
+	
+	
+></p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>优点：</strong></p>
+<ol>
+<li><strong>自适应学习率</strong>： Adam 利用梯度平方的平均值来调整学习率，不同参数会根据其梯度大小动态调整学习率。</li>
+<li><strong>快速收敛</strong>： 在许多任务中，Adam 比传统优化算法（如 SGD）收敛得更快，尤其是在训练不稳定或学习率难以调节的情况下。</li>
+<li><strong>鲁棒性</strong>： Adam 能够很好地应对稀疏梯度、噪声等问题，适合处理大型数据集和高维参数空间。</li>
+</ol>
+</li>
+<li>
+<p><strong>缺点：</strong></p>
+<ol>
+<li><strong>泛化性能差</strong>： 在某些任务中，Adam 生成的模型可能不如 SGD 泛化得好。为此，一些变种（如 AdamW）通过正则化权重衰减改善了这一问题。</li>
+<li><strong>学习率对调整仍然敏感</strong>： 尽管 Adam 的学习率自适应，但它对初始学习率的选择仍然重要，可能需要多次调整。</li>
+</ol>
+</li>
+<li>
+<p><strong>与其他算法对比：</strong></p>
+<ul>
+<li><strong>与SGD：</strong>
+<ul>
+<li>Adam 能动态调整学习率，避免了手动调参的麻烦。</li>
+<li>SGD 在一些任务中泛化能力更强。</li>
+</ul>
+</li>
+<li><strong>与RMSProp</strong>：
+<ul>
+<li>Adam 在 RMSProp 的基础上引入了一阶动量，优化了参数更新的方向性。</li>
+</ul>
+</li>
+<li><strong>与 Adagrad</strong>：
+<ul>
+<li>Adam 克服了 Adagrad 学习率下降过快的问题，适用于更长的训练过程。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="129-yogi算法">12.9 Yogi算法
+</h2><ul>
+<li>
+<p><strong>定义：</strong></p>
+<p><strong>Yogi</strong> 是一种基于 Adam 优化算法的变体，<strong>旨在解决 Adam 在某些情况下容易导致学习率过大或者参数更新过快的问题</strong>。Yogi 的核心改进在于其梯度平方累积的方法，它通过限制平方梯度的累计增长速度，避免了 RMSProp 和 Adam 在训练稀疏梯度或高维问题时可能出现的不稳定性。</p>
+</li>
+<li>
+<p><strong>基本原理：</strong></p>
+<p><img src="/Pytorch_2_img/77.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="77"
+	
+	
+></p>
+</li>
+<li>
+<p><strong>优点：</strong></p>
+<ol>
+<li><strong>适用于稀疏梯度问题</strong>： Yogi 能有效避免稀疏数据中学习率剧烈变化的问题。</li>
+<li><strong>稳定性更高</strong>： 梯度平方的动态调节机制使得优化过程更平滑，收敛更稳定。</li>
+<li><strong>泛化能力强</strong>： 与 Adam 相比，Yogi 在泛化性能上有所改进。</li>
+</ol>
+</li>
+</ul>
+<h1 id="优化器">优化器
+</h1><ul>
+<li><strong>通过损失函数得出的损失值，优化器通过反向传播调整权重和偏置</strong></li>
+</ul>
+<h1 id="图像分类的全过程">图像分类的全过程
+</h1><p><strong>整个过程如下：</strong></p>
+<ol>
+<li><strong>输入图像</strong>：图像数据以张量的形式输入到神经网络。</li>
+<li><strong>前向传播</strong>：图像经过神经网络中的各层处理（如卷积层、池化层、全连接层等）。</li>
+<li><strong>输出得分</strong>：网络的输出层会给出每个类别的得分。</li>
+<li><strong>Softmax 激活函数</strong>：将得分转换为概率分布。</li>
+<li><strong>分类判断</strong>：选择概率最大的类别作为图像的预测类别。</li>
+</ol>
+<p>在训练时，<strong>优化器</strong> 通过计算损失函数（如交叉熵损失），并通过反向传播来调整网络的参数（权重和偏置），使得模型的预测越来越接近真实标签，从而提高分类精度。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

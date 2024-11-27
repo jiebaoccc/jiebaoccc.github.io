@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 已知一有向图，构建该图对应的邻接表。 邻接表包含数组和单链表两种数据结构，其中每个数组元素也是单链表的头结点，数组元素****包含两个属性，属性一是顶点编号info，属性二是指针域next指向与它相连的顶点信息。 单链表的每个结点也包含两个属性，属性一是顶点在数组的位置下标，属性二是指针域next指向下一个结点。 输入 第1行输入整数t，表示有t个图 第2行输入n和k，表示该图有n个顶点和k条弧。 第3行输入n个顶点。 第4行起输入k条弧的起点和终点，连续输入k行 以此类推输入下一个图 输出 输出每个图的邻接表，每行输出格式：数组下标 顶点编号-连接顶点下标-&hellip;&hellip;-^，数组下标从0开始。 具体格式请参考样例数据，每行最后加入“^”表示NULL。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例1 1 5 7 A B C D E A B A D A E B D C B C E E D 输出样例1 0 A-1-3-4-^ 1 B-3-^ 2 C-1-4-^ 3 D-^ 4 E-3-^ 解题思路 根据输入向容器中存储对应的节点，然后对其进行排序再输出 具体代码 #include&lt;bits/stdc++.h&gt; #include&lt;unordered_map&gt; using namespace std; int main() { int t; cin &gt;&gt; t; while (t--) { unordered_map&lt;char, int&gt; h; int n, k; cin &gt;&gt; n &gt;&gt; k; vector&lt;char&gt; point; vector&lt;vector&lt;int&gt;&gt; val(n); for (int i = 0; i &lt; n; i++) { char ch; cin &gt;&gt; ch; point.">
+<title>【id223】A. 图综合练习--构建邻接表</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/id223a.-%E5%9B%BE%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0--%E6%9E%84%E5%BB%BA%E9%82%BB%E6%8E%A5%E8%A1%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id223】A. 图综合练习--构建邻接表">
+<meta property='og:description' content="题目描述 已知一有向图，构建该图对应的邻接表。 邻接表包含数组和单链表两种数据结构，其中每个数组元素也是单链表的头结点，数组元素****包含两个属性，属性一是顶点编号info，属性二是指针域next指向与它相连的顶点信息。 单链表的每个结点也包含两个属性，属性一是顶点在数组的位置下标，属性二是指针域next指向下一个结点。 输入 第1行输入整数t，表示有t个图 第2行输入n和k，表示该图有n个顶点和k条弧。 第3行输入n个顶点。 第4行起输入k条弧的起点和终点，连续输入k行 以此类推输入下一个图 输出 输出每个图的邻接表，每行输出格式：数组下标 顶点编号-连接顶点下标-&hellip;&hellip;-^，数组下标从0开始。 具体格式请参考样例数据，每行最后加入“^”表示NULL。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例1 1 5 7 A B C D E A B A D A E B D C B C E E D 输出样例1 0 A-1-3-4-^ 1 B-3-^ 2 C-1-4-^ 3 D-^ 4 E-3-^ 解题思路 根据输入向容器中存储对应的节点，然后对其进行排序再输出 具体代码 #include&lt;bits/stdc++.h&gt; #include&lt;unordered_map&gt; using namespace std; int main() { int t; cin &gt;&gt; t; while (t--) { unordered_map&lt;char, int&gt; h; int n, k; cin &gt;&gt; n &gt;&gt; k; vector&lt;char&gt; point; vector&lt;vector&lt;int&gt;&gt; val(n); for (int i = 0; i &lt; n; i++) { char ch; cin &gt;&gt; ch; point.">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/id223a.-%E5%9B%BE%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0--%E6%9E%84%E5%BB%BA%E9%82%BB%E6%8E%A5%E8%A1%A8/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-11-20T22:23:18&#43;08:00'/><meta property='article:modified_time' content='2024-11-20T22:23:18&#43;08:00'/>
+<meta name="twitter:title" content="【id223】A. 图综合练习--构建邻接表">
+<meta name="twitter:description" content="题目描述 已知一有向图，构建该图对应的邻接表。 邻接表包含数组和单链表两种数据结构，其中每个数组元素也是单链表的头结点，数组元素****包含两个属性，属性一是顶点编号info，属性二是指针域next指向与它相连的顶点信息。 单链表的每个结点也包含两个属性，属性一是顶点在数组的位置下标，属性二是指针域next指向下一个结点。 输入 第1行输入整数t，表示有t个图 第2行输入n和k，表示该图有n个顶点和k条弧。 第3行输入n个顶点。 第4行起输入k条弧的起点和终点，连续输入k行 以此类推输入下一个图 输出 输出每个图的邻接表，每行输出格式：数组下标 顶点编号-连接顶点下标-&hellip;&hellip;-^，数组下标从0开始。 具体格式请参考样例数据，每行最后加入“^”表示NULL。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例1 1 5 7 A B C D E A B A D A E B D C B C E E D 输出样例1 0 A-1-3-4-^ 1 B-3-^ 2 C-1-4-^ 3 D-^ 4 E-3-^ 解题思路 根据输入向容器中存储对应的节点，然后对其进行排序再输出 具体代码 #include&lt;bits/stdc++.h&gt; #include&lt;unordered_map&gt; using namespace std; int main() { int t; cin &gt;&gt; t; while (t--) { unordered_map&lt;char, int&gt; h; int n, k; cin &gt;&gt; n &gt;&gt; k; vector&lt;char&gt; point; vector&lt;vector&lt;int&gt;&gt; val(n); for (int i = 0; i &lt; n; i++) { char ch; cin &gt;&gt; ch; point.">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/id223a.-%E5%9B%BE%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0--%E6%9E%84%E5%BB%BA%E9%82%BB%E6%8E%A5%E8%A1%A8/">【id223】A. 图综合练习--构建邻接表</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 20, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><strong>题目描述</strong></p>
+<p><strong>已知一有向图，构建该图对应的邻接表。</strong></p>
+<p><strong>邻接表包含数组和单链表两种数据结构，其中每个数组元素也是单链表的头结点，数组元素****包含两个属性，属性一是顶点编号info，属性二是指针域next指向与它相连的顶点信息。</strong></p>
+<p><strong>单链表的每个结点也包含两个属性，属性一是顶点在数组的位置下标，属性二是指针域next指向下一个结点。</strong></p>
+<p><strong>输入</strong></p>
+<p>第1行输入整数t，表示有t个图</p>
+<p>第2行输入n和k，表示该图有n个顶点和k条弧。</p>
+<p>第3行输入n个顶点。</p>
+<p>第4行起输入k条弧的起点和终点，连续输入k行</p>
+<p>以此类推输入下一个图</p>
+<p><strong>输出</strong></p>
+<p>输出每个图的邻接表，每行输出格式：数组下标 顶点编号-连接顶点下标-&hellip;&hellip;-^，数组下标从0开始。</p>
+<p>具体格式请参考样例数据，每行最后加入“^”表示NULL。</p>
+<p><strong>IO模式</strong></p>
+<p>本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。</p>
+<p><strong>输入样例1</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span> <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>A B C D E
+</span></span><span style="display:flex;"><span>A B
+</span></span><span style="display:flex;"><span>A D
+</span></span><span style="display:flex;"><span>A E
+</span></span><span style="display:flex;"><span>B D
+</span></span><span style="display:flex;"><span>C B
+</span></span><span style="display:flex;"><span>C E
+</span></span><span style="display:flex;"><span>E D
+</span></span></code></pre></div><p><strong>输出样例1</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">0</span> A<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span><span style="color:#f92672">-^</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> B<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#f92672">-^</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span> C<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span><span style="color:#f92672">-^</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span> D<span style="color:#f92672">-^</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span> E<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#f92672">-^</span>
+</span></span></code></pre></div><p><strong>解题思路</strong></p>
+<p>根据输入向容器中存储对应的节点，然后对其进行排序再输出</p>
+<p><strong>具体代码</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;bits/stdc++.h&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;unordered_map&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> t;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> t;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (t<span style="color:#f92672">--</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		unordered_map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> h;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> n, k;
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> n <span style="color:#f92672">&gt;&gt;</span> k;
+</span></span><span style="display:flex;"><span>		vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> point;
+</span></span><span style="display:flex;"><span>		vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> val(n);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">char</span> ch;
+</span></span><span style="display:flex;"><span>			cin <span style="color:#f92672">&gt;&gt;</span> ch;
+</span></span><span style="display:flex;"><span>			point.push_back(ch);
+</span></span><span style="display:flex;"><span>			h[ch] <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">char</span> ch1, ch2;
+</span></span><span style="display:flex;"><span>			cin <span style="color:#f92672">&gt;&gt;</span> ch1 <span style="color:#f92672">&gt;&gt;</span> ch2;
+</span></span><span style="display:flex;"><span>			val[h[ch1]].push_back(h[ch2]);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			sort(val[i].begin(),val[i].end());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			cout <span style="color:#f92672">&lt;&lt;</span> i <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span>;
+</span></span><span style="display:flex;"><span>			cout <span style="color:#f92672">&lt;&lt;</span> point[i]<span style="color:#f92672">&lt;&lt;</span><span style="color:#e6db74">&#34;-&#34;</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> val[i].size(); j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			{
+</span></span><span style="display:flex;"><span>				cout <span style="color:#f92672">&lt;&lt;</span> val[i][j] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;-&#34;</span>;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;^&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

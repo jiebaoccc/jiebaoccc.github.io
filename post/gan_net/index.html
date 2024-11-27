@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="import argparse import os import numpy as np import math import torchvision.transforms as transforms from torchvision.utils import save_image from torch.utils.data import DataLoader from torchvision import datasets from torch.autograd import Variable import torch.nn as nn import torch.nn.functional as F import torch # 创建保存图像的文件夹 os.makedirs(&#34;E:GAN/images&#34;, exist_ok=True) # 参数配置 parser = argparse.ArgumentParser() parser.add_argument(&#34;--n_epochs&#34;, type=int, default=100) parser.add_argument(&#34;--batch_size&#34;, type=int, default=128) parser.add_argument(&#34;--lr&#34;, type=float, default=0.0002) parser.add_argument(&#34;--b1&#34;, type=float, default=0.5) parser.add_argument(&#34;--b2&#34;, type=float, default=0.999) parser.add_argument(&#34;--n_cpu&#34;, type=int, default=8) parser.add_argument(&#34;--latent_dim&#34;, type=int, default=100) parser.">
+<title>GAN_net</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/gan_net/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="GAN_net">
+<meta property='og:description' content="import argparse import os import numpy as np import math import torchvision.transforms as transforms from torchvision.utils import save_image from torch.utils.data import DataLoader from torchvision import datasets from torch.autograd import Variable import torch.nn as nn import torch.nn.functional as F import torch # 创建保存图像的文件夹 os.makedirs(&#34;E:GAN/images&#34;, exist_ok=True) # 参数配置 parser = argparse.ArgumentParser() parser.add_argument(&#34;--n_epochs&#34;, type=int, default=100) parser.add_argument(&#34;--batch_size&#34;, type=int, default=128) parser.add_argument(&#34;--lr&#34;, type=float, default=0.0002) parser.add_argument(&#34;--b1&#34;, type=float, default=0.5) parser.add_argument(&#34;--b2&#34;, type=float, default=0.999) parser.add_argument(&#34;--n_cpu&#34;, type=int, default=8) parser.add_argument(&#34;--latent_dim&#34;, type=int, default=100) parser.">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/gan_net/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-11-26T21:35:39&#43;08:00'/><meta property='article:modified_time' content='2024-11-26T21:35:39&#43;08:00'/>
+<meta name="twitter:title" content="GAN_net">
+<meta name="twitter:description" content="import argparse import os import numpy as np import math import torchvision.transforms as transforms from torchvision.utils import save_image from torch.utils.data import DataLoader from torchvision import datasets from torch.autograd import Variable import torch.nn as nn import torch.nn.functional as F import torch # 创建保存图像的文件夹 os.makedirs(&#34;E:GAN/images&#34;, exist_ok=True) # 参数配置 parser = argparse.ArgumentParser() parser.add_argument(&#34;--n_epochs&#34;, type=int, default=100) parser.add_argument(&#34;--batch_size&#34;, type=int, default=128) parser.add_argument(&#34;--lr&#34;, type=float, default=0.0002) parser.add_argument(&#34;--b1&#34;, type=float, default=0.5) parser.add_argument(&#34;--b2&#34;, type=float, default=0.999) parser.add_argument(&#34;--n_cpu&#34;, type=int, default=8) parser.add_argument(&#34;--latent_dim&#34;, type=int, default=100) parser.">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/gan_net/">GAN_net</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 26, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> argparse
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> math
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision.transforms <span style="color:#66d9ef">as</span> transforms
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torchvision.utils <span style="color:#f92672">import</span> save_image
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torchvision <span style="color:#f92672">import</span> datasets
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.autograd <span style="color:#f92672">import</span> Variable
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.nn <span style="color:#66d9ef">as</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.nn.functional <span style="color:#66d9ef">as</span> F
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建保存图像的文件夹</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#f92672">.</span>makedirs(<span style="color:#e6db74">&#34;E:GAN/images&#34;</span>, exist_ok<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 参数配置</span>
+</span></span><span style="display:flex;"><span>parser <span style="color:#f92672">=</span> argparse<span style="color:#f92672">.</span>ArgumentParser()
+</span></span><span style="display:flex;"><span>parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--n_epochs&#34;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--batch_size&#34;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>)
+</span></span><span style="display:flex;"><span>parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--lr&#34;</span>, type<span style="color:#f92672">=</span>float, default<span style="color:#f92672">=</span><span style="color:#ae81ff">0.0002</span>)
+</span></span><span style="display:flex;"><span>parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--b1&#34;</span>, type<span style="color:#f92672">=</span>float, default<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
+</span></span><span style="display:flex;"><span>parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--b2&#34;</span>, type<span style="color:#f92672">=</span>float, default<span style="color:#f92672">=</span><span style="color:#ae81ff">0.999</span>)
+</span></span><span style="display:flex;"><span>parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--n_cpu&#34;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span>parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--latent_dim&#34;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--img_size&#34;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span><span style="color:#ae81ff">28</span>)
+</span></span><span style="display:flex;"><span>parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--channels&#34;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>parser<span style="color:#f92672">.</span>add_argument(<span style="color:#e6db74">&#34;--sample_interval&#34;</span>, type<span style="color:#f92672">=</span>int, default<span style="color:#f92672">=</span><span style="color:#ae81ff">400</span>)
+</span></span><span style="display:flex;"><span>opt <span style="color:#f92672">=</span> parser<span style="color:#f92672">.</span>parse_args()
+</span></span><span style="display:flex;"><span>print(opt)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>img_shape <span style="color:#f92672">=</span> (opt<span style="color:#f92672">.</span>channels, opt<span style="color:#f92672">.</span>img_size, opt<span style="color:#f92672">.</span>img_size)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cuda <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span> <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available() <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 生成器模型</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Generator</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Generator, self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">block</span>(in_feat, out_feat, normalize<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>):
+</span></span><span style="display:flex;"><span>            layers <span style="color:#f92672">=</span> [nn<span style="color:#f92672">.</span>Linear(in_feat, out_feat)]
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> normalize:
+</span></span><span style="display:flex;"><span>                layers<span style="color:#f92672">.</span>append(nn<span style="color:#f92672">.</span>BatchNorm1d(out_feat, <span style="color:#ae81ff">0.8</span>))
+</span></span><span style="display:flex;"><span>            layers<span style="color:#f92672">.</span>append(nn<span style="color:#f92672">.</span>LeakyReLU(<span style="color:#ae81ff">0.2</span>, inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>))
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> layers
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">*</span>block(opt<span style="color:#f92672">.</span>latent_dim, <span style="color:#ae81ff">128</span>, normalize<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">*</span>block(<span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">256</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">*</span>block(<span style="color:#ae81ff">256</span>, <span style="color:#ae81ff">512</span>),
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">*</span>block(<span style="color:#ae81ff">512</span>, <span style="color:#ae81ff">1024</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">1024</span>, int(np<span style="color:#f92672">.</span>prod(img_shape))),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Tanh()
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, z):
+</span></span><span style="display:flex;"><span>        img <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model(z)
+</span></span><span style="display:flex;"><span>        img <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>view(img<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>), <span style="color:#f92672">*</span>img_shape)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> img
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 判别器模型</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Discriminator</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(Discriminator, self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(int(np<span style="color:#f92672">.</span>prod(img_shape)), <span style="color:#ae81ff">512</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>LeakyReLU(<span style="color:#ae81ff">0.2</span>, inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">512</span>, <span style="color:#ae81ff">256</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>LeakyReLU(<span style="color:#ae81ff">0.2</span>, inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">256</span>, <span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Sigmoid()
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, img):
+</span></span><span style="display:flex;"><span>        img_flat <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>view(img<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>), <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        validity <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model(img_flat)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> validity
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 损失函数</span>
+</span></span><span style="display:flex;"><span>adversarial_loss <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>BCELoss()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 初始化生成器和判别器</span>
+</span></span><span style="display:flex;"><span>generator <span style="color:#f92672">=</span> Generator()
+</span></span><span style="display:flex;"><span>discriminator <span style="color:#f92672">=</span> Discriminator()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果使用GPU，将模型迁移到GPU</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> cuda:
+</span></span><span style="display:flex;"><span>    generator<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span>    discriminator<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span>    adversarial_loss<span style="color:#f92672">.</span>cuda()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建数据加载器</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#f92672">.</span>makedirs(<span style="color:#e6db74">&#34;E:dataset/mnist&#34;</span>, exist_ok<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>dataloader <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>DataLoader(
+</span></span><span style="display:flex;"><span>    datasets<span style="color:#f92672">.</span>MNIST(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;E:dataset/mnist&#34;</span>,
+</span></span><span style="display:flex;"><span>        train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        transform<span style="color:#f92672">=</span>transforms<span style="color:#f92672">.</span>Compose(
+</span></span><span style="display:flex;"><span>            [transforms<span style="color:#f92672">.</span>Resize(opt<span style="color:#f92672">.</span>img_size), transforms<span style="color:#f92672">.</span>ToTensor(), transforms<span style="color:#f92672">.</span>Normalize([<span style="color:#ae81ff">0.5</span>], [<span style="color:#ae81ff">0.5</span>])]
+</span></span><span style="display:flex;"><span>        ),
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>    batch_size<span style="color:#f92672">=</span>opt<span style="color:#f92672">.</span>batch_size,
+</span></span><span style="display:flex;"><span>    shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 初始化优化器</span>
+</span></span><span style="display:flex;"><span>optimizer_G <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>Adam(generator<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span>opt<span style="color:#f92672">.</span>lr, betas<span style="color:#f92672">=</span>(opt<span style="color:#f92672">.</span>b1, opt<span style="color:#f92672">.</span>b2))
+</span></span><span style="display:flex;"><span>optimizer_D <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>Adam(discriminator<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span>opt<span style="color:#f92672">.</span>lr, betas<span style="color:#f92672">=</span>(opt<span style="color:#f92672">.</span>b1, opt<span style="color:#f92672">.</span>b2))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用适当的Tensor类型</span>
+</span></span><span style="display:flex;"><span>Tensor <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>FloatTensor <span style="color:#66d9ef">if</span> cuda <span style="color:#66d9ef">else</span> torch<span style="color:#f92672">.</span>FloatTensor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 训练过程</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(opt<span style="color:#f92672">.</span>n_epochs):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, (imgs, _) <span style="color:#f92672">in</span> enumerate(dataloader):
+</span></span><span style="display:flex;"><span>        valid <span style="color:#f92672">=</span> Variable(Tensor(imgs<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>), <span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>fill_(<span style="color:#ae81ff">1.0</span>), requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>        fake <span style="color:#f92672">=</span> Variable(Tensor(imgs<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>), <span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>fill_(<span style="color:#ae81ff">0.0</span>), requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        real_imgs <span style="color:#f92672">=</span> Variable(imgs<span style="color:#f92672">.</span>type(Tensor))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 训练生成器</span>
+</span></span><span style="display:flex;"><span>        optimizer_G<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        z <span style="color:#f92672">=</span> Variable(Tensor(np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, (imgs<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>], opt<span style="color:#f92672">.</span>latent_dim))))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        gen_imgs <span style="color:#f92672">=</span> generator(z)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        g_loss <span style="color:#f92672">=</span> adversarial_loss(discriminator(gen_imgs), valid)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        g_loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>        optimizer_G<span style="color:#f92672">.</span>step()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 训练判别器</span>
+</span></span><span style="display:flex;"><span>        optimizer_D<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        real_loss <span style="color:#f92672">=</span> adversarial_loss(discriminator(real_imgs), valid)
+</span></span><span style="display:flex;"><span>        fake_loss <span style="color:#f92672">=</span> adversarial_loss(discriminator(gen_imgs<span style="color:#f92672">.</span>detach()), fake)
+</span></span><span style="display:flex;"><span>        d_loss <span style="color:#f92672">=</span> (real_loss <span style="color:#f92672">+</span> fake_loss) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        d_loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>        optimizer_D<span style="color:#f92672">.</span>step()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 打印损失</span>
+</span></span><span style="display:flex;"><span>        print(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;[Epoch </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">/</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">] [Batch </span><span style="color:#e6db74">%d</span><span style="color:#e6db74">/</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">] [D Loss: </span><span style="color:#e6db74">%f</span><span style="color:#e6db74">] [G Loss: </span><span style="color:#e6db74">%f</span><span style="color:#e6db74">]&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">%</span> (epoch, opt<span style="color:#f92672">.</span>n_epochs, i, len(dataloader), d_loss<span style="color:#f92672">.</span>item(), g_loss<span style="color:#f92672">.</span>item())
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 保存生成的图像</span>
+</span></span><span style="display:flex;"><span>        batches_done <span style="color:#f92672">=</span> epoch <span style="color:#f92672">*</span> len(dataloader) <span style="color:#f92672">+</span> i
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> batches_done <span style="color:#f92672">%</span> opt<span style="color:#f92672">.</span>sample_interval <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            save_image(gen_imgs<span style="color:#f92672">.</span>data[:<span style="color:#ae81ff">25</span>], <span style="color:#e6db74">&#34;E:GAN/images/</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">.png&#34;</span> <span style="color:#f92672">%</span> batches_done, nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, normalize<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><p><img src="/GAN_img/1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1"
+	
+	
+></p>
+<p><img src="/static/GAN_img/1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

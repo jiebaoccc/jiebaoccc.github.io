@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 补充： 进入Pytorch conda activate pytorch 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.">
 <title>Pytorch</title>
 
-<link rel='canonical' href='https://jiebaoccc.github.io/post/pytorch/'>
+<link rel='canonical' href='http://localhost:1313/post/pytorch/'>
 
 <link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Pytorch">
 <meta property='og:description' content="1、dir() 输出类中的各种函数 2、help（） 输出该函数的功能 补充： 进入Pytorch conda activate pytorch 3、初始数据的获取 # read_data.py # 将蚂蚁、蜜蜂的图片文件分别读取成集合，以及将两者结合成一个完整的数据集 from torch.utils.data import Dataset from PIL import Image import os # 系统操作 class MyData(Dataset): def __init__(self, root_dir, label_dir): self.root_dir = root_dir # 根地址 self.label_dir = label_dir # 标签地址 self.path = os.path.join(self.root_dir, self.label_dir) # 将两个路径进行拼接 self.img_path = os.listdir(self.path) # 将地址下的所有文件名形成一个列表，并返回 def __getitem__(self, idx): img_name = self.img_path[idx] # 表示取集合中的指定文件名 img_item_path = os.path.join(self.root_dir, self.label_dir, img_name) # 将根目录、标签地址与文件名结合，从而获得文件的相对路径 img = Image.">
-<meta property='og:url' content='https://jiebaoccc.github.io/post/pytorch/'>
+<meta property='og:url' content='http://localhost:1313/post/pytorch/'>
 <meta property='og:site_name' content='Carp&#39;s blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-09-18T16:49:17&#43;08:00'/><meta property='article:modified_time' content='2024-09-18T16:49:17&#43;08:00'/>
 <meta name="twitter:title" content="Pytorch">
@@ -417,7 +417,7 @@
 </span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
 </span></span></code></pre></div><h1 id="6torchvision中的数据集使用">6、torchvision中的数据集使用
 </h1><p>点击“Pytorch Domains”</p>
-<p><img src="/Pytorch_img/1.png"
+<p><img src="/Pytorch_1_img/1.png"
 	
 	
 	
@@ -428,7 +428,7 @@
 	
 ></p>
 <p>选择“torchvision”</p>
-<p><img src="/Pytorch_img/2.png"
+<p><img src="/Pytorch_1_img/2.png"
 	
 	
 	
@@ -439,7 +439,7 @@
 	
 ></p>
 <p>进入“Datasets”</p>
-<p><img src="/Pytorch_img/3.png"
+<p><img src="/Pytorch_1_img/3.png"
 	
 	
 	
@@ -450,7 +450,7 @@
 	
 ></p>
 <p>有许多官方数据集可供下载</p>
-<p><img src="/Pytorch_img/4.png"
+<p><img src="/Pytorch_1_img/4.png"
 	
 	
 	
@@ -491,7 +491,7 @@
 </span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
 </span></span></code></pre></div><h1 id="7dataloader的使用">7、DataLoader的使用
 </h1><p>同样进入“Pytorch Domains”-&gt;“torchvision”</p>
-<p><img src="/Pytorch_img/1.png"
+<p><img src="/Pytorch_1_img/1.png"
 	
 	
 	
@@ -502,7 +502,7 @@
 	
 ></p>
 <p>直接搜索“DataLoader”</p>
-<p><img src="/Pytorch_img/5.png"
+<p><img src="/Pytorch_1_img/5.png"
 	
 	
 	
@@ -549,7 +549,7 @@
 </h1><ul>
 <li>
 <p>首先进入Pytorch官网</p>
-<p><img src="/Pytorch_img/6.png"
+<p><img src="/Pytorch_1_img/6.png"
 	
 	
 	
@@ -562,7 +562,7 @@
 </li>
 <li>
 <p>其中有很多个模块</p>
-<p><img src="/Pytorch_img/7.png"
+<p><img src="/Pytorch_1_img/7.png"
 	
 	
 	
@@ -575,7 +575,7 @@
 </li>
 <li>
 <p>首先从Containers，容器，也是骨架讲起</p>
-<p><img src="/Pytorch_img/8.png"
+<p><img src="/Pytorch_1_img/8.png"
 	
 	
 	
@@ -588,7 +588,7 @@
 </li>
 <li>
 <p>其中Module就是为所有神经网络提供一个模板，<strong><code>__init__</code></strong> 函数需要自己定义</p>
-<p><img src="/Pytorch_img/9.png"
+<p><img src="/Pytorch_1_img/9.png"
 	
 	
 	
@@ -620,7 +620,7 @@
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 输出结果</span>
 </span></span><span style="display:flex;"><span>tensor(<span style="color:#ae81ff">2.</span>)
 </span></span></code></pre></div><h1 id="9卷积操作">9、卷积操作
-</h1><p><img src="/Pytorch_img/10.png"
+</h1><p><img src="/Pytorch_1_img/10.png"
 	
 	
 	
@@ -632,7 +632,7 @@
 ></p>
 <p>其中nn.Conv1d表示一维，nn.Conv2d表示二维，nn.Conv3d表示三维</p>
 <p>主要讲解nn.Conv2d</p>
-<p><img src="/Pytorch_img/11.png"
+<p><img src="/Pytorch_1_img/11.png"
 	
 	
 	
@@ -713,7 +713,7 @@
 </h1><ul>
 <li>
 <p>打开“Convolution Layers”</p>
-<p><img src="/Pytorch_img/12.png"
+<p><img src="/Pytorch_1_img/12.png"
 	
 	
 	
@@ -726,7 +726,7 @@
 </li>
 <li>
 <p>主要讲解“nn.Conv2d”的使用</p>
-<p><img src="/Pytorch_img/32.png"
+<p><img src="/Pytorch_1_img/32.png"
 	
 	
 	
@@ -793,7 +793,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
 </span></span></code></pre></div><p><strong>实现效果</strong></p>
-<p><img src="/Pytorch_img/13.png"
+<p><img src="/Pytorch_1_img/13.png"
 	
 	
 	
@@ -804,7 +804,7 @@
 	
 ></p>
 <h1 id="11最大池化的使用">11、最大池化的使用
-</h1><p><img src="/Pytorch_img/14.png"
+</h1><p><img src="/Pytorch_1_img/14.png"
 	
 	
 	
@@ -824,7 +824,7 @@
 </li>
 <li>
 <p><strong>dilation</strong> ：空洞卷积</p>
-<p><img src="/Pytorch_img/15.png"
+<p><img src="/Pytorch_1_img/15.png"
 	
 	
 	
@@ -838,7 +838,7 @@
 <li>
 <p><strong>ceiling_mode</strong> ：当为True时会使用ceil模式去计算输出形状，反之则为floor</p>
 <p>floor为向下取整，ceil为向上取整</p>
-<p><img src="/Pytorch_img/16.png"
+<p><img src="/Pytorch_1_img/16.png"
 	
 	
 	
@@ -849,7 +849,7 @@
 	
 ></p>
 <p>示例：</p>
-<p><img src="/Pytorch_img/20.png"
+<p><img src="/Pytorch_1_img/20.png"
 	
 	
 	
@@ -859,7 +859,7 @@
 	
 	
 ></p>
-<p><img src="/Pytorch_img/18.png"
+<p><img src="/Pytorch_1_img/18.png"
 	
 	
 	
@@ -869,7 +869,7 @@
 	
 	
 ></p>
-<p><img src="/Pytorch_img/19.png"
+<p><img src="/Pytorch_1_img/19.png"
 	
 	
 	
@@ -916,7 +916,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
 </span></span></code></pre></div><p><strong>实现效果</strong></p>
-<p><img src="/Pytorch_img/22.png"
+<p><img src="/Pytorch_1_img/22.png"
 	
 	
 	
@@ -928,7 +928,7 @@
 ></p>
 <h1 id="12非线性激活">12、非线性激活
 </h1><p><strong>Relu</strong></p>
-<p><img src="/Pytorch_img/23.png"
+<p><img src="/Pytorch_1_img/23.png"
 	
 	
 	
@@ -1009,7 +1009,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>close()
 </span></span></code></pre></div><p><strong>实现效果</strong></p>
-<p><img src="/Pytorch_img/24.png"
+<p><img src="/Pytorch_1_img/24.png"
 	
 	
 	
@@ -1021,7 +1021,7 @@
 ></p>
 <h1 id="13线性层">13、线性层
 </h1><p>将二维或多维矩阵转化为一维</p>
-<p><img src="/Pytorch_img/28.png"
+<p><img src="/Pytorch_1_img/28.png"
 	
 	
 	
@@ -1036,7 +1036,7 @@
 <li><strong>g1 =  k1*x1+b1</strong></li>
 <li><strong>gL = kL*xL+bL</strong></li>
 </ul>
-<p><img src="/Pytorch_img/26.png"
+<p><img src="/Pytorch_1_img/26.png"
 	
 	
 	
@@ -1046,7 +1046,7 @@
 	
 	
 ></p>
-<p><img src="/Pytorch_img/29.png"
+<p><img src="/Pytorch_1_img/29.png"
 	
 	
 	
@@ -1066,7 +1066,7 @@
 <h1 id="14神经网络其它层的介绍">14、神经网络——其它层的介绍
 </h1><h2 id="1正则化层">1.正则化层
 </h2><p>加快训练速度</p>
-<p><img src="/Pytorch_img/25.png"
+<p><img src="/Pytorch_1_img/25.png"
 	
 	
 	
@@ -1078,7 +1078,7 @@
 ></p>
 <h2 id="3-drop_out层">3. Drop_out层
 </h2><p>防止过拟合</p>
-<p><img src="/Pytorch_img/27.png"
+<p><img src="/Pytorch_1_img/27.png"
 	
 	
 	
@@ -1089,7 +1089,7 @@
 	
 ></p>
 <h1 id="15神经网络cifar10搭建实战和sequential的使用">15、神经网络——CIFAR10搭建实战和Sequential的使用
-</h1><p><img src="/Pytorch_img/30.png"
+</h1><p><img src="/Pytorch_1_img/30.png"
 	
 	
 	
@@ -1151,7 +1151,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># writer.close()</span>
 </span></span></code></pre></div><p><strong>实现效果</strong></p>
-<p><img src="/Pytorch_img/31.png"
+<p><img src="/Pytorch_1_img/31.png"
 	
 	
 	
@@ -1171,7 +1171,7 @@
 </ul>
 </li>
 <li>
-<p><img src="/Pytorch_img/33.png"
+<p><img src="/Pytorch_1_img/33.png"
 	
 	
 	
@@ -1181,7 +1181,7 @@
 	
 	
 ></p>
-<p><img src="/Pytorch_img/34.png"
+<p><img src="/Pytorch_1_img/34.png"
 	
 	
 	
@@ -1191,7 +1191,7 @@
 	
 	
 ></p>
-<p><img src="/Pytorch_img/35.png"
+<p><img src="/Pytorch_1_img/35.png"
 	
 	
 	
@@ -1220,7 +1220,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># tensor([[[[0., 0., 2.]]]])</span>
 </span></span></code></pre></div></li>
 <li>
-<p><img src="/Pytorch_img/36.png"
+<p><img src="/Pytorch_1_img/36.png"
 	
 	
 	
@@ -1230,7 +1230,7 @@
 	
 	
 ></p>
-<p><img src="/Pytorch_img/37.png"
+<p><img src="/Pytorch_1_img/37.png"
 	
 	
 	
@@ -1260,7 +1260,7 @@
 </span></span></code></pre></div></li>
 <li>
 <p><strong>交叉商</strong></p>
-<p><img src="/Pytorch_img/38.png"
+<p><img src="/Pytorch_1_img/38.png"
 	
 	
 	
@@ -1270,7 +1270,7 @@
 	
 	
 ></p>
-<p><img src="/Pytorch_img/39.png"
+<p><img src="/Pytorch_1_img/39.png"
 	
 	
 	
@@ -1334,7 +1334,7 @@
 </span></span></code></pre></div></li>
 </ul>
 <h1 id="17优化器">17、优化器
-</h1><p><img src="/Pytorch_img/40.png"
+</h1><p><img src="/Pytorch_1_img/40.png"
 	
 	
 	
@@ -1951,7 +1951,7 @@
 </span></span><span style="display:flex;"><span>          <span style="color:#ae81ff">1.6692</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.6316</span>]], device<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;cuda:0&#39;</span>)
 </span></span><span style="display:flex;"><span>tensor([<span style="color:#ae81ff">0</span>], device<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;cuda:0&#39;</span>)
 </span></span></code></pre></div><p>其中数据集中对应的类别的序号如下，所以序号0为飞机，识别正确</p>
-<p><img src="/Pytorch_img/41.png"
+<p><img src="/Pytorch_1_img/41.png"
 	
 	
 	
