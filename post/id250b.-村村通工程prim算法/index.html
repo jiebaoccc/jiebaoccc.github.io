@@ -229,105 +229,91 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>unordered_map<span style="color:#f92672">&lt;</span>string, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> h;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Map</span>
-</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Prim</span> {
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> point;
-</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> arr;
-</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> cost;
-</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> prepoint;
-</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> head;
-</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> tail;
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> start;
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> sum;
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> n;
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> point;	<span style="color:#75715e">//	存储节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> head;	<span style="color:#75715e">//	存储每条边的起点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> tail;	<span style="color:#75715e">//	存储每条边的终点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> prepoint;	<span style="color:#75715e">//	存储数组中每个点当前的起点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> cost;	<span style="color:#75715e">//	存储数组中当前起点到终点的权值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> arr;	<span style="color:#75715e">//	邻接矩阵数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> start;	<span style="color:#75715e">//	开始的起点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;	<span style="color:#75715e">//	总花费
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> n;	<span style="color:#75715e">//	节点数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
-</span></span><span style="display:flex;"><span>	Map(<span style="color:#66d9ef">int</span> n,vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> point, vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> arr,<span style="color:#66d9ef">int</span> start)
-</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>	Prim(vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> point, <span style="color:#66d9ef">int</span> n, <span style="color:#66d9ef">int</span> start, vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> arr){
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>point <span style="color:#f92672">=</span> point;
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>arr <span style="color:#f92672">=</span> arr;
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>start <span style="color:#f92672">=</span> start;
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>n <span style="color:#f92672">=</span> n;
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>start <span style="color:#f92672">=</span> start;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>arr <span style="color:#f92672">=</span> arr;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>cost.assign(arr[start].begin(), arr[start].end());
-</span></span><span style="display:flex;"><span>		cost[start] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>		vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> temp(n,point[start]);
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>prepoint <span style="color:#f92672">=</span> temp;
+</span></span><span style="display:flex;"><span>		cost.assign(arr[start].begin(), arr[start].end());	<span style="color:#75715e">//	存储起点到每个点的距离
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		cost[start] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;	<span style="color:#75715e">// 将起点置零
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		prepoint <span style="color:#f92672">=</span> vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span>(n,point[start]);
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">prim</span>()
-</span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">while</span> (head.size() <span style="color:#f92672">&lt;</span> n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
-</span></span><span style="display:flex;"><span>		{
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> min <span style="color:#f92672">=</span> INT_MAX;
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> cost.size(); i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Create_tree</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">while</span> (head.size() <span style="color:#f92672">&lt;</span> n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> min <span style="color:#f92672">=</span> INT_MAX, index <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) 
 </span></span><span style="display:flex;"><span>			{
-</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (cost[i] <span style="color:#f92672">&lt;</span> min <span style="color:#f92672">&amp;&amp;</span> cost[i] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (min <span style="color:#f92672">&gt;</span> cost[i] <span style="color:#f92672">&amp;&amp;</span> cost[i] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
 </span></span><span style="display:flex;"><span>				{
-</span></span><span style="display:flex;"><span>					index <span style="color:#f92672">=</span> i;
 </span></span><span style="display:flex;"><span>					min <span style="color:#f92672">=</span> cost[i];
+</span></span><span style="display:flex;"><span>					index <span style="color:#f92672">=</span> i;
 </span></span><span style="display:flex;"><span>				}
 </span></span><span style="display:flex;"><span>			}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>			sum <span style="color:#f92672">+=</span> cost[index];
-</span></span><span style="display:flex;"><span>			head.push_back(point[index]);
-</span></span><span style="display:flex;"><span>			tail.push_back(prepoint[index]);
-</span></span><span style="display:flex;"><span>			cost[index] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> cost.size(); i<span style="color:#f92672">++</span>)
-</span></span><span style="display:flex;"><span>			{
-</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (arr[index][i] <span style="color:#f92672">&lt;</span> cost[i])
-</span></span><span style="display:flex;"><span>				{
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">//	找出最小值和索引
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>			sum <span style="color:#f92672">+=</span> min;	<span style="color:#75715e">//	总和
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			cost[index] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;	<span style="color:#75715e">//	将花费置零
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			head.push_back(prepoint[index]);	<span style="color:#75715e">//	插入起点容器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			tail.push_back(point[index]);	<span style="color:#75715e">//	插入终点容器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {	<span style="color:#75715e">//	更新容器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				<span style="color:#66d9ef">if</span> (arr[index][i] <span style="color:#f92672">&lt;</span> cost[i]) {
 </span></span><span style="display:flex;"><span>					cost[i] <span style="color:#f92672">=</span> arr[index][i];
 </span></span><span style="display:flex;"><span>					prepoint[i] <span style="color:#f92672">=</span> point[index];
 </span></span><span style="display:flex;"><span>				}
 </span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		out();
+</span></span><span style="display:flex;"><span>		display();
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">out</span>()
-</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display</span>() {
 </span></span><span style="display:flex;"><span>		cout <span style="color:#f92672">&lt;&lt;</span> sum <span style="color:#f92672">&lt;&lt;</span> endl;
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>)
-</span></span><span style="display:flex;"><span>		{
-</span></span><span style="display:flex;"><span>			cout <span style="color:#f92672">&lt;&lt;</span> tail[i] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> head[i] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> arr[h[tail[i]]][h[head[i]]] <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> head.size(); i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> h[head[i]], y <span style="color:#f92672">=</span> h[tail[i]];
+</span></span><span style="display:flex;"><span>			cout <span style="color:#f92672">&lt;&lt;</span> head[i] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> tail[i] <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> arr[x][y] <span style="color:#f92672">&lt;&lt;</span> endl;
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> n;
-</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> n;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> n; cin <span style="color:#f92672">&gt;&gt;</span> n;
 </span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;</span> point(n);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>)
-</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> point[i];
 </span></span><span style="display:flex;"><span>		h[point[i]] <span style="color:#f92672">=</span> i;
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> arr(n,vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(n,INT_MAX));
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> k;
-</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> k;
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (k<span style="color:#f92672">--</span>)
-</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> m; cin <span style="color:#f92672">&gt;&gt;</span> m;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> m; i<span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>		string p1, p2;
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> cost;
 </span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> p1 <span style="color:#f92672">&gt;&gt;</span> p2 <span style="color:#f92672">&gt;&gt;</span> cost;
-</span></span><span style="display:flex;"><span>		arr[h[p1]][h[p2]] <span style="color:#f92672">=</span> cost;
-</span></span><span style="display:flex;"><span>		arr[h[p2]][h[p1]] <span style="color:#f92672">=</span> cost;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> h[p1], y <span style="color:#f92672">=</span> h[p2];
+</span></span><span style="display:flex;"><span>		arr[x][y] <span style="color:#f92672">=</span> arr[y][x] <span style="color:#f92672">=</span> cost;
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	string start;
-</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> start;
-</span></span><span style="display:flex;"><span>	Map m(n,point, arr, h[start]);
+</span></span><span style="display:flex;"><span>	string start; cin <span style="color:#f92672">&gt;&gt;</span> start;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	m.prim();
+</span></span><span style="display:flex;"><span>	Prim p(point,n,h[start],arr);
+</span></span><span style="display:flex;"><span>	p.Create_tree();
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
@@ -356,7 +342,7 @@
     <section class="copyright">
         &copy; 
         
-        2024 Carp&#39;s blog
+        2025 Carp&#39;s blog
     </section>
     
     <section class="powerby">

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="数据集下载 数据集下载地址：Human embryo time-lapse video dataset 标注内容 黄色细胞质区域、红色原核区域 标注软件：https://github.com/CVHub520/X-AnyLabeling/tree/main 安装文档：https://github.com/CVHub520/X-AnyLabeling/blob/main/docs/zh_cn/get_started.md 使用手册：https://github.com/CVHub520/X-AnyLabeling/blob/main/docs/zh_cn/user_guide.md 具体操作 UI界面 准备工作：安装SAM模型辅助标记 可能问题：因为网络问题无法安装，手动安装 下载地址：https://github.com/CVHub520/X-AnyLabeling/blob/main/docs/zh_cn/model_zoo.md 下载好后，修改配置文件指定模型路径为自定义路径： 修改路径文件夹下.yaml文件，修改为自定义路径： 细胞核标注 点击File-&gt;open Dir 选择数据集图像文件夹 对存在原核的图像进行标注，创建对象 默认情况下标注文件保存在图像文件夹下，选择File-&gt;Change Output Dir 另外指定到一个标注文件夹，该文件夹保存标注json格式的文件。 开始标注： 细胞质标注 保存格式 完成一副图像标注，标注保存路径下生成与原图像相同文件命名的json标注格式文件： 重复进行其他图像标注">
+<title></title>
+
+<link rel='canonical' href='http://localhost:1313/post/anylabeling%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="">
+<meta property='og:description' content="数据集下载 数据集下载地址：Human embryo time-lapse video dataset 标注内容 黄色细胞质区域、红色原核区域 标注软件：https://github.com/CVHub520/X-AnyLabeling/tree/main 安装文档：https://github.com/CVHub520/X-AnyLabeling/blob/main/docs/zh_cn/get_started.md 使用手册：https://github.com/CVHub520/X-AnyLabeling/blob/main/docs/zh_cn/user_guide.md 具体操作 UI界面 准备工作：安装SAM模型辅助标记 可能问题：因为网络问题无法安装，手动安装 下载地址：https://github.com/CVHub520/X-AnyLabeling/blob/main/docs/zh_cn/model_zoo.md 下载好后，修改配置文件指定模型路径为自定义路径： 修改路径文件夹下.yaml文件，修改为自定义路径： 细胞核标注 点击File-&gt;open Dir 选择数据集图像文件夹 对存在原核的图像进行标注，创建对象 默认情况下标注文件保存在图像文件夹下，选择File-&gt;Change Output Dir 另外指定到一个标注文件夹，该文件夹保存标注json格式的文件。 开始标注： 细胞质标注 保存格式 完成一副图像标注，标注保存路径下生成与原图像相同文件命名的json标注格式文件： 重复进行其他图像标注">
+<meta property='og:url' content='http://localhost:1313/post/anylabeling%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' />
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="数据集下载 数据集下载地址：Human embryo time-lapse video dataset 标注内容 黄色细胞质区域、红色原核区域 标注软件：https://github.com/CVHub520/X-AnyLabeling/tree/main 安装文档：https://github.com/CVHub520/X-AnyLabeling/blob/main/docs/zh_cn/get_started.md 使用手册：https://github.com/CVHub520/X-AnyLabeling/blob/main/docs/zh_cn/user_guide.md 具体操作 UI界面 准备工作：安装SAM模型辅助标记 可能问题：因为网络问题无法安装，手动安装 下载地址：https://github.com/CVHub520/X-AnyLabeling/blob/main/docs/zh_cn/model_zoo.md 下载好后，修改配置文件指定模型路径为自定义路径： 修改路径文件夹下.yaml文件，修改为自定义路径： 细胞核标注 点击File-&gt;open Dir 选择数据集图像文件夹 对存在原核的图像进行标注，创建对象 默认情况下标注文件保存在图像文件夹下，选择File-&gt;Change Output Dir 另外指定到一个标注文件夹，该文件夹保存标注json格式的文件。 开始标注： 细胞质标注 保存格式 完成一副图像标注，标注保存路径下生成与原图像相同文件命名的json标注格式文件： 重复进行其他图像标注">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/anylabeling%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"></a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="数据集下载">数据集下载
+</h1><ul>
+<li>数据集下载地址：<a class="link" href="https://zenodo.org/records/6390798"  target="_blank" rel="noopener"
+    >Human embryo time-lapse video dataset</a></li>
+</ul>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%871.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片1"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%871.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片1"
+	
+	
+></p>
+<h1 id="标注内容">标注内容
+</h1><p>黄色细胞质区域、红色原核区域</p>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%872.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片2"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%872.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片2"
+	
+	
+></p>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%873.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片3"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%873.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片3"
+	
+	
+></p>
+<p>标注软件：https://github.com/CVHub520/X-AnyLabeling/tree/main</p>
+<p>安装文档：https://github.com/CVHub520/X-AnyLabeling/blob/main/docs/zh_cn/get_started.md</p>
+<p>使用手册：https://github.com/CVHub520/X-AnyLabeling/blob/main/docs/zh_cn/user_guide.md</p>
+<h1 id="具体操作">具体操作
+</h1><h2 id="ui界面">UI界面
+</h2><p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%874.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片4"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%874.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片4"
+	
+	
+></p>
+<h2 id="准备工作安装sam模型辅助标记">准备工作：安装SAM模型辅助标记
+</h2><p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%875.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片5"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%875.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片5"
+	
+	
+></p>
+<h2 id="可能问题因为网络问题无法安装手动安装">可能问题：因为网络问题无法安装，手动安装
+</h2><p>下载地址：https://github.com/CVHub520/X-AnyLabeling/blob/main/docs/zh_cn/model_zoo.md</p>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%876.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片6"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%876.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片6"
+	
+	
+></p>
+<p>下载好后，修改配置文件指定模型路径为自定义路径：</p>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%877.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片7"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%877.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片7"
+	
+	
+></p>
+<p>修改路径文件夹下.yaml文件，修改为自定义路径：</p>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%878.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片8"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%878.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片8"
+	
+	
+></p>
+<h2 id="细胞核标注">细胞核标注
+</h2><p>点击File-&gt;open Dir 选择数据集图像文件夹</p>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%879.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片9"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%879.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片9"
+	
+	
+></p>
+<p>对存在原核的图像进行标注，创建对象</p>
+<p>默认情况下标注文件保存在图像文件夹下，选择File-&gt;Change Output Dir 另外指定到一个标注文件夹，该文件夹保存标注json格式的文件。</p>
+<p>开始标注：</p>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%8710.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片10"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%8710.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片10"
+	
+	
+></p>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%8711.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片11"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%8711.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片11"
+	
+	
+></p>
+<h2 id="细胞质标注">细胞质标注
+</h2><p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%8712.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片12"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%8712.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片12"
+	
+	
+></p>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%8713.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片13"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%8713.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片13"
+	
+	
+></p>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%8714.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片14"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%8714.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片14"
+	
+	
+></p>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%8715.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片15"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%8715.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片15"
+	
+	
+></p>
+<h2 id="保存格式">保存格式
+</h2><p>完成一副图像标注，标注保存路径下生成与原图像相同文件命名的json标注格式文件：</p>
+<p><img src="D:/myblog/public/AnyLabeling_img/%e5%9b%be%e7%89%8716.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片16"
+	
+	
+></p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%8716.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片16"
+	
+	
+></p>
+<p>重复进行其他图像标注</p>
+<p><img src="/AnyLabeling_img/%e5%9b%be%e7%89%8717.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="图片17"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

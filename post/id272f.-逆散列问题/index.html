@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="题目描述 给定长度为 N 的散列表，处理整数最常用的散列映射是 H(x)=x%N。如果我们决定用线性探测解决冲突问题，则给定一个顺序输入的整数序列后，我们可以很容易得到这些整数在散列表中的分布。例如我们将 1、2、3 顺序插入长度为 3 的散列表HT[]后，将得到HT[0]=3，HT[1]=1，HT[2]=2的结果。 但是现在要求解决的是“逆散列问题”，即给定整数在散列表中的分布，问这些整数是按什么顺序插入的？ 输入 输入的第一行是正整数 N（≤1000），为散列表的长度。第二行给出了 N 个整数，其间用空格分隔，每个整数在序列中的位置（第一个数位置为0）即是其在散列表中的位置，其中负数表示表中该位置没有元素。题目保证表中的非负整数是各不相同的。 输出 按照插入的顺序输出这些整数，其间用空格分隔，行首尾不能有多余的空格。注意：对应同一种分布结果，插入顺序有可能不唯一。例如按照顺序 3、2、1 插入长度为 3 的散列表，我们会得到跟 1、2、3 顺序插入一样的结果。在此规定：当前的插入有多种选择时，必须选择最小的数字，这样就保证了最终输出结果的唯一性。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例 11 33 1 13 12 34 38 27 22 32 -1 21 输出样例 1 13 12 21 33 34 38 27 22 32 解题思路 解决逆散列问题，可以看成拓扑排序问题 因为如12,34，他们都是模为1的数，但是他们的位置都不在1，所以他们需要在1和13插入后才能存入，所以相当于1-12,13-12都有路径，只有这两个路径都走完了，12才能进行 而-1的话则代表没有入度和出度 所以只需对这个输入建立有向无环图，再进行拓扑排序即可 进行拓扑排序的方法： 首先创建一个数组，用于存储对应边 再创建一个容器，用于存储每个点的入度 创建一个最小堆，把入度为0的点存入最小堆，这样每次弹出的数据都是最小点，满足题目要求“当前的插入有多种选择时，必须选择最小的数字” 然后每次弹出最小堆中的一个数，并输出，接着对与这个点有关的节点的入度进行减1，如果变为0，则存入最小堆，如此重复，直到最小堆为空 具体代码 #include&lt;bits/stdc++.h&gt; using namespace std; class Node { public: int data; int real_idx; int suppose_idx; Node(int data, int idx,int n) { this-&gt;data = data; real_idx = idx; suppose_idx = data % n; } }; struct cmp { bool operator () (Node n1, Node n2) { return n1.">
+<title>【id272】F. 逆散列问题</title>
+
+<link rel='canonical' href='https://jiebaoccc.github.io/post/id272f.-%E9%80%86%E6%95%A3%E5%88%97%E9%97%AE%E9%A2%98/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="【id272】F. 逆散列问题">
+<meta property='og:description' content="题目描述 给定长度为 N 的散列表，处理整数最常用的散列映射是 H(x)=x%N。如果我们决定用线性探测解决冲突问题，则给定一个顺序输入的整数序列后，我们可以很容易得到这些整数在散列表中的分布。例如我们将 1、2、3 顺序插入长度为 3 的散列表HT[]后，将得到HT[0]=3，HT[1]=1，HT[2]=2的结果。 但是现在要求解决的是“逆散列问题”，即给定整数在散列表中的分布，问这些整数是按什么顺序插入的？ 输入 输入的第一行是正整数 N（≤1000），为散列表的长度。第二行给出了 N 个整数，其间用空格分隔，每个整数在序列中的位置（第一个数位置为0）即是其在散列表中的位置，其中负数表示表中该位置没有元素。题目保证表中的非负整数是各不相同的。 输出 按照插入的顺序输出这些整数，其间用空格分隔，行首尾不能有多余的空格。注意：对应同一种分布结果，插入顺序有可能不唯一。例如按照顺序 3、2、1 插入长度为 3 的散列表，我们会得到跟 1、2、3 顺序插入一样的结果。在此规定：当前的插入有多种选择时，必须选择最小的数字，这样就保证了最终输出结果的唯一性。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例 11 33 1 13 12 34 38 27 22 32 -1 21 输出样例 1 13 12 21 33 34 38 27 22 32 解题思路 解决逆散列问题，可以看成拓扑排序问题 因为如12,34，他们都是模为1的数，但是他们的位置都不在1，所以他们需要在1和13插入后才能存入，所以相当于1-12,13-12都有路径，只有这两个路径都走完了，12才能进行 而-1的话则代表没有入度和出度 所以只需对这个输入建立有向无环图，再进行拓扑排序即可 进行拓扑排序的方法： 首先创建一个数组，用于存储对应边 再创建一个容器，用于存储每个点的入度 创建一个最小堆，把入度为0的点存入最小堆，这样每次弹出的数据都是最小点，满足题目要求“当前的插入有多种选择时，必须选择最小的数字” 然后每次弹出最小堆中的一个数，并输出，接着对与这个点有关的节点的入度进行减1，如果变为0，则存入最小堆，如此重复，直到最小堆为空 具体代码 #include&lt;bits/stdc++.h&gt; using namespace std; class Node { public: int data; int real_idx; int suppose_idx; Node(int data, int idx,int n) { this-&gt;data = data; real_idx = idx; suppose_idx = data % n; } }; struct cmp { bool operator () (Node n1, Node n2) { return n1.">
+<meta property='og:url' content='https://jiebaoccc.github.io/post/id272f.-%E9%80%86%E6%95%A3%E5%88%97%E9%97%AE%E9%A2%98/'>
+<meta property='og:site_name' content='Carp&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-12-06T10:08:42&#43;08:00'/><meta property='article:modified_time' content='2024-12-06T10:08:42&#43;08:00'/>
+<meta name="twitter:title" content="【id272】F. 逆散列问题">
+<meta name="twitter:description" content="题目描述 给定长度为 N 的散列表，处理整数最常用的散列映射是 H(x)=x%N。如果我们决定用线性探测解决冲突问题，则给定一个顺序输入的整数序列后，我们可以很容易得到这些整数在散列表中的分布。例如我们将 1、2、3 顺序插入长度为 3 的散列表HT[]后，将得到HT[0]=3，HT[1]=1，HT[2]=2的结果。 但是现在要求解决的是“逆散列问题”，即给定整数在散列表中的分布，问这些整数是按什么顺序插入的？ 输入 输入的第一行是正整数 N（≤1000），为散列表的长度。第二行给出了 N 个整数，其间用空格分隔，每个整数在序列中的位置（第一个数位置为0）即是其在散列表中的位置，其中负数表示表中该位置没有元素。题目保证表中的非负整数是各不相同的。 输出 按照插入的顺序输出这些整数，其间用空格分隔，行首尾不能有多余的空格。注意：对应同一种分布结果，插入顺序有可能不唯一。例如按照顺序 3、2、1 插入长度为 3 的散列表，我们会得到跟 1、2、3 顺序插入一样的结果。在此规定：当前的插入有多种选择时，必须选择最小的数字，这样就保证了最终输出结果的唯一性。 IO模式 本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。 输入样例 11 33 1 13 12 34 38 27 22 32 -1 21 输出样例 1 13 12 21 33 34 38 27 22 32 解题思路 解决逆散列问题，可以看成拓扑排序问题 因为如12,34，他们都是模为1的数，但是他们的位置都不在1，所以他们需要在1和13插入后才能存入，所以相当于1-12,13-12都有路径，只有这两个路径都走完了，12才能进行 而-1的话则代表没有入度和出度 所以只需对这个输入建立有向无环图，再进行拓扑排序即可 进行拓扑排序的方法： 首先创建一个数组，用于存储对应边 再创建一个容器，用于存储每个点的入度 创建一个最小堆，把入度为0的点存入最小堆，这样每次弹出的数据都是最小点，满足题目要求“当前的插入有多种选择时，必须选择最小的数字” 然后每次弹出最小堆中的一个数，并输出，接着对与这个点有关的节点的入度进行减1，如果变为0，则存入最小堆，如此重复，直到最小堆为空 具体代码 #include&lt;bits/stdc++.h&gt; using namespace std; class Node { public: int data; int real_idx; int suppose_idx; Node(int data, int idx,int n) { this-&gt;data = data; real_idx = idx; suppose_idx = data % n; } }; struct cmp { bool operator () (Node n1, Node n2) { return n1.">
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu8602028200308506927.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Carp&#39;s blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/id272f.-%E9%80%86%E6%95%A3%E5%88%97%E9%97%AE%E9%A2%98/">【id272】F. 逆散列问题</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 06, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><strong>题目描述</strong></p>
+<p>给定长度为 <em>N</em> 的散列表，处理整数最常用的散列映射是 <em>H</em>(<em>x</em>)=<em>x</em>%<em>N</em>。如果我们决定用线性探测解决冲突问题，则给定一个顺序输入的整数序列后，我们可以很容易得到这些整数在散列表中的分布。例如我们将 1、2、3 顺序插入长度为 3 的散列表<code>HT[]</code>后，将得到<code>HT[0]=3</code>，<code>HT[1]=1</code>，<code>HT[2]=2</code>的结果。</p>
+<p>但是现在要求解决的是“逆散列问题”，即给定整数在散列表中的分布，问这些整数是按什么顺序插入的？</p>
+<p><strong>输入</strong></p>
+<p>输入的第一行是正整数 N（≤1000），为散列表的长度。第二行给出了 N 个整数，其间用空格分隔，每个整数在序列中的位置（第一个数位置为0）即是其在散列表中的位置，其中负数表示表中该位置没有元素。题目保证表中的非负整数是各不相同的。</p>
+<p><strong>输出</strong></p>
+<p>按照插入的顺序输出这些整数，其间用空格分隔，行首尾不能有多余的空格。注意：对应同一种分布结果，插入顺序有可能不唯一。例如按照顺序 3、2、1 插入长度为 3 的散列表，我们会得到跟 1、2、3 顺序插入一样的结果。在此规定：当前的插入有多种选择时，必须选择最小的数字，这样就保证了最终输出结果的唯一性。</p>
+<p><strong>IO模式</strong></p>
+<p>本题IO模式为标准输入/输出(Standard IO)，你需要从标准输入流中读入数据，并将答案输出至标准输出流中。</p>
+<p><strong>输入样例</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">11</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">33</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">32</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">21</span>
+</span></span></code></pre></div><p><strong>输出样例</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">21</span> <span style="color:#ae81ff">33</span> <span style="color:#ae81ff">34</span> <span style="color:#ae81ff">38</span> <span style="color:#ae81ff">27</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">32</span>
+</span></span></code></pre></div><p><strong>解题思路</strong></p>
+<p>解决逆散列问题，可以看成拓扑排序问题</p>
+<p>因为如12,34，他们都是模为1的数，但是他们的位置都不在1，所以他们需要在1和13插入后才能存入，所以相当于1-12,13-12都有路径，只有这两个路径都走完了，12才能进行</p>
+<p>而-1的话则代表没有入度和出度</p>
+<p>所以只需对这个输入建立有向无环图，再进行拓扑排序即可</p>
+<p>进行拓扑排序的方法：</p>
+<ul>
+<li>首先创建一个数组，用于存储对应边</li>
+<li>再创建一个容器，用于存储每个点的入度</li>
+<li>创建一个最小堆，把入度为0的点存入最小堆，这样每次弹出的数据都是最小点，满足题目要求“当前的插入有多种选择时，必须选择最小的数字”</li>
+<li>然后每次弹出最小堆中的一个数，并输出，接着对与这个点有关的节点的入度进行减1，如果变为0，则存入最小堆，如此重复，直到最小堆为空</li>
+</ul>
+<p><strong>具体代码</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;bits/stdc++.h&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Node</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> data;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> real_idx;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> suppose_idx;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	Node(<span style="color:#66d9ef">int</span> data, <span style="color:#66d9ef">int</span> idx,<span style="color:#66d9ef">int</span> n) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>data <span style="color:#f92672">=</span> data;
+</span></span><span style="display:flex;"><span>		real_idx <span style="color:#f92672">=</span> idx;
+</span></span><span style="display:flex;"><span>		suppose_idx <span style="color:#f92672">=</span> data <span style="color:#f92672">%</span> n;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">cmp</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">operator</span> () (Node n1, Node n2) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> n1.data <span style="color:#f92672">&gt;</span> n2.data;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> n;
+</span></span><span style="display:flex;"><span>	cin <span style="color:#f92672">&gt;&gt;</span> n;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> num;
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>Node<span style="color:#f92672">&gt;</span> hash;
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> Indegree(n,<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>		cin <span style="color:#f92672">&gt;&gt;</span> num;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (num <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		hash.push_back(Node(num,i,n));
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	priority_queue<span style="color:#f92672">&lt;</span>Node, vector<span style="color:#f92672">&lt;</span>Node<span style="color:#f92672">&gt;</span>, cmp<span style="color:#f92672">&gt;</span> q;
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> visited(n,false);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> arr(n,vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(n,<span style="color:#ae81ff">0</span>));
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> hash.size(); i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> hash[i].real_idx, y <span style="color:#f92672">=</span> hash[i].suppose_idx;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (x <span style="color:#f92672">==</span> y) {
+</span></span><span style="display:flex;"><span>			q.push(hash[i]);
+</span></span><span style="display:flex;"><span>			visited[i] <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">while</span> (y <span style="color:#f92672">!=</span> x) {
+</span></span><span style="display:flex;"><span>			Indegree[x]<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>			arr[y][x] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>			y <span style="color:#f92672">=</span> (y <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">%</span>n;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>q.empty()) {
+</span></span><span style="display:flex;"><span>		Node node <span style="color:#f92672">=</span> q.top();
+</span></span><span style="display:flex;"><span>		q.pop();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		cout <span style="color:#f92672">&lt;&lt;</span> node.data <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> node.real_idx;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> n; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (arr[i][j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>				Indegree[j]<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (Indegree[j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> visited[j] <span style="color:#f92672">==</span> false) {
+</span></span><span style="display:flex;"><span>					q.push(hash[j]);
+</span></span><span style="display:flex;"><span>					visited[j] <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	cout <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 Carp&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
